@@ -1,0 +1,70 @@
+services:
+  php:
+    container_name: tramites-php
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    volumes:
+      - ./laravel:/var/www/html
+    expose:
+      - "9000"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "composer require laravel-lang/common --dev && 
+      php artisan lang:update && 
+      php artisan migrate --force && 
+      php-fpm"
+    # command: >
+    #   sh -c "composer require laravel-lang/common --dev && 
+    #   php artisan lang:update && 
+    #   php artisan migrate:fresh --seed && 
+    #   php-fpm"
+
+  web:
+    container_name: tramites-apache
+    build:
+      context: .
+      dockerfile: ./docker/apache/Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./laravel:/usr/local/apache2/htdocs
+      - ./docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+    depends_on:
+      - php
+      
+  db:
+    container_name: tramites-mysql
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: tramites_db
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 5
+      start_period: 10s
+
+  phpmyadmin:
+    container_name: tramites-phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: secret
+    depends_on:
+      - db
+
+volumes:
+  mysql-data:
