@@ -176,4 +176,15 @@ class SolicitudController extends Controller
         $solicitud = Solicitud::findOrFail($id);
         return view('solicitudes.usuario-ver', compact('solicitud'));
     }
+
+    /**
+     * Display the solicitudes of the authenticated user.
+     */
+    public function verUserSolicitudes()
+    {
+        $userId = Auth::user()->id;
+        $solicitudes = Solicitud::where('usuario_id', $userId)->paginate(10);
+        return view('solicitudes.usuario-lista', compact('solicitudes'));
+    }
 }
+
