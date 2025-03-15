@@ -12,6 +12,9 @@
     <div class="row justify-content-between">
         <div class="col-lg-8">
             <h3 class="govcolor-blue-dark mb-4">Solicitud de Trámites</h3>
+            <a href="/user/solicitudes">
+                <button type="button" class="btn-govco fill-btn-govco">Ver mis solicitudes</button>
+            </a>
             <p class="text-muted my-4">
                 En esta sección encontrarás un listado detallado de los trámites disponibles
                 relacionados con vehículos automotores. Cada trámite incluye una descripción
