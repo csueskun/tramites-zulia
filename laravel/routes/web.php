@@ -22,6 +22,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::middleware(['auth'])->group(function () {
     Route::view('/user/home', 'user-home');
     Route::view('/user/solicitudes/nueva-{asunto}', 'solicitudes.nueva')->where('asunto', '[A-Za-z]+');
+    Route::get('/user/solicitudes', [SolicitudController::class, 'verUserSolicitudes']);
     Route::get('/user/solicitudes/{id}/ver', [SolicitudController::class, 'verSolicitud']);
     Route::post('/user/solicitudes/{id}/documento', [DocumentoController::class, 'addDocumento']);
     Route::post('/solicitudes', [SolicitudController::class, 'addSolicitud']);
