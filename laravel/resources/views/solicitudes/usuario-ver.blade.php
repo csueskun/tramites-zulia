@@ -120,6 +120,17 @@
                 <div id="contactohorizontaluno" class="m-0 container-informacion-principal-interaccion-govco">
                     <div id="contactohorizontal" class="container-informacion-principal-campos-interaccion-govco">
                         <div class="informacion-vertical-govco">
+                            @if (session('success'))
+                            <div class="container-alerta-govco">
+                                <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
+                                    <span class="alerta-icon-govco alerta-icon-notificacion-govco asuccess"></span>
+                                    <p class="alerta-content-text">
+                                        {{ session('success') }}
+                                    </p>
+                                </div>
+                            </div>
+                            <br />
+                            @endif
                             <div class="contenido-etapa etapa-3">
                                 <div class="titulo-informacion-govco mb-4">
                                     <label>Cargar Pago</label>
@@ -201,7 +212,7 @@
                                             <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
                                                 <span class="alerta-icon-govco alerta-icon-notificacion-govco asuccess"></span>
                                                 <p class="alerta-content-text">
-                                                    Certificado enviado al correo <strong>{{$solicitud->usuario->email}}</strong> el día 
+                                                    Certificado enviado al correo <strong>{{$solicitud->usuario->email}}</strong> el día
                                                     <strong>{{$solicitud->certificado ? $solicitud->certificado->created_at->format('d/m/Y') : ''}}</strong>
                                                 </p>
                                             </div>
@@ -303,6 +314,7 @@
     .contenido-etapa.active {
         display: block;
     }
+
     .container-indicador-numero-principal-nombre-interaccion-govco {
         margin-left: 20px;
         text-align: center;
@@ -358,6 +370,5 @@
             element.classList.add('active');
         });
     });
-
 </script>
 @endpush
