@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/solicitudes/{id}/ver', [SolicitudController::class, 'verSolicitud']);
     Route::post('/user/solicitudes/{id}/documento', [DocumentoController::class, 'addDocumento']);
     Route::post('/solicitudes', [SolicitudController::class, 'addSolicitud']);
+    Route::get('/documentos/download/{id}', [DocumentoController::class, 'download']);
 
     Route::middleware([IsAdmin::class])->group(function () {
         Route::view('/home', 'admin-home');
