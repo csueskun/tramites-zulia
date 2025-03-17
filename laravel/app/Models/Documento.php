@@ -13,4 +13,9 @@ class Documento extends Model
         'responsable',
         'solicitud_id',
     ];
+
+    public function getFullTipoAttribute()
+    {
+        return expandAbbreviation($this->tipo);
+    }
 }
