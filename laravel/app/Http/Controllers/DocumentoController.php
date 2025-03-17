@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Documento;
 use App\Models\Solicitud;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentoController extends Controller
 {
@@ -25,5 +26,12 @@ class DocumentoController extends Controller
         });
 
         return redirect("/user/solicitudes/{$solicitudId}/ver")->with('success', 'Documento enviado exitosamente.');
+    }
+
+    public function download($id)
+    {
+        $documento = Documento::findOrFail($id);
+        app()->useStoragePath('/home/carlos/dev/tramites/laravel/storage');
+        return Storage::download("public/uploads{$documento->ruta}");
     }
 }
