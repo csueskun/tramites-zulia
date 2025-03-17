@@ -36,6 +36,11 @@ class Solicitud extends Model
         return $this->hasMany(Documento::class);
     }
 
+    public function getDocumentosUsuarioAttribute()
+    {
+        return $this->documentos->where('responsable', 'USER');
+    }
+
     public function getReciboPagoAttribute()
     {
         return $this->documentos->where('tipo', 'RECIBO DE PAGO')->last();
