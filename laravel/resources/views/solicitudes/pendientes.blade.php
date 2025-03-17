@@ -53,7 +53,8 @@
                                         data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
-                                        data-bs-comentario="{{$solicitud->comentario}}">
+                                        data-bs-comentario="{{$solicitud->comentario}}"
+                                        data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
                                         VER MÁS</a> /
                                     <form class="aceptar-solicitud" action="/solicitudes/{{$solicitud->id}}" method="post">
                                         @csrf
@@ -138,37 +139,13 @@
                                 <p></p>
                             </div>
                         </div>
-                        <span><strong>Documentos:</strong></span>
-                        <table class="table table-general fix" aria-describedby="tableDescCursorRows">
-                            <tbody class="contenido-tablas contenido-hover">
-                                @for ($i = 1; $i <= 2; $i++)
-                                    <tr>
-                                    <td>Documento {{ $i }} version {{ $i }} descripcion {{ $i }}</td>
-                                    <td width="150">
-                                        <button type="button" class="btn-govco no-fill-btn-govco symbol-btn-govco mixed-btn-govco govco-download" icon-position="left">
-                                            <span class="sub-btn-govco w-80">Descargar</span>
-                                        </button>
-                                    </td>
-                                    </tr>
-                                    @endfor
-                                    <tr>
-                                        <td>Documento de identidad Documento de identidad Documento de identidad </td>
-                                        <td>
-                                            <button type="button" class="cursor-pointer text-danger btn-govco no-fill-btn-govco symbol-btn-govco mixed-btn-govco govco-times-circle" icon-position="left">
-                                                <span class="sub-btn-govco w-80">Sin cargar</span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Documento poder</td>
-                                        <td>
-                                            <button type="button" class="cursor-pointer text-muted btn-govco no-fill-btn-govco symbol-btn-govco mixed-btn-govco govco-times" icon-position="left">
-                                                <span class="sub-btn-govco w-80">No aplica</span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                            </tbody>
-                        </table>
+                        <div id="documentos-container">
+                            <span><strong>Documentos:</strong></span>
+                            <table id="documentos-table" class="table table-general fix" aria-describedby="tableDescCursorRows">
+                                <tbody class="contenido-tablas contenido-hover">
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
 
@@ -202,6 +179,8 @@
         vars.forEach((v, i) => {
             fields[i].innerHTML = trigger.getAttribute(`data-bs-${v}`);
         });
+        const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
+        renderDocumentosTable(documentos);
     });
     var forms = document.querySelectorAll('form.aceptar-solicitud');
     forms.forEach(function(form) {
