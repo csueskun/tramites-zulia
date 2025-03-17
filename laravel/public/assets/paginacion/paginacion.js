@@ -71,3 +71,41 @@ function dibujarElementos(pages, page) {
 function _dibujarElementos(pages, page) {
   location.href = '/solicitudes/aceptadas?page=' + page;
 }
+function renderDocumentosTable(documentos) {
+  if (documentos.length === 0) {
+    const documentosContainer = verMas.querySelector('#documentos-container');
+    documentosContainer.style.display = 'block';
+    documentosContainer.querySelector('tbody').innerHTML = '<tr><td colspan="1"><span>-- No se han cargado archivos --</span></td></tr>';
+    return;
+  }
+  var table = verMas.querySelector('#documentos-table tbody');
+  table.innerHTML = '';
+  documentos.forEach((doc, index) => {
+    var row = document.createElement('tr');
+    var cell1 = document.createElement('td');
+    cell1.textContent = expandAbbreviation(doc.tipo);
+    var cell2 = document.createElement('td');
+    cell1.style.setProperty('width', '315px', 'important');
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'btn-govco no-fill-btn-govco symbol-btn-govco mixed-btn-govco govco-download';
+    button.innerHTML = '<span class="sub-btn-govco w-80">Descargar</span>';
+    button.onclick = function () {
+      window.open('/documentos/download/' + doc.id, '_blank');
+    };
+    cell2.appendChild(button);
+    row.appendChild(cell1);
+    row.appendChild(cell2);
+    table.appendChild(row);
+  });
+
+}
+function expandAbbreviation(original) {
+  const abbreviations = {
+    'ID': 'Documento de Identidad',
+    'PROPIEDAD': 'Tarjeta de propiedad del vehículo automotor',
+    'FUN': 'Formato FUN'
+  };
+
+  return abbreviations[original] || original;
+}
