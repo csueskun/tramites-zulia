@@ -189,6 +189,9 @@
             fechaRespuestaInput.value = new Date().toISOString();
         });
     });
+    function _dibujarElementos(pages, page) {
+        __dibujarElementos(pages, page, '/solicitudes/pendientes');
+    }
 </script>
 
 @endpush
