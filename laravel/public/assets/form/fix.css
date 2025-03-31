@@ -31,6 +31,9 @@
 .no-decoration {
     text-decoration: none !important;
 }
+.fit-content {
+    width: fit-content !important;
+}
 
 /* Table */
 .table-general.fix thead th,

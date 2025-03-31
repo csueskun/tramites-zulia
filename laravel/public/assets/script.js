@@ -2979,17 +2979,17 @@ function validationErrortext(extensions, size) {
   let textoError = '';
   if (extensions > 0) {
     if (extensions > 1) {
-      textoError = fileUploadMessageTypes.extensionNotAllowed;
-    } else {
       textoError = fileUploadMessageTypes.extensionsNotAllowed;
+    } else {
+      textoError = fileUploadMessageTypes.extensionNotAllowed;
     }
   }
 
   if (size > 0) {
     if (size > 1) {
-      textoError += ' ' + fileUploadMessageTypes.sizeNotAllowed;
-    } else {
       textoError += ' ' + fileUploadMessageTypes.sizesNotAllowed;
+    } else {
+      textoError += ' ' + fileUploadMessageTypes.sizeNotAllowed;
     }
   }
 

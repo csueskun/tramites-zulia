@@ -68,8 +68,8 @@ function dibujarElementos(pages, page) {
   document.getElementById("lista-paginador").innerHTML = liTag;
   return liTag;
 }
-function _dibujarElementos(pages, page) {
-  location.href = '/solicitudes/aceptadas?page=' + page;
+function __dibujarElementos(pages, page, route) {
+  location.href = route+'?page=' + page;
 }
 function renderDocumentosTable(documentos) {
   if (documentos.length === 0) {
