@@ -123,7 +123,19 @@
                             <label>Nueva Solicitud de {{expandAbbreviation($asunto)}}</label>
                         </div> -->
                         <div class="informacion-vertical-govco">
-                            <form action="/solicitudes" method="post" enctype="multipart/form-data">
+
+                            @if (session('success'))
+                            <div class="container-alerta-govco">
+                                <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
+                                    <span class="alerta-icon-govco alerta-icon-notificacion-govco asuccess"></span>
+                                    <p class="alerta-content-text">
+                                        {{ session('success') }}
+                                    </p>
+                                </div>
+                            </div>
+                            @endif
+
+                            <form id="nueva-solicitud" action="/solicitudes" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="asunto" value="{{$asunto}}">
                                 <div class="modal-header modal-header-govco modal-header-alerts-govco">
@@ -144,7 +156,7 @@
                                             <div class="container-carga-de-archivo-govco mb-4">
                                                 <div class="loader-carga-de-archivo-govco">
                                                     <div class="all-input-carga-de-archivo-govco">
-                                                        <input type="file" name="documento_identidad" id="documento_identidad" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple />
+                                                        <input required="required" type="file" name="documento_identidad" id="documento_identidad" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFileDocumentoIdentidad" data-action-delete="deleteFileDocumentoIdentidad" multiple />
                                                         <label for="documento_identidad" class="label-carga-de-archivo-govco">Documento de identidad*</label>
                                                         <label for="documento_identidad" class="container-input-carga-de-archivo-govco">
                                                             <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
@@ -158,11 +170,11 @@
                                                                 <span class="visually-hidden">Cargando...</span>
                                                             </div>
                                                         </div>
-                                                        <button class="button-loader-carga-de-archivo-govco" disabled style="display: none;">Cargar archivo</button>
+                                                        <button id="documento_identidad_load" class="button-loader-carga-de-archivo-govco" disabled>Cargar archivo</button>
                                                     </div>
                                                 </div>
                                                 <div class="container-detail-carga-de-archivo-govco">
-                                                    <span class="alert-carga-de-archivo-govco visually-hidden"></span>
+                                                    <span id="documento_identidad_error" class="alert-carga-de-archivo-govco visually-hidden"></span>
                                                     <div class="attached-files-carga-de-archivo-govco"></div>
                                                 </div>
 
@@ -173,7 +185,7 @@
                                             <div class="container-carga-de-archivo-govco mb-4">
                                                 <div class="loader-carga-de-archivo-govco">
                                                     <div class="all-input-carga-de-archivo-govco">
-                                                        <input type="file" name="documento_fun" id="documento_fun" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple />
+                                                        <input required="required" type="file" name="documento_fun" id="documento_fun" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFileDocumentoFun" data-action-delete="deleteFileDocumentoFun" multiple />
                                                         <label for="documento_fun" class="label-carga-de-archivo-govco">Documento FUN*</label>
                                                         <label for="documento_fun" class="container-input-carga-de-archivo-govco">
                                                             <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
@@ -187,11 +199,11 @@
                                                                 <span class="visually-hidden">Cargando...</span>
                                                             </div>
                                                         </div>
-                                                        <button class="button-loader-carga-de-archivo-govco" disabled style="display: none;">Cargar archivo</button>
+                                                        <button id="documento_fun_load" class="button-loader-carga-de-archivo-govco" disabled>Cargar archivo</button>
                                                     </div>
                                                 </div>
                                                 <div class="container-detail-carga-de-archivo-govco">
-                                                    <span class="alert-carga-de-archivo-govco visually-hidden"></span>
+                                                    <span id="documento_fun_error" class="alert-carga-de-archivo-govco visually-hidden"></span>
                                                     <div class="attached-files-carga-de-archivo-govco"></div>
                                                 </div>
 
@@ -202,7 +214,7 @@
                                             <div class="container-carga-de-archivo-govco">
                                                 <div class="loader-carga-de-archivo-govco">
                                                     <div class="all-input-carga-de-archivo-govco">
-                                                        <input type="file" name="documento_propiedad" id="documento_propiedad" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple />
+                                                        <input required="required" type="file" name="documento_propiedad" id="documento_propiedad" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFileDocumentoPropiedad" data-action-delete="deleteFileDocumentoPropiedad" multiple />
                                                         <label for="documento_propiedad" class="label-carga-de-archivo-govco">Tarjeta de Propiedad*</label>
                                                         <label for="documento_propiedad" class="container-input-carga-de-archivo-govco">
                                                             <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
@@ -216,11 +228,11 @@
                                                                 <span class="visually-hidden">Cargando...</span>
                                                             </div>
                                                         </div>
-                                                        <button class="button-loader-carga-de-archivo-govco" disabled style="display: none;">Cargar archivo</button>
+                                                        <button id="documento_propiedad_load" class="button-loader-carga-de-archivo-govco" disabled>Cargar archivo</button>
                                                     </div>
                                                 </div>
                                                 <div class="container-detail-carga-de-archivo-govco">
-                                                    <span class="alert-carga-de-archivo-govco visually-hidden"></span>
+                                                    <span id="documento_propiedad_error" class="alert-carga-de-archivo-govco visually-hidden"></span>
                                                     <div class="attached-files-carga-de-archivo-govco"></div>
                                                 </div>
 
@@ -237,7 +249,7 @@
                                             <div class="container-carga-de-archivo-govco">
                                                 <div class="loader-carga-de-archivo-govco">
                                                     <div class="all-input-carga-de-archivo-govco">
-                                                        <input type="file" name="documento_poder" id="documento_poder" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple />
+                                                        <input type="file" name="documento_poder" id="documento_poder" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFilePoder" data-action-delete="deleteFilePoder" multiple />
                                                         <label for="documento_poder" class="label-carga-de-archivo-govco">Documento poder*</label>
                                                         <label for="documento_poder" class="container-input-carga-de-archivo-govco">
                                                             <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
@@ -251,11 +263,11 @@
                                                                 <span class="visually-hidden">Cargando...</span>
                                                             </div>
                                                         </div>
-                                                        <button class="button-loader-carga-de-archivo-govco" disabled style="display: none;">Cargar archivo</button>
+                                                        <button id="documento_poder_load" class="button-loader-carga-de-archivo-govco" disabled>Cargar archivo</button>
                                                     </div>
                                                 </div>
                                                 <div class="container-detail-carga-de-archivo-govco">
-                                                    <span class="alert-carga-de-archivo-govco visually-hidden"></span>
+                                                    <span id="documento_poder_error" class="alert-carga-de-archivo-govco visually-hidden"></span>
                                                     <div class="attached-files-carga-de-archivo-govco"></div>
                                                 </div>
 
@@ -263,7 +275,7 @@
 
                                         </div>
                                         <div class="col-lg-12 mt-4">
-                                            <button type="submit" class="btn-linea-activar-govco linea-link-label-govco" id="botonLineaInteHrz">
+                                            <button disabled type="submit" class="btn btn-primary btn-modal-govco fit-content">
                                                 Continuar
                                             </button>
                                         </div>
@@ -320,19 +332,139 @@
             fileInput.addEventListener('change', function() {
                 timeOut = setTimeout(() => {
                     this.parentElement.parentElement.querySelector('.button-loader-carga-de-archivo-govco').click();
-                }, 500);
+                }, 100);
             });
         });
         setActivo(1);
     });
 
+    var fileDocumentoIdentidad = [];
+    var fileDocumentoFun = [];
+    var fileDocumentoPropiedad = [];
+    var filePoder = [];
+    var form = document.querySelector('#nueva-solicitud');
+
     function toggleArchivoAdicional() {
         var archivoAdicional = document.getElementById('archivo_adicional');
         if (archivoAdicional.classList.contains('d-none')) {
             archivoAdicional.classList.remove('d-none');
+            archivoAdicional.querySelector('input[type="file"]').setAttribute('required', 'required');
         } else {
             archivoAdicional.classList.add('d-none');
+            archivoAdicional.querySelector('input[type="file"]').removeAttribute('required');
+            archivoAdicional.querySelector('input[type="file"]').removeAttribute('data-error');
+            filePoder = [];
         }
+    }
+
+    // File upload
+    window.addEventListener("load", function() {
+        setValidationParameters('documento_identidad', ['pdf'], 2097152, 1);
+        setValidationParameters('documento_fun', ['xls'], 2097152, 1);
+        setValidationParameters('documento_propiedad', ['pdf'], 2097152, 1);
+        setValidationParameters('documento_poder', ['pdf'], 2097152, 1);
+    });
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const dataTransfer = new DataTransfer();
+        const tempForm = cloneFileForm(form);
+        tempForm.appendChild(addFileInputs(tempForm, fileDocumentoIdentidad, "id"));
+        tempForm.appendChild(addFileInputs(tempForm, fileDocumentoFun, "fun"));
+        tempForm.appendChild(addFileInputs(tempForm, fileDocumentoPropiedad, "propiedad"));
+        tempForm.appendChild(addFileInputs(tempForm, filePoder, "poder"));
+        document.body.appendChild(tempForm);
+        tempForm.submit();
+    });
+
+    function addFileInputs(tempform, inputFileFiles, inputName) {
+        const dataTransfer = new DataTransfer();
+        inputFileFiles.forEach(file => dataTransfer.items.add(file));
+        var inputFile = document.createElement("input");
+        inputFile.type = "file";
+        inputFile.name = inputName;
+        inputFile.files = dataTransfer.files;
+        return inputFile;
+    }
+
+    form.addEventListener('change', preValidateFileForm.bind(this, form));
+
+    function preValidateFileForm(form) {
+        setTimeout(function() {
+            validateFileForm(form, function() {
+                form.querySelector('button[type="submit"]').removeAttribute('disabled');
+            }, function() {
+                form.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
+            })
+        }, 200);
+    }
+
+    function uploadFileDocumentoIdentidad(inputFiles) {
+        return new Promise(function(resolve, reject) {
+            if (true) {
+                fileDocumentoIdentidad = inputFiles;
+                const filesLoadedSuccesfully = inputFiles;
+                resolve(filesLoadedSuccesfully);
+            } else {
+                reject('Ocurrió un error al cargar los archivos.');
+            }
+        });
+    }
+
+    function uploadFileDocumentoFun(inputFiles) {
+        return new Promise(function(resolve, reject) {
+            if (true) {
+                fileDocumentoFun = inputFiles;
+                const filesLoadedSuccesfully = inputFiles;
+                resolve(filesLoadedSuccesfully);
+            } else {
+                reject('Ocurrió un error al cargar los archivos.');
+            }
+        });
+    }
+
+    function uploadFileDocumentoPropiedad(inputFiles) {
+        return new Promise(function(resolve, reject) {
+            if (true) {
+                fileDocumentoPropiedad = inputFiles;
+                const filesLoadedSuccesfully = inputFiles;
+                resolve(filesLoadedSuccesfully);
+            } else {
+                reject('Ocurrió un error al cargar los archivos.');
+            }
+        });
+    }
+
+    function uploadFilePoder(inputFiles) {
+        return new Promise(function(resolve, reject) {
+            if (true) {
+                filePoder = inputFiles;
+                const filesLoadedSuccesfully = inputFiles;
+                resolve(filesLoadedSuccesfully);
+            } else {
+                reject('Ocurrió un error al cargar los archivos.');
+            }
+        });
+    }
+
+    function deleteFileDocumentoIdentidad() {
+        fileDocumentoIdentidad = [];
+        preValidateFileForm(form)
+    }
+
+    function deleteFileDocumentoFun() {
+        fileDocumentoFun = [];
+        preValidateFileForm(form)
+    }
+
+    function deleteFileDocumentoPropiedad() {
+        fileDocumentoPropiedad = [];
+        preValidateFileForm(form)
+    }
+
+    function deleteFilePoder() {
+        filePoder = [];
+        preValidateFileForm(form)
     }
 </script>
 @endpush
