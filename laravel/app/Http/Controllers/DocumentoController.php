@@ -15,11 +15,10 @@ class DocumentoController extends Controller
     {
         $solicitud = Solicitud::find($solicitudId);
         $validatedData = $request->all();
-        
+
         $document = DB::transaction(function () use ($validatedData, $solicitud) {
             $validatedData['solicitud_id'] = $solicitud->id;
-            $validatedData['usuario_id'] = Auth::user()->id;
-            $validatedData['ruta'] = '/'.$solicitud->radicado . '-constancia-de-pago.pdf';
+            $validatedData['ruta'] = '/' . $solicitud->radicado . '-constancia-de-pago.pdf';
             $document = Documento::create($validatedData);
             $solicitud->update(['status' => 'updated']);
             return $document;
@@ -31,7 +30,9 @@ class DocumentoController extends Controller
     public function download($id)
     {
         $documento = Documento::findOrFail($id);
-        app()->useStoragePath('/home/carlos/dev/tramites/laravel/storage');
-        return Storage::download("public/uploads{$documento->ruta}");
+        $filePath = "uploads{$documento->ruta}";
+
+        // Explicitly specify the 'public' disk for downloading
+        return Storage::disk('public')->download($filePath);
     }
 }

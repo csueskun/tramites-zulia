@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use App\Models\Solicitud;
+use App\Models\Documento;
 use App\Services\MailService;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EnviarReciboDePago;
+use Illuminate\Support\Facades\DB;
 
 class SolicitudController extends Controller
 {
@@ -119,13 +121,14 @@ class SolicitudController extends Controller
         try {
             $solicitud = Solicitud::findOrFail($id);
             $fileName = $solicitud->radicado . '-recibo-de-pago.pdf';
-            if ($request->hasFile('inputFile')) {
-                $file = $request->file('inputFile');
-                $file->storeAs('uploads', $fileName, 'public'); // Store in storage/app/public/uploads
+            if ($request->hasFile('file_recibo')) {
+                $file = $request->file('file_recibo');
+                $file[0]->storeAs('uploads', $fileName, 'public');
             }
-            $this->mailService->sendReciboDePago($solicitud, 'app/public/uploads/'.$fileName);
+            $this->mailService->sendReciboDePago($solicitud, 'app/public/uploads/' . $fileName);
             $solicitud->documentos()->create([
                 'tipo' => 'RECIBO DE PAGO',
+                'responsable' => 'ADMIN',
                 'ruta' => '/' . $fileName,
             ]);
             return redirect()->back()->with('success', 'Recibo de pago enviado.');
@@ -138,13 +141,14 @@ class SolicitudController extends Controller
         try {
             $solicitud = Solicitud::findOrFail($id);
             $fileName = $solicitud->radicado . '-certificado.pdf';
-            if ($request->hasFile('inputFile')) {
-                $file = $request->file('inputFile');
-                $file->storeAs('uploads', $fileName, 'public');
+            if ($request->hasFile('file_certificado')) {
+                $file = $request->file('file_certificado');
+                $file[0]->storeAs('uploads', $fileName, 'public');
             }
-            $this->mailService->sendCertificado($solicitud, 'app/public/uploads/'.$fileName);
+            $this->mailService->sendCertificado($solicitud, 'app/public/uploads/' . $fileName);
             $solicitud->documentos()->create([
                 'tipo' => 'CERTIFICADO',
+                'responsable' => 'ADMIN',
                 'ruta' => '/' . $fileName,
             ]);
             return redirect()->back()->with('success', 'Certificado enviado.');
@@ -159,13 +163,43 @@ class SolicitudController extends Controller
     public function addSolicitud(Request $request)
     {
         $validatedData = $request->validate([]);
-        $validatedData['estado'] = 'EN REVISION';
-        $validatedData['usuario_id'] = Auth::user()->id;
         $validatedData['radicado'] = 'SOL-' . date('Y') . '-' . str_pad(Solicitud::count() + 1, 4, '0', STR_PAD_LEFT);
+        $documents = [
+            'id' => '-id.pdf',
+            'fun' => '-fun.xls',
+            'propiedad' => '-propiedad.pdf',
+            'poder' => '-poder.pdf',
+        ];
+        $storedFiles = [];
 
-        $solicitud = Solicitud::create($validatedData);
+        foreach ($documents as $inputName => $suffix) {
+            try {
+                if ($request->hasFile($inputName)) {
+                    $fileName = $validatedData['radicado'] . $suffix;
+                    $file = $request->file($inputName);
+                    $file->storeAs('uploads', $fileName, 'public');
+                    $storedFiles[$inputName] = '/' . $fileName;
+                }
+            } catch (\Throwable $th) {
+                return redirect()->back()->withErrors(['Error al cargar documento: ' . $th->getMessage()]);
+            }
+        }
 
-        return redirect("/user/solicitudes/{$solicitud->id}/ver")->with('success', 'Solicitud creada exitosamente.');
+        $solicitud_id = DB::transaction(function () use ($validatedData, $storedFiles) {
+            $validatedData['estado'] = 'EN REVISION';
+            $validatedData['usuario_id'] = Auth::user()->id;
+            $solicitud = Solicitud::create($validatedData);
+            foreach ($storedFiles as $key => $value) {
+                $newDocumento = new Documento();
+                $newDocumento->tipo = strtoupper($key);
+                $newDocumento->ruta = $value;
+                $newDocumento->solicitud_id = $solicitud->id;
+                $newDocumento->save();
+            }
+            return $solicitud->id;
+        });
+        
+        return redirect("/user/solicitudes/{$solicitud_id}/ver")->with('success', 'Solicitud creada exitosamente.');
     }
 
     /**
@@ -187,4 +221,3 @@ class SolicitudController extends Controller
         return view('solicitudes.usuario-lista', compact('solicitudes'));
     }
 }
-
