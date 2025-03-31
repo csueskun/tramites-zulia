@@ -59,7 +59,8 @@
                                         data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
-                                        data-bs-comentario="{{$solicitud->comentario}}">
+                                        data-bs-comentario="{{$solicitud->comentario}}"
+                                        data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
                                         VER MÁS</a> /
                                     <form class="validar-pago" action="/solicitudes/{{$solicitud->id}}" method="post">
                                         @csrf
@@ -162,6 +163,13 @@
                                 <span><strong>Comentarios:</strong></span>
                                 <p></p>
                             </div>
+                        </div>
+                        <div id="documentos-container">
+                            <span><strong>Documentos:</strong></span>
+                            <table id="documentos-table" class="table table-general fix" aria-describedby="tableDescCursorRows">
+                                <tbody class="contenido-tablas contenido-hover">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -271,6 +279,9 @@
         fields[2].classList.add(fields[2].innerHTML === "APROBADA" ? 'completado' : 'error');
         fields[4].classList.add(fields[4].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
         fields[5].classList.add(fields[5].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
+
+        const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
+        renderDocumentosTable(documentos);
     })
 
 
@@ -281,6 +292,10 @@
             fechaValidacionInput.value = new Date().toISOString();
         });
     });
+
+    function _dibujarElementos(pages, page) {
+        __dibujarElementos(pages, page, '/solicitudes/pagadas');
+    }
 </script>
 
 @endpush

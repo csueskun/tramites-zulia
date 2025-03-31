@@ -60,7 +60,8 @@
                                         data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
-                                        data-bs-comentario="{{$solicitud->comentario}}">
+                                        data-bs-comentario="{{$solicitud->comentario}}"
+                                        data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
                                         VER MÁS</a> /
                                     <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#enviar-recibo"
                                         data-bs-action="/solicitudes/{{$solicitud->id}}/mail-recibo-pago">
@@ -155,6 +156,13 @@
                                 <p></p>
                             </div>
                         </div>
+                        <div id="documentos-container">
+                            <span><strong>Documentos:</strong></span>
+                            <table id="documentos-table" class="table table-general fix" aria-describedby="tableDescCursorRows">
+                                <tbody class="contenido-tablas contenido-hover">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div class="modal-footer-govco modal-footer-alerts-govco">
@@ -189,9 +197,9 @@
                                     <div class="container-carga-de-archivo-govco">
                                         <div class="loader-carga-de-archivo-govco">
                                             <div class="all-input-carga-de-archivo-govco">
-                                                <input type="file" name="inputFile2" id="inputFile2" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple />
-                                                <label for="inputFile" class="label-carga-de-archivo-govco">Etiqueta*</label>
-                                                <label for="inputFile" class="container-input-carga-de-archivo-govco">
+                                                <input type="file" name="file_recibo" id="file_recibo" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple />
+                                                <label for="file_recibo" class="label-carga-de-archivo-govco">Etiqueta*</label>
+                                                <label for="file_recibo" class="container-input-carga-de-archivo-govco">
                                                     <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
                                                     <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
                                                 </label>
@@ -205,7 +213,7 @@
                                                     </div>
                                                     <!-- end indicador de carga -->
                                                 </div>
-                                                <button class="button-loader-carga-de-archivo-govco" disabled style="display: none;">Cargar archivo</button>
+                                                <button id="file_recibo_load" disabled class="button-loader-carga-de-archivo-govco">Cargar archivo</button>
                                             </div>
                                         </div>
 
@@ -221,7 +229,7 @@
 
                         <div class="modal-footer-govco modal-footer-alerts-govco">
                             <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="submit" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">
+                                <button type="submit" disabled="disabled" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">
                                     Enviar
                                 </button>
                                 <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
@@ -261,71 +269,67 @@
 
         fields[2].classList.add(fields[2].innerHTML === "APROBADA" ? 'completado' : 'error');
         fields[4].classList.add(fields[4].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
+
+        const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
+        renderDocumentosTable(documentos);
     })
+    
+    var inputFileFiles = [];
     var enviarRecibo = document.getElementById('enviar-recibo');
-    enviarRecibo.addEventListener('change', function(event) {
-        document.querySelector('.button-loader-carga-de-archivo-govco').click();
-    })
     enviarRecibo.addEventListener('show.bs.modal', function(event) {
         var trigger = event.relatedTarget;
         enviarRecibo.querySelector('.modal-dialog form').setAttribute('action', trigger.getAttribute('data-bs-action'));
     });
-
-    // // Initialize the file input with validation parameters
-    // window.addEventListener("load", function() {
-    //     setValidationParameters('inputFile', ['pdf'], 200000, 1);
-    // });
-
-    var files = [];
-
-    // Ensure files are appended to the form data
     var form = document.querySelector('.modal-dialog form');
+
+    // File upload
+    window.addEventListener("load", function() {
+        setValidationParameters('file_recibo', ['pdf'], 2097152, 1);
+    });
+
+    form.querySelector('#file_recibo').addEventListener('change', function(event) {
+        setTimeout(function(){
+            document.querySelector('#file_recibo_load').click();
+        }, 200);
+    });
+
     form.addEventListener('submit', function(event) {
         event.preventDefault();
-        var formData = new FormData(this);
+        const dataTransfer = new DataTransfer();
+        inputFileFiles.forEach(file => dataTransfer.items.add(file));
+        const tempForm = cloneFileForm(form);
+        var inputFile = document.createElement("input");
+        inputFile.type = "file";
+        inputFile.name = "file_recibo[]";
+        inputFile.files = dataTransfer.files;
+        tempForm.appendChild(inputFile);
+        document.body.appendChild(tempForm);
+        tempForm.submit();
+    });
 
-        if (files.length > 0) {
-            for (var i = 0; i < files.length; i++) {
-                formData.append('inputFile[]', files[i]);
-            }
-        } else {
-            alert('No files selected.');
-            return false;
-        }
-
-        this.submit();
-
-        // fetch(this.getAttribute('action'), {
-        //         method: 'POST',
-        //         body: formData
-        //     })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         if (data.success) {
-        //             alert('File uploaded successfully.');
-        //             location.reload();
-        //         } else {
-        //             alert('An error occurred while uploading the file.');
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
-
+    form.addEventListener('change', function(){
+        setTimeout(function(){}, 1000);
+        validateFileForm(form, function(){
+            form.querySelector('button[type="submit"]').removeAttribute('disabled');
+        }, function(){
+            form.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
+            inputFileFiles = [];
+        })
     });
 
     function uploadFile(inputFiles) {
         return new Promise(function(resolve, reject) {
-            inputFiles.forEach(file => {
-                files.push(file);
-            });
             if (true) {
-                const filesLoadedSuccesfully = files;
+                inputFileFiles = inputFiles;
+                const filesLoadedSuccesfully = inputFiles;
                 resolve(filesLoadedSuccesfully);
             } else {
                 reject('Ocurrió un error al cargar los archivos.');
             }
         });
+    }
+    function _dibujarElementos(pages, page) {
+        __dibujarElementos(pages, page, '/solicitudes/aceptadas');
     }
 </script>
 

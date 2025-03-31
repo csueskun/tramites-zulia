@@ -117,14 +117,11 @@
 
             estado.innerHTML = estadoSolicitud;
         });
-
-
-
-        
-
-
     });
-    
+
+    function _dibujarElementos(pages, page) {
+        __dibujarElementos(pages, page, '/user/solicitudes');
+    }
 </script>
 
 @endpush

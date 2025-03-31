@@ -62,7 +62,8 @@
                                         data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
-                                        data-bs-comentario="{{$solicitud->comentario}}">
+                                        data-bs-comentario="{{$solicitud->comentario}}"
+                                        data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
                                         VER MÁS</a> /
                                     <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#enviar-certificado"
                                         data-bs-action="/solicitudes/{{$solicitud->id}}/mail-certificado">
@@ -167,6 +168,13 @@
                                 <p></p>
                             </div>
                         </div>
+                        <div id="documentos-container">
+                            <span><strong>Documentos:</strong></span>
+                            <table id="documentos-table" class="table table-general fix" aria-describedby="tableDescCursorRows">
+                                <tbody class="contenido-tablas contenido-hover">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div class="modal-footer-govco modal-footer-alerts-govco">
@@ -201,15 +209,15 @@
                                     <div class="container-carga-de-archivo-govco">
                                         <div class="loader-carga-de-archivo-govco">
                                             <div class="all-input-carga-de-archivo-govco">
-                                                <input type="file" name="inputFile" id="inputFile" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple />
-                                                <label for="inputFile" class="label-carga-de-archivo-govco">Etiqueta*</label>
-                                                <label for="inputFile" class="container-input-carga-de-archivo-govco">
+                                                <input type="file" name="file_certificado" id="file_certificado" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple />
+                                                <label for="file_certificado" class="label-carga-de-archivo-govco">Etiqueta*</label>
+                                                <label for="file_certificado" class="container-input-carga-de-archivo-govco">
                                                     <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
                                                     <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
                                                 </label>
                                                 <span class="text-validation-carga-de-archivo-govco">Cualquier tipo de archivo. Peso máximo: 2 MB</span>
                                             </div>
-                                            <div class="load-button-carga-de-archivo-govco" style="display: block;">
+                                            <div class="load-button-carga-de-archivo-govco" style="display: none;">
                                                 <div class="load-carga-de-archivo-govco">
                                                     <!-- indicador de carga -->
                                                     <div class="spinner-indicador-de-carga-govco" style="width: 32px; height: 32px; border-width: 6px;" role="status">
@@ -217,7 +225,7 @@
                                                     </div>
                                                     <!-- end indicador de carga -->
                                                 </div>
-                                                <button class="button-loader-carga-de-archivo-govco" disabled style="display: none;">Cargar archivo</button>
+                                                <button id="file_certificado_load" class="button-loader-carga-de-archivo-govco" disabled>Cargar archivo</button>
                                             </div>
                                         </div>
 
@@ -277,29 +285,58 @@
         fields[4].classList.add(fields[4].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
         fields[5].classList.add(fields[5].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
         fields[6].classList.add(fields[6].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
+
+        const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
+        renderDocumentosTable(documentos);
     })
-    var enviarRecibo = document.getElementById('enviar-certificado');
-    enviarRecibo.addEventListener('change', function(event) {
-        document.querySelector('.button-loader-carga-de-archivo-govco').click();
-    })
-    enviarRecibo.addEventListener('show.bs.modal', function(event) {
+    var inputFileFiles = [];
+    var modalEnviarCertificado = document.getElementById('enviar-certificado');
+    modalEnviarCertificado.addEventListener('show.bs.modal', function(event) {
         var trigger = event.relatedTarget;
-        enviarRecibo.querySelector('.modal-dialog form').setAttribute('action', trigger.getAttribute('data-bs-action'));
+        modalEnviarCertificado.querySelector('.modal-dialog form').setAttribute('action', trigger.getAttribute('data-bs-action'));
+    });
+    var form = document.querySelector('.modal-dialog form');
+
+    // File upload
+    window.addEventListener("load", function() {
+        setValidationParameters('file_certificado', ['pdf'], 2097152, 1);
     });
 
-    // // Initialize the file input with validation parameters
-    // window.addEventListener("load", function() {
-    //     setValidationParameters('inputFile', ['pdf'], 200000, 1);
-    // });
+    form.querySelector('#file_certificado').addEventListener('change', function(event) {
+        setTimeout(function(){
+            document.querySelector('#file_certificado_load').click();
+        }, 200);
+    });
 
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const dataTransfer = new DataTransfer();
+        inputFileFiles.forEach(file => dataTransfer.items.add(file));
+        const tempForm = cloneFileForm(form);
+        var inputFile = document.createElement("input");
+        inputFile.type = "file";
+        inputFile.name = "file_certificado[]";
+        inputFile.files = dataTransfer.files;
+        tempForm.appendChild(inputFile);
+        document.body.appendChild(tempForm);
+        tempForm.submit();
+    });
+
+    form.addEventListener('change', function(){
+        setTimeout(function(){}, 1000);
+        validateFileForm(form, function(){
+            form.querySelector('button[type="submit"]').removeAttribute('disabled');
+        }, function(){
+            form.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
+            inputFileFiles = [];
+        })
+    });
 
     function uploadFile(inputFiles) {
         return new Promise(function(resolve, reject) {
-            inputFiles.forEach(file => {
-                files.push(file);
-            });
             if (true) {
-                const filesLoadedSuccesfully = files;
+                inputFileFiles = inputFiles;
+                const filesLoadedSuccesfully = inputFiles;
                 resolve(filesLoadedSuccesfully);
             } else {
                 reject('Ocurrió un error al cargar los archivos.');
@@ -307,41 +344,10 @@
         });
     }
 
-    var files = [];
+    function _dibujarElementos(pages, page) {
+        __dibujarElementos(pages, page, '/solicitudes/completas');
+    }
 
-    // Ensure files are appended to the form data
-    var form = document.querySelector('.modal-dialog form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        var formData = new FormData(this);
-
-        if (files.length > 0) {
-            for (var i = 0; i < files.length; i++) {
-                formData.append('inputFile[]', files[i]);
-            }
-        } else {
-            alert('No files selected.');
-            return false;
-        }
-
-        // Create a new form element to submit the FormData
-        var tempForm = document.createElement('form');
-        tempForm.action = this.action;
-        tempForm.method = this.method;
-        tempForm.enctype = this.enctype;
-
-        // Append the FormData entries to the new form
-        for (var pair of formData.entries()) {
-            var input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = pair[0];
-            input.value = pair[1];
-            tempForm.appendChild(input);
-        }
-
-        document.body.appendChild(tempForm);
-        tempForm.submit();
-    });
 </script>
 
 @endpush

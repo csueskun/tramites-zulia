@@ -57,7 +57,8 @@
                                         data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
-                                        data-bs-comentario="{{$solicitud->comentario}}">
+                                        data-bs-comentario="{{$solicitud->comentario}}"
+                                        data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
                                         VER MÁS</a>
                                 </div>
                             </td>
@@ -143,6 +144,13 @@
                                 <p></p>
                             </div>
                         </div>
+                        <div id="documentos-container">
+                            <span><strong>Documentos:</strong></span>
+                            <table id="documentos-table" class="table table-general fix" aria-describedby="tableDescCursorRows">
+                                <tbody class="contenido-tablas contenido-hover">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div class="modal-footer-govco modal-footer-alerts-govco">
@@ -177,7 +185,13 @@
         });
         const estadoField = fields[2];
         estadoField.classList.add('etiqueta-govco', estadoField.innerHTML === "APROBADA" ? 'completado' : 'error');
-    })
+
+        const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
+        renderDocumentosTable(documentos);
+    });
+    function _dibujarElementos(pages, page) {
+        __dibujarElementos(pages, page, '/solicitudes/consolidadas');
+    }
 </script>
 
 @endpush
