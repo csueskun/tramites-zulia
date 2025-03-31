@@ -8,4 +8,5 @@ return [
     'DOC:ID' => 'Documento de Identidad',
     'DOC:PROPIEDAD' => 'Tarjeta de propiedad del vehículo automotor',
     'DOC:FUN' => 'Formato FUN',
+    'DOC:PODER' => 'Documento poder',
 ];
