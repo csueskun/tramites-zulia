@@ -26,7 +26,7 @@ ARG XDEBUG_PATH=/usr/local/lib/php/extensions/no-debug-non-zts-2022082/xdebug.so
 RUN echo    ${XDEBUG_PATH} > ${XDEBUG_INI} \
     && echo "xdebug.mode=debug" >> ${XDEBUG_INI} \
     && echo "xdebug.start_with_request=yes" >> ${XDEBUG_INI} \
-    && echo "xdebug.client_host=192.168.11.213" >> ${XDEBUG_INI} \
+    && echo "xdebug.client_host=192.168.1.14" >> ${XDEBUG_INI} \
     && echo "xdebug.client_port=9005" >> ${XDEBUG_INI} \
     && echo "xdebug.log=/var/log/xdebug.log" >> ${XDEBUG_INI}
 
@@ -38,9 +38,6 @@ WORKDIR /var/www/html
 
 # Fix permissions for Laravel (so Apache can read the files)
 RUN chown -R www-data:www-data /var/www/html
-# RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
-# RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-# RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 RUN mkdir -p /var/log && touch /var/log/xdebug.log && \
     chown www-data:www-data /var/log/xdebug.log && chmod 664 /var/log/xdebug.log

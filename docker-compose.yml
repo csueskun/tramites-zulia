@@ -12,12 +12,15 @@ services:
       db:
         condition: service_healthy
     command: >
-      sh -c "composer require laravel-lang/common --dev && 
+      sh -c "chown -R www-data:www-data /var/www/html/storage/app/public && 
+      composer require laravel-lang/common --dev && 
       php artisan lang:update && 
       php artisan migrate --force && 
       php-fpm"
     # command: >
-    #   sh -c "composer require laravel-lang/common --dev && 
+    #   sh -c "chown -R www-data:www-data /var/www/html/storage/app/public && 
+    #   composer require laravel-lang/common --dev && 
+    #   composer require laravel-lang/common --dev && 
     #   php artisan lang:update && 
     #   php artisan migrate:fresh --seed && 
     #   php-fpm"
@@ -44,8 +47,6 @@ services:
       MYSQL_DATABASE: tramites_db
       MYSQL_USER: laravel
       MYSQL_PASSWORD: secret
-    ports:
-      - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
     healthcheck:
