@@ -7,7 +7,8 @@
 @endpush
 
 @push('breadcrumb')
-<li class="breadcrumb-item-govco active" aria-current="page">Ver Solicitud</li>
+<li class="breadcrumb-item-govco"><a href="/user/solicitudes">Mis Solicitudes</a></li>
+<li class="breadcrumb-item-govco active" aria-current="page">{{ $solicitud->radicado }}</li>
 @endpush
 
 @section('content')

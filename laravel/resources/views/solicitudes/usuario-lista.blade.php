@@ -3,7 +3,6 @@
 @section('title', 'Mis Solicitudes')
 
 @push('breadcrumb')
-<li class="breadcrumb-item-govco"><a href="/home">Trámites</a></li>
 <li class="breadcrumb-item-govco active" aria-current="page">Mis Solicitudes</li>
 @endpush
 
@@ -43,10 +42,10 @@
                             <td>{{$solicitud->radicado}}</td>
                             <td>{{ $solicitud->created_at->format('d/m/Y') }}</td>
                             <td>
-                                <span class="estado-pendiente etiqueta-govco completado"
+                                <span class="estado-pendiente etiqueta-govco"
                                     data-estado="{{$solicitud->estado}}"
-                                    data-estado="{{$solicitud->constancia_pago ? 1 : 0}}"
-                                    data-estado="{{$solicitud->certificado ? 1 : 0}}">
+                                    data-constancia-pago="{{$solicitud->constancia_pago ? 1 : 0}}"
+                                    data-certificado="{{$solicitud->certificado ? 1 : 0}}">
                                 </span>
                             </td>
                             <td><span class="max-w350">{{expandAbbreviation($solicitud->asunto)}}</span></td>
@@ -79,7 +78,6 @@
     </div>
 </div>
 
-
 @endsection
 @push('scripts')
 <script src="{{ asset('assets/paginacion/paginacion.js') }}"></script>
@@ -106,16 +104,17 @@
                     break;
             }
 
-            if (estadoNum === 3 && '{{ $solicitud->constancia_pago ? 1 : 0 }}' === '1') {
+            if (estadoNum === 3 && constanciaPago === '1') {
                 estadoSolicitud = "EN VALIDACIÓN"
             }
 
-            if (estadoNum === 5 && '{{ $solicitud->certificado ? 1 : 0 }}' === '1') {
+            if (estadoNum === 5 && certificado === '1') {
                 estadoSolicitud = "COMPLETADA";
                 clase = "completado";
             }
 
             estado.innerHTML = estadoSolicitud;
+            estado.classList.add(clase);
         });
     });
 
