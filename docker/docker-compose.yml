@@ -3,7 +3,7 @@ services:
     container_name: tramites-php
     build:
       context: .
-      dockerfile: ./docker/php/Dockerfile
+      dockerfile: ./php/Dockerfile
     volumes:
       - ./laravel:/var/www/html
     expose:
@@ -11,30 +11,29 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    # command: >
+    #   sh -c "chown -R www-data:www-data /var/www/html/storage/app/public && 
+    #   composer require laravel-lang/common --dev && 
+    #   php artisan lang:update && 
+    #   php artisan migrate --force && 
+    #   php-fpm"
     command: >
       sh -c "chown -R www-data:www-data /var/www/html/storage/app/public && 
       composer require laravel-lang/common --dev && 
       php artisan lang:update && 
-      php artisan migrate --force && 
+      php artisan migrate:fresh --seed && 
       php-fpm"
-    # command: >
-    #   sh -c "chown -R www-data:www-data /var/www/html/storage/app/public && 
-    #   composer require laravel-lang/common --dev && 
-    #   composer require laravel-lang/common --dev && 
-    #   php artisan lang:update && 
-    #   php artisan migrate:fresh --seed && 
-    #   php-fpm"
 
   web:
     container_name: tramites-apache
     build:
       context: .
-      dockerfile: ./docker/apache/Dockerfile
-    ports:
-      - "8080:80"
+      dockerfile: ./apache/Dockerfile
+    # ports:
+    #   - "8080:80"
     volumes:
       - ./laravel:/usr/local/apache2/htdocs
-      - ./docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+      - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
     depends_on:
       - php
       
@@ -50,7 +49,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret"]
       interval: 5s
       retries: 5
       start_period: 10s
