@@ -5,34 +5,36 @@ services:
       context: .
       dockerfile: ./php/Dockerfile
     volumes:
-      - ./laravel:/var/www/html
-    expose:
-      - "9000"
+      - ../laravel:/var/www/html
+    # expose:
+    #   - "9000"
     depends_on:
       db:
         condition: service_healthy
-    # command: >
-    #   sh -c "chown -R www-data:www-data /var/www/html/storage/app/public && 
-    #   composer require laravel-lang/common --dev && 
-    #   php artisan lang:update && 
-    #   php artisan migrate --force && 
-    #   php-fpm"
     command: >
-      sh -c "chown -R www-data:www-data /var/www/html/storage/app/public && 
+      sh -c "chown -R www-data:www-data /var/www/html/storage && 
+      chown -R www-data:www-data /var/www/html/storage/logs && 
       composer require laravel-lang/common --dev && 
       php artisan lang:update && 
-      php artisan migrate:fresh --seed && 
+      php artisan migrate --force && 
       php-fpm"
+    # command: >
+    #   sh -c "chown -R www-data:www-data /var/www/html/storage && 
+    #   chown -R www-data:www-data /var/www/html/storage/logs && 
+    #   composer require laravel-lang/common --dev && 
+    #   php artisan lang:update && 
+    #   php artisan migrate:fresh --seed && 
+    #   php-fpm"
 
   web:
     container_name: tramites-apache
     build:
       context: .
       dockerfile: ./apache/Dockerfile
-    # ports:
-    #   - "8080:80"
+    ports:
+      - "8080:80"
     volumes:
-      - ./laravel:/usr/local/apache2/htdocs
+      - ../laravel:/usr/local/apache2/htdocs
       - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
     depends_on:
       - php

@@ -2,7 +2,7 @@
 FROM httpd:2.4
 
 # Copy custom configuration file to the image
-COPY ./docker/apache/httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY ./apache/httpd.conf /usr/local/apache2/conf/httpd.conf
 
 # Expose port 80
 EXPOSE 80

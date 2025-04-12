@@ -26,7 +26,7 @@ ARG XDEBUG_PATH=/usr/local/lib/php/extensions/no-debug-non-zts-2022082/xdebug.so
 RUN echo    ${XDEBUG_PATH} > ${XDEBUG_INI} \
     && echo "xdebug.mode=debug" >> ${XDEBUG_INI} \
     && echo "xdebug.start_with_request=yes" >> ${XDEBUG_INI} \
-    && echo "xdebug.client_host=192.168.1.14" >> ${XDEBUG_INI} \
+    && echo "xdebug.client_host=192.168.1.25" >> ${XDEBUG_INI} \
     && echo "xdebug.client_port=9005" >> ${XDEBUG_INI} \
     && echo "xdebug.log=/var/log/xdebug.log" >> ${XDEBUG_INI}
 
