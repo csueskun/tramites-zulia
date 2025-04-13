@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Documento;
+use App\Models\Comentario;
 
 class Solicitud extends Model
 {
@@ -34,6 +35,11 @@ class Solicitud extends Model
     public function documentos()
     {
         return $this->hasMany(Documento::class);
+    }
+
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class);
     }
 
     public function getDocumentosUsuarioAttribute()
