@@ -70,6 +70,10 @@
     max-width: 350px;
     display: block;
 }
+.max-w200 {
+    max-width: 200px;
+    display: block;
+}
 .w-80{
     width: 80px !important;
 }

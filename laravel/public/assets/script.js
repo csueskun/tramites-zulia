@@ -276,7 +276,7 @@ function activeInputContrasenia(element) {
 
 // correo electronico
 function activeInputCorreo(element) {
-  var expresionRegularE = /^([da-z_.-]+)@([da-z.-]+).([a-z.]{2,6})$/;
+  var expresionRegularE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   var textExito = "Correo electrónico válido";
   var textError = "Correo electrónico no válido";
   let countWord = this.value.length;
