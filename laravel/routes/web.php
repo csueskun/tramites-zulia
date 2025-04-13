@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComentarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -27,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/solicitudes/{id}/documento', [DocumentoController::class, 'addDocumento']);
     Route::post('/solicitudes', [SolicitudController::class, 'addSolicitud']);
     Route::get('/documentos/download/{id}', [DocumentoController::class, 'download']);
-
+    
     Route::middleware([IsAdmin::class])->group(function () {
         Route::view('/home', 'admin-home');
         Route::get('/solicitudes/pendientes', [SolicitudController::class, 'viewPendientes']);
@@ -38,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/solicitudes/{id}/mail-recibo-pago', [SolicitudController::class, 'mailReciboDePago']);
         Route::post('/solicitudes/{id}/mail-certificado', [SolicitudController::class, 'mailCertificado']);
         Route::patch('/solicitudes/{id}', [SolicitudController::class, 'patchFromView']);
+        Route::post('/solicitudes/{id}/comentarios', [ComentarioController::class, 'addComentario']);
     });
 });
 

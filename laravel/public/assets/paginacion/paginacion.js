@@ -69,7 +69,7 @@ function dibujarElementos(pages, page) {
   return liTag;
 }
 function __dibujarElementos(pages, page, route) {
-  location.href = route+'?page=' + page;
+  location.href = route + '?page=' + page;
 }
 function renderDocumentosTable(documentos) {
   if (documentos.length === 0) {
@@ -99,6 +99,37 @@ function renderDocumentosTable(documentos) {
     table.appendChild(row);
   });
 
+}
+function renderComentariosModal(trigger, modal) {
+  const comentarios = JSON.parse(trigger.getAttribute('data-bs-comentarios'));
+  const solicitud = JSON.parse(trigger.getAttribute('data-bs-id'));
+  var comentariosContainer = modal.querySelector('#comentarios-container');
+  comentariosContainer.innerHTML = '<p>Comentarios anteriores:</p>';
+  if (comentarios.length === 0) {
+    comentariosContainer.style.display = 'none';
+    return;
+  }
+  for (var i = 0; i < comentarios.length; i++) {
+    var comentario = comentarios[i];
+    var comentarioDiv = document.createElement('div');
+    comentarioDiv.className = 'row py-2';
+    const formattedDate = new Date(comentario.created_at).toLocaleString('es-ES', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    });
+    comentarioDiv.innerHTML = `
+    <strong>${formattedDate}</strong><br/>
+    <span>${comentario.comentario}</span><br/>`;
+    comentariosContainer.appendChild(comentarioDiv);
+    setTimeout(() => {
+      comentariosContainer.scrollTop = comentariosContainer.scrollHeight;
+    }, 600);
+  }
+  modal.querySelector('form').setAttribute('action', `/solicitudes/${solicitud}/comentarios`);
 }
 function expandAbbreviation(original) {
   const abbreviations = {

@@ -52,7 +52,7 @@
                                         data-bs-radicado="{{$solicitud->radicado}}"
                                         data-bs-fechasolicitud="{{$solicitud->created_at->format('d/m/Y')}}"
                                         data-bs-estado="{{$solicitud->estado}}"
-                                        data-bs-fecharespuesta="{{$solicitud->fecha_aprobacion->format('d/m/Y')}}"
+                                        data-bs-fecharespuesta="{{$solicitud->fecha_aprobacion ? $solicitud->fecha_aprobacion->created_at->format('d/m/Y') : 'PENDIENTE'}}"
                                         data-bs-asunto="{{expandAbbreviation($solicitud->asunto)}}"
                                         data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"

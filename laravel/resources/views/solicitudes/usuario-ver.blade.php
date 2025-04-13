@@ -231,7 +231,18 @@
                                 </div>
                                 <div class="col-lg-7">
                                     <span><strong>Estado:</strong></span>
-                                    <p class="etiqueta-govco {{ $solicitud->estado == 'EN REVISION' ? 'pendiente' : 'completado' }}" style="width: fit-content;">
+                                    <p class="etiqueta-govco 
+                                        @switch($solicitud->estado)
+                                            @case('EN REVISION')
+                                                pendiente
+                                                @break
+                                            @case('RECHAZADA')
+                                                error
+                                                @break
+                                            @default
+                                                completado
+                                        @endswitch
+                                        " style="width: fit-content;">
                                         {{$solicitud->estado}}
                                     </p>
                                 </div>
@@ -285,9 +296,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-5">
+                                <div class="col-lg-12">
                                     <span><strong>Comentarios:</strong></span>
-                                    <p>{{$solicitud->comentario ?? '-- Sin Comentario --'}}</p>
+                                    @if ($solicitud->comentarios && count($solicitud->comentarios) > 0)
+                                        <ul style="max-height: 400px;overflow-y: auto;overflow-x: clip; ">
+                                            @foreach ($solicitud->comentarios as $comentario)
+                                                <li class="mt-2">
+                                                    <strong>{{ $comentario->autor }}:</strong> {{ $comentario->comentario }}
+                                                    <br>
+                                                    <small>{{ $comentario->created_at->format('d/m/Y H:i') }}</small>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        <p>No hay comentarios.</p>
+                                    @endif
                                 </div>
                             </div>
                             <!-- <pre>{{ var_export($solicitud, true) }}</pre> -->
@@ -341,6 +364,9 @@
 
         switch (estado) {
             case 'EN REVISION':
+                estadoNum = 2;
+                break;
+            case 'RECHAZADA':
                 estadoNum = 2;
                 break;
             case 'APROBADA':

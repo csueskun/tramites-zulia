@@ -45,24 +45,35 @@
                             <td>{{$solicitud->usuario->nombre_completo}}</td>
                             <td>{{$solicitud->usuario->documento_completo}}</td>
                             <td>
-                                <div>
-                                    <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#ver-mas"
+                                <div class="max-w200">
+                                    <a class="govco-a" href="#" data-bs-toggle="modal" data-bs-target="#ver-mas"
                                         data-bs-radicado="{{$solicitud->radicado}}"
                                         data-bs-fechasolicitud="{{$solicitud->created_at->format('d/m/Y')}}"
                                         data-bs-asunto="{{expandAbbreviation($solicitud->asunto)}}"
                                         data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
-                                        data-bs-comentario="{{$solicitud->comentario}}"
-                                        data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
+                                        data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}"
+                                        data-bs-comentarios="{{ json_encode($solicitud->comentarios) }}">
                                         VER MÁS</a> /
-                                    <form class="aceptar-solicitud" action="/solicitudes/{{$solicitud->id}}" method="post">
+                                    <a class="govco-a comentarios-trigger" href="#" data-bs-toggle="modal" data-bs-target="#comentarios-modal"
+                                        data-bs-id="{{$solicitud->id}}"
+                                        data-bs-comentarios="{{ json_encode($solicitud->comentarios) }}">
+                                        COMENTARIOS</a> /
+                                    <form class="aceptar-solicitud d-inline" action="/solicitudes/{{$solicitud->id}}" method="post">
                                         @csrf
                                         @method('patch')
                                         <input type="hidden" name="id" value="{{$solicitud->id}}">
                                         <input type="hidden" name="estado" value="APROBADA">
                                         <input type="hidden" name="fecha_aprobacion" value="">
                                         <button type="submit" class="btn-to-govco-a govco-a">ACEPTAR</button>
+                                    </form> /
+                                    <form class="rechazar-solicitud d-inline" action="/solicitudes/{{$solicitud->id}}" method="post">
+                                        @csrf
+                                        @method('patch')
+                                        <input type="hidden" name="id" value="{{$solicitud->id}}">
+                                        <input type="hidden" name="estado" value="RECHAZADA">
+                                        <button type="submit" class="btn-to-govco-a govco-a">RECHAZAR</button>
                                     </form>
                                     &nbsp;
                                 </div>
@@ -161,6 +172,7 @@
         </div>
     </div>
 </div>
+@include('components.admin-comentarios-modal')
 
 
 @endsection
@@ -182,12 +194,25 @@
         const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
         renderDocumentosTable(documentos);
     });
+    var comentariosModal = document.getElementById('comentarios-modal');
+    comentariosModal.addEventListener('show.bs.modal', function(event) {
+        renderComentariosModal(event.relatedTarget, comentariosModal);
+    });
     var forms = document.querySelectorAll('form.aceptar-solicitud');
     forms.forEach(function(form) {
         form.addEventListener('submit', function(event) {
             var fechaRespuestaInput = form.querySelector('input[name="fecha_aprobacion"]');
             fechaRespuestaInput.value = new Date().toISOString();
         });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const comentario = @json(session('triggerComentario'));
+        if (comentario) {
+            const trigger = document.querySelector(`[data-bs-id="${comentario}"]`);
+            if (trigger) {
+                trigger.click();
+            }
+        }
     });
     function _dibujarElementos(pages, page) {
         __dibujarElementos(pages, page, '/solicitudes/pendientes');
