@@ -12,9 +12,10 @@ services:
       db:
         condition: service_healthy
     command: >
-      sh -c "chown -R www-data:www-data /var/www/html/storage && 
+      sh -c "chown -R 1000:1000 /var/www/html &&
+      chown -R www-data:www-data /var/www/html/storage/framework && 
       chown -R www-data:www-data /var/www/html/storage/logs && 
-      chown -R www-data:www-data /var/www/html/app && 
+      chown -R www-data:www-data /var/www/html/storage/app/public && 
       composer require laravel-lang/common --dev && 
       php artisan lang:update && 
       php artisan migrate --force && 
@@ -40,7 +41,7 @@ services:
       - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
     depends_on:
       - php
-      
+
   db:
     container_name: tramites-mysql
     image: mysql:8.0
@@ -52,8 +53,9 @@ services:
       MYSQL_PASSWORD: secret
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d/:ro
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret" ]
       interval: 5s
       retries: 5
       start_period: 10s
@@ -69,6 +71,18 @@ services:
       MYSQL_ROOT_PASSWORD: secret
     depends_on:
       - db
+
+  # node:
+  #   build:
+  #     context: .
+  #     dockerfile: ./node/Dockerfile
+  #   container_name: node-server
+  #   working_dir: /usr/src/app
+  #   volumes:
+  #     - ../push-server:/usr/src/app
+  #   ports:
+  #     - "3000:3000"
+  #   command: [ "node", "index.js" ]
 
 volumes:
   mysql-data:
