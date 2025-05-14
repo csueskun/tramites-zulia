@@ -15,14 +15,17 @@ Route::redirect('/', '/home');
 Route::view('/usuarios/nuevo', 'auth.new-user');
 Route::view('/util/icons', 'util.icons');
 Route::post('/usuarios/nuevo', [UserController::class, 'createUser']);
+Route::get('/usuarios/verificar', [UserController::class, 'viewVerifyEmail']);
+Route::post('/usuarios/verificar', action: [UserController::class, 'verifyEmail']);
+Route::post('/usuarios/reenviar-verificacion', [UserController::class, 'resendVerification']);
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::view('/user/home', 'user-home');
-    Route::view('/user/solicitudes/nueva-{asunto}', 'solicitudes.nueva')->where('asunto', '[A-Za-z]+');
+    Route::get('/user/home', [SolicitudController::class, 'userIndex']);
+    Route::view('/user/solicitudes/nueva-{asunto}', 'solicitudes.nueva')->where('asunto', '[A-Za-z1-9]+');
     Route::get('/user/solicitudes', [SolicitudController::class, 'verUserSolicitudes']);
     Route::get('/user/solicitudes/{id}/ver', [SolicitudController::class, 'verSolicitud']);
     Route::post('/user/solicitudes/{id}/documento', [DocumentoController::class, 'addDocumento']);
