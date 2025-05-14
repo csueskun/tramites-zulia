@@ -136,7 +136,7 @@
                                 <div class="titulo-informacion-govco mb-4">
                                     <label>Cargar Pago</label>
                                 </div>
-                                <form action="/user/solicitudes/{{$solicitud->id}}/documento" method="POST" enctype="multipart/form-data">
+                                <form id="cargar-constancia-pago" action="/user/solicitudes/{{$solicitud->id}}/documento" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="tipo" value="CONSTANCIA DE PAGO">
                                     <input type="hidden" name="responsable" value="USER">
@@ -145,7 +145,7 @@
                                             <div class="container-carga-de-archivo-govco mb-4">
                                                 <div class="loader-carga-de-archivo-govco">
                                                     <div class="all-input-carga-de-archivo-govco">
-                                                        <input type="file" name="contancia_pago" id="contancia_pago" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple />
+                                                        <input type="file" name="contancia_pago" id="contancia_pago" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFileConstanciaPago" data-action-delete="deleteFileConstanciaPago" multiple />
                                                         <label for="contancia_pago" class="label-carga-de-archivo-govco">Soporte de pago*</label>
                                                         <label for="contancia_pago" class="container-input-carga-de-archivo-govco">
                                                             <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
@@ -347,6 +347,7 @@
 @endsection
 @push('scripts')
 <script src="{{ asset('assets/general/linea-avance2.js') }}"></script>
+<script src="{{ asset('assets/form/carga-de-archivo.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
@@ -397,5 +398,56 @@
             element.classList.add('active');
         });
     });
+
+    var fileConstanciaPago = [];
+
+    var form = document.querySelector('#cargar-constancia-pago');
+    form.addEventListener('change', preValidateFileForm.bind(this, form));
+
+    function preValidateFileForm(form) {
+        setTimeout(function() {
+            validateFileForm(form, function() {
+                form.querySelector('button[type="submit"]').removeAttribute('disabled');
+            }, function() {
+                form.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
+            })
+        }, 200);
+    }
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const dataTransfer = new DataTransfer();
+        const tempForm = cloneFileForm(form);
+        tempForm.appendChild(addFileInputs(tempForm, fileConstanciaPago, "constancia_de_pago"));
+        document.body.appendChild(tempForm);
+        tempForm.submit();
+    });
+
+    function addFileInputs(tempform, inputFileFiles, inputName) {
+        const dataTransfer = new DataTransfer();
+        inputFileFiles.forEach(file => dataTransfer.items.add(file));
+        var inputFile = document.createElement("input");
+        inputFile.type = "file";
+        inputFile.name = inputName;
+        inputFile.files = dataTransfer.files;
+        return inputFile;
+    }
+
+    function uploadFileConstanciaPago(inputFiles) {
+        return new Promise(function(resolve, reject) {
+            if (true) {
+                fileConstanciaPago = inputFiles;
+                const filesLoadedSuccesfully = inputFiles;
+                resolve(filesLoadedSuccesfully);
+            } else {
+                reject('Ocurrió un error al cargar los archivos.');
+            }
+        });
+    }
+
+    function deleteFileConstanciaPago() {
+        fileConstanciaPago = [];
+        preValidateFileForm(form)
+    }
 </script>
 @endpush

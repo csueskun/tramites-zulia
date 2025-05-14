@@ -12,17 +12,7 @@
 <div class="admin-home mt-2" data-content="natural">
     <div class="row justify-content-between">
         <div class="col-lg-9">
-            @if (session('success'))
-            <div class="container-alerta-govco">
-                <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
-                    <span class="alerta-icon-govco alerta-icon-notificacion-govco asuccess"></span>
-                    <p class="alerta-content-text">
-                        {{ session('success') }}
-                    </p>
-                </div>
-            </div>
-            <br />
-            @endif
+            @include('components.success-alert')
             <h3 class="govcolor-blue-dark mb-4">Solicitudes completadas</h3>
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">
@@ -54,7 +44,7 @@
                                         data-bs-radicado="{{$solicitud->radicado}}"
                                         data-bs-fechasolicitud="{{$solicitud->created_at->format('d/m/Y')}}"
                                         data-bs-estado="{{$solicitud->estado}}"
-                                        data-bs-fecharespuesta="{{$solicitud->fecha_aprobacion->format('d/m/Y')}}"
+                                        data-bs-fecharespuesta="{{$solicitud->fecha_aprobacion ? $solicitud->fecha_aprobacion->format('d/m/Y') : 'PENDIENTE'}}"
                                         data-bs-reciboenviado="{{$solicitud->recibo_pago ? $solicitud->recibo_pago->created_at->format('d/m/Y') : 'PENDIENTE'}}"
                                         data-bs-pagovalidado="{{$solicitud->fecha_validacion ? $solicitud->fecha_validacion->format('d/m/Y') : 'PENDIENTE'}}"
                                         data-bs-certificadoenviado="{{$solicitud->certificado ? $solicitud->certificado->created_at->format('d/m/Y') : 'PENDIENTE'}}"
@@ -63,7 +53,7 @@
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
-                                        data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
+                                        data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
                                         VER MÁS</a> /
                                     <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#enviar-certificado"
                                         data-bs-action="/solicitudes/{{$solicitud->id}}/mail-certificado">
@@ -159,12 +149,6 @@
                             </div>
                             <div class="col-lg-7">
                                 <span><strong>Correo electrónico:</strong></span>
-                                <p></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <span><strong>Comentarios:</strong></span>
                                 <p></p>
                             </div>
                         </div>
@@ -269,7 +253,7 @@
 
         const vars = [
             'radicado', 'fechasolicitud', 'estado', 'fecharespuesta', 'reciboenviado', 'pagovalidado',
-            'certificadoenviado', 'asunto', 'nombres', 'numerodocumento', 'correoelectronico', 'comentario'
+            'certificadoenviado', 'asunto', 'nombres', 'numerodocumento', 'correoelectronico'
         ];
         vars.forEach((v, i) => {
             // console.log(v, i, fields[i], trigger.getAttribute(`data-bs-${v}`));

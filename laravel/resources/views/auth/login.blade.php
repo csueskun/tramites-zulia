@@ -8,6 +8,7 @@
 
 @section('content')
 
+@include('components.success-alert')
 <div class="card">
     <div class="card-body d-flex justify-content-center" style="background-color: #F6F8F9;">
 
@@ -24,13 +25,13 @@
                 <form method="POST" action="/login">
                     @csrf
                     @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <!-- <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                    </div>
+                    </div> -->
                     @endif
                     <div class="mt-4">
                         <div class="entradas-de-texto-govco">

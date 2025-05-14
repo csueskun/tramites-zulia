@@ -17,7 +17,7 @@
         <div class="col-lg-8">
             <h3 class="govcolor-blue-dark mb-4">Nueva Solicitud de {{expandAbbreviation($asunto)}}</h3>
             <div class="container-principal-linea-interaccion-govco">
-                <div class="container-indicador-numero-principal-interaccion-govco justify-content-between">
+                <div class="container-indicador-numero-principal-interaccion-govco">
                     <div id="indicadorcontainerinthrz1" class="container-indicador-numero-uno-interaccion-govco">
                         <button id="indicadorlineainthrz1" class="indicador-linea-avance-inactivo-interaccion-govco">
                             <a href="javascript:void(0)" id="numeroindicadorinthrz1" tabindex="-1"

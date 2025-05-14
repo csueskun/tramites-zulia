@@ -12,17 +12,7 @@
 <div class="admin-home mt-2" data-content="natural">
     <div class="row justify-content-between">
         <div class="col-lg-9">
-            @if (session('success'))
-            <div class="container-alerta-govco">
-                <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
-                    <span class="alerta-icon-govco alerta-icon-notificacion-govco asuccess"></span>
-                    <p class="alerta-content-text">
-                        {{ session('success') }}
-                    </p>
-                </div>
-            </div>
-            <br />
-            @endif
+            @include('components.success-alert')
             <h3 class="govcolor-blue-dark mb-4">Solicitudes aceptadas</h3>
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">
@@ -54,7 +44,7 @@
                                         data-bs-radicado="{{$solicitud->radicado}}"
                                         data-bs-fechasolicitud="{{$solicitud->created_at->format('d/m/Y')}}"
                                         data-bs-estado="{{$solicitud->estado}}"
-                                        data-bs-fecharespuesta="{{$solicitud->fecha_aprobacion->format('d/m/Y')}}"
+                                        data-bs-fecharespuesta="{{$solicitud->fecha_aprobacion ? $solicitud->fecha_aprobacion->format('d/m/Y') : 'PENDIENTE'}}"
                                         data-bs-reciboenviado="{{$solicitud->recibo_pago ? $solicitud->recibo_pago->created_at->format('d/m/Y') : 'PENDIENTE'}}"
                                         data-bs-asunto="{{expandAbbreviation($solicitud->asunto)}}"
                                         data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
@@ -147,12 +137,6 @@
                             </div>
                             <div class="col-lg-7">
                                 <span><strong>Correo electrónico:</strong></span>
-                                <p></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <span><strong>Comentarios:</strong></span>
                                 <p></p>
                             </div>
                         </div>
@@ -257,7 +241,7 @@
 
         const vars = [
             'radicado', 'fechasolicitud', 'estado', 'fecharespuesta', 'reciboenviado', 'asunto', 'nombres',
-            'numerodocumento', 'correoelectronico', 'comentario'
+            'numerodocumento', 'correoelectronico'
         ];
         vars.forEach((v, i) => {
             fields[i].innerHTML = trigger.getAttribute(`data-bs-${v}`);
