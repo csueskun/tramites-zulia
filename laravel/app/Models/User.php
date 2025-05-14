@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Mail\VerificarCorreo;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
 {
@@ -38,7 +40,13 @@ class User extends Authenticatable
             'email' => 'required|string|email|max:255|unique:users',
             'tipo_documento' => 'required|string|max:255',
             'documento' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:5|confirmed',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'confirmed',
+                'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
+            ],
         ];
     }
     /**
@@ -73,4 +81,15 @@ class User extends Authenticatable
     {
         return trim("{$this->tipo_documento}-{$this->documento}");
     }
+
+    public function generateVerification($email = null)
+    {
+        if ($email === null) {
+            $email = $this->email;
+        }
+        $this->verification_code = random_int(100000, 999999);
+        $this->save();
+        Mail::to($email)->send(new VerificarCorreo($this));
+    }
+
 }
