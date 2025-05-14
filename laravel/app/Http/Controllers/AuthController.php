@@ -16,6 +16,13 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if ($user->email_verified_at === null) {
+                $user->generateVerification();
+                Auth::logout();
+                return redirect('/usuarios/verificar')->with('success', 'Debe verificar su correo electrónico antes de iniciar sesión.')->withInput(['email' => $credentials['email']]);
+            }
+
             $request->session()->regenerate();
             return redirect()->intended('/home');
         }
@@ -30,4 +37,5 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect('/login');
     }
+
 }

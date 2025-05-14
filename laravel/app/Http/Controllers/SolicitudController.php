@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use App\Models\Solicitud;
 use App\Models\Documento;
+use App\Models\Tramite;
 use App\Services\MailService;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -21,16 +22,11 @@ class SolicitudController extends Controller
     {
         $this->mailService = $mailService;
     }
-    /**
-     * Retrieve all solicitudes.
-     */
-    public function viewHome()
+
+    public function userIndex()
     {
-        if (Auth::user()->role === 'ADMIN') {
-            return view('admin-home');
-        } else {
-            return view('user-home');
-        }
+        $tramites = Tramite::all();
+        return view('user-home', compact('tramites'));
     }
 
     /**
@@ -114,6 +110,9 @@ class SolicitudController extends Controller
     {
         $solicitud = Solicitud::findOrFail($id);
         $solicitud->update($request->all());
+        if ($solicitud->estado == 'APROBADA') {
+            $this->mailService->sendSolicitudAceptada($solicitud);
+        }
         return redirect()->back()->with('success', 'Solicitud actualizada exitosamente.');
     }
     public function mailReciboDePago(Request $request, $id)
@@ -163,7 +162,7 @@ class SolicitudController extends Controller
     public function addSolicitud(Request $request)
     {
         $validatedData = $request->validate([]);
-        $validatedData['radicado'] = 'SOL-' . date('Y') . '-' . str_pad(Solicitud::count() + 1, 4, '0', STR_PAD_LEFT);
+        $validatedData['radicado'] = now()->format('Ymd') . str_pad(Solicitud::count() + 1, 3, '0', STR_PAD_LEFT);
         $documents = [
             'id' => '-id.pdf',
             'fun' => '-fun.xls',

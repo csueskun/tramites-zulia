@@ -14,15 +14,36 @@ class DocumentoController extends Controller
     public function addDocumento(Request $request, $solicitudId)
     {
         $solicitud = Solicitud::find($solicitudId);
-        $validatedData = $request->all();
 
-        $document = DB::transaction(function () use ($validatedData, $solicitud) {
-            $validatedData['solicitud_id'] = $solicitud->id;
-            $validatedData['ruta'] = '/' . $solicitud->radicado . '-constancia-de-pago.pdf';
-            $document = Documento::create($validatedData);
-            $solicitud->update(['status' => 'updated']);
-            return $document;
-        });
+        $documents = [
+            'id' => '-id.pdf',
+            'fun' => '-fun.xls',
+            'propiedad' => '-propiedad.pdf',
+            'poder' => '-poder.pdf',
+            'constancia_de_pago' => '-constancia-pago.pdf',
+        ];
+        $storedFiles = [];
+
+        foreach ($documents as $inputName => $suffix) {
+            try {
+                if ($request->hasFile($inputName)) {
+                    $fileName = $solicitud->radicado . $suffix;
+                    $file = $request->file($inputName);
+                    $file->storeAs('uploads', $fileName, 'public');
+                    $storedFiles[$inputName] = '/' . $fileName;
+                }
+            } catch (\Throwable $th) {
+                return redirect()->back()->withErrors(['Error al cargar documento: ' . $th->getMessage()]);
+            }
+        }
+
+        foreach ($storedFiles as $key => $value) {
+            $newDocumento = new Documento();
+            $newDocumento->tipo = strtoupper(str_replace('_', ' ', $key));
+            $newDocumento->ruta = $value;
+            $newDocumento->solicitud_id = $solicitud->id;
+            $newDocumento->save();
+        }
 
         return redirect("/user/solicitudes/{$solicitudId}/ver")->with('success', 'Documento enviado exitosamente.');
     }
