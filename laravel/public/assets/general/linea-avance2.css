@@ -1115,6 +1115,7 @@ body {
     align-items: center;
     background-color: #FFFF;
     margin-bottom: 1rem;
+    justify-content: space-between;
 }
 
 .container-indicador-numero-uno-interaccion-govco,
@@ -1135,7 +1136,7 @@ body {
 }
 
 .linea-avance-interaccion-govco {
-    width: 8.563rem !important;
+    /* width: 8.563rem !important; */
     height: 0rem;
     background-color: #FFFF;
     align-items: center;
@@ -1176,6 +1177,7 @@ body {
     background-color: #fff;
     line-height: 22px;
     margin-bottom: 24px;
+    justify-content: space-around;
 }
 
 .indicador-linea-avance-activo-interaccion-govco {

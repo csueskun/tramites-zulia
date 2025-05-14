@@ -30,10 +30,17 @@ function cloneFileForm(form) {
     tempForm.method = form.method;
     tempForm.enctype = form.enctype;
 
-    var token = document.createElement("input");
-    token.type = "hidden";
-    token.name = "_token";
-    token.value = form.querySelector('input[name="_token"]').value;
-    tempForm.appendChild(token);
+    const inputs = form.querySelectorAll('input');
+    inputs.forEach(input => {
+        if (input.type !== 'file') {
+            const clonedInput = input.cloneNode(true);
+            tempForm.appendChild(clonedInput);
+        }
+    });
+    // var token = document.createElement("input");
+    // token.type = "hidden";
+    // token.name = "_token";
+    // token.value = form.querySelector('input[name="_token"]').value;
+    // tempForm.appendChild(token);
     return tempForm;
 }

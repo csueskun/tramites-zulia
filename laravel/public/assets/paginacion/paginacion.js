@@ -105,6 +105,7 @@ function renderComentariosModal(trigger, modal) {
   const solicitud = JSON.parse(trigger.getAttribute('data-bs-id'));
   var comentariosContainer = modal.querySelector('#comentarios-container');
   comentariosContainer.innerHTML = '<p>Comentarios anteriores:</p>';
+  modal.querySelector('form').setAttribute('action', `/solicitudes/${solicitud}/comentarios`);
   if (comentarios.length === 0) {
     comentariosContainer.style.display = 'none';
     return;
@@ -129,13 +130,14 @@ function renderComentariosModal(trigger, modal) {
       comentariosContainer.scrollTop = comentariosContainer.scrollHeight;
     }, 600);
   }
-  modal.querySelector('form').setAttribute('action', `/solicitudes/${solicitud}/comentarios`);
 }
 function expandAbbreviation(original) {
   const abbreviations = {
     'ID': 'Documento de Identidad',
     'PROPIEDAD': 'Tarjeta de propiedad del vehículo automotor',
-    'FUN': 'Formato FUN'
+    'FUN': 'Formato FUN',
+    'PODER': 'Documento poder',
+    'CONSTANCIA DE PAGO': 'Constancia de pago',
   };
 
   return abbreviations[original] || original;

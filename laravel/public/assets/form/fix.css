@@ -122,3 +122,18 @@
     width: 90% !important;
     margin: auto;
 }
+.module-tarjeta-govco.tramite{
+    height: auto;
+    width: 19rem;
+    max-width: 24rem;
+}
+.module-tarjeta-govco.tramite:focus{
+    outline: none;
+}
+.module-tarjeta-govco.tramite .body-tarjeta-govco{
+    height: 15rem;
+    padding: 1rem;
+}
+.module-tarjeta-govco.tramite .body-tarjeta-govco>p{
+    -webkit-line-clamp: none;
+}
