@@ -83,7 +83,7 @@ function renderDocumentosTable(documentos) {
   documentos.forEach((doc, index) => {
     var row = document.createElement('tr');
     var cell1 = document.createElement('td');
-    cell1.textContent = expandAbbreviation(doc.tipo);
+    cell1.textContent = doc.tipo;
     var cell2 = document.createElement('td');
     cell1.style.setProperty('width', '315px', 'important');
     var button = document.createElement('button');
