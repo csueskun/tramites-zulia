@@ -21,15 +21,23 @@ class Solicitud extends Model
         'estado',
         'usuario_id',
         'radicado',
-        'comentario',
         'asunto',
         'fecha_aprobacion',
         'fecha_validacion',
+        'tramite_id',
+        'nombres',
+        'tipo_documento',
+        'identificacion',
+        'email',
     ];
     
     public function usuario()
     {
         return $this->belongsTo(User::class);
+    }
+    public function tramite()
+    {
+        return $this->belongsTo(Tramite::class);
     }
 
     public function documentos()
