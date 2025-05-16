@@ -25,7 +25,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/home', [SolicitudController::class, 'userIndex']);
-    Route::view('/user/solicitudes/nueva-{asunto}', 'solicitudes.nueva')->where('asunto', '[A-Za-z1-9]+');
+    Route::get('/user/solicitudes/nueva/{tramite_id}', [SolicitudController::class, 'nuevaIndex']);
     Route::get('/user/solicitudes', [SolicitudController::class, 'verUserSolicitudes']);
     Route::get('/user/solicitudes/{id}/ver', [SolicitudController::class, 'verSolicitud']);
     Route::post('/user/solicitudes/{id}/documento', [DocumentoController::class, 'addDocumento']);
