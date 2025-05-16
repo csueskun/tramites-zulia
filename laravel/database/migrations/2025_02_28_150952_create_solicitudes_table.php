@@ -15,14 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('tramite_id');
+            $table->foreign('tramite_id')->references('id')->on('tramites')->onDelete('cascade');
+            $table->string('nombres');
+            $table->string('tipo_documento');
+            $table->string('identificacion');
+            $table->string(column: 'email');
             $table->string('estado')->default('EN REVISION');
-            $table->enum('asunto', [
-                'TPVA', 'LLGVA', 'CLTVA', 'DPVA', 'RLC'
-            ])->default('TPVA');
             $table->timestamp('fecha_aprobacion')->nullable();
             $table->timestamp('fecha_validacion')->nullable();
             $table->text('radicado');
-            $table->text('comentario')->nullable();
             $table->timestamps();
         });
     }
