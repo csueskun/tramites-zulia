@@ -28,6 +28,11 @@ class SolicitudController extends Controller
         $tramites = Tramite::all();
         return view('user-home', compact('tramites'));
     }
+    public function nuevaIndex($tramite_id)
+    {
+        $tramite = Tramite::findOrFail($tramite_id);
+        return view('solicitudes.nueva', compact('tramite'));
+    }
 
     /**
      * Retrieve solicitudes by status.
@@ -161,7 +166,13 @@ class SolicitudController extends Controller
      */
     public function addSolicitud(Request $request)
     {
-        $validatedData = $request->validate([]);
+        $validatedData = $request->validate([
+            'tipo_documento' => 'required|string|max:255',
+            'identificacion' => 'required|string|max:255',
+            'nombres' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'tramite_id' => 'required|string|max:255',
+        ]);
         $validatedData['radicado'] = now()->format('Ymd') . str_pad(Solicitud::count() + 1, 3, '0', STR_PAD_LEFT);
         $documents = [
             'id' => '-id.pdf',
