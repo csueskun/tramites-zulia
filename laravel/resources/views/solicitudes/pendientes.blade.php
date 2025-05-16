@@ -31,7 +31,7 @@
                         <tr>
                             <td>{{$solicitud->radicado}}</td>
                             <td>{{ $solicitud->created_at->format('d/m/Y') }}</td>
-                            <td><span class="max-w350">{{expandAbbreviation($solicitud->asunto)}}</span></td>
+                            <td><span class="max-w350">{{$solicitud->tramite->nombre}}</span></td>
                             <td>{{$solicitud->usuario->nombre_completo}}</td>
                             <td>{{$solicitud->usuario->documento_completo}}</td>
                             <td>
@@ -39,7 +39,7 @@
                                     <a class="govco-a" href="#" data-bs-toggle="modal" data-bs-target="#ver-mas"
                                         data-bs-radicado="{{$solicitud->radicado}}"
                                         data-bs-fechasolicitud="{{$solicitud->created_at->format('d/m/Y')}}"
-                                        data-bs-asunto="{{expandAbbreviation($solicitud->asunto)}}"
+                                        data-bs-asunto="{{$solicitud->tramite->nombre}}"
                                         data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"

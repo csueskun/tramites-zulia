@@ -38,7 +38,7 @@
                                     data-certificado="{{$solicitud->certificado ? 1 : 0}}">
                                 </span>
                             </td>
-                            <td><span class="max-w350">{{expandAbbreviation($solicitud->asunto)}}</span></td>
+                            <td><span class="max-w350">{{$solicitud->tramite->nombre}}</span></td>
                             <td>{{$solicitud->usuario->nombre_completo}}</td>
                             <td>{{$solicitud->usuario->documento_completo}}</td>
                             <td>

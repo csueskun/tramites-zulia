@@ -214,7 +214,8 @@
                                                 <span class="alerta-icon-govco alerta-icon-notificacion-govco asuccess"></span>
                                                 <p class="alerta-content-text">
                                                     Certificado enviado al correo <strong>{{$solicitud->usuario->email}}</strong> el día
-                                                    <strong>{{$solicitud->certificado ? $solicitud->certificado->created_at->format('d/m/Y') : ''}}</strong>
+                                                    <strong>{{$solicitud->certificado ? $solicitud->certificado->created_at->format('d/m/Y') : ''}}</strong>.
+                                                    Su solicitud de trámite finalizó exitosamente.
                                                 </p>
                                             </div>
                                         </div>
@@ -276,7 +277,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <span><strong>Asunto:</strong></span>
-                                    <p>{{expandAbbreviation($solicitud->asunto)}}</p>
+                                    <p>{{$solicitud->tramite->nombre}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -313,7 +314,6 @@
                                     @endif
                                 </div>
                             </div>
-                            <!-- <pre>{{ var_export($solicitud, true) }}</pre> -->
                         </div>
                     </div>
                 </div>

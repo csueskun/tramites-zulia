@@ -6,14 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Certificate of Completion</h1>
-    <p>Dear [Recipient's Name],</p>
-    <p>Congratulations! You have successfully completed the course.</p>
-    <p>We are pleased to present you with this certificate as a token of your hard work and dedication.</p>
-    <p>Course Name: [Course Name]</p>
-    <p>Date of Completion: [Completion Date]</p>
-    <p>Keep up the great work!</p>
-    <p>Best regards,</p>
-    <p>[Your Company Name]</p>
+
+    <p>Estimado <i>{{ $nombres }}</i>,</p>
+    <p>
+        Adjuntamos el certificado para la solicitud realizada el dia <strong>{{ $fecha }}</strong> con número de
+        radicado <strong>{{$radicado}}</strong> para <strong>{{$tramite}}</strong>.
+    </p>
+    <p>
+        Por favor, revise el certificado adjunto y asegúrese de que toda la información 
+        sea correcta. Si encuentra algún error o tiene alguna pregunta, 
+        no dude en ponerse en contacto con nosotros a través de
+        <a href="mailto:transito@nortedesantander.gov.co">transito@nortedesantander.gov.co</a>
+    </p>
 </body>
 </html>

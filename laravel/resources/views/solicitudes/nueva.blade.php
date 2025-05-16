@@ -12,10 +12,10 @@
 
 @section('content')
 
-<div class="admin-home mt-2" data-content="natural">
+< class="admin-home mt-2" data-content="natural">
     <div class="row justify-content-between">
         <div class="col-lg-8">
-            <h3 class="govcolor-blue-dark mb-4">Nueva Solicitud de {{expandAbbreviation($asunto)}}</h3>
+            <h3 class="govcolor-blue-dark mb-4">Nueva Solicitud de {{$tramite->nombre}}</h3>
             <div class="container-principal-linea-interaccion-govco">
                 <div class="container-indicador-numero-principal-interaccion-govco">
                     <div id="indicadorcontainerinthrz1" class="container-indicador-numero-uno-interaccion-govco">
@@ -119,9 +119,6 @@
                 </div>
                 <div id="contactohorizontaluno" class="m-0 container-informacion-principal-interaccion-govco">
                     <div id="contactohorizontal" class="container-informacion-principal-campos-interaccion-govco">
-                        <!-- <div class="titulo-informacion-govco">
-                            <label>Nueva Solicitud de {{expandAbbreviation($asunto)}}</label>
-                        </div> -->
                         <div class="informacion-vertical-govco">
 
                             @if (session('success'))
@@ -137,7 +134,7 @@
 
                             <form id="nueva-solicitud" action="/solicitudes" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="asunto" value="{{$asunto}}">
+                                <input type="hidden" name="tramite_id" value="{{$tramite->id}}">
                                 <div class="modal-header modal-header-govco modal-header-alerts-govco">
                                     <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
@@ -151,8 +148,71 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="row mt-4">
-                                        <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="entradas-de-texto-govco col-lg-12 px-2">
+                                                <label for="nombres">Nombres completos *</label>
+                                                <div class="container-input-texto-govco">
+                                                    <input required type="text" name="nombres" id="nombres" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}">
+                                                    <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
+                                                    <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                                                </div>
+                                                @error('nombres')
+                                                <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="entradas-de-texto-govco col-lg-12 px-2">
+                                                <label for="tipo_documento" class="label-desplegable-govco">Tipo de documento<span aria-required="true">*</span></label>
+                                                <div class="desplegable-govco @error('tipo_documento') error-desplegable-govco @enderror" id="lista-desplegables" data-type="basic">
+                                                    <select required aria-invalid="false" aria-describedby="alert-id" name="tipo_documento" id="tipo_documento">
+                                                        <option disabled selected>Escoger</option>
+                                                        <option value="CC">Cédula de ciudadanía</option>
+                                                        <option value="CE">Cédula de extranjería</option>
+                                                        <option value="PA">Pasaporte</option>
+                                                        <option value="RC">Registro civil</option>
+                                                        <option value="TI">Tarjeta de identidad</option>
+                                                    </select>
+                                                </div>
+                                                @error('tipo_documento')
+                                                <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="entradas-de-texto-govco col-lg-12 px-2">
+                                                <label for="identificacion">identificacion*</label>
+                                                <div class="container-input-texto-govco">
+                                                    <input type="text" name="identificacion" id="identificacion" placeholder="Ejemplo: 1234567890" aria-required="true" class="@error('identificacion') error @enderror" value="{{ old('identificacion') }}">
+                                                    <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
+                                                    <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                                                </div>
+                                                @error('identificacion')
+                                                <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="entradas-de-texto-govco col-lg-12 px-2">
+                                                <label for="email">Dirección de correo electrónico *</label>
+                                                <div class="container-input-texto-govco">
+                                                    <input required type="text" name="email" id="email" aria-required="true" class="@error('email') error @enderror" value="{{ old('email') }}">
+                                                    <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
+                                                    <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                                                </div>
+                                                @error('email')
+                                                <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12"></div>
                                             <div class="container-carga-de-archivo-govco mb-4">
                                                 <div class="loader-carga-de-archivo-govco">
                                                     <div class="all-input-carga-de-archivo-govco">
@@ -286,13 +346,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
-
         <div class="col-lg-4">
             @include('components.area-servicio')
         </div>
-
     </div>
 </div>
 <style>

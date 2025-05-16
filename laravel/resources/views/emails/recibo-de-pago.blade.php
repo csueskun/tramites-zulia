@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Payment Receipt</h1>
-    <p>Dear [customer_name],</p>
-    <p>Thank you for your payment. Here are the details of your transaction:</p>
-    <ul>
-        <li><strong>Transaction ID:</strong> [transaction_id]</li>
-        <li><strong>Amount:</strong> [amount]</li>
-        <li><strong>Date:</strong> [date]</li>
-    </ul>
-    <p>If you have any questions, please contact our support team.</p>
-    <p>Best regards,</p>
-    <p>[company_name]</p>
+    <p>Estimado <i>{{ $nombres }}</i>,</p>
+    <p>
+        Adjuntamos el recibo de pago para la solicitud realizada el dia <strong>{{ $fecha }}</strong> con número de
+        radicado <strong>{{$radicado}}</strong> para <strong>{{$tramite}}</strong>.
+    </p>
+    <p>
+        Por favor, revise el recibo adjunto y asegúrese de que toda la información 
+        sea correcta. Si encuentra algún error o tiene alguna pregunta, 
+        no dude en ponerse en contacto con nosotros a través de
+        <a href="mailto:transito@nortedesantander.gov.co">transito@nortedesantander.gov.co</a>
+    </p>
+    <p>
+        Diríjase a la plataforma para consultar el estado de su solicitud,
+        y cargar la constancia de pago dando <a href="{{ env('APP_URL') }}">click aquí</a>.
+    </p>
+    <p>Atentamente,<br>Secretaría de Tránsito, sede operativa El Zulia</p>
 </body>
 </html>

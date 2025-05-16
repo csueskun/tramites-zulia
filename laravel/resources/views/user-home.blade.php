@@ -91,7 +91,7 @@
                     </div>
                     <div class="modal-footer-govco modal-footer-alerts-govco">
                         <div class="modal-buttons-govco d-flex justify-content-center">
-                            <a href="/user/solicitudes/nueva-T{{ $tramite->id }}" class="me-2">
+                            <a href="/user/solicitudes/nueva/{{ $tramite->id }}" class="me-2">
                                 <button type="button" class="btn btn-primary btn-modal-govco" style="width: auto; padding: 0 18px !important;">Crear nueva solicitud</button>
                             </a>
                             <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">

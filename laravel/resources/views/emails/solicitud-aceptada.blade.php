@@ -13,7 +13,7 @@
     </p>
     <p>
         Si tiene alguna consulta adicional o requiere asistencia, 
-        no dude en comunicarse con nosotros a traves de 
+        no dude en comunicarse con nosotros a través de 
         <a href="mailto:transito@nortedesantander.gov.co">transito@nortedesantander.gov.co</a>
     </p>
     <p>Atentamente,<br>Secretaría de Tránsito, sede operativa El Zulia</p>

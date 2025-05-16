@@ -33,7 +33,7 @@
                             <td>{{$solicitud->radicado}}</td>
                             <td>{{ $solicitud->created_at->format('d/m/Y') }}</td>
                             <!-- <td>{{ $solicitud->fecha_aprobacion->format('d/m/Y') }}</td> -->
-                            <td><span class="max-w350">{{expandAbbreviation($solicitud->asunto)}}</span></td>
+                            <td><span class="max-w350">{{$solicitud->tramite->nombre}}</span></td>
                             <!-- <td><span class="etiqueta-govco {{$solicitud->recibo_pago ? 'completado' : 'pendiente'}}">{{$solicitud->recibo_pago ? $solicitud->recibo_pago->created_at->format('d/m/Y') : 'PENDIENTE'}}</span></td> -->
                             <td><span class="etiqueta-govco {{$solicitud->fecha_validacion ? 'completado' : 'pendiente'}}">{{$solicitud->fecha_validacion ? $solicitud->fecha_validacion->format('d/m/Y') : 'PENDIENTE'}}</span></td>
                             <td>
@@ -45,7 +45,7 @@
                                         data-bs-fecharespuesta="{{$solicitud->fecha_aprobacion ? $solicitud->fecha_aprobacion->format('d/m/Y') : 'PENDIENTE'}}"
                                         data-bs-reciboenviado="{{$solicitud->recibo_pago ? $solicitud->recibo_pago->created_at->format('d/m/Y') : 'PENDIENTE'}}"
                                         data-bs-pagovalidado="{{$solicitud->fecha_validacion ? $solicitud->fecha_validacion->format('d/m/Y') : 'PENDIENTE'}}"
-                                        data-bs-asunto="{{expandAbbreviation($solicitud->asunto)}}"
+                                        data-bs-asunto="{{$solicitud->tramite->nombre}}"
                                         data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
