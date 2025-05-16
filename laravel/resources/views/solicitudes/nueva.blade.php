@@ -12,7 +12,7 @@
 
 @section('content')
 
-< class="admin-home mt-2" data-content="natural">
+<div class="admin-home mt-2" data-content="natural">
     <div class="row justify-content-between">
         <div class="col-lg-8">
             <h3 class="govcolor-blue-dark mb-4">Nueva Solicitud de {{$tramite->nombre}}</h3>
