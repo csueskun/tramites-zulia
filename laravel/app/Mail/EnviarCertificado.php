@@ -32,7 +32,7 @@ class EnviarCertificado extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Certificado - ' . $this->solicitud->radicado,
+            subject: 'Certificado - Solicitud ' . $this->solicitud->radicado,
         );
     }
 
@@ -43,6 +43,12 @@ class EnviarCertificado extends Mailable
     {
         return new Content(
             view: 'emails.certificado',
+            with: [
+                'nombres' => $this->solicitud->usuario->nombre_completo,
+                'radicado' => $this->solicitud->radicado,
+                'fecha' => $this->solicitud->created_at->format('d/m/Y'),
+                'tramite' => $this->solicitud->tramite->nombre,
+            ],
         );
     }
 

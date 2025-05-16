@@ -15,7 +15,6 @@ class SolicitudAceptada extends Mailable
     use Queueable, SerializesModels;
 
     public $solicitud;
-    public $attachment;
 
     /**
      * Create a new message instance.
@@ -46,7 +45,7 @@ class SolicitudAceptada extends Mailable
                 'nombres' => $this->solicitud->usuario->nombre_completo,
                 'radicado' => $this->solicitud->radicado,
                 'fecha' => $this->solicitud->created_at->format('d/m/Y'),
-                'tramite' => $this->solicitud->asunto,
+                'tramite' => $this->solicitud->tramite->nombre,
             ],
         );
     }

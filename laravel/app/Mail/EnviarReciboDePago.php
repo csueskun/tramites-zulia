@@ -32,7 +32,7 @@ class EnviarReciboDePago extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Enviar Recibo De Pago',
+            subject: 'Recibo de Pago - Solicitud ' . $this->solicitud->radicado,
         );
     }
 
@@ -43,6 +43,12 @@ class EnviarReciboDePago extends Mailable
     {
         return new Content(
             view: 'emails.recibo-de-pago',
+            with: [
+                'nombres' => $this->solicitud->usuario->nombre_completo,
+                'radicado' => $this->solicitud->radicado,
+                'fecha' => $this->solicitud->created_at->format('d/m/Y'),
+                'tramite' => $this->solicitud->tramite->nombre,
+            ],
         );
     }
 
