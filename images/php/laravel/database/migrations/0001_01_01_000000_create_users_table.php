@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email', 150)->unique();
             $table->integer('documento');
             $table->enum('role', ['ADMIN', 'USER'])->default('USER');
+            $table->integer('verification_code')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

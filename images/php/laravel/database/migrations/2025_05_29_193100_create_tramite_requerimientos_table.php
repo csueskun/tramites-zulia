@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tramite_rquerimientos', function (Blueprint $table) {
+        Schema::create('tramite_requerimientos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tramite_id')->constrained('tramites')->onDelete('cascade');
-            $table->string('nombre');
             $table->longText('descripcion');
             $table->boolean('obligatorio')->default(true);
+            $table->enum('vehiculo', config('enums.vehiculo_types'))->default(config('enums.vehiculo_types')[0]);
+            $table->enum('persona', config('enums.persona_types'))->default(config('enums.persona_types')[0]);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tramite_rquerimientos');
+        Schema::dropIfExists('tramite_requerimientos');
     }
 };

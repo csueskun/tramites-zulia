@@ -16,7 +16,10 @@ return new class extends Migration
             $table->foreignId('tramite_id')->constrained('tramites')->onDelete('cascade');
             $table->string('nombre');
             $table->longText('descripcion');
-            $table->decimal('precio', 8, 2)->default(0);            
+            $table->enum('tipo', ['COSTO', 'ESTAMPILLA'])->default('COSTO');
+            $table->enum('vehiculo', config('enums.vehiculo_types'))->default(config('enums.vehiculo_types')[0]);
+            $table->enum('persona', config('enums.persona_types'))->default(config('enums.persona_types')[0]);
+            $table->decimal('precio', 8, 2)->default(0);
             $table->timestamps();
         });
     }

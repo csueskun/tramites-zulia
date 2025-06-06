@@ -25,6 +25,9 @@ return new class extends Migration
             $table->timestamp('fecha_aprobacion')->nullable();
             $table->timestamp('fecha_validacion')->nullable();
             $table->text('radicado');
+            $table->string('link_pago')->nullable();
+            $table->enum('vehiculo', config('enums.vehiculo_types'))->nullable();
+            $table->enum('persona', config('enums.persona_types'))->nullable();
             $table->timestamps();
         });
     }

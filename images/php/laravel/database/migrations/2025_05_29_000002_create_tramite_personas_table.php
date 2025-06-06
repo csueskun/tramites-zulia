@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tramites', function (Blueprint $table) {
+        Schema::create('tramite_personas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->longText('descripcion');
+            $table->foreignId('tramite_id')->constrained('tramites')->onDelete('cascade');
+            $table->enum('persona', config('enums.persona_types'))->default(config('enums.persona_types')[0]);
             $table->timestamps();
         });
-
     }
 
     /**
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tramites');
+        Schema::dropIfExists('tramite_personas');
     }
 };
