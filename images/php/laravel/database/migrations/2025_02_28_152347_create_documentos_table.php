@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('solicitud_id')->references('id')->on('solicitudes')->onDelete('cascade');
             $table->string('ruta');
             $table->string('tipo');
-            $table->enum('responsable', ['ADMIN', 'USER'])->default('USER');
+            $table->enum('responsable', ['ADMIN', 'USER', 'TNS'])->default('USER');
             $table->timestamps();
         });
     }
