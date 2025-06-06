@@ -159,3 +159,8 @@ table td.acciones>form{
 .auto-width {
     width: auto !important;
 }
+td.currency,
+th.currency{
+    text-align: right !important;
+    font-family: 'Courier New', Courier, monospace;
+}
