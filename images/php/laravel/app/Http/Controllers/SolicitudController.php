@@ -34,6 +34,12 @@ class SolicitudController extends Controller
         $tramite = Tramite::findOrFail($tramite_id);
         return view('solicitudes.nueva', compact('tramite'));
     }
+    public function nuevaPost(Request $request)
+    {
+        $input = $request->all();
+        $tramite = Tramite::findOrFail($input['tramite_id']);
+        return view('solicitudes.nueva', compact('tramite'))->with($input);
+    }
 
     /**
      * Retrieve solicitudes by status.
@@ -133,16 +139,30 @@ class SolicitudController extends Controller
     {
         try {
             $fileName = $solicitud->radicado . '-recibo-de-pago.pdf';
-            if ($request->hasFile('file_recibo')) {
-                $file = $request->file('file_recibo');
-                $file[0]->storeAs('uploads', $fileName, 'public');
-            }
-            // $this->mailService->sendReciboDePago($solicitud, 'app/public/uploads/' . $fileName);
+            $responsable = $request->input('responsable', 'ADMIN');
             $solicitud->documentos()->create([
                 'tipo' => 'RECIBO DE PAGO',
-                'responsable' => 'ADMIN',
+                'responsable' => $responsable,
                 'ruta' => '/' . $fileName,
             ]);
+            if($responsable == 'TNS') {
+                $solicitud->documentos()->create([
+                    'tipo' => 'CONSTANCIA DE PAGO',
+                    'responsable' => $responsable,
+                    'ruta' => $solicitud->radicado . '-recibo-de-pago.pdf',
+                ]);
+                $solicitud->comentarios()->create([
+                    'comentario' => "Su recibo de pago fue enviado por TNS al correo {$solicitud->usuario->email}.",
+                    'autor' => 'ADMIN',
+                ]);
+            }
+            else{
+                if ($request->hasFile('file_recibo')) {
+                    $file = $request->file('file_recibo');
+                    $file[0]->storeAs('uploads', $fileName, 'public');
+                }
+                $this->mailService->sendReciboDePago($solicitud, 'app/public/uploads/' . $fileName);
+            }
             $solicitud->update(['link_pago' => $request->input('link_pago', null)]);
             return redirect()->back()->with('success', 'Recibo de pago enviado.');
         } catch (\Exception $e) {
@@ -181,6 +201,8 @@ class SolicitudController extends Controller
             'nombres' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'tramite_id' => 'required|string|max:255',
+            'persona' => 'required|string|max:255',
+            'vehiculo' => 'required|string|max:255',
         ]);
         $validatedData['radicado'] = now()->format('Ymd') . str_pad(Solicitud::count() + 1, 3, '0', STR_PAD_LEFT);
         $documents = [
