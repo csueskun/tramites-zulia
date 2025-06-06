@@ -6,7 +6,9 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\TramiteSeeder;
 use Database\Seeders\TramiteItemSeeder;
-use Database\Seeders\TramiteRquerimientoSeeder;
+use Database\Seeders\TramiteRequerimientoSeeder;
+use Database\Seeders\TramiteVehiculosSeeder;
+use Database\Seeders\TramitePersonaSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(TramiteSeeder::class);
         $this->call(TramiteItemSeeder::class);
-        $this->call(TramiteRquerimientoSeeder::class);
+        $this->call(TramiteRequerimientoSeeder::class);
+        $this->call(TramiteVehiculosSeeder::class);
+        $this->call(TramitePersonaSeeder::class);
     }
 }

@@ -19,7 +19,6 @@ class TramiteFactory extends Factory
         return [
             'nombre' => $this->faker->word(),
             'descripcion' => $this->faker->paragraph(),
-            'precio' => $this->faker->randomFloat(2, 0, 10000),
         ];
     }
 }
