@@ -61,8 +61,9 @@
             data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" aria-hidden="true"
             role="dialog">
             <div class="modal-dialog modal-dialog-govco" style="max-width: 620px !important;">
-                <form action="">
+                <form action="/user/solicitudes/nueva" method="POST" id="tramite-form">
                     @csrf
+                    <input type="hidden" name="tramite_id" value="" data-tramite-field="id">
                     <div class="modal-content modal-content-govco">
                         <div class="modal-header modal-header-govco modal-header-alerts-govco">
                             <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -117,9 +118,7 @@
                         </div>
                         <div class="modal-footer-govco modal-footer-alerts-govco">
                             <div class="modal-buttons-govco d-flex justify-content-center">
-                                <a data-tramite-field="a-crear" href="#" class="me-2">
-                                    <button type="button" class="btn btn-primary btn-modal-govco" style="width: auto; padding: 0 18px !important;">Crear nueva solicitud</button>
-                                </a>
+                                <button type="submit" class="btn btn-primary btn-modal-govco" style="width: auto; padding: 0 18px !important;">Crear nueva solicitud</button>
                                 <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
                                     Cerrar
                                 </button>
@@ -149,7 +148,7 @@
         vars.forEach((v, i) => {
             document.querySelector(`[data-tramite-field="${v}"]`).innerHTML = trigger.getAttribute(`data-tramite-${v}`);
         });
-        document.querySelector(`[data-tramite-field="a-crear"]`).setAttribute('href', `/user/solicitudes/nueva/${trigger.getAttribute('data-tramite-id')}`);
+        document.querySelector(`[data-tramite-field="id"]`).value = trigger.getAttribute(`data-tramite-id`);
 
         //estampillas
         const estampillas = JSON.parse(trigger.getAttribute('data-tramite-estampillas')) || [];
@@ -211,7 +210,7 @@
             addVehiculoChangeListener();
             vehiculoSelected({ target: document.querySelector('[name="vehiculo"]:checked') });
         } else {
-            document.querySelector(`[data-tramite-field="vehiculos"]`).innerHTML = '';
+            document.querySelector(`[data-tramite-field="vehiculos"]`).innerHTML = '<input type="hidden" name="vehiculo" value="TODOS">';
             vehiculoSelected({ target: { value: 'TODOS' } });
         }
         //personas
@@ -228,7 +227,7 @@
             addPersonaChangeListener();
             personaSelected({ target: document.querySelector('[name="persona"]:checked') });
         } else {
-            document.querySelector(`[data-tramite-field="personas"]`).innerHTML = '';
+            document.querySelector(`[data-tramite-field="personas"]`).innerHTML = '<input type="hidden" name="persona" value="TODOS">';
             personaSelected({ target: { value: 'TODOS' } });
         }
     });

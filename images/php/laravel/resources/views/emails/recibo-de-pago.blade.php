@@ -13,7 +13,7 @@
         Adjuntamos el recibo de pago para la solicitud realizada el dia <strong>{{ $fecha }}</strong> con número de
         radicado <strong>{{$radicado}}</strong> para <strong>{{$tramite}}</strong>.
     </p>
-    @if ($link_pago)
+    @if(!empty($link_pago))
     <p>
         Adicionalmente, puede realizar el pago en línea a través del siguiente enlace:
         <a href="{{ $link_pago }}" target="_blank">Pagar en línea</a>

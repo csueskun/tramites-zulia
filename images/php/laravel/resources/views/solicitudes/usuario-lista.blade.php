@@ -21,8 +21,8 @@
                             <th width="1">Fecha<br />Solicitud</th>
                             <th>Estado</th>
                             <th width="150">Asunto</th>
-                            <th>Nombres</th>
-                            <th width="1">Número<br />documento</th>
+                            <!-- <th>Nombres</th>
+                            <th width="1">Número<br />documento</th> -->
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -39,8 +39,8 @@
                                 </span>
                             </td>
                             <td><span class="max-w350">{{$solicitud->tramite->nombre}}</span></td>
-                            <td>{{$solicitud->usuario->nombre_completo}}</td>
-                            <td>{{$solicitud->usuario->documento_completo}}</td>
+                            <!-- <td>{{$solicitud->usuario->nombre_completo}}</td>
+                            <td>{{$solicitud->usuario->documento_completo}}</td> -->
                             <td>
                                 <div>
                                     <a class="govco-a" href="/user/solicitudes/{{$solicitud->id}}/ver">VER MÁS</a>

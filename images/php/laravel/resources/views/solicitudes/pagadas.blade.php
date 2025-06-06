@@ -155,6 +155,17 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span>
+                                    <strong>
+                                        Para consultar si el pago fue realizado, lo puede hacer dando click 
+                                        en el siguiente enlace:
+                                        <a href="https://oficinavirtual.tns.co/RecPago/Accesar?codemp=fos6Xzuc65b4kjqAZQxbQQ%253d%253d" target="_blank">Consultar pagos</a>
+                                    </strong></span>
+                                <p></p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="modal-footer-govco modal-footer-alerts-govco">

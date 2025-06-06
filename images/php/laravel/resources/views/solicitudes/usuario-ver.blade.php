@@ -16,19 +16,7 @@
 <div class="admin-home mt-2" data-content="natural">
     <div class="row justify-content-between">
         <div class="col-lg-8">
-        
-        
-
-
-        
-
-
-
-        </div>
-        <div class="col-lg-8">
             <h3 class="govcolor-blue-dark mb-4">Ver Solicitud</h3>
-
-
             @php
                 $stages = ['Generar<br/>Solicitud', 'Esperar<br/>Aprobación', 'Enviar<br/>Pago', 'Esperar<br/>Validación', 'Recibir<br/>Certificado'];
             @endphp
@@ -211,6 +199,22 @@
                                 </div>
                             </div>
                             <div class="row">
+                                    
+                                @if ($solicitud->vehiculo !== 'TODOS')
+                                <div class="col-lg-5">
+                                    <span><strong>Vehículo:</strong></span>
+                                    <p>{{$solicitud->vehiculo}}</p>
+                                </div>
+                                @endif
+                                @if ($solicitud->persona !== 'TODOS')
+                                <div class="col-lg-7">
+                                    <span><strong>Persona:</strong></span>
+                                    <p>{{$solicitud->persona}}</p>
+                                </div>
+                                @endif
+
+                            </div>
+                            <div class="row contenido-etapa etapa-3">
                                 <div class="col-lg-12">
                                     <span><strong>Link de pago:</strong></span>
                                     <p>

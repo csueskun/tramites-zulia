@@ -53,7 +53,16 @@
                                         VER MÁS</a> /
                                     <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#enviar-recibo"
                                         data-bs-action="/solicitudes/{{$solicitud->id}}/mail-recibo-pago">
-                                        {{$solicitud->recibo_pago ? 'RE' : ''}}ENVIAR RECIBO</a>
+                                        {{($solicitud->recibo_pago && $solicitud->recibo_pago->responsable == 'ADMIN') ? 'RE' : ''}}ENVIAR RECIBO</a> / 
+                                    <a class="govco-a" href="https://portal-gov.tns.co/" target="_blank" >ABRIR PORTAL TNS</a> 
+                                    @if ($solicitud->recibo_pago == null)
+                                    / <form class="aceptar-solicitud d-inline" action="/solicitudes/{{$solicitud->id}}/mail-recibo-pago" method="post">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$solicitud->id}}">
+                                        <input type="hidden" name="responsable" value="TNS">
+                                        <button type="submit" class="btn-to-govco-a govco-a">RECIBO ENVIADO POR TNS</button>
+                                    </form>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
