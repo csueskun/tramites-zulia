@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TramiteRquerimiento extends Model
+class TramiteRequerimiento extends Model
 {
     //
 
-    protected $table = 'tramite_rquerimientos';
+    protected $table = 'tramite_requerimientos';
 
     protected $fillable = [
         'tramite_id',
