@@ -14,10 +14,17 @@ class TramiteRequerimiento extends Model
         'tramite_id',
         'nombre',
         'descripcion',
+        'file_metadata',
     ];
 
     public function tramite()
     {
         return $this->belongsTo(Tramite::class);
     }
+
+    public function getFileMetadataAttribute($value)
+    {
+        return json_decode($value, true);
+    }
+
 }

@@ -41,4 +41,16 @@ class Tramite extends Model
     {
         return $this->hasMany(TramiteRequerimiento::class);
     }
+    public function getRequerimientosByTipo($tipo)
+    {
+        return $this->requerimientos()->where('tipo', $tipo)->get();
+    }
+    public function getArchivosFiltrados($vehiculo, $persona)
+    {
+        return $this->requerimientos()
+            ->where('tipo', 'ARCHIVO')
+            ->whereIn('vehiculo', ['TODOS', $vehiculo])
+            ->whereIn('persona', ['TODOS', $persona])
+            ->get();
+    }
 }
