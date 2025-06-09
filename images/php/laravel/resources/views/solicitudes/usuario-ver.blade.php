@@ -117,7 +117,7 @@
                                             <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
                                                 <span class="alerta-icon-govco alerta-icon-notificacion-govco asuccess"></span>
                                                 <p class="alerta-content-text">
-                                                    El correo pronto será enviado al correo <strong>{{$solicitud->usuario->email}}</strong>
+                                                    El certificado pronto será enviado al correo <strong>{{$solicitud->usuario->email}}</strong>
                                                 </p>
                                             </div>
                                         </div>

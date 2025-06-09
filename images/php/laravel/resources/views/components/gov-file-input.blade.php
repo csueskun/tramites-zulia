@@ -1,4 +1,4 @@
-<div class="container-carga-de-archivo-govco mb-4">
+<div class="container-carga-de-archivo-govco mb-4" id="container_file_{{ $name }}">
     <div class="loader-carga-de-archivo-govco">
         <div class="all-input-carga-de-archivo-govco">
             <input {{ $required ? 'required' : '' }} type="file" name="file_{{ $name }}" id="file_{{ $name }}"

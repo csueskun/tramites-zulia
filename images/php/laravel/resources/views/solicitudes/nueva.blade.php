@@ -203,7 +203,13 @@
                                                 ];
                                             @endphp
                                             <div class="col-lg-12 mb-4">
-                                                @if($meta['nombre'] === 'poder')<strong>¿Esta realizando el tramite para una tercera persona?</strong><br><br>@endif
+                                                @if($meta['nombre'] === 'poder')
+                                                <label for="check_adicional" class="form-label">
+                                                    <input type="checkbox" id="check_adicional" name="check_adicional"
+                                                        onclick="toggleArchivoPoder()">
+                                                    ¿Esta realizando el tramite para una tercera persona?
+                                                </label>
+                                                @endif
                                                 <x-gov-file-input 
                                                     name="{{ $meta['nombre'] }}" 
                                                     max="{{ $meta['max_size']/(1024*1024) }}" 
@@ -211,16 +217,7 @@
                                                     descripcion="{{ $archivo->descripcion }}"/>
                                             </div>
                                             @endforeach
-
                                         </div>
-
-                                        <!-- <div class="col-lg-12 mt-4">
-                                            <label for="check_adicional" class="form-label">
-                                                <input type="checkbox" id="check_adicional" name="check_adicional"
-                                                    onclick="toggleArchivoAdicional()">
-                                                ¿Esta realizando el tramite para una tercera persona?
-                                            </label>
-                                        </div> -->
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -308,6 +305,7 @@
                     }, 100);
                 });
             });
+            document.getElementById('container_file_poder').style.display = 'none'; // Hide the poder file input by default
         });
 
         var fileDocumentoIdentidad = [];
@@ -316,17 +314,9 @@
         var filePoder = [];
         var form = document.querySelector('#nueva-solicitud');
 
-        function toggleArchivoAdicional() {
-            var archivoAdicional = document.getElementById('archivo_adicional');
-            if (archivoAdicional.classList.contains('d-none')) {
-                archivoAdicional.classList.remove('d-none');
-                archivoAdicional.querySelector('input[type="file"]').setAttribute('required', 'required');
-            } else {
-                archivoAdicional.classList.add('d-none');
-                archivoAdicional.querySelector('input[type="file"]').removeAttribute('required');
-                archivoAdicional.querySelector('input[type="file"]').removeAttribute('data-error');
-                filePoder = [];
-            }
+        function toggleArchivoPoder() {
+            var archivoPoder = document.getElementById('container_file_poder');
+            archivoPoder.style.display = archivoPoder.style.display === 'none' ? 'block' : 'none';
         }
 
         // File upload
