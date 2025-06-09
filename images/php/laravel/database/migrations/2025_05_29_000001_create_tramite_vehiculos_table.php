@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tramite_vehiculos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tramite_id')->constrained('tramites')->onDelete('cascade');
-            $table->enum('vehiculo', config('enums.vehiculo_types'))->default(config('enums.vehiculo_types')[0]);
+            $table->enum('vehiculo', config('enums.vehiculo_types'))->default('TODOS');
             $table->timestamps();
         });
     }

@@ -16,8 +16,10 @@ return new class extends Migration
             $table->foreignId('tramite_id')->constrained('tramites')->onDelete('cascade');
             $table->longText('descripcion');
             $table->boolean('obligatorio')->default(true);
-            $table->enum('vehiculo', config('enums.vehiculo_types'))->default(config('enums.vehiculo_types')[0]);
-            $table->enum('persona', config('enums.persona_types'))->default(config('enums.persona_types')[0]);
+            $table->enum('tipo', ['ARCHIVO', 'MENCION'])->default('MENCION');
+            $table->enum('vehiculo', config('enums.vehiculo_types'))->default('TODOS');
+            $table->enum('persona', config('enums.persona_types'))->default('TODOS');
+            $table->json('file_metadata')->nullable();
             $table->timestamps();
         });
     }

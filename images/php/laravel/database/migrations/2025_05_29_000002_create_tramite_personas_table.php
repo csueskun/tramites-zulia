@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tramite_personas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tramite_id')->constrained('tramites')->onDelete('cascade');
-            $table->enum('persona', config('enums.persona_types'))->default(config('enums.persona_types')[0]);
+            $table->enum('persona', config('enums.persona_types'))->default('TODOS');
             $table->timestamps();
         });
     }

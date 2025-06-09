@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->longText('descripcion');
             $table->enum('tipo', ['COSTO', 'ESTAMPILLA'])->default('COSTO');
-            $table->enum('vehiculo', config('enums.vehiculo_types'))->default(config('enums.vehiculo_types')[0]);
-            $table->enum('persona', config('enums.persona_types'))->default(config('enums.persona_types')[0]);
+            $table->enum('vehiculo', config('enums.vehiculo_types'))->default('TODOS');
+            $table->enum('persona', config('enums.persona_types'))->default('TODOS');
             $table->decimal('precio', 8, 2)->default(0);
             $table->timestamps();
         });
