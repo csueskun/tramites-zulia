@@ -29,16 +29,19 @@ class SolicitudController extends Controller
         $tramites = Tramite::all();
         return view('user-home', compact('tramites'));
     }
-    public function nuevaIndex($tramite_id)
+    public function nuevaIndex($tramite_id, $vehiculo = 'TODOS', $persona = 'TODOS')
     {
         $tramite = Tramite::findOrFail($tramite_id);
-        return view('solicitudes.nueva', compact('tramite'));
+        return view('solicitudes.nueva', compact('tramite', 'vehiculo', 'persona'));
     }
     public function nuevaPost(Request $request)
     {
         $input = $request->all();
-        $tramite = Tramite::findOrFail($input['tramite_id']);
-        return view('solicitudes.nueva', compact('tramite'))->with($input);
+        return redirect()->route('user.solicitudes.nueva', [
+            'tramite_id' => $input['tramite_id'],
+            'vehiculo' => $input['vehiculo'],
+            'persona' => $input['persona'],
+        ]);
     }
 
     /**
@@ -111,7 +114,7 @@ class SolicitudController extends Controller
     public function viewCompletas(Request $request)
     {
         $current_page = $request->query('page', 1);
-        $solicitudes = $this->getSolicitudesByStatusPaginated(['VALIDADA'], $current_page, null,);
+        $solicitudes = $this->getSolicitudesByStatusPaginated(['VALIDADA'], $current_page, null, );
         return view('solicitudes.completadas', compact('solicitudes'));
     }
 
@@ -145,7 +148,7 @@ class SolicitudController extends Controller
                 'responsable' => $responsable,
                 'ruta' => '/' . $fileName,
             ]);
-            if($responsable == 'TNS') {
+            if ($responsable == 'TNS') {
                 $solicitud->documentos()->create([
                     'tipo' => 'CONSTANCIA DE PAGO',
                     'responsable' => $responsable,
@@ -155,8 +158,7 @@ class SolicitudController extends Controller
                     'comentario' => "Su recibo de pago fue enviado por TNS al correo {$solicitud->usuario->email}.",
                     'autor' => 'ADMIN',
                 ]);
-            }
-            else{
+            } else {
                 if ($request->hasFile('file_recibo')) {
                     $file = $request->file('file_recibo');
                     $file[0]->storeAs('uploads', $fileName, 'public');
@@ -200,18 +202,23 @@ class SolicitudController extends Controller
             'identificacion' => 'required|string|max:255',
             'nombres' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'tramite_id' => 'required|string|max:255',
             'persona' => 'required|string|max:255',
             'vehiculo' => 'required|string|max:255',
+            'tramite_id' => 'required|string|max:255',
         ]);
-        $validatedData['radicado'] = now()->format('Ymd') . str_pad(Solicitud::count() + 1, 3, '0', STR_PAD_LEFT);
-        $documents = [
-            'id' => '-id.pdf',
-            'fun' => '-fun.xls',
-            'propiedad' => '-propiedad.pdf',
-            'poder' => '-poder.pdf',
-        ];
+        $tramite = Tramite::findOrFail($validatedData['tramite_id']);
+
+        $_documents = $tramite->getArchivosFiltrados(
+            $validatedData['vehiculo'],
+            $validatedData['persona']
+        );
+        $documents = [];
+        foreach ($_documents as $doc) {
+            $meta = $doc['file_metadata'];
+            $documents['file_'.$meta['nombre']] = '-' . $meta['nombre'] . '.' . $meta['tipo'];
+        }
         $storedFiles = [];
+        $validatedData['radicado'] = now()->format('Ymd') . str_pad(Solicitud::count() + 1, 3, '0', STR_PAD_LEFT);
 
         foreach ($documents as $inputName => $suffix) {
             try {
@@ -232,14 +239,15 @@ class SolicitudController extends Controller
             $solicitud = Solicitud::create($validatedData);
             foreach ($storedFiles as $key => $value) {
                 $newDocumento = new Documento();
-                $newDocumento->tipo = strtoupper($key);
+                $newDocumento->tipo = strtoupper(str_replace('file_', '', $key));
+                $newDocumento->tipo = str_replace('_', ' ', $newDocumento->tipo);
                 $newDocumento->ruta = $value;
                 $newDocumento->solicitud_id = $solicitud->id;
                 $newDocumento->save();
             }
             return $solicitud->id;
         });
-        
+
         return redirect("/user/solicitudes/{$solicitud_id}/ver")->with('success', 'Solicitud creada exitosamente.');
     }
 
