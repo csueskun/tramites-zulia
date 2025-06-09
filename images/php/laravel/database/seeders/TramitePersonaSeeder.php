@@ -15,11 +15,11 @@ class TramitePersonaSeeder extends Seeder
         //
         TramitePersona::create([
             'tramite_id' => 2,
-            'persona' => config('enums.persona_types')[0], // NATURAL
+            'persona' => 'NATURAL',
         ]);
         TramitePersona::create([
             'tramite_id' => 2,
-            'persona' => config('enums.persona_types')[1], // JURIDICA
+            'persona' => 'JURIDICA',
         ]);
     }
 }

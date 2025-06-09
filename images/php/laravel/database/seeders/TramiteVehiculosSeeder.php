@@ -15,25 +15,27 @@ class TramiteVehiculosSeeder extends Seeder
         //
         TramiteVehiculo::create([
             'tramite_id' => 1,
-            'vehiculo' => config('enums.vehiculo_types')[1], // PARTICULAR
+            'vehiculo' => 'PARTICULAR',
         ]);
         TramiteVehiculo::create([
             'tramite_id' => 1,
-            'vehiculo' => config('enums.vehiculo_types')[5], // EMPRESA
+            'vehiculo' => 'EMPRESA',
         ]);
         TramiteVehiculo::create([
             'tramite_id' => 2,
-            'vehiculo' => config('enums.vehiculo_types')[2], // MOTO
+            'vehiculo' => 'CARRO',
         ]);
         TramiteVehiculo::create([
             'tramite_id' => 2,
-            'vehiculo' => config('enums.vehiculo_types')[3], // CARRO
+            'vehiculo' => 'MOTO',
         ]);
-        foreach (config('enums.vehiculo_types') as $vehiculoType) {
-            // TramiteVehiculo::create([
-            //     'tramite_id' => 2,
-            //     'vehiculo' => $vehiculoType,
-            // ]);
-        }
+        TramiteVehiculo::create([
+            'tramite_id' => 4,
+            'vehiculo' => 'CARRO',
+        ]);
+        TramiteVehiculo::create([
+            'tramite_id' => 4,
+            'vehiculo' => 'MOTO',
+        ]);
     }
 }
