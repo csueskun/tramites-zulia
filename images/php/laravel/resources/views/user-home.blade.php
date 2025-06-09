@@ -60,7 +60,7 @@
         <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
             data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" aria-hidden="true"
             role="dialog">
-            <div class="modal-dialog modal-dialog-govco" style="max-width: 620px !important;">
+            <div class="modal-dialog modal-dialog-govco" style="max-width: 640px !important;">
                 <form action="/user/solicitudes/nueva" method="POST" id="tramite-form">
                     @csrf
                     <input type="hidden" name="tramite_id" value="" data-tramite-field="id">
@@ -69,11 +69,11 @@
                             <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                        <div class="modal-body modal-body-govco">
+                        <div class="modal-body modal-body-govco fix">
                             <h4 data-tramite-field="nombre" class="govcolor-blue-dark mb-4"></h4>
                             <p data-tramite-field="descripcion"></p>
-                            <p><div class="radio-seleccion-govco" data-tramite-field="vehiculos"></div></p>
                             <p><div class="radio-seleccion-govco" data-tramite-field="personas"></div></p>
+                            <p><div class="radio-seleccion-govco" data-tramite-field="vehiculos"></div></p>
                             <table class="table table-general fix min" id="requerimientos-table">
                                 <thead>
                                     <tr>
@@ -113,7 +113,7 @@
                                 </tfoot>
                             </table>
                             <p>
-                                Costo total del tramite: <strong><span data-tramite-field="total"></span></strong> (validos hasta el año 2025)
+                                Costo total del tramite: <strong><span data-tramite-field="total"></span></strong> (válidos durante el año 2025)
                             </p>
                         </div>
                         <div class="modal-footer-govco modal-footer-alerts-govco">
