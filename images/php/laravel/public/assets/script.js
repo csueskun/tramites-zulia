@@ -557,6 +557,7 @@ function enterOptionDropDown(element) {
     select.innerHTML = element.innerHTML;
   }
   inputHidden.value = element.getAttribute('value');
+  inputHidden.dispatchEvent(new Event('change', { bubbles: true }));
   element.classList.add('same-as-selected');
   closedDropDown(containerSelect);
 }

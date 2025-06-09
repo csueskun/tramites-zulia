@@ -164,3 +164,28 @@ th.currency{
     text-align: right !important;
     font-family: 'Courier New', Courier, monospace;
 }
+.modal-body-govco.fix {
+    margin: 0px 3rem auto 3rem !important;
+    padding: 0px !important;
+    padding-top: 14px !important;
+}
+.desplegable-govco button.desplegable-selected-option {
+    padding: 7px 4px;
+}
+.desplegable-govco .desplegable-items li{
+    padding: 0px 6px;
+    font-size: 0.9em;
+    line-height: 1;
+}
+.container-detail-carga-de-archivo-govco{
+    border: none;
+}
+.container-detail-carga-de-archivo-govco>span{
+    padding-top: 0;
+}
+.nueva-solicitud.entradas-de-texto-govco[data-error="1"] label{
+    color: #A80521;
+}
+.nueva-solicitud.entradas-de-texto-govco[data-error="1"] input{
+    border-color: #A80521;
+}
