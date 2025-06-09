@@ -25,7 +25,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/home', [SolicitudController::class, 'userIndex']);
-    Route::get('/user/solicitudes/nueva/{tramite_id}', [SolicitudController::class, 'nuevaIndex']);
+    Route::get('/user/solicitudes/nueva/{tramite_id}/{vehiculo}/{persona}', [SolicitudController::class, 'nuevaIndex'])->name('user.solicitudes.nueva');
     Route::post('/user/solicitudes/nueva', [SolicitudController::class, 'nuevaPost']);
     Route::get('/user/solicitudes', [SolicitudController::class, 'verUserSolicitudes']);
     Route::get('/user/solicitudes/{id}/ver', [SolicitudController::class, 'verSolicitud']);
