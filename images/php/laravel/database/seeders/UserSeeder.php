@@ -31,5 +31,25 @@ class UserSeeder extends Seeder
             'tipo_documento' => 'CC',
             'password' => 'user',
         ], );
+
+        User::factory()->create([
+            'nombres' => 'Robert',
+            'apellidos' => 'Rojas',
+            'email' => 'robert11unofirst@gmail.com',
+            'role' => 'USER',
+            'documento' => 88246807,
+            'tipo_documento' => 'CC',
+            'password' => 'robert',
+        ], );
+
+        User::factory()->create([
+            'nombres' => 'Carlos',
+            'apellidos' => 'Monsalve',
+            'email' => 'csueskun@gmail.com',
+            'role' => 'USER',
+            'documento' => 1090909090,
+            'tipo_documento' => 'CC',
+            'password' => 'robert',
+        ], );
     }
 }
