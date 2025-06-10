@@ -2,13 +2,9 @@ name: tramites
 services:
   php:
     container_name: php
-    build: images/php
-      # context: images/php
-      # dockerfile: ./php/Dockerfile
+    build: ./images/php
     volumes:
       - ./images/php/laravel:/var/www/html
-    # expose:
-    #   - "9000"
     depends_on:
       db:
         condition: service_healthy
@@ -21,14 +17,6 @@ services:
       php artisan lang:update && 
       php artisan migrate --force && 
       php-fpm"
-    # command: >
-    #   sh -c "chown -R www-data:www-data /var/www/html/storage && 
-    #   chown -R www-data:www-data /var/www/html/storage/logs && 
-    #   chown -R www-data:www-data /var/www/html/app && 
-    #   composer require laravel-lang/common --dev && 
-    #   php artisan lang:update && 
-    #   php artisan migrate:fresh --seed && 
-    #   php-fpm"
 
   web:
     container_name: apache
@@ -52,24 +40,11 @@ services:
       MYSQL_PASSWORD: secret
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./images/mysql/init:/docker-entrypoint-initdb.d/:ro
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret" ]
       interval: 5s
       retries: 5
       start_period: 10s
-
-  phpmyadmin:
-    container_name: phpmyadmin
-    image: phpmyadmin/phpmyadmin
-    restart: always
-    ports:
-      - "8081:80"
-    environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: secret
-    depends_on:
-      - db
 
 volumes:
   mysql-data:
