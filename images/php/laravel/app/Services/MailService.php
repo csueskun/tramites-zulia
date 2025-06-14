@@ -6,28 +6,32 @@ use App\Mail\EnviarReciboDePago;
 use App\Mail\EnviarCertificado;
 use App\Mail\SolicitudAceptada;
 use App\Mail\SolicitudRechazada;
+use App\Mail\VerificarCorreo;
+
 use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendMailJob;
+
 
 class MailService
 {
     public function sendReciboDePago($solicitud, $attachments)
     {
-        Mail::to($solicitud->usuario->email)->send(new EnviarReciboDePago($solicitud, $attachments));
+        SendMailJob::dispatch(EnviarReciboDePago::class, $solicitud->usuario->email, [$solicitud, $attachments]);
     }
     public function sendCertificado($solicitud, $attachments)
     {
-        Mail::to($solicitud->usuario->email)->send(new EnviarCertificado($solicitud, $attachments));
+        SendMailJob::dispatch(EnviarCertificado::class, $solicitud->usuario->email, [$solicitud, $attachments]);
     }
     public function sendSolicitudAceptada($solicitud)
     {
-        Mail::to($solicitud->usuario->email)->send(new SolicitudAceptada($solicitud));
+        SendMailJob::dispatch(SolicitudAceptada::class, $solicitud->usuario->email, [$solicitud]);
     }
     public function sendSolicitudRechazada($solicitud, $motivo)
     {
-        Mail::to($solicitud->usuario->email)->send(new SolicitudRechazada($solicitud, $motivo));
+        SendMailJob::dispatch(SolicitudRechazada::class, $solicitud->usuario->email, [$solicitud, $motivo]);
     }
     public function sendUserVerification($usuario)
     {
-        Mail::to($usuario->email)->send(new SolicitudAceptada($usuario));
+        SendMailJob::dispatch(SolicitudAceptada::class, $usuario->email, [$usuario]);
     }
 }
