@@ -51,9 +51,6 @@
                                         data-bs-comentario="{{$solicitud->comentario}}"
                                         data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
                                         VER MÁS</a> /
-                                    <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#enviar-recibo"
-                                        data-bs-action="/solicitudes/{{$solicitud->id}}/mail-recibo-pago">
-                                        {{($solicitud->recibo_pago && $solicitud->recibo_pago->responsable == 'ADMIN') ? 'RE' : ''}}ENVIAR RECIBO</a> / 
                                     <a class="govco-a" href="https://portal-gov.tns.co/" target="_blank" >ABRIR PORTAL TNS</a> 
                                     @if ($solicitud->recibo_pago == null)
                                     / <form class="aceptar-solicitud d-inline" action="/solicitudes/{{$solicitud->id}}/mail-recibo-pago" method="post">
