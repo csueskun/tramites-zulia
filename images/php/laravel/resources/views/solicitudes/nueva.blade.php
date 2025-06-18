@@ -213,6 +213,7 @@
                                                 <x-gov-file-input 
                                                     name="{{ $meta['nombre'] }}" 
                                                     max="{{ $meta['max_size']/(1024*1024) }}" 
+                                                    type="{{ $meta['tipo']) }}" 
                                                     required="{{ $archivo->obligatorio }}" 
                                                     descripcion="{{ $archivo->descripcion }}"/>
                                             </div>

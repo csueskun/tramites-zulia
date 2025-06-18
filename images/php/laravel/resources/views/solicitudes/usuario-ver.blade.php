@@ -69,8 +69,8 @@
                                                             <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
                                                             <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
                                                         </label>
-                                                        <span class="text-validation-carga-de-archivo-govco">Cualquier tipo de archivo. Peso máximo: 2 MB</span>
-                                                    </div>
+                                                        <span class="text-validation-carga-de-archivo-govco">Tipo de archivo: <strong>.pdf</strong>. Peso máximo: 2 MB</span>
+                                                        </div>
                                                     <div class="load-button-carga-de-archivo-govco" style="display: none;">
                                                         <div class="load-carga-de-archivo-govco">
                                                             <div class="spinner-indicador-de-carga-govco" style="width: 32px; height: 32px; border-width: 6px;" role="status">
