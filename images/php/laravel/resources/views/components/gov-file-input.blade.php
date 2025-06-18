@@ -12,7 +12,7 @@
                     seleccionado</span>
             </label>
             <span class="text-validation-carga-de-archivo-govco">
-                Cualquier tipo de archivo. Peso máximo: {{ $max }} MB
+                Tipo de archivo: {{ $tipo }}. Peso máximo: {{ $max }} MB
             </span>
         </div>
         <div class="load-button-carga-de-archivo-govco" style="display: none;">
