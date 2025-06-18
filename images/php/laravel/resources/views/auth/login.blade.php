@@ -96,7 +96,7 @@
                         <p class="modal-text-govco modal-text-center-govco">
                             El proceso de restablecer contraseña se lleva a cabo por medio de correo 
                             electrónico. Por favor enviar la solicitud al siguiente email: 
-                            <a href="mailto:soporte@nortedesantander.gov.co">soporte@nortedesantander.gov.co</a>
+                            <a href="mailto:soporte@nortedesantander.gov.co">transito.sistemas@nortedesantander.gov.co</a>
                         </p>
                     </div>
                     <div class="modal-footer-govco modal-footer-alerts-govco">
