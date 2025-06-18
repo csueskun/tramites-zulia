@@ -109,6 +109,10 @@ class TramiteRequerimientoSeeder extends Seeder
                 'max_size' => 5242880, // 5MB
             ]),
         ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 1,
+            'descripcion' => 'Soporte de pago',
+        ]);
 
 
         //Levantamiento 
@@ -220,6 +224,10 @@ class TramiteRequerimientoSeeder extends Seeder
                 'max_size' => 5242880, // 5MB
             ]),
         ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 2,
+            'descripcion' => 'Soporte de pago',
+        ]);
 
 
         //Certificación de tradición y libertad 
@@ -247,6 +255,10 @@ class TramiteRequerimientoSeeder extends Seeder
                 'tipo' => 'pdf',
                 'max_size' => 5242880, // 5MB
             ]),
+        ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 3,
+            'descripcion' => 'Soporte de pago',
         ]);
 
 
@@ -326,6 +338,10 @@ class TramiteRequerimientoSeeder extends Seeder
                 'max_size' => 5242880, // 5MB
             ]),
         ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 4,
+            'descripcion' => 'Soporte de pago',
+        ]);
 
 
 
@@ -367,6 +383,10 @@ class TramiteRequerimientoSeeder extends Seeder
         TramiteRequerimiento::create([
             'tramite_id' => 5,
             'descripcion' => 'Paz y salvo del SIMIT',
+        ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 5,
+            'descripcion' => 'Soporte de pago',
         ]);
     }
 }
