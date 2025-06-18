@@ -45,7 +45,7 @@ class User extends Authenticatable
                 'string',
                 'min:8',
                 'confirmed',
-                'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
+                'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]+$/',
             ],
         ];
     }
