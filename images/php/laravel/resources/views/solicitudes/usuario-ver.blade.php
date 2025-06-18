@@ -245,16 +245,22 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <span><strong>Comentarios:</strong></span>
+                                    <br><br>
                                     @if ($solicitud->comentarios && count($solicitud->comentarios) > 0)
-                                        <ul style="max-height: 400px;overflow-y: auto;overflow-x: clip; ">
-                                            @foreach ($solicitud->comentarios as $comentario)
-                                                <li class="mt-2">
-                                                    <strong>{{ $comentario->autor }}:</strong> {{ $comentario->comentario }}
-                                                    <br>
-                                                    <small>{{ $comentario->created_at->format('d/m/Y H:i') }}</small>
-                                                </li>
-                                            @endforeach
-                                        </ul>
+                                        @foreach ($solicitud->comentarios as $comentario)
+                                        <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
+                                            <p class="alerta-content-text px-3 py-1">
+                                                <strong>{{ $comentario->autor }}:</strong>
+                                                {{ $comentario->comentario }}
+                                            </p>
+                                        </div>
+                                        <small>{{ $comentario->created_at->format('d/m/Y H:i') }}</small>
+                                            <!-- <li class="mt-2">
+                                            </li> -->
+                                        <br><br>
+                                        @endforeach
+                                        <!-- <ul style="max-height: 400px;overflow-y: auto;overflow-x: clip; ">
+                                        </ul> -->
                                     @else
                                         <p>No hay comentarios.</p>
                                     @endif
