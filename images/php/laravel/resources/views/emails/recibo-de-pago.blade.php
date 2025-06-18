@@ -23,12 +23,15 @@
         Por favor, revise el recibo adjunto y asegúrese de que toda la información 
         sea correcta. Si encuentra algún error o tiene alguna pregunta, 
         no dude en ponerse en contacto con nosotros a través de
-        <a href="mailto:transito@nortedesantander.gov.co">transito@nortedesantander.gov.co</a>
+        <a href="mailto:transito.sistemas@nortedesantander.gov.co">transito.sistemas@nortedesantander.gov.co</a>
     </p>
     <p>
         Diríjase a la plataforma para consultar el estado de su solicitud,
         y cargar la constancia de pago dando <a href="{{ env('APP_URL') }}">click aquí</a>.
     </p>
-    <p>Atentamente,<br>Secretaría de Tránsito, sede operativa El Zulia</p>
+    <p>
+        Atentamente,<br>
+        Secretaría de Tránsito, sede operativa El Zulia<br>
+    </p>
 </body>
 </html>

@@ -11,6 +11,14 @@
         Su código de verificación es: <strong>{{ $verificationCode }}</strong>.
         Si usted no solicitó esta verificación, puede ignorar este mensaje.
     </p>
-    <p>Atentamente,<br>Secretaría de Tránsito, sede operativa El Zulia</p>
+    <p>
+        Si tiene alguna consulta adicional o requiere asistencia, 
+        no dude en comunicarse con nosotros a través de 
+        <a href="mailto:transito.sistemas@nortedesantander.gov.co">transito.sistemas@nortedesantander.gov.co</a>
+    </p>
+    <p>
+        Atentamente,<br>
+        Secretaría de Tránsito, sede operativa El Zulia<br>
+    </p>
 </body>
 </html>
