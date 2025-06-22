@@ -136,6 +136,9 @@ class SolicitudController extends Controller
             ]);
             $this->mailService->sendSolicitudRechazada($solicitud, $comentario);
         }
+        if ($solicitud->estado == 'VALIDADA') {
+            $this->mailService->sendPagoValidado($solicitud);
+        }
         return redirect()->back()->with('success', 'Solicitud actualizada exitosamente.');
     }
     public function mailReciboDePago(Request $request, Solicitud $solicitud)
