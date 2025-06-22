@@ -56,6 +56,9 @@
                             <span class="error-texto-govco alert-entradas-de-texto-govco" id="campoWarning-id" role="alert" aria-live="assertive">{{ $message }}</span>
                             @enderror
                         </div>
+                        <label class="mb-4">
+                            <input type="checkbox" id="togglePassword"> Mostrar contraseña
+                        </label>
                     </div>
                     <div>
                         <button type="submit" class="btn-govco fill-btn-govco" name="continuar" style="width: 165px; height: 42px;">Continuar</button>
@@ -113,3 +116,14 @@
 </div>
 
 @endsection
+@push('scripts')
+    <script>
+        const passwordInput = document.getElementById('password');
+        const toggleCheckbox = document.getElementById('togglePassword');
+
+        toggleCheckbox.addEventListener('change', () => {
+            passwordInput.type = toggleCheckbox.checked ? 'text' : 'password';
+        });
+
+    </script>
+@endpush
