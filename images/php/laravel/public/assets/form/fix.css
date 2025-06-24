@@ -189,3 +189,6 @@ th.currency{
 .nueva-solicitud.entradas-de-texto-govco[data-error="1"] input{
     border-color: #A80521;
 }
+div.alert.alerta-govco>span {
+    margin: 0 8px 0 18px;
+}
