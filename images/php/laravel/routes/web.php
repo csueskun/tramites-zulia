@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\DocumentoController;
+use App\Http\Controllers\PasswordResetController;
 
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -22,6 +23,11 @@ Route::post('/usuarios/reenviar-verificacion', [UserController::class, 'resendVe
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::view('/forgot-password', 'auth.forgot-password');
+Route::get('/reset-password', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink']);
+Route::post('/reset-password', [PasswordResetController::class, 'resetPassword']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/home', [SolicitudController::class, 'userIndex']);
