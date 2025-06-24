@@ -15,7 +15,7 @@ class TramiteRequerimientoSeeder extends Seeder
         //Traspaso de vehículo
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Formato único de solicitud de trámite FUN',
+            'descripcion' => 'Formato único de Solicitud de Trámite FUN, Debidamente Diligenciado',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'fun',
@@ -25,11 +25,11 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Improntas en el FUN o en la compraventa y el comprador',
+            'descripcion' => 'Anexar Improntas en el FUN o en la Compraventa',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Registro Único Nacional de Tránsito (RUNT)',
+            'descripcion' => 'Estar inscritos en el Registro Único Nacional de Tránsito (RUNT) (Tanto el comprador como el vendedor)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
@@ -43,7 +43,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Tarjeta de propiedad (Ambas caras)',
+            'descripcion' => 'Licencia de Transito (Tarjeta de Propiedad, Copia por Ambas Caras)',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'tarjeta_propiedad',
@@ -53,7 +53,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Compraventa del vehículo totalmente diligenciada, sin tachones ni enmendaduras',
+            'descripcion' => 'Compraventa del Vehículo no mayor a 60 días de suscrita, Totalmente diligenciada sin tachones ni enmendaduras y con las firmas de las partes debidamente autenticadas',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'compraventa',
@@ -71,11 +71,11 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'SOAT',
+            'descripcion' => 'SOAT (Vigente)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Técnico mecánica vigentes',
+            'descripcion' => 'Revisión Técnico Mecánica (Vigente)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
@@ -100,7 +100,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Contrato de mandato o poder especial, si el trámite lo realiza un tercero',
+            'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados',
             'obligatorio' => false,
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
@@ -109,12 +109,16 @@ class TramiteRequerimientoSeeder extends Seeder
                 'max_size' => 5242880, // 5MB
             ]),
         ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 1,
+            'descripcion' => 'Soporte de pago',
+        ]);
 
 
         //Levantamiento 
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Formato único de solicitud de trámite FUN',
+            'descripcion' => 'Formato único de Solicitud de Trámite FUN, Debidamente Diligenciado',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'fun',
@@ -124,11 +128,11 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Improntas en el FUN',
+            'descripcion' => 'Anexar Improntas en el FUN',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Registro Único Nacional de Tránsito (RUNT)',
+            'descripcion' => 'Estar inscritos en el Registro Único Nacional de Tránsito (RUNT)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
@@ -142,7 +146,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Fotocopia de tarjeta de propiedad',
+            'descripcion' => 'Licencia de Transito (Tarjeta de Propiedad, Copia por Ambas Caras)',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'tarjeta_propiedad',
@@ -157,16 +161,6 @@ class TramiteRequerimientoSeeder extends Seeder
             'persona' => 'NATURAL',
             'file_metadata' => json_encode([
                 'nombre' => 'carta_levante',
-                'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
-            ]),
-        ]);
-        TramiteRequerimiento::create([
-            'tramite_id' => 2,
-            'descripcion' => 'Improntas',
-            'tipo' => 'ARCHIVO',
-            'file_metadata' => json_encode([
-                'nombre' => 'improntas',
                 'tipo' => 'pdf',
                 'max_size' => 5242880, // 5MB
             ]),
@@ -203,15 +197,15 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'SOAT',
+            'descripcion' => 'SOAT (Vigente)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Técnico mecánica vigentes',
+            'descripcion' => 'Revisión Técnico Mecánica (Vigente)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Contrato de mandato o poder especial, si el trámite lo realiza un tercero',
+            'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados',
             'tipo' => 'ARCHIVO',
             'obligatorio' => false,
             'file_metadata' => json_encode([
@@ -220,12 +214,16 @@ class TramiteRequerimientoSeeder extends Seeder
                 'max_size' => 5242880, // 5MB
             ]),
         ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 2,
+            'descripcion' => 'Soporte de pago',
+        ]);
 
 
         //Certificación de tradición y libertad 
         TramiteRequerimiento::create([
             'tramite_id' => 3,
-            'descripcion' => 'Registro Único Nacional de Tránsito (RUNT)',
+            'descripcion' => 'Estar inscritos en el Registro Único Nacional de Tránsito (RUNT)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 3,
@@ -239,7 +237,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 3,
-            'descripcion' => 'Contrato de mandato o poder especial, si el trámite lo realiza un tercero',
+            'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados',
             'obligatorio' => false,
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
@@ -248,12 +246,16 @@ class TramiteRequerimientoSeeder extends Seeder
                 'max_size' => 5242880, // 5MB
             ]),
         ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 3,
+            'descripcion' => 'Soporte de pago',
+        ]);
 
 
         //Duplicado de tarjeta de propiedad
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Formato único de solicitud de trámite FUN',
+            'descripcion' => 'Formato único de Solicitud de Trámite FUN, Debidamente Diligenciado',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'fun',
@@ -263,7 +265,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Improntas en el FUN',
+            'descripcion' => 'Anexar Improntas en el FUN',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
@@ -289,7 +291,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Fotocopia de tarjeta de propiedad',
+            'descripcion' => 'Licencia de Transito (Tarjeta de Propiedad, Copia por Ambas Caras)',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'tarjeta_propiedad',
@@ -299,25 +301,15 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Improntas',
-            'tipo' => 'ARCHIVO',
-            'file_metadata' => json_encode([
-                'nombre' => 'improntas',
-                'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
-            ]),
+            'descripcion' => 'SOAT (Vigente)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'SOAT',
+            'descripcion' => 'Revisión Técnico Mecánica (Vigente)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Técnico mecánica vigentes',
-        ]);
-        TramiteRequerimiento::create([
-            'tramite_id' => 4,
-            'descripcion' => 'Contrato de mandato o poder especial, si el trámite lo realiza un tercero',
+            'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados',
             'tipo' => 'ARCHIVO',
             'obligatorio' => false,
             'file_metadata' => json_encode([
@@ -326,13 +318,17 @@ class TramiteRequerimientoSeeder extends Seeder
                 'max_size' => 5242880, // 5MB
             ]),
         ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 4,
+            'descripcion' => 'Soporte de pago',
+        ]);
 
 
 
         //Renovación de licencia
         TramiteRequerimiento::create([
             'tramite_id' => 5,
-            'descripcion' => 'Registro Único Nacional de Tránsito (RUNT)',
+            'descripcion' => 'Estar inscritos en el Registro Único Nacional de Tránsito (RUNT)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 5,
@@ -367,6 +363,10 @@ class TramiteRequerimientoSeeder extends Seeder
         TramiteRequerimiento::create([
             'tramite_id' => 5,
             'descripcion' => 'Paz y salvo del SIMIT',
+        ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 5,
+            'descripcion' => 'Soporte de pago',
         ]);
     }
 }

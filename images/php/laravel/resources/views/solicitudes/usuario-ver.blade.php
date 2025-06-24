@@ -50,52 +50,6 @@
                             </div>
                             <br />
                             @endif
-                            <div class="contenido-etapa etapa-3">
-                                <div class="titulo-informacion-govco mb-4">
-                                    <label>Cargar Pago</label>
-                                </div>
-                                <form id="cargar-constancia-pago" action="/user/solicitudes/{{$solicitud->id}}/documento" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="hidden" name="tipo" value="CONSTANCIA DE PAGO">
-                                    <input type="hidden" name="responsable" value="USER">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="container-carga-de-archivo-govco mb-4">
-                                                <div class="loader-carga-de-archivo-govco">
-                                                    <div class="all-input-carga-de-archivo-govco">
-                                                        <input type="file" name="contancia_pago" id="contancia_pago" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFileConstanciaPago" data-action-delete="deleteFileConstanciaPago" multiple />
-                                                        <label for="contancia_pago" class="label-carga-de-archivo-govco">Soporte de pago*</label>
-                                                        <label for="contancia_pago" class="container-input-carga-de-archivo-govco">
-                                                            <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
-                                                            <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
-                                                        </label>
-                                                        <span class="text-validation-carga-de-archivo-govco">Tipo de archivo: <strong>.pdf</strong>. Peso máximo: 2 MB</span>
-                                                        </div>
-                                                    <div class="load-button-carga-de-archivo-govco" style="display: none;">
-                                                        <div class="load-carga-de-archivo-govco">
-                                                            <div class="spinner-indicador-de-carga-govco" style="width: 32px; height: 32px; border-width: 6px;" role="status">
-                                                                <span class="visually-hidden">Cargando...</span>
-                                                            </div>
-                                                        </div>
-                                                        <button class="button-loader-carga-de-archivo-govco" disabled style="display: none;">Cargar archivo</button>
-                                                    </div>
-                                                </div>
-                                                <div class="container-detail-carga-de-archivo-govco">
-                                                    <span class="alert-carga-de-archivo-govco visually-hidden"></span>
-                                                    <div class="attached-files-carga-de-archivo-govco"></div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <button type="submit" class="btn-linea-activar-govco linea-link-label-govco">
-                                                Continuar
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
                             <div class="contenido-etapa etapa-4">
                                 <div class="titulo-informacion-govco mb-4">
                                     <div class="row">

@@ -6,6 +6,7 @@ use App\Mail\EnviarReciboDePago;
 use App\Mail\EnviarCertificado;
 use App\Mail\SolicitudAceptada;
 use App\Mail\SolicitudRechazada;
+use App\Mail\PagoValidado;
 use App\Mail\VerificarCorreo;
 
 use Illuminate\Support\Facades\Mail;
@@ -33,5 +34,9 @@ class MailService
     public function sendUserVerification($usuario)
     {
         SendMailJob::dispatch(SolicitudAceptada::class, $usuario->email, [$usuario]);
+    }
+    public function sendPagoValidado($solicitud)
+    {
+        SendMailJob::dispatch(PagoValidado::class, $solicitud->usuario->email, [$solicitud]);
     }
 }

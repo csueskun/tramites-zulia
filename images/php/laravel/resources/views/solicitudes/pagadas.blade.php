@@ -1,10 +1,10 @@
 @extends('components.layout')
 
-@section('title', 'Solicitudes pagadas')
+@section('title', 'Solicitudes pendientes de validar pago')
 
 @push('breadcrumb')
 <li class="breadcrumb-item-govco"><a href="/home">Trámites</a></li>
-<li class="breadcrumb-item-govco active" aria-current="page">Solicitudes pagadas</li>
+<li class="breadcrumb-item-govco active" aria-current="page">Solicitudes pendientes de validar pago</li>
 @endpush
 
 @section('content')
@@ -13,7 +13,7 @@
     <div class="row justify-content-between">
         <div class="col-lg-9">
             @include('components.session-messages')
-            <h3 class="govcolor-blue-dark mb-4">Solicitudes pagadas</h3>
+            <h3 class="govcolor-blue-dark mb-4">Solicitudes pendientes de validar pago</h3>
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">
                     <thead class="encabezado-tabla">

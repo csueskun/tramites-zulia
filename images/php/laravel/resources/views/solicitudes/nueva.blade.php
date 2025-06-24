@@ -180,6 +180,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @@if ($tramite->id !== 5)
                                         <div class="row">
                                             <div class="col-lg-12 mb-4">
                                                 <label for="documento_identidad"
@@ -192,6 +193,7 @@
                                                 </a>
                                             </div>
                                         </div>
+                                        @endif
                                         <div class="row mt-4">
                                             @foreach ($tramite->getArchivosFiltrados($vehiculo, $persona) as $archivo)
                                             @php
