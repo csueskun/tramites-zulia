@@ -33,7 +33,7 @@
                     </ul>
                 </nav>
                 @yield('content')
-                @if ($errors->any() && app()->environment('local'))
+                @if ($errors->any() && config('app.debug'))
                 <br />
                 <div class="alert alert-danger">
                     <ul>
