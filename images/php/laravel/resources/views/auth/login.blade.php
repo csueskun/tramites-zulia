@@ -67,7 +67,7 @@
 
                 <div class="container-options-login-govco">
                     <div class="mt-3">
-                        <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#reset_password">Olvidé mi contraseña</a>
+                        <a class="mt-3" href="/forgot-password">Olvidé mi contraseña</a>
                     </div>
                     <p class="mt-3">¿No tienes cuenta? &nbsp;
                         <a class="mt-3" href="/usuarios/nuevo">Regístrate aquí</a>

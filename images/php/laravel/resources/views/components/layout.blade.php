@@ -37,8 +37,8 @@
                 <br />
                 <div class="alert alert-danger">
                     <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                        @foreach ($errors->getMessages() as $key => $messages)
+                        <li><strong>{{ $key }}:</strong> {{ implode(', ', $messages) }}</li>
                         @endforeach
                     </ul>
                 </div>
