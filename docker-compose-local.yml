@@ -2,7 +2,7 @@ name: tramites
 services:
   php:
     container_name: php
-    build: ./images/php
+    build: images/php
     volumes:
       - ./images/php/laravel:/var/www/html
     depends_on:
@@ -40,11 +40,24 @@ services:
       MYSQL_PASSWORD: secret
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./images/mysql/init:/docker-entrypoint-initdb.d/:ro
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret" ]
       interval: 5s
       retries: 5
       start_period: 10s
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: secret
+    depends_on:
+      - db
 
   queue:
     container_name: queue
