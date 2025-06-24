@@ -2,7 +2,7 @@ name: tramites
 services:
   php:
     container_name: php
-    build: images/php
+    build: ./images/php
     volumes:
       - ./images/php/laravel:/var/www/html
     depends_on:
@@ -40,7 +40,6 @@ services:
       MYSQL_PASSWORD: secret
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./images/mysql/init:/docker-entrypoint-initdb.d/:ro
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret" ]
       interval: 5s
