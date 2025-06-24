@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Mail\VerificarCorreo;
-use Illuminate\Support\Facades\Mail;
+use App\Mail\ResetPassword;
+use App\Jobs\SendMailJob;
 
 class User extends Authenticatable
 {
@@ -89,12 +90,17 @@ class User extends Authenticatable
         }
         $this->verification_code = random_int(100000, 999999);
         $this->save();
-        Mail::to($email)->send(new VerificarCorreo($this));
+        SendMailJob::dispatch(VerificarCorreo::class, $email, [$this]);
     }
 
     public function solicitudes()
     {
         return $this->hasMany(Solicitud::class, 'usuario_id');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        SendMailJob::dispatch(ResetPassword::class, $this->email, [$this, $token]);
     }
 
 }
