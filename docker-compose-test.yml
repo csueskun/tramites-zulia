@@ -2,7 +2,9 @@ name: tramites
 services:
   php:
     container_name: php
-    build: ./images/php
+    build:
+      context: ./images/php
+      dockerfile: DockerfileTest
     volumes:
       - ./images/php/laravel:/var/www/html
     depends_on:
@@ -25,7 +27,6 @@ services:
       - "8080:80"
     volumes:
       - ./images/php/laravel:/usr/local/apache2/htdocs
-      - ./images/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
     depends_on:
       - php
 
