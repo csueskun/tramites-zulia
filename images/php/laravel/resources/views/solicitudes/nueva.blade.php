@@ -180,7 +180,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @if ($tramite->id !== 5)
+                                        @if (!in_array($tramite->id, [3, 5]))
                                         <div class="row">
                                             <div class="col-lg-12 mb-4">
                                                 <label for="documento_identidad"
