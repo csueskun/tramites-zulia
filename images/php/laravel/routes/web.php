@@ -12,6 +12,9 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::redirect('/', '/home');
+Route::get('/test-scheme', function () {
+    return request()->isSecure() ? 'HTTPS ✅' : 'HTTP ❌';
+});
 
 Route::view('/usuarios/nuevo', 'auth.new-user');
 Route::view('/util/icons', 'util.icons');
