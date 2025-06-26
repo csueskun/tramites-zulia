@@ -40,7 +40,7 @@ class PagoValidado extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.solicitud-aceptada',
+            view: 'emails.pago-validado',
             with: [
                 'nombres' => $this->solicitud->usuario->nombre_completo,
                 'radicado' => $this->solicitud->radicado,
