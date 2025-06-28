@@ -43,13 +43,24 @@ class UserSeeder extends Seeder
         ], );
 
         User::factory()->create([
-            'nombres' => 'Carlos',
-            'apellidos' => 'Monsalve',
-            'email' => 'csueskun@gmail.com',
+            'nombres' => 'Edward',
+            'apellidos' => 'Arteaga',
+            'email' => 'earteagaeling@gmail.com',
             'role' => 'USER',
-            'documento' => 1090909090,
+            'documento' => 881234765,
             'tipo_documento' => 'CC',
-            'password' => 'robert',
+            'password' => 'Edward12*',
         ], );
+
+        User::factory()->create([
+            'nombres' => 'Noheli Lucerito',
+            'apellidos' => 'Delgado',
+            'email' => 'nldc0901@gmail.com',
+            'role' => 'USER',
+            'documento' => 37147937,
+            'tipo_documento' => 'CC',
+            'password' => 'Noeli12*',
+        ], );
+
     }
 }

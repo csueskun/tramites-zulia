@@ -20,7 +20,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'fun',
                 'tipo' => 'xls',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),            
         ]);
         TramiteRequerimiento::create([
@@ -38,7 +38,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'cedula',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -48,7 +48,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'tarjeta_propiedad',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -58,7 +58,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'compraventa',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -95,7 +95,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'improntas',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -106,7 +106,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'poder',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -123,7 +123,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'fun',
                 'tipo' => 'xls',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),            
         ]);
         TramiteRequerimiento::create([
@@ -141,7 +141,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'cedula',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -151,7 +151,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'tarjeta_propiedad',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -162,7 +162,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'carta_levante',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -173,7 +173,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'carta_levante',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -184,7 +184,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'camara_comercio_nit',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -211,7 +211,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'poder',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -232,7 +232,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'cedula',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 2MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -243,7 +243,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'poder',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -260,7 +260,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'fun',
                 'tipo' => 'xls',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),            
         ]);
         TramiteRequerimiento::create([
@@ -286,7 +286,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'cedula',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 2MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -296,7 +296,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'tarjeta_propiedad',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 2MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -315,7 +315,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'poder',
                 'tipo' => 'pdf',
-                'max_size' => 5242880, // 5MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -337,7 +337,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'cedula',
                 'tipo' => 'pdf',
-                'max_size' => 2097154, // 2MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
@@ -357,7 +357,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'licencia_anterior',
                 'tipo' => 'pdf',
-                'max_size' => 2097154, // 2MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([

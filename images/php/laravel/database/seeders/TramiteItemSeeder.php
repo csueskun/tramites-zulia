@@ -30,7 +30,7 @@ class TramiteItemSeeder extends Seeder
                 'tramite_id' => 1,
                 'nombre' => 'MT',
                 'descripcion' => '',
-                'precio' => 34900,
+                'precio' => 34300,
             ],
             [
                 'tramite_id' => 1,
