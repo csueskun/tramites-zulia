@@ -127,6 +127,18 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'maillog' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/mail.log'),
+            'level' => 'debug',
+            'formatter' => env('LOG_STDERR_FORMATTER'),
+            'formatter_with' => [
+                'format' => "[%datetime%] %level_name%: %message% %context%\n",
+                'dateFormat' => 'Y-m-d H:i:s',
+            ],
+        ],
+
+
     ],
 
 ];
