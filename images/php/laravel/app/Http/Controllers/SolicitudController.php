@@ -73,6 +73,10 @@ class SolicitudController extends Controller
             });
         }
 
+        // if(count($estados) == 1 && $estados[0] == 'VALIDADA') {
+        //     $solicitudesQuery->where('id', 3);
+        // }
+
         $solicitudes = $solicitudesQuery->paginate(10, ['*'], 'page', $current_page);
 
         // Check if the current page has no records and fallback to the last page with data
@@ -114,7 +118,7 @@ class SolicitudController extends Controller
     public function viewCompletas(Request $request)
     {
         $current_page = $request->query('page', 1);
-        $solicitudes = $this->getSolicitudesByStatusPaginated(['VALIDADA'], $current_page, null, );
+        $solicitudes = $this->getSolicitudesByStatusPaginated(['VALIDADA', 'COMPLETADA'], $current_page, null, );
         return view('solicitudes.completadas', compact('solicitudes'));
     }
 
@@ -189,10 +193,21 @@ class SolicitudController extends Controller
                 'responsable' => 'ADMIN',
                 'ruta' => '/' . $fileName,
             ]);
+            $solicitud->update(['estado' => 'COMPLETADA']);
             return redirect()->back()->with('success', 'Certificado enviado.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['Error al enviar el certificado: ' . $e->getMessage()]);
         }
+    }
+    public function mailSolicitudCompletada(Request $request, Solicitud $solicitud)
+    {
+        $this->mailService->mailSolicitudCompletada($solicitud);
+        $solicitud->comentarios()->create([
+            'comentario' => "El proceso de solicitud terminó correctamente. Por favor preséntese en la oficina de tránsito correspondiente.",
+            'autor' => 'ADMIN',
+        ]);
+        $solicitud->update(['estado' => 'COMPLETADA']);
+        return redirect()->back()->with('success', 'Usuario notificado.');
     }
 
     /**
