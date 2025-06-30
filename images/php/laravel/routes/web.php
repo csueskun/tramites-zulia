@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/solicitudes/completas', [SolicitudController::class, 'viewCompletas']);
         Route::post('/solicitudes/{solicitud}/mail-recibo-pago', [SolicitudController::class, 'mailReciboDePago']);
         Route::post('/solicitudes/{id}/mail-certificado', [SolicitudController::class, 'mailCertificado']);
+        Route::post('/solicitudes/{solicitud}/mail-solicitud-completada', [SolicitudController::class, 'mailSolicitudCompletada']);
         Route::patch('/solicitudes/{id}', [SolicitudController::class, 'patchFromView']);
         Route::post('/solicitudes/{id}/comentarios', [ComentarioController::class, 'addComentario']);
         Route::get('/solicitudes/{id}/ver', [SolicitudController::class, 'verSolicitud']);
