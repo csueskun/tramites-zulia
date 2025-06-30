@@ -50,16 +50,21 @@
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
+                                        data-bs-recibovencido="{{ $solicitud->recibo_pago->created_at->format('d/m/Y') < now()->format('d/m/Y') ? 'true' : 'false' }}"
                                         data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
-                                        VER MÁS</a> /
-                                    <form class="validar-pago" action="/solicitudes/{{$solicitud->id}}" method="post">
+                                        VER MÁS</a>
+                                    @if($solicitud->fecha_validacion)
+                                    @else
+                                    / <form class="validar-pago" action="/solicitudes/{{$solicitud->id}}" method="post">
                                         @csrf
                                         @method('patch')
                                         <input type="hidden" name="id" value="{{$solicitud->id}}">
                                         <input type="hidden" name="estado" value="VALIDADA">
                                         <input type="hidden" name="fecha_validacion" value="">
-                                        <button type="submit" class="btn-to-govco-a govco-a">VALIDAR PAGO</button>
+                                        <!-- <button type="submit" class="btn-to-govco-a govco-a">VALIDAR PAGO</button> -->
+                                        <a class="govco-a" href="#" onclick="validarPago(this.closest('form'))">VALIDAR PAGO</a>
                                     </form>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -124,6 +129,14 @@
                             <div class="col-lg-7">
                                 <span><strong>Pago validado:</strong></span>
                                 <p class="etiqueta-govco" style="width: fit-content;"></p>
+                            </div>
+                        </div>
+                        <div class="row vencido visually-hidden">
+                            <div class="col-lg-12 pb-2">
+                                <div class="text-box error-text-box">
+                                    <span><strong>Recibo Vencido:</strong></span>
+                                    <span>El recibo de pago ha vencido, por favor vuelva al módulo <a href="/solicitudes/aceptadas">Enviar recibo de pago</a> para generar un recibo nuevo</span>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -275,6 +288,10 @@
         fields[4].classList.add(fields[4].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
         fields[5].classList.add(fields[5].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
 
+        if(trigger.getAttribute(`data-bs-recibovencido`) === 'true') {
+            verMas.querySelector('.row.vencido').classList.remove('visually-hidden');
+        }
+
         const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
         renderDocumentosTable(documentos);
     })
@@ -287,6 +304,12 @@
             fechaValidacionInput.value = new Date().toISOString();
         });
     });
+
+    function validarPago(form) {
+        var fechaValidacionInput = form.querySelector('input[name="fecha_validacion"]');
+        fechaValidacionInput.value = new Date().toISOString();
+        form.submit();
+    }
 
     function _dibujarElementos(pages, page) {
         __dibujarElementos(pages, page, '/solicitudes/pagadas');

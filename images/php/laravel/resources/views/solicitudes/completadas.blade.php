@@ -22,9 +22,10 @@
                             <!-- <th width="1">Fecha<br />solicitud</th>
                             <th width="1">Fecha<br />aprobacion</th> -->
                             <th>Asunto</th>
-                            <th>Nombres</th>
+                            <!-- <th>Nombres</th> -->
                             <th width="1">Número<br />documento</th>
                             <th width="1">Certificado<br />enviado</th>
+                            <th width="1">Usuario<br />notificado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -35,9 +36,22 @@
                             <!-- <td>{{ $solicitud->created_at->format('d/m/Y') }}</td>
                             <td>{{ $solicitud->fecha_aprobacion->format('d/m/Y') }}</td> -->
                             <td><span class="max-w350">{{$solicitud->tramite->nombre}}</span></td>
-                            <td>{{$solicitud->usuario->nombre_completo}}</td>
+                            <!-- <td>{{$solicitud->usuario->nombre_completo}}</td> -->
                             <td>{{$solicitud->usuario->documento_completo}}</td>
-                            <td><span class="etiqueta-govco {{$solicitud->certificado ? 'completado' : 'pendiente'}}">{{$solicitud->certificado ? $solicitud->certificado->created_at->format('d/m/Y') : 'PENDIENTE'}}</span></td>
+                            <td>
+                                @if($solicitud->tramite_id == 3)
+                                <span class="etiqueta-govco {{$solicitud->certificado ? 'completado' : 'pendiente'}}">{{$solicitud->certificado ? $solicitud->certificado->created_at->format('d/m/Y') : 'PENDIENTE'}}</span>
+                                @else
+                                <span class="etiqueta-govco">N/A</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($solicitud->estado == 'COMPLETADA')
+                                <span class="etiqueta-govco completado">SÍ</span>
+                                @else
+                                <span class="etiqueta-govco pendiente">NO</span>
+                                @endif
+                            </td>
                             <td>
                                 <div>
                                     <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#ver-mas"
@@ -54,10 +68,19 @@
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
                                         data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
-                                        VER MÁS</a> /
-                                    <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#enviar-certificado"
+                                        VER MÁS</a>
+                                    @if($solicitud->tramite_id == 3)
+                                    / <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#enviar-certificado"
                                         data-bs-action="/solicitudes/{{$solicitud->id}}/mail-certificado">
                                         {{$solicitud->certificado ? 'RE' : ''}}ENVIAR CERTIFICADO</a>
+                                    @else
+                                    / <form class="aceptar-solicitud d-inline" action="/solicitudes/{{$solicitud->id}}/mail-solicitud-completada" method="post">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$solicitud->id}}">
+                                        <input type="hidden" name="responsable" value="TNS">
+                                         <a class="govco-a" href="#" onclick="event.preventDefault(); this.closest('form').submit();">NOTIFICAR USUARIO</a>
+                                    </form>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

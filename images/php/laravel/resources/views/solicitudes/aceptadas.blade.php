@@ -35,7 +35,17 @@
                             <td>{{ $solicitud->created_at->format('d/m/Y') }}</td>
                             <td>{{ $solicitud->fecha_aprobacion->format('d/m/Y') }}</td>
                             <td><span class="max-w350">{{$solicitud->tramite->nombre}}</span></td>
-                            <td><span class="etiqueta-govco {{$solicitud->recibo_pago ? 'completado' : 'pendiente'}}">{{$solicitud->recibo_pago ? $solicitud->recibo_pago->created_at->format('d/m/Y') : 'PENDIENTE'}}</span></td>
+                            <td>
+                                @if($solicitud->recibo_pago)
+                                @if($solicitud->recibo_pago->created_at->format('d/m/Y') < now()->format('d/m/Y'))
+                                <span class="etiqueta-govco error">VENCIDO</span>
+                                @else
+                                <span class="etiqueta-govco completado">{{$solicitud->recibo_pago->created_at->format('d/m/Y')}}</span>
+                                @endif
+                                @else
+                                <span class="etiqueta-govco pendiente">PENDIENTE</span>
+                                @endif
+                            </td>
                             <td>
                                 <div>
                                     <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#ver-mas"
@@ -52,7 +62,7 @@
                                         data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
                                         VER MÁS</a> /
                                     <a class="govco-a" href="https://portal-gov.tns.co/" target="_blank" >ABRIR PORTAL TNS</a> 
-                                    @if ($solicitud->recibo_pago == null)
+                                    @if ($solicitud->recibo_pago == null || $solicitud->recibo_pago->created_at->format('d/m/Y') < now()->format('d/m/Y'))
                                     / <form class="aceptar-solicitud d-inline" action="/solicitudes/{{$solicitud->id}}/mail-recibo-pago" method="post">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$solicitud->id}}">

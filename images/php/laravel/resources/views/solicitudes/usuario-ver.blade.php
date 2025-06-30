@@ -18,7 +18,10 @@
         <div class="col-lg-8">
             <h3 class="govcolor-blue-dark mb-4">Ver Solicitud</h3>
             @php
-                $stages = ['Generar<br/>Solicitud', 'Esperar<br/>Aprobación', 'Enviar<br/>Pago', 'Esperar<br/>Validación', 'Recibir<br/>Certificado'];
+                $stages = ['Generar<br/>Solicitud', 'Esperar<br/>Aprobación', 'Enviar<br/>Pago', 'Esperar<br/>Validación', 'Acudir<br/>a Oficina'];
+                if($solicitud->tramite_id == 3) {
+                    $stages[4] = 'Recibir<br/>Certificado';
+                }
             @endphp
             <div class="custom-progress">
                 <div class="custom-progress-container">
@@ -70,8 +73,12 @@
                                         <div class="container-alerta-govco">
                                             <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
                                                 <span class="alerta-icon-govco alerta-icon-notificacion-govco asuccess"></span>
-                                                <p class="alerta-content-text">
+                                                <p class="alerta-content-text px-3 py-1 align-start">
+                                                    @if($solicitud->tramite_id == 3)
                                                     El certificado pronto será enviado al correo <strong>{{$solicitud->usuario->email}}</strong>
+                                                    @else
+                                                    Para completar la solicitud, por favor acuda a la oficina de tránsito correspondiente
+                                                    @endif
                                                 </p>
                                             </div>
                                         </div>
@@ -84,7 +91,7 @@
                                         <div class="container-alerta-govco">
                                             <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
                                                 <span class="alerta-icon-govco alerta-icon-notificacion-govco asuccess"></span>
-                                                <p class="alerta-content-text">
+                                                <p class="alerta-content-text px-3 py-1 align-start">
                                                     Certificado enviado al correo <strong>{{$solicitud->usuario->email}}</strong> el día
                                                     <strong>{{$solicitud->certificado ? $solicitud->certificado->created_at->format('d/m/Y') : ''}}</strong>.
                                                     Su solicitud de trámite finalizó exitosamente.
@@ -203,7 +210,7 @@
                                     @if ($solicitud->comentarios && count($solicitud->comentarios) > 0)
                                         @foreach ($solicitud->comentarios as $comentario)
                                         <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
-                                            <p class="alerta-content-text px-3 py-1">
+                                            <p class="alerta-content-text px-3 py-1 align-start">
                                                 <strong>{{ $comentario->autor }}:</strong>
                                                 {{ $comentario->comentario }}
                                             </p>
@@ -279,6 +286,9 @@
                 estadoNum = 3;
                 break;
             case 'VALIDADA':
+                estadoNum = 5;
+                break;
+            case 'COMPLETADA':
                 estadoNum = 5;
                 break;
         }

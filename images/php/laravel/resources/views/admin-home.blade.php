@@ -14,7 +14,7 @@
             <h3 class="govcolor-blue-dark mb-4">Administración de Trámites</h3>
             <div class="row">
                 <div class="col-lg-4 p-2">
-                    <a class="module-tarjeta-govco" href="/solicitudes/pendientes" title="Ver solicitudes pendientes">
+                    <a class="module-tarjeta-govco fix" href="/solicitudes/pendientes" title="Ver solicitudes pendientes">
                         <div class="header-tarjeta-govco">
                             <h5>Ver solicitudes pendientes</h5>
                         </div>
@@ -25,7 +25,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 p-2">
-                    <a class="module-tarjeta-govco" href="/solicitudes/consolidadas" title="Ver respuestas">
+                    <a class="module-tarjeta-govco fix" href="/solicitudes/consolidadas" title="Ver respuestas">
                         <div class="header-tarjeta-govco">
                             <h5>Ver respuestas</h5>
                         </div>
@@ -36,7 +36,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 p-2">
-                    <a class="module-tarjeta-govco" href="/solicitudes/aceptadas" title="Enviar recibo de pago">
+                    <a class="module-tarjeta-govco fix" href="/solicitudes/aceptadas" title="Enviar recibo de pago">
                         <div class="header-tarjeta-govco">
                             <h5>Enviar recibo de pago</h5>
                         </div>
@@ -47,7 +47,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 p-2">
-                    <a class="module-tarjeta-govco" href="/solicitudes/pagadas" title="Ver recibo de pago">
+                    <a class="module-tarjeta-govco fix" href="/solicitudes/pagadas" title="Ver recibo de pago">
                         <div class="header-tarjeta-govco">
                             <h5>Ver recibo de pago</h5>
                         </div>
@@ -58,13 +58,13 @@
                     </a>
                 </div>
                 <div class="col-lg-4 p-2">
-                    <a class="module-tarjeta-govco" href="/solicitudes/completas" title="Enviar certificados">
+                    <a class="module-tarjeta-govco fix" href="/solicitudes/completas" title="Enviar certificados">
                         <div class="header-tarjeta-govco">
-                            <h5>Enviar certificados</h5>
+                            <h5>Ver solicitudes completadas</h5>
                         </div>
                         <hr>
                         <div class="body-tarjeta-govco">
-                            <p>Envíe los certificados necesarios para la legalización de documentos.</p>
+                            <p>Consulte solcitudes con procesos completos y envíe certificados.</p>
                         </div>
                     </a>
                 </div>
@@ -73,7 +73,7 @@
             <h3 class="govcolor-blue-dark my-4">Administración de Usuarios</h3>
             <div class="row">
                 <div class="col-lg-4 p-2">
-                    <a class="module-tarjeta-govco" href="/usuarios" title="Ver solicitudes pendientes">
+                    <a class="module-tarjeta-govco fix" href="/usuarios" title="Ver solicitudes pendientes">
                         <div class="header-tarjeta-govco">
                             <h5>Lista de Usuarios</h5>
                         </div>
