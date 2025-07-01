@@ -50,7 +50,7 @@
                                         data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
-                                        data-bs-recibovencido="{{ $solicitud->recibo_pago->created_at->format('d/m/Y') < now()->format('d/m/Y') ? 'true' : 'false' }}"
+                                        data-bs-recibovencido="{{ $solicitud->recibo_pago->created_at->format('Ymd') < now()->format('Ymd') ? 'true' : 'false' }}"
                                         data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
                                         VER MÁS</a>
                                     @if($solicitud->fecha_validacion)
