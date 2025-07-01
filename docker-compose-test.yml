@@ -39,6 +39,7 @@ services:
       MYSQL_DATABASE: tramites_db
       MYSQL_USER: laravel
       MYSQL_PASSWORD: secret
+    command: --default-time-zone='-05:00'
     volumes:
       - mysql-data:/var/lib/mysql
     healthcheck:
