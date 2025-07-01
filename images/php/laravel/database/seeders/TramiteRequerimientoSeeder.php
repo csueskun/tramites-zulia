@@ -160,7 +160,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'tipo' => 'ARCHIVO',
             'persona' => 'NATURAL',
             'file_metadata' => json_encode([
-                'nombre' => 'carta_levante',
+                'nombre' => 'carta_de_levantamiento',
                 'tipo' => 'pdf',
                 'max_size' => 10485760, // 10MB
             ]),
@@ -171,7 +171,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'persona' => 'JURIDICA',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
-                'nombre' => 'carta_levante',
+                'nombre' => 'carta_de_levantamiento',
                 'tipo' => 'pdf',
                 'max_size' => 10485760, // 10MB
             ]),
