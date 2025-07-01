@@ -347,7 +347,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'file_metadata' => json_encode([
                 'nombre' => 'cedula',
                 'tipo' => 'pdf',
-                'max_size' => 2097154, // 2MB
+                'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
