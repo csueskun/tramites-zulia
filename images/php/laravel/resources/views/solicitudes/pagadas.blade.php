@@ -284,12 +284,14 @@
         fields[4].classList.remove('pendiente', 'completado');
         fields[5].classList.remove('pendiente', 'completado');
 
-        fields[2].classList.add(fields[2].innerHTML === "APROBADA" ? 'completado' : 'error');
+        fields[2].classList.add(fields[2].innerHTML === "VALIDADA" ? 'completado' : 'pendiente');
         fields[4].classList.add(fields[4].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
         fields[5].classList.add(fields[5].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
 
         if(trigger.getAttribute(`data-bs-recibovencido`) === 'true') {
-            verMas.querySelector('.row.vencido').classList.remove('visually-hidden');
+            if(trigger.getAttribute(`data-bs-estado`) !== 'VALIDADA'){
+                verMas.querySelector('.row.vencido').classList.remove('visually-hidden');
+            }
         }
 
         const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
