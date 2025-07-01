@@ -335,7 +335,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'descripcion' => 'Examen médico del centro de reconocimiento',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
-                'nombre' => 'cedula',
+                'nombre' => 'examen_medico',
                 'tipo' => 'pdf',
                 'max_size' => 10485760, // 10MB
             ]),
