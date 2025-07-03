@@ -125,6 +125,9 @@
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
                             @enderror
                         </div>
+                        <label class="mb-4">
+                            <input type="checkbox" id="togglePassword"> Mostrar contraseña
+                        </label>
                     </div>
                 </div>
                 <div>
@@ -138,3 +141,17 @@
 </div>
 
 @endsection
+
+@push('scripts')
+    <script>
+        const passwordInput = document.getElementById('password');
+        const passwordConfirmationInput = document.getElementById('password_confirmation');
+        const toggleCheckbox = document.getElementById('togglePassword');
+
+        toggleCheckbox.addEventListener('change', () => {
+            passwordInput.type = toggleCheckbox.checked ? 'text' : 'password';
+            passwordConfirmationInput.type = toggleCheckbox.checked ? 'text' : 'password';
+        });
+
+    </script>
+@endpush
