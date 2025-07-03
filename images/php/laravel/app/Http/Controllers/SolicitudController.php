@@ -218,6 +218,7 @@ class SolicitudController extends Controller
         $validatedData = $request->validate([
             'tipo_documento' => 'required|string|max:255',
             'identificacion' => 'required|string|max:255',
+            'telefono' => 'required|string|max:255',
             'nombres' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'persona' => 'required|string|max:255',
