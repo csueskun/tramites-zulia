@@ -22,7 +22,7 @@ function validateFileForm(formElement, successCallback, errorCallback, newSolici
     }
     
     if (newSolicitud) {
-        const textInputs = ['nombres','tipo_documento','identificacion','email'];
+        const textInputs = ['nombres','tipo_documento','identificacion','telefono','email'];
         for (let i = 0; i < textInputs.length; i++) {
             const inputName = textInputs[i];
             const input = formElement.querySelector('input[name="' + inputName + '"]');
