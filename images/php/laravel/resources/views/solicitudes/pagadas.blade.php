@@ -158,7 +158,13 @@
                                 <p></p>
                             </div>
                             <div class="col-lg-7">
-                                <span><strong>Correo electrónico:</strong></span>
+                                <span><strong>Teléfono:</strong></span>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span><strong>Correo Electrónico:</strong></span>
                                 <p></p>
                             </div>
                         </div>

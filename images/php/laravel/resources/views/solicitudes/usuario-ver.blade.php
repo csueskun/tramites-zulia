@@ -190,17 +190,23 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <span><strong>Nombres:</strong></span>
-                                    <p>{{$solicitud->usuario->nombre_completo}}</p>
+                                    <p>{{$solicitud->nombres}}</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-5">
                                     <span><strong>Número documento:</strong></span>
-                                    <p>{{$solicitud->usuario->documento_completo}}</p>
+                                    <p>{{$solicitud->tipo_documento}} {{$solicitud->identificacion}}</p>
                                 </div>
                                 <div class="col-lg-7">
+                                    <span><strong>Teléfono:</strong></span>
+                                    <p>{{$solicitud->telefono}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <span><strong>Correo electrónico:</strong></span>
-                                    <p>{{$solicitud->usuario->email}}</p>
+                                    <p>{{$solicitud->email}}</p>
                                 </div>
                             </div>
                             <div class="row">
