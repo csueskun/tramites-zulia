@@ -40,9 +40,10 @@
                                         data-bs-radicado="{{$solicitud->radicado}}"
                                         data-bs-fechasolicitud="{{$solicitud->created_at->format('d/m/Y')}}"
                                         data-bs-asunto="{{$solicitud->tramite->nombre}}"
-                                        data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
-                                        data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
-                                        data-bs-correoelectronico="{{$solicitud->usuario->email}}"
+                                        data-bs-nombres="{{$solicitud->nombres}}"
+                                        data-bs-numerodocumento="{{$solicitud->tipo_documento}} {{$solicitud->identificacion}}"
+                                        data-bs-telefono="{{$solicitud->telefono}}"
+                                        data-bs-correoelectronico="{{$solicitud->email}}"
                                         data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}"
                                         data-bs-comentarios="{{ json_encode($solicitud->comentarios) }}">
                                         VER MÁS</a> /
@@ -210,7 +211,7 @@
 
         const vars = [
             'radicado', 'fechasolicitud', 'asunto', 'nombres',
-            'numerodocumento', 'correoelectronico'
+            'numerodocumento', 'telefono', 'correoelectronico'
         ];
         vars.forEach((v, i) => {
             fields[i].innerHTML = trigger.getAttribute(`data-bs-${v}`);

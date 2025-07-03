@@ -142,7 +142,7 @@
                                             </div>
                                             <div class="col-lg-3 ps-0">
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
-                                                    <label for="identificacion">identificacion*</label>
+                                                    <label for="identificacion">Identificacion*</label>
                                                     <div class="container-input-texto-govco">
                                                         <input  type="text" name="identificacion" id="identificacion"
                                                             placeholder="" aria-required="true"
@@ -161,9 +161,27 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-4">
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
-                                                    <label for="email">Dirección de correo electrónico *</label>
+                                                    <label for="email">Teléfono *</label>
+                                                    <div class="container-input-texto-govco">
+                                                        <input  type="text" name="telefono" id="telefono"
+                                                            aria-required="true" class="@error('telefono') error @enderror"
+                                                            value="{{ old('telefono') }}">
+                                                        <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
+                                                            aria-label="success" aria-hidden="true"></div>
+                                                        <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco"
+                                                            aria-label="error" aria-hidden="true"></div>
+                                                    </div>
+                                                    <div class="container-detail-carga-de-archivo-govco">
+                                                        <span id="telefono_error" class="alert-carga-de-archivo-govco visually-hidden"></span>
+                                                        <div class="attached-files-carga-de-archivo-govco"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
+                                                    <label for="email">Correo electrónico *</label>
                                                     <div class="container-input-texto-govco">
                                                         <input  type="text" name="email" id="email"
                                                             aria-required="true" class="@error('email') error @enderror"

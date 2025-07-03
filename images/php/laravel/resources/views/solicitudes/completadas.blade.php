@@ -63,9 +63,10 @@
                                         data-bs-pagovalidado="{{$solicitud->fecha_validacion ? $solicitud->fecha_validacion->format('d/m/Y') : 'PENDIENTE'}}"
                                         data-bs-certificadoenviado="{{$solicitud->certificado ? $solicitud->certificado->created_at->format('d/m/Y') : 'PENDIENTE'}}"
                                         data-bs-asunto="{{$solicitud->tramite->nombre}}"
-                                        data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
-                                        data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
-                                        data-bs-correoelectronico="{{$solicitud->usuario->email}}"
+                                        data-bs-nombres="{{$solicitud->nombres}}"
+                                        data-bs-numerodocumento="{{$solicitud->tipo_documento}} {{$solicitud->identificacion}}"
+                                        data-bs-telefono="{{$solicitud->telefono}}"
+                                        data-bs-correoelectronico="{{$solicitud->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
                                         data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
                                         VER MÁS</a>
@@ -276,10 +277,9 @@
 
         const vars = [
             'radicado', 'fechasolicitud', 'estado', 'fecharespuesta', 'reciboenviado', 'pagovalidado',
-            'certificadoenviado', 'asunto', 'nombres', 'numerodocumento', 'correoelectronico'
+            'certificadoenviado', 'asunto', 'nombres', 'numerodocumento', 'telefono', 'correoelectronico'
         ];
         vars.forEach((v, i) => {
-            // console.log(v, i, fields[i], trigger.getAttribute(`data-bs-${v}`));
             fields[i].innerHTML = trigger.getAttribute(`data-bs-${v}`);
         });
 

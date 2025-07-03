@@ -44,9 +44,10 @@
                                         data-bs-estado="{{$solicitud->estado}}"
                                         data-bs-fecharespuesta="{{$solicitud->fecha_aprobacion ? $solicitud->fecha_aprobacion->format('d/m/Y') : 'PENDIENTE'}}"
                                         data-bs-asunto="{{$solicitud->tramite->nombre}}"
-                                        data-bs-nombres="{{$solicitud->usuario->nombre_completo}}"
-                                        data-bs-numerodocumento="{{$solicitud->usuario->documento_completo}}"
-                                        data-bs-correoelectronico="{{$solicitud->usuario->email}}"
+                                        data-bs-nombres="{{$solicitud->nombres}}"
+                                        data-bs-numerodocumento="{{$solicitud->tipo_documento}} {{$solicitud->identificacion}}"
+                                        data-bs-telefono="{{$solicitud->telefono}}"
+                                        data-bs-correoelectronico="{{$solicitud->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
                                         data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
                                         VER MÁS</a>
@@ -162,7 +163,7 @@
 
         const vars = [
             'radicado', 'fechasolicitud', 'estado', 'fecharespuesta', 'asunto', 'nombres',
-            'numerodocumento', 'correoelectronico'
+            'numerodocumento', 'telefono', 'correoelectronico'
         ];
         vars.forEach((v, i) => {
             fields[i].innerHTML = trigger.getAttribute(`data-bs-${v}`);
