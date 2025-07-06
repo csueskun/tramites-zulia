@@ -31,6 +31,7 @@
 .no-decoration {
     text-decoration: none !important;
 }
+
 .fit-content {
     width: fit-content !important;
 }
@@ -47,11 +48,13 @@
 .table-general.fix tbody td:last-child {
     padding-right: 12px;
 }
-.table-general.fix.min thead th{
+
+.table-general.fix.min thead th {
     padding: 8px;
     height: fit-content !important;
 }
-.table-general.fix.min tbody td{
+
+.table-general.fix.min tbody td {
     height: fit-content !important;
     padding: 2px 8px;
 }
@@ -78,41 +81,53 @@
     max-width: 350px;
     display: block;
 }
+
 .max-w200 {
     max-width: 200px;
     display: block;
 }
-.w-80{
+
+.w-80 {
     width: 80px !important;
 }
+
 .fix.navbar-pestana-vertical-govco ul li a .icon_right::after {
     margin-left: 28px;
 }
+
 .h100 {
     height: 100px !important;
 }
+
 .h120 {
     height: 120px !important;
 }
+
 .h100 .linea-vertical-govco-activa {
     height: 100px !important;
 }
+
 .h120 .linea-vertical-govco-activa {
     height: 120px !important;
 }
-.container-navbar-pestana-vertical-govco{
+
+.container-navbar-pestana-vertical-govco {
     display: contents;
 }
+
 .pestana-opcion {
     border-left: 0.313rem solid white !important;
 }
+
 .pestana-opcion.active {
     border-left: 0.313rem solid #004884 !important;
     border-right-color: white;
 }
-.pestana-opcion.active .icon-right::after{
+
+.pestana-opcion.active .icon-right::after {
     display: none;
 }
+
 .pestana-opcion.focus {
     background-color: white;
 }
@@ -121,83 +136,105 @@
     width: 90% !important;
     margin: auto;
 }
+
 .container-informacion-principal-interaccion-govco,
 .container-indicador-numero-principal-nombre-interaccion-govco,
 .container-principal-linea-interaccion-govco {
     width: auto !important;
 }
+
 .container-informacion-principal-campos-interaccion-govco {
     width: 90% !important;
     margin: auto;
 }
-.module-tarjeta-govco.tramite{
+
+.module-tarjeta-govco.tramite {
     height: auto;
     width: 19rem;
     max-width: 24rem;
 }
-.module-tarjeta-govco.tramite:focus{
+
+.module-tarjeta-govco.tramite:focus {
     outline: none;
 }
-.module-tarjeta-govco.tramite .body-tarjeta-govco{
+
+.module-tarjeta-govco.tramite .body-tarjeta-govco {
     height: 15rem;
     padding: 1rem;
 }
-.module-tarjeta-govco.tramite .body-tarjeta-govco>p{
+
+.module-tarjeta-govco.tramite .body-tarjeta-govco>p {
     -webkit-line-clamp: none;
 }
-.desplegable-govco .desplegable-items li, .desplegable-govco .desplegable-selected-option{
+
+.desplegable-govco .desplegable-items li,
+.desplegable-govco .desplegable-selected-option {
     padding-right: 1rem;
 }
+
 .alerta-govco {
     height: 52px;
     max-height: 52px;
 }
 
-table td.acciones>form{
+table td.acciones>form {
     display: inline;
 }
+
 .auto-width {
     width: auto !important;
 }
+
 td.currency,
-th.currency{
+th.currency {
     text-align: right !important;
     font-family: 'Courier New', Courier, monospace;
 }
+
 .modal-body-govco.fix {
     margin: 0px 3rem auto 3rem !important;
     padding: 0px !important;
     padding-top: 14px !important;
 }
+
 .desplegable-govco button.desplegable-selected-option {
     padding: 7px 4px;
 }
-.desplegable-govco .desplegable-items li{
+
+.desplegable-govco .desplegable-items li {
     padding: 0px 6px;
     font-size: 0.9em;
     line-height: 1;
 }
-.container-detail-carga-de-archivo-govco{
+
+.container-detail-carga-de-archivo-govco {
     border: none;
 }
-.container-detail-carga-de-archivo-govco>span{
+
+.container-detail-carga-de-archivo-govco>span {
     padding-top: 0;
 }
-.nueva-solicitud.entradas-de-texto-govco[data-error="1"] label{
+
+.nueva-solicitud.entradas-de-texto-govco[data-error="1"] label {
     color: #A80521;
 }
-.nueva-solicitud.entradas-de-texto-govco[data-error="1"] input{
+
+.nueva-solicitud.entradas-de-texto-govco[data-error="1"] input {
     border-color: #A80521;
 }
+
 div.alert.alerta-govco>span {
     margin: 0 8px 0 18px;
 }
-.module-tarjeta-govco.fix .body-tarjeta-govco{
+
+.module-tarjeta-govco.fix .body-tarjeta-govco {
     padding: 1rem 1.5rem;
 }
+
 .align-start {
     text-align: start !important;
 }
+
 .text-box {
     width: 100%;
     height: 100%;
@@ -209,4 +246,9 @@ div.alert.alerta-govco>span {
 .text-box.error-text-box {
     background-color: #EECDD2;
     color: #B30937;
+}
+
+.text-box.info-text-box {
+    background-color: #D0E7FF;
+    color: #004A9F;
 }
