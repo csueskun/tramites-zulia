@@ -51,9 +51,11 @@
                             @enderror
                         </div>
                         <div class="entradas-de-texto-govco col-lg-12 text-box info-text-box mb-4">
+                            <strong>La contraseña debe cumplir con los siguientes requisitos:</strong>
                             <ul class="mb-0">
                                 <li>Mínimo 8 caracteres</li>
                                 <li>Incluir al menos una mayúscula</li>
+                                <li>Incluir al menos una minúscula</li>
                                 <li>Incluir al menos un dígito</li>
                                 <li>Incluir al menos un símbolo @ $ & - _ ? \ / # * ^ % + . ( ) </li>
                             </ul>
