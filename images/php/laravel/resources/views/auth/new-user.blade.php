@@ -133,7 +133,7 @@
                                 <li>Mínimo 8 caracteres</li>
                                 <li>Incluir al menos una mayúscula</li>
                                 <li>Incluir al menos un dígito</li>
-                                <li>Incluir al menos un símbolo @ $ & @ ? \ / # * ^ % + . ( ) </li>
+                                <li>Incluir al menos un símbolo @ $ & - _ ? \ / # * ^ % + . ( ) </li>
                             </ul>
                         </div>
                         <label class="mb-4">

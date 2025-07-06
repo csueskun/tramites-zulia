@@ -50,6 +50,14 @@
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="entradas-de-texto-govco col-lg-12 text-box info-text-box mb-4">
+                            <ul class="mb-0">
+                                <li>Mínimo 8 caracteres</li>
+                                <li>Incluir al menos una mayúscula</li>
+                                <li>Incluir al menos un dígito</li>
+                                <li>Incluir al menos un símbolo @ $ & - _ ? \ / # * ^ % + . ( ) </li>
+                            </ul>
+                        </div>
                         <label class="mb-4">
                             <input type="checkbox" id="togglePassword"> Mostrar contraseña
                         </label>
