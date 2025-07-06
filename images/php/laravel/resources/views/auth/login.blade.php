@@ -24,15 +24,6 @@
             <div class="container-login-opcion-govco" data-container-persona="natural">
                 <form method="POST" action="/login">
                     @csrf
-                    @if ($errors->any())
-                    <!-- <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div> -->
-                    @endif
                     <div class="mt-4">
                         <div class="entradas-de-texto-govco">
                             <label id="valor-login" for="email">Correo electrónico*</label>

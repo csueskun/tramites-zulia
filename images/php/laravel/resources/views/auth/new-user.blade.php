@@ -38,7 +38,8 @@
                         <div class="entradas-de-texto-govco col-lg-12 px-2">
                             <label for="nombres">Nombres*</label>
                             <div class="container-input-texto-govco">
-                                <input type="text" name="nombres" id="nombres" placeholder="Ejemplo: Juan" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}">
+                                <input type="text" required pattern="[A-Za-z\s]+" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
+                                    name="nombres" id="nombres" placeholder="Ejemplo: Juan" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -51,7 +52,8 @@
                         <div class="entradas-de-texto-govco col-lg-12 px-2">
                             <label for="apellidos">Apellidos*</label>
                             <div class="container-input-texto-govco">
-                                <input type="text" name="apellidos" id="apellidos" placeholder="Ejemplo: Pérez" aria-required="true" class="@error('apellidos') error @enderror" value="{{ old('apellidos') }}">
+                                <input type="text" required pattern="[A-Za-z\s]+" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
+                                    name="apellidos" id="apellidos" placeholder="Ejemplo: Pérez" aria-required="true" class="@error('apellidos') error @enderror" value="{{ old('apellidos') }}">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -80,7 +82,8 @@
                         <div class="entradas-de-texto-govco col-lg-6 px-2">
                             <label for="documento">Documento*</label>
                             <div class="container-input-texto-govco">
-                                <input type="text" name="documento" id="documento" placeholder="Ejemplo: 1234567890" aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}">
+                                <input type="number" required name="documento" id="documento" placeholder="Ejemplo: 1234567890" minlength="7" maxlength="10"
+                                    aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -93,7 +96,7 @@
                         <div class="entradas-de-texto-govco px-2">
                             <label for="email">Correo electrónico*</label>
                             <div class="container-input-texto-govco">
-                                <input type="email" name="email" id="email" placeholder="Ejemplo: correo@email.com" aria-required="true" class="@error('email') error @enderror" value="{{ old('email') }}">
+                                <input type="email" required name="email" id="email" placeholder="Ejemplo: correo@email.com" aria-required="true" class="@error('email') error @enderror" value="{{ old('email') }}">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -104,9 +107,9 @@
                     </div>
                     <div class="row">
                         <div class="entradas-de-texto-govco col-lg-6 px-2">
-                            <label for="password">Contraseña*</label>
+                            <label for="email">Contraseña*</label>
                             <div class="container-input-texto-govco">
-                                <input type="password" name="password" id="password" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
+                                <input type="password" required name="password" id="password" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -117,13 +120,21 @@
                         <div class="entradas-de-texto-govco col-lg-6 px-2">
                             <label for="password_confirmation">Confirmar Contraseña*</label>
                             <div class="container-input-texto-govco">
-                                <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
+                                <input type="password" required name="password_confirmation" id="password_confirmation" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
                             @error('password')
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
                             @enderror
+                        </div>
+                        <div class="entradas-de-texto-govco col-lg-12 text-box info-text-box mb-4">
+                            <ul class="mb-0">
+                                <li>Mínimo 8 caracteres</li>
+                                <li>Incluir al menos una mayúscula</li>
+                                <li>Incluir al menos un dígito</li>
+                                <li>Incluir al menos un símbolo @ $ & @ ? \ / # * ^ % + . ( ) </li>
+                            </ul>
                         </div>
                         <label class="mb-4">
                             <input type="checkbox" id="togglePassword"> Mostrar contraseña
@@ -152,6 +163,17 @@
             passwordInput.type = toggleCheckbox.checked ? 'text' : 'password';
             passwordConfirmationInput.type = toggleCheckbox.checked ? 'text' : 'password';
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(old('tipo_documento'))
+                const tipoDocumentoSelect = document.getElementById('tipo_documento');
+                const oldTipoDocumento = "{{ old('tipo_documento') }}";
+                if (oldTipoDocumento) {
+                    tipoDocumentoSelect.value = oldTipoDocumento;
+                }
+            @endif
+        });
+
 
     </script>
 @endpush
