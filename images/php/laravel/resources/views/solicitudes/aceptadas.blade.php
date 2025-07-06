@@ -36,8 +36,11 @@
                             <td>{{ $solicitud->fecha_aprobacion->format('d/m/Y') }}</td>
                             <td><span class="max-w350">{{$solicitud->tramite->nombre}}</span></td>
                             <td>
+                                @php
+                                $recibo_vencido = $solicitud->recibo_pago && $solicitud->recibo_pago->created_at->format('Ymd') < now()->format('Ymd');
+                                @endphp
                                 @if($solicitud->recibo_pago)
-                                @if($solicitud->recibo_pago->created_at->format('Ymd') < now()->format('Ymd'))
+                                @if($recibo_vencido)
                                 <span class="etiqueta-govco error">VENCIDO</span>
                                 @else
                                 <span class="etiqueta-govco completado">{{$solicitud->recibo_pago->created_at->format('d/m/Y')}}</span>
@@ -63,13 +66,19 @@
                                         data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
                                         VER MÁS</a> /
                                     <a class="govco-a" href="https://portal-gov.tns.co/" target="_blank" >ABRIR PORTAL TNS</a> 
-                                    @if ($solicitud->recibo_pago == null || $solicitud->recibo_pago->created_at->format('Ymd') < now()->format('Ymd'))
+                                    @if ($solicitud->recibo_pago == null || $recibo_vencido)
                                     / <form class="aceptar-solicitud d-inline" action="/solicitudes/{{$solicitud->id}}/mail-recibo-pago" method="post">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$solicitud->id}}">
                                         <input type="hidden" name="responsable" value="TNS">
                                         <button type="submit" class="btn-to-govco-a govco-a">RECIBO ENVIADO POR TNS</button>
                                     </form>
+                                    @endif
+                                    @if ($recibo_vencido) 
+                                    /<a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#rechazar-modal"
+                                        data-bs-action="/solicitudes/{{$solicitud->id}}"
+                                        data-bs-usuario-id="{{ $solicitud->id }}">
+                                        RECHAZAR</a>
                                     @endif
                                 </div>
                             </td>
@@ -208,7 +217,7 @@
                                                     <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
                                                     <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
                                                 </label>
-                                                <span class="text-validation-carga-de-archivo-govco">Tipo de archivo: <strong>.pdf</strong>. Peso máximo: 2 MB</span>
+                                                <span class="text-validation-carga-de-archivo-govco">Tipo de archivo: <strong>.pdf</strong>. Peso máximo: 10 MB</span>
                                             </div>
                                             <div class="load-button-carga-de-archivo-govco" style="display: none;">
                                                 <div class="load-carga-de-archivo-govco">
@@ -243,6 +252,51 @@
                             <div class="modal-buttons-govco d-flex justify-space-between">
                                 <button type="submit" disabled="disabled" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">
                                     Enviar
+                                </button>
+                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                    Cerrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="rechazar-modal" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
+    <div class="container-modal-govco">
+        <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
+            data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" aria-hidden="true"
+            role="dialog">
+            <div class="modal-dialog modal-dialog-govco">
+                <form action="" method="post">
+                    @csrf
+                    @method('patch')
+                    <input type="hidden" name="estado" value="RECHAZADA">
+                    <div class="modal-content modal-content-govco">
+                        <div class="modal-header modal-header-govco modal-header-alerts-govco">
+                            <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
+                            <div class="modal-icon center-elements-govco">
+                                <span class="modal-icon-govco modal-warning-icon"></span>
+                            </div>
+                            <p class="modal-title modal-title-govco text-center">
+                                ¿Está seguro de rechazar esta solicitud?
+                            </p>
+                            <p class="text-center">Por favor escriba el motivo del rechazo de la solicitud.</p>
+                            <div class="row mt-2">
+                                <textarea required class="aservice-comentarios-textarea" name="comentario"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer-govco modal-footer-alerts-govco">
+                            <div class="modal-buttons-govco d-flex justify-space-between">
+                                <button type="submit" class="btn btn-primary btn-modal-govco auto-width">
+                                    Rechazar
                                 </button>
                                 <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
                                     Cerrar
@@ -296,7 +350,17 @@
 
     // File upload
     window.addEventListener("load", function() {
-        setValidationParameters('file_recibo', ['pdf'], 2097152, 1);
+        setValidationParameters('file_recibo', ['pdf'], 10485760, 1);
+    });
+
+    document.getElementById('rechazar-modal').addEventListener('show.bs.modal', function(event) {
+        var button = event.relatedTarget;
+        var action = button.getAttribute('data-bs-action');
+        var form = this.querySelector('#rechazar-modal form');
+        form.action = action;
+    });
+    document.querySelector('#rechazar-modal form').addEventListener('submit', function(event) {
+        document.getElementById('rechazar-modal').querySelector('.btn-close').click();
     });
 
     form.querySelector('#file_recibo').addEventListener('change', function(event) {

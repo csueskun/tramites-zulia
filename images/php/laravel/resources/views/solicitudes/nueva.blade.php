@@ -101,10 +101,11 @@
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
                                                     <label for="nombres">nombres*</label>
                                                     <div class="container-input-texto-govco">
-                                                        <input  type="text" name="nombres" id="nombres"
-                                                            placeholder="" aria-required="true"
-                                                            class="@error('nombres') error @enderror"
-                                                            value="{{ old('nombres') }}">
+                                                        <input type="text" name="nombres" id="nombres"
+                                                            placeholder="Ingrese sus nombres" aria-required="true"
+                                                            class="@error('nombres') error @enderror" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" 
+                                                            onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
+                                                            value="{{ old('nombres') }}" pattern="[A-Za-z\s]+" title="Solo se permiten letras y espacios">
                                                         <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
                                                             aria-label="success" aria-hidden="true"></div>
                                                         <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco"
@@ -144,8 +145,8 @@
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
                                                     <label for="identificacion">Identificacion*</label>
                                                     <div class="container-input-texto-govco">
-                                                        <input  type="text" name="identificacion" id="identificacion"
-                                                            placeholder="" aria-required="true"
+                                                        <input type="number" name="identificacion" id="identificacion"
+                                                            placeholder="" aria-required="true" minlength="7" maxlength="10"
                                                             class="@error('identificacion') error @enderror"
                                                             value="{{ old('identificacion') }}">
                                                         <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
@@ -165,9 +166,11 @@
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
                                                     <label for="email">Teléfono *</label>
                                                     <div class="container-input-texto-govco">
-                                                        <input  type="text" name="telefono" id="telefono"
+                                                        <input type="text" name="telefono" id="telefono" regex="[0-9]*"
+                                                            oninvalid="this.setCustomValidity('Por favor, ingrese un número de teléfono válido')"
+                                                            onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
                                                             aria-required="true" class="@error('telefono') error @enderror"
-                                                            value="{{ old('telefono') }}">
+                                                            value="{{ old('telefono') }}" minlength="7" maxlength="10">
                                                         <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
                                                             aria-label="success" aria-hidden="true"></div>
                                                         <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco"
@@ -183,7 +186,7 @@
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
                                                     <label for="email">Correo electrónico *</label>
                                                     <div class="container-input-texto-govco">
-                                                        <input  type="text" name="email" id="email"
+                                                        <input  type="email" name="email" id="email"
                                                             aria-required="true" class="@error('email') error @enderror"
                                                             value="{{ old('email') }}">
                                                         <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
@@ -327,6 +330,13 @@
                 });
             });
             document.getElementById('container_file_poder').style.display = 'none'; // Hide the poder file input by default
+            @if(old('tipo_documento'))
+                const tipoDocumentoSelect = document.getElementById('tipo_documento');
+                const oldTipoDocumento = "{{ old('tipo_documento') }}";
+                if (oldTipoDocumento) {
+                    tipoDocumentoSelect.value = oldTipoDocumento;
+                }
+            @endif
         });
 
         var fileDocumentoIdentidad = [];

@@ -229,7 +229,7 @@
                                                     <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
                                                     <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
                                                 </label>
-                                                <span class="text-validation-carga-de-archivo-govco">Tipo de archivo: <strong>.pdf</strong>. Peso máximo: 2 MB</span>
+                                                <span class="text-validation-carga-de-archivo-govco">Tipo de archivo: <strong>.pdf</strong>. Peso máximo: 10 MB</span>
                                             </div>
                                             <div class="load-button-carga-de-archivo-govco" style="display: none;">
                                                 <div class="load-carga-de-archivo-govco">
@@ -312,7 +312,7 @@
 
     // File upload
     window.addEventListener("load", function() {
-        setValidationParameters('file_certificado', ['pdf'], 2097152, 1);
+        setValidationParameters('file_certificado', ['pdf'], 10485760, 1);
     });
 
     form.querySelector('#file_certificado').addEventListener('change', function(event) {
