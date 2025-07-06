@@ -31,7 +31,7 @@ class PasswordResetController extends Controller
                 'string',
                 'min:8',
                 'confirmed',
-                'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]+$/',
+                'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$&@?\/#*^%+.()])[A-Za-z\d@$&@?\/#*^%+.()]+$/',,
             ],
             'token' => 'required',
             'email' => 'required|email',
