@@ -18,7 +18,7 @@
             <div class="icon-informacion-login-govco"></div>
         </div>
         <div class="container-login-opcion-govco">
-            <form method="POST" action="/reset-password">
+            <form method="POST" action="/reset-password" id="reset-password-form">
                 @csrf
                 <input type="hidden" name="token" value="{{ $token }}">
                 <input type="hidden" name="email" value="{{ $email }}">
@@ -27,7 +27,7 @@
                         <div class="entradas-de-texto-govco col-lg-12 px-2 pb-0">
                             <label for="password">Nueva contraseña</label>
                             <div class="container-input-texto-govco">
-                                <input required type="password" name="password" id="password" aria-required="true" class="@error('password') error @enderror">
+                                <input data-confirm-input="password_confirmation" typeData="mypassword" type="password" required name="password" id="password" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -37,7 +37,7 @@
                         <div class="entradas-de-texto-govco col-lg-12 px-2">
                             <label for="password_confirmation">Por favor confirme su nueva contraseña</label>
                             <div class="container-input-texto-govco">
-                                <input required type="password" name="password_confirmation" id="password_confirmation" aria-required="true" class="@error('password') error @enderror">
+                                <input typeData="confirm" data-password-input="password" type="password" required name="password_confirmation" id="password_confirmation" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -50,7 +50,7 @@
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="entradas-de-texto-govco col-lg-12 text-box info-text-box mb-4">
+                        <div id="info-password" class="entradas-de-texto-govco col-lg-12 text-box info-text-box mb-4">
                             <strong>La contraseña debe cumplir con los siguientes requisitos:</strong>
                             <ul class="mb-0">
                                 <li>Mínimo 8 caracteres</li>
@@ -64,7 +64,7 @@
                             <input type="checkbox" id="togglePassword"> Mostrar contraseña
                         </label>
                     </div>
-                    <button type="submit" class="btn-govco fill-btn-govco" name="continuar"
+                    <button type="button" onclick="preSubmit()" class="btn-govco fill-btn-govco" name="continuar"
                         style="height: 42px;">Enviar
                     </button>
                 </div>
@@ -79,20 +79,36 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        let counter = 30;
-        const interval = setInterval(function() {
-            counter--;
-            var counterElement = document.getElementById('counter');
-            counterElement.innerHTML = 'Puede solicitar un nuevo código de verificación en ' + counter + ' segundos';
-            if (counter <= 0) {
-                clearInterval(interval);
-                counterElement.style.display = 'none';
-                document.querySelectorAll('.wait-for-counter').forEach(function(element) {
-                    element.style.display = 'inline';
-                });
-            }
-        }, 1000);
+        // let counter = 30;
+        // const interval = setInterval(function() {
+        //     counter--;
+        //     var counterElement = document.getElementById('counter');
+        //     counterElement.innerHTML = 'Puede solicitar un nuevo código de verificación en ' + counter + ' segundos';
+        //     if (counter <= 0) {
+        //         clearInterval(interval);
+        //         counterElement.style.display = 'none';
+        //         document.querySelectorAll('.wait-for-counter').forEach(function(element) {
+        //             element.style.display = 'inline';
+        //         });
+        //     }
+        // }, 1000);
+        const passwordInputs = document.querySelectorAll('input[typeData="mypassword"]');
+        methodAssign("keyup", customPasswordValidator, passwordInputs);
+        const confirmInputs = document.querySelectorAll('input[typeData="confirm"]');
+        methodAssign("keyup", customPasswordConfirmValidator, confirmInputs);
+
     });
+
+    function preSubmit(){
+        const form = document.getElementById('reset-password-form');
+        const isValid = validateForm(form);
+        if (!isValid) {
+            event.preventDefault();
+        }
+        else{
+            form.submit();
+        }
+    }
 
     const passwordInput = document.getElementById('password');
     const passwordConfirmationInput = document.getElementById('password_confirmation');

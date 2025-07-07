@@ -3975,6 +3975,8 @@ function customPasswordValidator(element) {
       return true;
     }
   }
+  const confirmInput = document.getElementById(this.getAttribute('data-confirm-input'));
+  customPasswordConfirmValidator.call(confirmInput, null);
   const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$&\-_?\/#*^%+.\(\)])[A-Za-z\d@$&\-_?\/#*^%+.\(\)]{8,}$/;
   const passwordInput = document.getElementById('password');
   if (!regex.test(this.value)) {
@@ -3982,6 +3984,7 @@ function customPasswordValidator(element) {
       infoBox.classList.add('error-text-box');
       passwordInput.classList.remove('success');
       passwordInput.classList.add('error');
+      crearMensaje(this, '', 'error', '');
       return false;
   } else {
       infoBox.classList.remove('error-text-box');
@@ -3989,6 +3992,23 @@ function customPasswordValidator(element) {
       passwordInput.classList.remove('error');
       passwordInput.classList.add('success');
       return true;
+  }
+}
+
+function customPasswordConfirmValidator(event) {
+  const passwordInputId = this.getAttribute('data-password-input');
+  const passwordInput = document.getElementById(passwordInputId);
+  if(passwordInput.value === this.value){
+    this.classList.remove('error');
+    this.classList.add('success');
+    crearMensaje(this, '', 'success', '');
+    return true;
+  }
+  else{
+    this.classList.remove('success');
+    this.classList.add('error');
+    crearMensaje(this, 'Las contraseñas no coinciden', 'error', '');
+    return false;
   }
 }
 
@@ -4058,7 +4078,8 @@ function onlyNumberValidator(element){
 
 
 function emailValidator(element) {
-  if(this.value.length < 1){
+  const wordLength = this.value.length;
+  if(wordLength < 1){
     if(this.getAttribute('required') !== null){
       this.classList.remove('success');
       this.classList.add('error');
@@ -4070,46 +4091,18 @@ function emailValidator(element) {
     }
   }
   var expresionRegularE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  var textExito = "Correo electrónico válido";
-  var textError = "Correo electrónico no válido";
-  let countWord = this.value.length;
-  if (countWord == 0) {
-    this.classList.remove('success');
+
+  if(expresionRegularE.test(this.value)){
     this.classList.remove('error');
-
-    if (document.getElementById('campoSuccess-id')) {
-      document.getElementById('campoSuccess-id').style.display = "none";
-    }
-    if (document.getElementById('campoWarning-id')) {
-      document.getElementById('campoWarning-id').style.display = "none";
-    }
-  } else {
-    if (expresionRegularE.test(this.value) && this.classList.contains("success") === false) {
-
-      this.classList.remove('error');
-      this.classList.add('success');
-      crearMensaje(this, textExito, 'success', '');
-      return true;
-
-    } else if (expresionRegularE.test(this.value) === false && this.classList.contains("error") === false) {
-      if (countWord == 0) {
-        this.classList.remove('success');
-        this.classList.remove('error');
-
-        if (document.getElementById('campoSuccess-id')) {
-          document.getElementById('campoSuccess-id').style.display = "none";
-        }
-        if (document.getElementById('campoWarning-id')) {
-          document.getElementById('campoWarning-id').style.display = "none";
-        }
-      }
-      else {
-        this.classList.remove('success');
-        this.classList.add('error');
-        crearMensaje(this, textError, 'error', '');
-        return false;
-      }
-    }
+    this.classList.add('success');
+    crearMensaje(this, '', 'success', '');
+    return true;
+  }
+  else{
+    this.classList.remove('success');
+    this.classList.add('error');
+    crearMensaje(this, "Correo electrónico no válido", 'error', '');
+    return false;
   }
 }
 

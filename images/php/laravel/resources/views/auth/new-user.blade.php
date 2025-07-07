@@ -110,7 +110,7 @@
                         <div class="entradas-de-texto-govco col-lg-6 px-2">
                             <label for="email">Contraseña*</label>
                             <div class="container-input-texto-govco">
-                                <input typeData="mypassword" type="password" required name="password" id="password" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
+                                <input data-confirm-input="password_confirmation" typeData="mypassword" type="password" required name="password" id="password" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -121,7 +121,7 @@
                         <div class="entradas-de-texto-govco col-lg-6 px-2">
                             <label for="password_confirmation">Confirmar Contraseña*</label>
                             <div class="container-input-texto-govco">
-                                <input typeData="mypassword" type="password" required name="password_confirmation" id="password_confirmation" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
+                                <input typeData="confirm" data-password-input="password" type="password" required name="password_confirmation" id="password_confirmation" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -179,6 +179,8 @@
             methodAssign("keyup", emailValidator, emailInputs);
             const passwordInputs = document.querySelectorAll('input[typeData="mypassword"]');
             methodAssign("keyup", customPasswordValidator, passwordInputs);
+            const confirmInputs = document.querySelectorAll('input[typeData="confirm"]');
+            methodAssign("keyup", customPasswordConfirmValidator, confirmInputs);
             const onlyTextInputs = document.querySelectorAll('input[typeData="onlyText"]');
             methodAssign("keyup", onlyTextValidator, onlyTextInputs);
             const onlyNumberInputs = document.querySelectorAll('input[typeData="onlyNumber"]');
