@@ -31,14 +31,14 @@
             <p><strong>* Campos obligatorios</strong></p>
         </div>
         <div class="container-login-opcion-govco" data-container-persona="natural">
-            <form method="POST" action="/usuarios/nuevo">
+            <form method="POST" action="/usuarios/nuevo" id="new-user-form">
                 @csrf
                 <div class="mt-2">
                     <div class="row">
                         <div class="entradas-de-texto-govco col-lg-12 px-2">
                             <label for="nombres">Nombres*</label>
                             <div class="container-input-texto-govco">
-                                <input type="text" required pattern="[A-Za-z\s]+" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
+                                <input typeData="onlyText" type="text" required pattern="[A-Za-z\s]+" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
                                     name="nombres" id="nombres" placeholder="Ejemplo: Juan" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
@@ -52,7 +52,7 @@
                         <div class="entradas-de-texto-govco col-lg-12 px-2">
                             <label for="apellidos">Apellidos*</label>
                             <div class="container-input-texto-govco">
-                                <input type="text" required pattern="[A-Za-z\s]+" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
+                                <input typeData="onlyText" type="text" required pattern="[A-Za-z\s]+" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
                                     name="apellidos" id="apellidos" placeholder="Ejemplo: Pérez" aria-required="true" class="@error('apellidos') error @enderror" value="{{ old('apellidos') }}">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
@@ -65,8 +65,9 @@
                     <div class="row">
                         <div class="entradas-de-texto-govco col-lg-6 px-2">
                             <label for="tipo_documento" class="label-desplegable-govco">Tipo de documento<span aria-required="true">*</span></label>
-                            <div class="desplegable-govco @error('tipo_documento') error-desplegable-govco @enderror" id="lista-desplegables" data-type="basic">
-                                <select aria-invalid="false" aria-describedby="alert-id" name="tipo_documento" id="tipo_documento">
+                            <div id="dropdown_container" class="desplegable-govco @error('tipo_documento') error-desplegable-govco @enderror" id="lista-desplegables" data-type="basic">
+                                <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="false"></div>
+                                <select typeData="select" required="true" aria-invalid="false" aria-describedby="tipo_documento" name="tipo_documento">
                                     <option disabled selected>Escoger</option>
                                     <option value="CC">Cédula de ciudadanía</option>
                                     <option value="CE">Cédula de extranjería</option>
@@ -82,7 +83,7 @@
                         <div class="entradas-de-texto-govco col-lg-6 px-2">
                             <label for="documento">Documento*</label>
                             <div class="container-input-texto-govco">
-                                <input type="number" required name="documento" id="documento" placeholder="Ejemplo: 1234567890" minlength="7" maxlength="10"
+                                <input typeData="onlyNumber" type="text" required name="documento" id="documento" placeholder="Ejemplo: 1234567890" minlength="7" maxlength="10"
                                     aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
@@ -96,7 +97,7 @@
                         <div class="entradas-de-texto-govco px-2">
                             <label for="email">Correo electrónico*</label>
                             <div class="container-input-texto-govco">
-                                <input type="email" required name="email" id="email" placeholder="Ejemplo: correo@email.com" aria-required="true" class="@error('email') error @enderror" value="{{ old('email') }}">
+                                <input typeData="mail" type="text" required name="email" id="email" placeholder="Ejemplo: correo@email.com" aria-required="true" class="@error('email') error @enderror" value="{{ old('email') }}">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -109,7 +110,7 @@
                         <div class="entradas-de-texto-govco col-lg-6 px-2">
                             <label for="email">Contraseña*</label>
                             <div class="container-input-texto-govco">
-                                <input type="password" required name="password" id="password" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
+                                <input typeData="mypassword" type="password" required name="password" id="password" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -120,7 +121,7 @@
                         <div class="entradas-de-texto-govco col-lg-6 px-2">
                             <label for="password_confirmation">Confirmar Contraseña*</label>
                             <div class="container-input-texto-govco">
-                                <input type="password" required name="password_confirmation" id="password_confirmation" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
+                                <input typeData="mypassword" type="password" required name="password_confirmation" id="password_confirmation" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -128,7 +129,7 @@
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="entradas-de-texto-govco col-lg-12 text-box info-text-box mb-4">
+                        <div id="info-password" class="col-lg-12 text-box info-text-box mb-4">
                             <strong>La contraseña debe cumplir con los siguientes requisitos:</strong>
                             <ul class="mb-0">
                                 <li>Mínimo 8 caracteres</li>
@@ -144,8 +145,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" class="btn-govco fill-btn-govco" name="continuar"
-                        style="width: 165px; height: 42px;">Guardar</button>
+                    <button onclick="preSubmit()" type="button" class="btn-govco fill-btn-govco" name="continuar" style="width: 165px; height: 42px;">Guardar</button>
                 </div>
             </form>
         </div>
@@ -174,8 +174,31 @@
                     tipoDocumentoSelect.value = oldTipoDocumento;
                 }
             @endif
-        });
 
+            const emailInputs = document.querySelectorAll('input[typeData="mail"]');
+            methodAssign("keyup", emailValidator, emailInputs);
+            const passwordInputs = document.querySelectorAll('input[typeData="mypassword"]');
+            methodAssign("keyup", customPasswordValidator, passwordInputs);
+            const onlyTextInputs = document.querySelectorAll('input[typeData="onlyText"]');
+            methodAssign("keyup", onlyTextValidator, onlyTextInputs);
+            const onlyNumberInputs = document.querySelectorAll('input[typeData="onlyNumber"]');
+            methodAssign("keyup", onlyNumberValidator, onlyNumberInputs);
+            document.getElementById('dropdown_container').addEventListener('change', function(event) {
+                const input = this.querySelector('input[typedata="select"]');
+                selectValidator.call(input);
+                
+            });
+        });
+        function preSubmit(){
+            const form = document.getElementById('new-user-form');
+            const isValid = validateForm(form);
+            if (!isValid) {
+                event.preventDefault();
+            }
+            else{
+                form.submit();
+            }
+        }
 
     </script>
 @endpush

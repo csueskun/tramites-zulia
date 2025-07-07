@@ -252,3 +252,8 @@ div.alert.alerta-govco>span {
     background-color: #D0E7FF;
     color: #004A9F;
 }
+
+.desplegable-govco.success-desplegable-govco button.desplegable-selected-option {
+    border-color: #068460;
+    color: #077253;
+}

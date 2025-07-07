@@ -3956,3 +3956,229 @@ function formatCurrency(value) {
   }
   return value;
 }
+
+function customPasswordValidator(element) {
+  const infoBox = document.getElementById('info-password');
+  if(this.value.length < 1){
+
+    if(this.getAttribute('required') !== null){
+      this.classList.remove('success');
+      this.classList.add('error');
+      crearMensaje(this, 'Este campo es obligatorio', 'error', '');
+      return false;
+    } else {
+      this.classList.remove('success');
+      this.classList.remove('error');
+      infoBox.classList.remove('error-text-box');
+      infoBox.classList.remove('info-text-box');
+      infoBox.classList.add('info-text-box');
+      return true;
+    }
+  }
+  const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$&\-_?\/#*^%+.\(\)])[A-Za-z\d@$&\-_?\/#*^%+.\(\)]{8,}$/;
+  const passwordInput = document.getElementById('password');
+  if (!regex.test(this.value)) {
+      infoBox.classList.remove('info-text-box');
+      infoBox.classList.add('error-text-box');
+      passwordInput.classList.remove('success');
+      passwordInput.classList.add('error');
+      return false;
+  } else {
+      infoBox.classList.remove('error-text-box');
+      infoBox.classList.add('info-text-box');
+      passwordInput.classList.remove('error');
+      passwordInput.classList.add('success');
+      return true;
+  }
+}
+
+function onlyTextValidator(element){
+  const regex = /^[a-zA-ZÀ-ÿ\s]*$/;
+  if(this.value.length < 1){
+    if(this.getAttribute('required') !== null){
+      this.classList.remove('success');
+      this.classList.add('error');
+      crearMensaje(this, 'Este campo es obligatorio', 'error', '');
+      return false;
+    } else {
+      clearInputFeedback(this);
+      return true;
+    }
+  }
+  if (!regex.test(this.value)) {
+      this.classList.remove('success');
+      this.classList.add('error');
+      crearMensaje(this, 'Debe ingresar sólo texto', 'error', '');
+      return false;
+  } else {
+      this.classList.remove('error');
+      this.classList.add('success');
+      crearMensaje(this, '', 'success', '');
+      return true;
+  }
+}
+
+function onlyNumberValidator(element){
+  const regex = /^[0-9]*$/;
+  if(this.value.length < 1){
+    if(this.getAttribute('required') !== null){
+      this.classList.remove('success');
+      this.classList.add('error');
+      crearMensaje(this, 'Este campo es obligatorio', 'error', '');
+      return false;
+    } else {
+      clearInputFeedback(this);
+      return true;
+    }
+  }
+  if(this.getAttribute('minlength') && this.value.length < this.getAttribute('minlength')){
+    this.classList.remove('success');
+    this.classList.add('error');
+    crearMensaje(this, 'Debe ingresar al menos ' + this.getAttribute('minlength') + ' dígitos', 'error', '');
+    return false;
+  }
+  if(this.getAttribute('maxlength') && this.value.length > this.getAttribute('maxlength')){
+    this.classList.remove('success');
+    this.classList.add('error');
+    crearMensaje(this, 'Debe ingresar máximo ' + this.getAttribute('maxlength') + ' dígitos', 'error', '');
+    return false;
+  }
+  if (!regex.test(this.value)) {
+      this.classList.remove('success');
+      this.classList.add('error');
+      crearMensaje(this, 'Sólo se permiten números', 'error', '');
+      return false;
+  } else {
+      this.classList.remove('error');
+      this.classList.add('success');
+      crearMensaje(this, '', 'success', '');
+      return true;
+  }
+}
+
+
+function emailValidator(element) {
+  if(this.value.length < 1){
+    if(this.getAttribute('required') !== null){
+      this.classList.remove('success');
+      this.classList.add('error');
+      crearMensaje(this, 'Este campo es obligatorio', 'error', '');
+      return false;
+    } else {
+      clearInputFeedback(this);
+      return true;
+    }
+  }
+  var expresionRegularE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  var textExito = "Correo electrónico válido";
+  var textError = "Correo electrónico no válido";
+  let countWord = this.value.length;
+  if (countWord == 0) {
+    this.classList.remove('success');
+    this.classList.remove('error');
+
+    if (document.getElementById('campoSuccess-id')) {
+      document.getElementById('campoSuccess-id').style.display = "none";
+    }
+    if (document.getElementById('campoWarning-id')) {
+      document.getElementById('campoWarning-id').style.display = "none";
+    }
+  } else {
+    if (expresionRegularE.test(this.value) && this.classList.contains("success") === false) {
+
+      this.classList.remove('error');
+      this.classList.add('success');
+      crearMensaje(this, textExito, 'success', '');
+      return true;
+
+    } else if (expresionRegularE.test(this.value) === false && this.classList.contains("error") === false) {
+      if (countWord == 0) {
+        this.classList.remove('success');
+        this.classList.remove('error');
+
+        if (document.getElementById('campoSuccess-id')) {
+          document.getElementById('campoSuccess-id').style.display = "none";
+        }
+        if (document.getElementById('campoWarning-id')) {
+          document.getElementById('campoWarning-id').style.display = "none";
+        }
+      }
+      else {
+        this.classList.remove('success');
+        this.classList.add('error');
+        crearMensaje(this, textError, 'error', '');
+        return false;
+      }
+    }
+  }
+}
+
+function selectValidator(element) {
+
+  if(this.value.length < 1){
+    if(this.getAttribute('required') !== null){
+      this.closest('.desplegable-govco').classList.remove('success-desplegable-govco');
+      this.closest('.desplegable-govco').classList.add('error-desplegable-govco');
+      crearMensaje(this, 'Debe seleccionar una opción', 'error', '');
+      return false;
+    } else {
+      crearMensaje(element, '', 'success', '');
+      this.closest('.desplegable-govco').classList.remove('error-desplegable-govco');
+      this.closest('.desplegable-govco').classList.remove('success-desplegable-govco');
+      return true;
+    }
+  }
+  this.closest('.desplegable-govco').classList.remove('error-desplegable-govco');
+  this.closest('.desplegable-govco').classList.add('success-desplegable-govco');
+  crearMensaje(this, '', 'error', '');
+  return true;
+}
+
+function clearInputFeedback(element){
+  crearMensaje(element, '', 'success', '');
+  element.classList.remove('success');
+  element.classList.remove('error');
+}
+
+function validateForm(form) {
+  let isValid = true;
+
+  // Get all inputs with validation attributes
+  const inputs = form.querySelectorAll('input[typeData], select');
+
+  inputs.forEach(input => {
+      // Trigger validation logic based on `typeData`
+      switch (input.getAttribute('typeData')) {
+          case 'mail':
+              if (!emailValidator.call(input)) {
+                  isValid = false;
+              }
+              break;
+          case 'mypassword':
+              if (!customPasswordValidator.call(input)) {
+                  isValid = false;
+              }
+              break;
+          case 'onlyText':
+              if (!onlyTextValidator.call(input)) {
+                  isValid = false;
+              }
+              break;
+          case 'onlyNumber':
+              if (!onlyNumberValidator.call(input)) {
+                  isValid = false;
+              }
+              break;
+          case 'select':
+              if (!selectValidator.call(input)) {
+                  isValid = false;
+              }
+              break;
+          default:
+              // Handle other types or skip
+              break;
+      }
+  });
+
+  return isValid;
+}
