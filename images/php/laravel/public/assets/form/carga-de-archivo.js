@@ -21,27 +21,27 @@ function validateFileForm(formElement, successCallback, errorCallback, newSolici
         }
     }
     
-    if (newSolicitud) {
-        const textInputs = ['nombres','tipo_documento','identificacion','telefono','email'];
-        for (let i = 0; i < textInputs.length; i++) {
-            const inputName = textInputs[i];
-            const input = formElement.querySelector('input[name="' + inputName + '"]');
-            const errorSpan = formElement.querySelector('#' + inputName + '_error');
-            if (input && input.getAttribute('required') !== null && input.value.trim() === '') {
-                input.parentElement.parentElement.setAttribute('data-error', '1');
-                if(errorSpan.innerHTML === '') {
-                    errorSpan.innerHTML = 'El campo es obligatorio';
-                }
-                errorSpan.classList.remove('visually-hidden');
-                errorSpan.parentElement.style.display = 'block';
-                hasError = true;
-            }
-            else{
-                input.parentElement.parentElement.setAttribute('data-error', '0');
-                // errorSpan.classList.add('visually-hidden');
-            }
-        }
-    }
+    // if (newSolicitud) {
+    //     const textInputs = ['nombres','tipo_documento','identificacion','telefono','email'];
+    //     for (let i = 0; i < textInputs.length; i++) {
+    //         const inputName = textInputs[i];
+    //         const input = formElement.querySelector('input[name="' + inputName + '"]');
+    //         const errorSpan = formElement.querySelector('#' + inputName + '_error');
+    //         if (input && input.getAttribute('required') !== null && input.value.trim() === '') {
+    //             input.parentElement.parentElement.setAttribute('data-error', '1');
+    //             if(errorSpan.innerHTML === '') {
+    //                 errorSpan.innerHTML = 'El campo es obligatorio';
+    //             }
+    //             errorSpan.classList.remove('visually-hidden');
+    //             errorSpan.parentElement.style.display = 'block';
+    //             hasError = true;
+    //         }
+    //         else{
+    //             input.parentElement.parentElement.setAttribute('data-error', '0');
+    //             // errorSpan.classList.add('visually-hidden');
+    //         }
+    //     }
+    // }
     
     if (hasError) {
         errorCallback();

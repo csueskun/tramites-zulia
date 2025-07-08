@@ -77,7 +77,7 @@
                                     <input type="hidden" name="tramite_id" value="{{$tramite->id}}">
                                     <input type="hidden" name="persona" value="{{$persona}}">
                                     <input type="hidden" name="vehiculo" value="{{$vehiculo}}">
-                                    <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
+                                    <div class="modal-body modal-body-govco" style="margin: 12px 0px !important">
                                         <div class="row">
                                             @if ($vehiculo !== 'TODOS')
                                             <p>
@@ -97,11 +97,11 @@
                                             @endif
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-9">
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
-                                                    <label for="nombres">nombres*</label>
+                                                    <label for="nombres">Nombres*</label>
                                                     <div class="container-input-texto-govco">
-                                                        <input type="text" name="nombres" id="nombres"
+                                                        <input required typeData="onlyText" type="text" name="nombres" id="nombres"
                                                             placeholder="Ingrese sus nombres" aria-required="true"
                                                             class="@error('nombres') error @enderror" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" 
                                                             onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
@@ -123,9 +123,9 @@
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
                                                     <label for="tipo_documento" class="label-desplegable-govco">Tipo de
                                                         documento<span aria-required="true">*</span></label>
-                                                    <div class="desplegable-govco @error('tipo_documento') error-desplegable-govco @enderror"
+                                                    <div id="dropdown_container" class="desplegable-govco @error('tipo_documento') error-desplegable-govco @enderror"
                                                         id="lista-desplegables" data-type="basic">
-                                                        <select  aria-invalid="false" aria-describedby="tipo_documento"
+                                                        <select required typeData="select" aria-invalid="false" aria-describedby="tipo_documento"
                                                             name="tipo_documento" id="tipo_documento">
                                                             <option disabled selected>Escoger</option>
                                                             <option value="CC">Cédula de ciudadanía</option>
@@ -135,17 +135,18 @@
                                                             <option value="TI">Tarjeta de identidad</option>
                                                         </select>
                                                         <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
-                                                                aria-label="success" aria-hidden="true"></div>
-                                                            <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco"
-                                                                aria-label="error" aria-hidden="true"></div>
+                                                        aria-label="success" aria-hidden="true"></div>
+                                                        <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco"
+                                                        aria-label="error" aria-hidden="true"></div>
                                                     </div>
+                                                    <sp class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive"></span>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3 ps-0">
+                                            <div class="col-lg-4 ps-0">
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
                                                     <label for="identificacion">Identificacion*</label>
                                                     <div class="container-input-texto-govco">
-                                                        <input type="number" name="identificacion" id="identificacion"
+                                                        <input required typeData="onlyNumber" type="number" name="identificacion" id="identificacion"
                                                             placeholder="" aria-required="true" minlength="7" maxlength="10"
                                                             class="@error('identificacion') error @enderror"
                                                             value="{{ old('identificacion') }}">
@@ -166,7 +167,7 @@
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
                                                     <label for="email">Teléfono *</label>
                                                     <div class="container-input-texto-govco">
-                                                        <input type="text" name="telefono" id="telefono" regex="[0-9]*"
+                                                        <input required typeData="onlyNumber" type="text" name="telefono" id="telefono" regex="[0-9]*"
                                                             oninvalid="this.setCustomValidity('Por favor, ingrese un número de teléfono válido')"
                                                             onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
                                                             aria-required="true" class="@error('telefono') error @enderror"
@@ -182,11 +183,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-5">
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
                                                     <label for="email">Correo electrónico *</label>
                                                     <div class="container-input-texto-govco">
-                                                        <input  type="email" name="email" id="email"
+                                                        <input required typeData="mail" type="text" name="email" id="email"
                                                             aria-required="true" class="@error('email') error @enderror"
                                                             value="{{ old('email') }}">
                                                         <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
@@ -275,7 +276,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 mt-4">
-                                        <button disabled type="submit" class="btn btn-primary btn-modal-govco fit-content">
+                                        <button onclick="preValidateFileForm(this.closest('form'))" type="button" class="btn btn-primary btn-modal-govco fit-content submit">
                                             Guardar Solicitud
                                         </button>
                                     </div>
@@ -337,6 +338,18 @@
                     tipoDocumentoSelect.value = oldTipoDocumento;
                 }
             @endif
+
+
+            const emailInputs = document.querySelectorAll('input[typeData="mail"]');
+            methodAssign("keyup", emailValidator, emailInputs);
+            const onlyTextInputs = document.querySelectorAll('input[typeData="onlyText"]');
+            methodAssign("keyup", onlyTextValidator, onlyTextInputs);
+            const onlyNumberInputs = document.querySelectorAll('input[typeData="onlyNumber"]');
+            methodAssign("keyup", onlyNumberValidator, onlyNumberInputs);
+            document.getElementById('dropdown_container').addEventListener('change', function(event) {
+                const input = this.querySelector('input[typedata="select"]');
+                selectValidator.call(input);
+            });
         });
 
         var fileDocumentoIdentidad = [];
@@ -382,18 +395,16 @@
             return inputFile;
         }
 
-        form.addEventListener('change', preValidateFileForm.bind(this, form));
-        document.getElementById('tipo_documento').addEventListener('change', preValidateFileForm.bind(this, form));
-        document.querySelectorAll('input[type="text"]').forEach(input => {
-            input.addEventListener('input', preValidateFileForm.bind(this, form));
-        });
-
         function preValidateFileForm(form) {
+            const isFormValid = validateForm(form);
             setTimeout(function () {
                 validateFileForm(form, function () {
-                    form.querySelector('button[type="submit"]').removeAttribute('disabled');
+                    if(isFormValid){
+                        alert('Formulario válido, enviando solicitud...');
+                        form.querySelector('button.submit').setAttribute('disabled', 'disabled');
+                        form.submit();
+                    }
                 }, function () {
-                    form.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
                 }, true)
             }, 200);
         }

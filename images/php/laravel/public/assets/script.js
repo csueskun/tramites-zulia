@@ -4115,7 +4115,7 @@ function selectValidator(element) {
       crearMensaje(this, 'Debe seleccionar una opción', 'error', '');
       return false;
     } else {
-      crearMensaje(element, '', 'success', '');
+      crearMensaje(this, '', 'success', '');
       this.closest('.desplegable-govco').classList.remove('error-desplegable-govco');
       this.closest('.desplegable-govco').classList.remove('success-desplegable-govco');
       return true;

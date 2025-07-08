@@ -8,7 +8,8 @@
 <body>
     <p>Estimado <i>{{ $nombres }}</i>,</p>
     <p>
-        Su código de verificación es: <strong>{{ $verificationCode }}</strong>.
+        Le informamos que su código de verificación es: <strong>{{ $verificationCode }}</strong>.
+        <br>
         Si usted no solicitó esta verificación, puede ignorar este mensaje.
     </p>
     <p>
