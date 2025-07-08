@@ -400,7 +400,6 @@
             setTimeout(function () {
                 validateFileForm(form, function () {
                     if(isFormValid){
-                        alert('Formulario válido, enviando solicitud...');
                         form.querySelector('button.submit').setAttribute('disabled', 'disabled');
                         form.submit();
                     }
