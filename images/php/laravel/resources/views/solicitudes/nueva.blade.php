@@ -374,17 +374,6 @@
             });
         });
 
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            const dataTransfer = new DataTransfer();
-            const tempForm = cloneFileForm(form);
-            fileConfigs.forEach(({ key, tipo, max_size }) => {
-                tempForm.appendChild(addFileInputs(tempForm, fileData[key], 'file_' + key));
-            });
-            document.body.appendChild(tempForm);
-            tempForm.submit();
-        });
-
         function addFileInputs(tempform, inputFileFiles, inputName) {
             const dataTransfer = new DataTransfer();
             inputFileFiles.forEach(file => dataTransfer.items.add(file));
@@ -401,7 +390,13 @@
                 validateFileForm(form, function () {
                     if(isFormValid){
                         form.querySelector('button.submit').setAttribute('disabled', 'disabled');
-                        form.submit();
+                        const dataTransfer = new DataTransfer();
+                        const tempForm = cloneFileForm(form);
+                        fileConfigs.forEach(({ key, tipo, max_size }) => {
+                            tempForm.appendChild(addFileInputs(tempForm, fileData[key], 'file_' + key));
+                        });
+                        document.body.appendChild(tempForm);
+                        tempForm.submit();
                     }
                 }, function () {
                 }, true)
