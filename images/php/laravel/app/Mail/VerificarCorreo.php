@@ -30,7 +30,7 @@ class VerificarCorreo extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Verificación de correo - Secretaría de Tránsito, sede operativa El Zulia',
+            subject: 'Código de verificación',
         );
     }
 

@@ -32,7 +32,7 @@ class ResetPassword extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Recuperación de Contraseña - Secretaría de Tránsito, sede operativa El Zulia',
+            subject: 'Cambio de Contraseña',
         );
     }
 

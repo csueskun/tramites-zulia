@@ -30,7 +30,7 @@ class PagoValidado extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Solicitud Aceptada - Radicado - ' . $this->solicitud->radicado,
+            subject: 'Pago Validado - Radicado - ' . $this->solicitud->radicado,
         );
     }
 
