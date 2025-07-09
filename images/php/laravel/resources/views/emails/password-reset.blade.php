@@ -12,8 +12,10 @@
         <a href="{{ $url }}">Crear nueva contraseña</a>.
     </p>
     <p>
-        Si tiene alguna consulta adicional o requiere asistencia, 
-        no dude en comunicarse con nosotros a través de 
+        Si no ha solicitado este procedimiento, puede ignorar este mensaje.
+        <br>
+        Para cualquier consulta adicional o si requiere asistencia, 
+        no dude en comunicarse con nosotros a través del correo electrónico 
         <a href="mailto:transito.sistemas@nortedesantander.gov.co">transito.sistemas@nortedesantander.gov.co</a>
     </p>
     <p>

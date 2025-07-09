@@ -10,7 +10,7 @@
     <p>Estimado <i>{{ $nombres }}</i>,</p>
     <p>
         Adjuntamos el <strong>Certificado de libertad y tradición de un vehículo automotor</strong> 
-        correspondiente a la solicitud realizada el dia <strong>{{ $fecha }}</strong> con número de 
+        correspondiente a la solicitud realizada el dia <strong>{{ $fecha }}</strong>, con número de 
         radicado <strong>{{$radicado}}</strong>.
     </p>
     <p>
