@@ -3,16 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use App\Models\Solicitud;
 use App\Models\Documento;
 use App\Models\Tramite;
-use App\Models\Comentario;
 use App\Services\MailService;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\EnviarReciboDePago;
 use Illuminate\Support\Facades\DB;
 
 class SolicitudController extends Controller
@@ -56,30 +51,32 @@ class SolicitudController extends Controller
     /**
      * Retrieve solicitudes by status with pagination and query.
      */
-    public function getSolicitudesByStatusPaginated($estados, $current_page, $query, $has_document = '')
+    public function getSolicitudesByStatusPaginated($estados, $request, $has_document = '')
     {
-        $solicitudesQuery = Solicitud::whereIn('estado', $estados);
 
-        if ($query) {
-            $solicitudesQuery->where(function ($q) use ($query) {
-                $q->where('radicado', 'like', "%$query%")
-                    ->orWhere('asunto', 'like', "%$query%");
+        $current_page = $request->query('page', 1);
+        $solicitudesQuery = Solicitud::whereIn('estado', $estados);
+        $query = $this->getQueryFromRequest($request);
+
+        if($query['tramite'] ?? null) {
+            $solicitudesQuery->whereHas('tramite', function ($q) use ($query) {
+                $q->where('nombre', 'like', "%{$query['tramite']}%");
             });
         }
-
+        if($query['radicado'] ?? null) {
+            $solicitudesQuery->where('radicado', 'like', "%{$query['radicado']}%");
+        }
+        if($query['nombres'] ?? null) {
+            $solicitudesQuery->where('nombres', 'like', "%{$query['nombres']}%");
+        }
         if ($has_document) {
             $solicitudesQuery->whereHas('documentos', function ($q) use ($has_document) {
                 $q->where('tipo', $has_document);
             });
         }
 
-        // if(count($estados) == 1 && $estados[0] == 'VALIDADA') {
-        //     $solicitudesQuery->where('id', 3);
-        // }
-
         $solicitudes = $solicitudesQuery->paginate(10, ['*'], 'page', $current_page);
 
-        // Check if the current page has no records and fallback to the last page with data
         if ($solicitudes->isEmpty() && $current_page > 1) {
             $lastPage = $solicitudes->lastPage();
             $solicitudes = $solicitudesQuery->paginate(10, ['*'], 'page', $lastPage);
@@ -94,32 +91,47 @@ class SolicitudController extends Controller
     public function viewPendientes(Request $request)
     {
         $current_page = $request->query('page', 1);
-        $solicitudes = $this->getSolicitudesByStatusPaginated(['EN REVISION'], $current_page, null);
+        $solicitudes = $this->getSolicitudesByStatusPaginated(['EN REVISION'], $request);
         return view('solicitudes.pendientes', compact('solicitudes'));
     }
     public function viewConsolidadas(Request $request)
     {
         $current_page = $request->query('page', 1);
-        $solicitudes = $this->getSolicitudesByStatusPaginated(['APROBADA', 'RECHAZADA'], $current_page, null);
+        $solicitudes = $this->getSolicitudesByStatusPaginated(['APROBADA', 'RECHAZADA'], $request);
         return view('solicitudes.consolidadas', compact('solicitudes'));
     }
     public function viewAceptadas(Request $request)
     {
         $current_page = $request->query('page', 1);
-        $solicitudes = $this->getSolicitudesByStatusPaginated(['APROBADA'], $current_page, null);
+        $solicitudes = $this->getSolicitudesByStatusPaginated(['APROBADA'], $request);
         return view('solicitudes.aceptadas', compact('solicitudes'));
     }
     public function viewPagadas(Request $request)
     {
         $current_page = $request->query('page', 1);
-        $solicitudes = $this->getSolicitudesByStatusPaginated(['APROBADA', 'VALIDADA'], $current_page, null, 'CONSTANCIA DE PAGO');
+        $solicitudes = $this->getSolicitudesByStatusPaginated(['APROBADA', 'VALIDADA'], $request, 'CONSTANCIA DE PAGO');
         return view('solicitudes.pagadas', compact('solicitudes'));
     }
     public function viewCompletas(Request $request)
     {
         $current_page = $request->query('page', 1);
-        $solicitudes = $this->getSolicitudesByStatusPaginated(['VALIDADA', 'COMPLETADA'], $current_page, null, );
+        $solicitudes = $this->getSolicitudesByStatusPaginated(['VALIDADA', 'COMPLETADA'], $request, );
         return view('solicitudes.completadas', compact('solicitudes'));
+    }
+
+    private function getQueryFromRequest(Request $request)
+    {
+        $q = [];
+        if($request->query('tramite', null)) {
+            $q['tramite'] = $request->query('tramite');
+        }
+        if($request->query('radicado', null)) {
+            $q['radicado'] = $request->query('radicado');
+        }
+        if($request->query('nombres', null)) {
+            $q['nombres'] = $request->query('nombres');
+        }
+        return $q;
     }
 
     /**
@@ -161,8 +173,12 @@ class SolicitudController extends Controller
                     'responsable' => $responsable,
                     'ruta' => $solicitud->radicado . '-recibo-de-pago.pdf',
                 ]);
+                $comentario = "En su dirección de correo {$solicitud->usuario->email}, recibirá dos soportes de pago, uno para el tramite y otro para el CUPL.";
+                if($solicitud->tramite_id === 3){
+                    $comentario = "En su dirección de correo {$solicitud->usuario->email}, recibirá el soporte de pago para el tramite.";
+                }
                 $solicitud->comentarios()->create([
-                    'comentario' => "Su recibo de pago fue enviado por TNS al correo {$solicitud->usuario->email}.",
+                    'comentario' => $comentario,
                     'autor' => 'ADMIN',
                 ]);
             } else {
@@ -173,7 +189,7 @@ class SolicitudController extends Controller
                 $this->mailService->sendReciboDePago($solicitud, 'app/public/uploads/' . $fileName);
             }
             $solicitud->update(['link_pago' => $request->input('link_pago', null)]);
-            return redirect()->back()->with('success', 'Recibo de pago enviado.');
+            return redirect()->back()->with('success', 'Soporte de pago enviado.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['Error al enviar el recibo de pago: ' . $e->getMessage()]);
         }
@@ -220,7 +236,6 @@ class SolicitudController extends Controller
             'identificacion' => 'required|string|max:255',
             'telefono' => 'required|string|max:255',
             'nombres' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
             'persona' => 'required|string|max:255',
             'vehiculo' => 'required|string|max:255',
             'tramite_id' => 'required|string|max:255',
