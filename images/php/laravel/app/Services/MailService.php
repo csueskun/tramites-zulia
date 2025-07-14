@@ -7,6 +7,7 @@ use App\Mail\EnviarCertificado;
 use App\Mail\SolicitudAceptada;
 use App\Mail\SolicitudCompletada;
 use App\Mail\SolicitudRechazada;
+use App\Mail\EnviarCupl;
 use App\Mail\PagoValidado;
 use App\Jobs\SendMailJob;
 
@@ -40,5 +41,9 @@ class MailService
     public function sendPagoValidado($solicitud)
     {
         SendMailJob::dispatch(PagoValidado::class, $solicitud->usuario->email, [$solicitud]);
+    }
+    public function sendCupl($solicitud, $attachments)
+    {
+        SendMailJob::dispatch(EnviarCupl::class, $solicitud->usuario->email, [$solicitud, $attachments]);
     }
 }
