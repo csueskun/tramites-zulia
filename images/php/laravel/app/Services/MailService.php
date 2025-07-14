@@ -10,6 +10,7 @@ use App\Mail\SolicitudRechazada;
 use App\Mail\EnviarCupl;
 use App\Mail\PagoValidado;
 use App\Jobs\SendMailJob;
+use Illuminate\Support\Facades\Mail;
 
 
 class MailService
@@ -22,9 +23,9 @@ class MailService
     {
         SendMailJob::dispatch(EnviarCertificado::class, $solicitud->usuario->email, [$solicitud, $attachments]);
     }
-    public function sendSolicitudAceptada($solicitud)
+    public function sendSolicitudAceptada($solicitud, $comentarios)
     {
-        SendMailJob::dispatch(SolicitudAceptada::class, $solicitud->usuario->email, [$solicitud]);
+        SendMailJob::dispatch(SolicitudAceptada::class, $solicitud->usuario->email, [$solicitud, $comentarios]);
     }
     public function mailSolicitudCompletada($solicitud)
     {
