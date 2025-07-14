@@ -29,7 +29,6 @@ class Solicitud extends Model
         'tipo_documento',
         'identificacion',
         'telefono',
-        'email',
         'vehiculo',
         'persona',
         'link_pago'
