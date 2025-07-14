@@ -27,7 +27,7 @@ services:
       - ./images/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
-
+      
   db:
     container_name: mysql
     image: mysql:8.0
@@ -39,7 +39,6 @@ services:
       MYSQL_PASSWORD: secret
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./images/mysql/init:/docker-entrypoint-initdb.d/:ro
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret" ]
       interval: 5s
@@ -71,5 +70,40 @@ services:
       sh -c "php artisan queue:work --verbose --tries=3 --timeout=600"
     restart: always
 
+  loki:
+    image: grafana/loki:2.9.2
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=robert
+      - GF_SECURITY_ADMIN_PASSWORD=adminr
+    depends_on:
+      - loki
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:2.9.2
+    container_name: promtail
+    volumes:
+      - ./images/php/laravel/storage/logs:/var/log/laravel:ro
+      - ./images/promtail/promtail-config.yml:/etc/promtail/promtail.yml
+    command: -config.file=/etc/promtail/promtail.yml
+    depends_on:
+      - loki
+    restart: unless-stopped
+
+
 volumes:
   mysql-data:
+  grafana-storage:
