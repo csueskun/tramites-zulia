@@ -274,20 +274,6 @@
     comentariosModal.addEventListener('show.bs.modal', function(event) {
         renderComentariosModal(event.relatedTarget, comentariosModal);
     });
-    var forms = document.querySelectorAll('form.aceptar-solicitud');
-    forms.forEach(function(form) {
-        form.addEventListener('submit', function(event) {
-            var fechaRespuestaInput = form.querySelector('input[name="fecha_aprobacion"]');
-            fechaRespuestaInput.value = new Date().toISOString();
-        });
-    });
-    var forms = document.querySelectorAll('form.aceptar-solicitud');
-    forms.forEach(function(form) {
-        form.addEventListener('submit', function(event) {
-            var fechaRespuestaInput = form.querySelector('input[name="fecha_aprobacion"]');
-            fechaRespuestaInput.value = new Date().toISOString();
-        });
-    });
     document.addEventListener('DOMContentLoaded', function() {
         const comentario = @json(session('triggerComentario'));
         if (comentario) {
@@ -311,7 +297,7 @@
     aceptarSolicitud.addEventListener('show.bs.modal', function(event) {
         var trigger = event.relatedTarget;
         aceptarSolicitud.querySelector('.modal-dialog form').setAttribute('action', trigger.getAttribute('data-bs-action'));
-        aceptarSolicitud.querySelector('input[name="fecha_validacion"]').value  = new Date().toISOString();
+        aceptarSolicitud.querySelector('input[name="fecha_aprobacion"]').value  = new Date().toISOString();
     });
 </script>
 
