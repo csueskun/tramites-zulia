@@ -57,7 +57,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/solicitudes/{id}/comentarios', [ComentarioController::class, 'addComentario']);
         Route::get('/solicitudes/{id}/ver', [SolicitudController::class, 'verSolicitud']);
 
-        Route::resource('/usuarios', UserController::class);
+        // Route::resource('/usuarios', UserController::class);
     });
 });
 
