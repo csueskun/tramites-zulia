@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('tipo_documento');
             $table->string('identificacion');
             $table->string('telefono');
-            $table->string('email');
             $table->string('estado')->default('EN REVISION');
             $table->timestamp('fecha_aprobacion')->nullable();
             $table->timestamp('fecha_validacion')->nullable();
