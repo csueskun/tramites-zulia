@@ -14,6 +14,7 @@
         <div class="col-lg-9">
             @include('components.session-messages')
             <h3 class="govcolor-blue-dark mb-4">Solicitudes pendientes</h3>
+            <x-table-options action="/solicitudes/pendientes"/> 
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">
                     <thead class="encabezado-tabla">
@@ -51,13 +52,10 @@
                                         data-bs-id="{{$solicitud->id}}"
                                         data-bs-comentarios="{{ json_encode($solicitud->comentarios) }}">
                                         COMENTARIOS</a> /
-                                    <form class="aceptar-solicitud d-inline" action="/solicitudes/{{$solicitud->id}}" method="post">
-                                        @csrf
-                                        @method('patch')
-                                        <input type="hidden" name="id" value="{{$solicitud->id}}">
-                                        <input type="hidden" name="estado" value="APROBADA">
-                                        <input type="hidden" name="fecha_aprobacion" value="">
-                                        <button type="submit" class="btn-to-govco-a govco-a">ACEPTAR</button>
+                                    <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#aceptar-solicitud"
+                                        data-bs-action="/solicitudes/{{$solicitud->id}}"
+                                        data-bs-usuario-id="{{ $solicitud->id }}">
+                                        ACEPTAR</a>
                                     </form> /
                                     <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#rechazar-modal"
                                         data-bs-action="/solicitudes/{{$solicitud->id}}"
@@ -68,13 +66,25 @@
                             </td>
                         </tr>
                         @endforeach
+                        @if ($solicitudes->isEmpty())
+                        <tr>
+                            <td colspan="6" class="text-center">No se encontraron solicitudes.</td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
-
             </div>
             <div class="pagination-container-govco">
                 <nav class="nav-pagination-govco" aria-label="paginador de ejemplo">
-                    <div class="pagination-govco" id="paginationExample" total="{{$solicitudes->lastPage()}}" initialpage="{{$solicitudes->currentPage()}}">
+                    <div 
+                        class="pagination-govco" 
+                        id="paginationExample" 
+                        total="{{$solicitudes->lastPage()}}" 
+                        filterby="{{request('filter_by') ?? ''}}" 
+                        search="{{request('search') ?? ''}}"
+                        perpage="{{$solicitudes->perPage()}}" 
+                        route="/solicitudes/pendientes" 
+                        initialpage="{{$solicitudes->currentPage()}}">
                         <ul id="lista-paginador"></ul>
                     </div>
                 </nav>
@@ -182,7 +192,7 @@
                             <p class="modal-title modal-title-govco text-center">
                                 ¿Está seguro de rechazar esta solicitud?
                             </p>
-                            <p class="text-center">Por favor escriba el motivo del rechazo de la solicitud.</p>
+                            <p class="text-center">¿Está seguro de rechazar esta solicitud?</p>
                             <div class="row mt-2">
                                 <textarea required class="aservice-comentarios-textarea" name="comentario"></textarea>
                             </div>
@@ -191,6 +201,41 @@
                             <div class="modal-buttons-govco d-flex justify-space-between">
                                 <button type="submit" class="btn btn-primary btn-modal-govco auto-width">
                                     Rechazar
+                                </button>
+                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                    Cerrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="aceptar-solicitud" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
+    <div class="container-modal-govco">
+        <div class="modal-container-govco" id="aceptar-solicitud-modal" tabindex="-1" data-bs-backdrop="false"
+            data-bs-keyboard="false" aria-labelledby="aceptar-solicitud" aria-hidden="true" aria-hidden="true"
+            role="dialog">
+            <div class="modal-dialog modal-dialog-govco">
+                <form action="" method="post">
+                    @csrf
+                    @method('patch')
+                    <input type="hidden" name="fecha_validacion" value="">
+                    <input type="hidden" name="estado" value="APROBADA">
+                    <div class="modal-content modal-content-govco">
+                        <div class="modal-header modal-header-govco modal-header-alerts-govco">
+                            <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
+                            <p class="text-center">¿Está seguro de aceptar esta solicitud?</p>
+                        </div>
+                        <div class="modal-footer-govco modal-footer-alerts-govco">
+                            <div class="modal-buttons-govco d-flex justify-space-between">
+                                <button type="submit" class="btn btn-primary btn-modal-govco auto-width">
+                                    Aceptar
                                 </button>
                                 <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
                                     Cerrar
@@ -236,6 +281,13 @@
             fechaRespuestaInput.value = new Date().toISOString();
         });
     });
+    var forms = document.querySelectorAll('form.aceptar-solicitud');
+    forms.forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            var fechaRespuestaInput = form.querySelector('input[name="fecha_aprobacion"]');
+            fechaRespuestaInput.value = new Date().toISOString();
+        });
+    });
     document.addEventListener('DOMContentLoaded', function() {
         const comentario = @json(session('triggerComentario'));
         if (comentario) {
@@ -254,9 +306,13 @@
     document.querySelector('#rechazar-modal form').addEventListener('submit', function(event) {
         document.getElementById('rechazar-modal').querySelector('.btn-close').click();
     });
-    function _dibujarElementos(pages, page) {
-        __dibujarElementos(pages, page, '/solicitudes/pendientes');
-    }
+
+    var aceptarSolicitud = document.getElementById('aceptar-solicitud');
+    aceptarSolicitud.addEventListener('show.bs.modal', function(event) {
+        var trigger = event.relatedTarget;
+        aceptarSolicitud.querySelector('.modal-dialog form').setAttribute('action', trigger.getAttribute('data-bs-action'));
+        aceptarSolicitud.querySelector('input[name="fecha_validacion"]').value  = new Date().toISOString();
+    });
 </script>
 
 @endpush

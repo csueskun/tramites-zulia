@@ -14,6 +14,7 @@
         <div class="col-lg-9">
             @include('components.session-messages')
             <h3 class="govcolor-blue-dark mb-4">Solicitudes consolidadas</h3>
+            <x-table-options action="/solicitudes/consolidadas"/> 
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">
                     <thead class="encabezado-tabla">
@@ -21,7 +22,7 @@
                             <th width="1">Radicado</th>
                             <th width="1">Estado</th>
                             <th width="1">Fecha<br />Solicitud</th>
-                            <th>Asunto</th>
+                            <th>Trámite</th>
                             <th>Nombres</th>
                             <th width="1">Número<br />documento</th>
                             <th>Acciones</th>
@@ -55,13 +56,26 @@
                             </td>
                         </tr>
                         @endforeach
+                        @if ($solicitudes->isEmpty())
+                        <tr>
+                            <td colspan="7" class="text-center">No se encontraron solicitudes.</td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
 
             </div>
             <div class="pagination-container-govco">
                 <nav class="nav-pagination-govco" aria-label="paginador de ejemplo">
-                    <div class="pagination-govco" id="paginationExample" total="{{$solicitudes->lastPage()}}" initialpage="{{$solicitudes->currentPage()}}">
+                    <div 
+                        class="pagination-govco" 
+                        id="paginationExample" 
+                        total="{{$solicitudes->lastPage()}}" 
+                        filterby="{{request('filter_by') ?? ''}}" 
+                        search="{{request('search') ?? ''}}"
+                        perpage="{{$solicitudes->perPage()}}" 
+                        route="/solicitudes/consolidadas" 
+                        initialpage="{{$solicitudes->currentPage()}}">
                         <ul id="lista-paginador"></ul>
                     </div>
                 </nav>

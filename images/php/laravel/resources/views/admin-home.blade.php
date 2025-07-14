@@ -70,7 +70,7 @@
                 </div>
             </div>
 
-            <h3 class="govcolor-blue-dark my-4">Administración de Usuarios</h3>
+            <!-- <h3 class="govcolor-blue-dark my-4">Administración de Usuarios</h3>
             <div class="row">
                 <div class="col-lg-4 p-2">
                     <a class="module-tarjeta-govco fix" href="/usuarios" title="Ver solicitudes pendientes">
@@ -83,7 +83,7 @@
                         </div>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="col-lg-4">

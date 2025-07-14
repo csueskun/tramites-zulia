@@ -14,6 +14,7 @@
         <div class="col-lg-9">
             @include('components.session-messages')
             <h3 class="govcolor-blue-dark mb-4">Solicitudes pendientes de validar pago</h3>
+            <x-table-options action="/solicitudes/pagadas"/> 
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">
                     <thead class="encabezado-tabla">
@@ -21,7 +22,7 @@
                             <th width="1">Radicado</th>
                             <th width="1">Fecha<br />solicitud</th>
                             <!-- <th width="1">Fecha<br />aprobacion</th> -->
-                            <th>Asunto</th>
+                            <th>Trámite</th>
                             <!-- <th width="1">Recibo<br />enviado</th> -->
                             <th width="1">Pago<br />validado</th>
                             <th>Acciones</th>
@@ -56,27 +57,45 @@
                                         VER MÁS</a>
                                     @if($solicitud->fecha_validacion)
                                     @else
-                                    / <form class="validar-pago" action="/solicitudes/{{$solicitud->id}}" method="post">
+                                    <!-- / <form class="validar-pago" action="/solicitudes/{{$solicitud->id}}" method="post">
                                         @csrf
                                         @method('patch')
                                         <input type="hidden" name="id" value="{{$solicitud->id}}">
                                         <input type="hidden" name="estado" value="VALIDADA">
                                         <input type="hidden" name="fecha_validacion" value="">
-                                        <!-- <button type="submit" class="btn-to-govco-a govco-a">VALIDAR PAGO</button> -->
                                         <a class="govco-a" href="#" onclick="validarPago(this.closest('form'))">VALIDAR PAGO</a>
-                                    </form>
+                                    </form> -->
+                                    / <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#validar-pago"
+                                        data-bs-id="{{$solicitud->id}}"
+                                        data-bs-cupl="{{ $solicitud->tramite_id != 3 }}"
+                                        data-bs-usuario-id="{{ $solicitud->id }}">
+                                        VALIDAR PAGO</a>
                                     @endif
                                 </div>
                             </td>
                         </tr>
                         @endforeach
+                        @if ($solicitudes->isEmpty())
+                        <tr>
+                            <td colspan="5" class="text-center">No se encontraron solicitudes.</td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
 
             </div>
+            
             <div class="pagination-container-govco">
                 <nav class="nav-pagination-govco" aria-label="paginador de ejemplo">
-                    <div class="pagination-govco" id="paginationExample" total="{{$solicitudes->lastPage()}}" initialpage="{{$solicitudes->currentPage()}}">
+                    <div 
+                        class="pagination-govco" 
+                        id="paginationExample" 
+                        total="{{$solicitudes->lastPage()}}" 
+                        filterby="{{request('filter_by') ?? ''}}" 
+                        search="{{request('search') ?? ''}}"
+                        perpage="{{$solicitudes->perPage()}}" 
+                        route="/solicitudes/pagadas" 
+                        initialpage="{{$solicitudes->currentPage()}}">
                         <ul id="lista-paginador"></ul>
                     </div>
                 </nav>
@@ -201,6 +220,43 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="validar-pago" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
+    <div class="container-modal-govco">
+        <div class="modal-container-govco" id="validar-pago-modal" tabindex="-1" data-bs-backdrop="false"
+            data-bs-keyboard="false" aria-labelledby="validar-pago" aria-hidden="true" aria-hidden="true"
+            role="dialog">
+            <div class="modal-dialog modal-dialog-govco">
+                <form action="" method="post">
+                    @csrf
+                    @method('patch')
+                    <input type="hidden" name="estado" value="VALIDADA">
+                    <input type="hidden" name="fecha_validacion" value="">
+                    <div class="modal-content modal-content-govco">
+                        <div class="modal-header modal-header-govco modal-header-alerts-govco">
+                            <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
+                            <p class="text-center"></p>
+                        </div>
+                        <div class="modal-footer-govco modal-footer-alerts-govco">
+                            <div class="modal-buttons-govco d-flex justify-space-between">
+                                <button type="submit" class="btn btn-primary btn-modal-govco auto-width fit-content">
+                                    Validar
+                                </button>
+                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno fit-content" data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 @push('scripts')
 <script src="{{ asset('assets/paginacion/paginacion.js') }}"></script>
@@ -239,19 +295,29 @@
     })
 
 
-    var forms = document.querySelectorAll('form.validar-pago');
-    forms.forEach(function(form) {
-        form.addEventListener('submit', function(event) {
-            var fechaValidacionInput = form.querySelector('input[name="fecha_validacion"]');
-            fechaValidacionInput.value = new Date().toISOString();
-        });
-    });
+    // var forms = document.querySelectorAll('form.validar-pago');
+    // forms.forEach(function(form) {
+    //     form.addEventListener('submit', function(event) {
+    //         var fechaValidacionInput = form.querySelector('input[name="fecha_validacion"]');
+    //         fechaValidacionInput.value = new Date().toISOString();
+    //     });
+    // });
 
-    function validarPago(form) {
-        var fechaValidacionInput = form.querySelector('input[name="fecha_validacion"]');
-        fechaValidacionInput.value = new Date().toISOString();
-        form.submit();
-    }
+    // function validarPago(form) {
+    //     var fechaValidacionInput = form.querySelector('input[name="fecha_validacion"]');
+    //     fechaValidacionInput.value = new Date().toISOString();
+    //     form.submit();
+    // }
+
+    var validarPaogo = document.getElementById('validar-pago');
+    validarPaogo.addEventListener('show.bs.modal', function(event) {
+        var trigger = event.relatedTarget;
+        const solicitudId = trigger.getAttribute('data-bs-id');
+        const cupl = trigger.getAttribute('data-bs-cupl');
+        validarPaogo.querySelector('.modal-dialog form').setAttribute('action', '/solicitudes/'+solicitudId);
+        validarPaogo.querySelector('p').innerHTML = cupl == "1" ? '¿Los soportes de pagos (TNS y CUPL) fueron verificados correctamente?' : '¿El soporte de pago de TNS fue verficado correctamente?';
+        validarPaogo.querySelector('input[name="fecha_validacion"]').value  = new Date().toISOString();
+    });
 
     function _dibujarElementos(pages, page) {
         __dibujarElementos(pages, page, '/solicitudes/pagadas');

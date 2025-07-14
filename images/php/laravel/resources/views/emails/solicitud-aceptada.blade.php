@@ -11,6 +11,11 @@
         Le informamos que la solicitud realizada el dia <strong>{{ $fecha }}</strong> con número de 
         radicado <strong>{{$radicado}}</strong> para <strong>{{$tramite}}</strong> ha sido aceptada.
     </p>
+    <ul>
+        @foreach ($comentarios as $comentario)
+        <li>{{ $comentario->comentario }}</li>        
+        @endforeach
+    </ul>
     <p>
         Si tiene alguna consulta adicional o requiere asistencia, 
         no dude en comunicarse con nosotros a través de 

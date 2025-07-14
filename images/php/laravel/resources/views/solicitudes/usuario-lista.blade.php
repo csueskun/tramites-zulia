@@ -48,6 +48,11 @@
                             </td>
                         </tr>
                         @endforeach
+                        @if ($solicitudes->isEmpty())
+                        <tr>
+                            <td colspan="5" class="text-center">No se encontraron solicitudes.</td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

@@ -217,11 +217,11 @@
                                         @foreach ($solicitud->comentarios as $comentario)
                                         <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
                                             <p class="alerta-content-text px-3 py-1 align-start">
-                                                <strong>{{ $comentario->autor }}:</strong>
+                                                <strong>{{ $comentario->autor == "ADMIN" ? "FUNCIONARIO TRÁNSITO" : "USUARIO" }}:</strong>
                                                 {{ $comentario->comentario }}
                                             </p>
                                         </div>
-                                        <small>{{ $comentario->created_at->format('d/m/Y H:i') }}</small>
+                                        <small>{{ $comentario->created_at->format('d/m/Y h:i A') }}</small>
                                             <!-- <li class="mt-2">
                                             </li> -->
                                         <br><br>

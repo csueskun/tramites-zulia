@@ -102,7 +102,7 @@
                                                     <label for="nombres">Nombres*</label>
                                                     <div class="container-input-texto-govco">
                                                         <input required typeData="onlyText" type="text" name="nombres" id="nombres"
-                                                            placeholder="Ingrese sus nombres" aria-required="true"
+                                                            placeholder="Ejemplo: Juan Pérez" aria-required="true"
                                                             class="@error('nombres') error @enderror" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" 
                                                             onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
                                                             value="{{ old('nombres') }}" pattern="[A-Za-z\s]+" title="Solo se permiten letras y espacios">
@@ -147,7 +147,7 @@
                                                     <label for="identificacion">Identificacion*</label>
                                                     <div class="container-input-texto-govco">
                                                         <input required typeData="onlyNumber" type="number" name="identificacion" id="identificacion"
-                                                            placeholder="" aria-required="true" minlength="7" maxlength="10"
+                                                            placeholder="Ejemplo: 1234567890" aria-required="true" minlength="7" maxlength="10"
                                                             class="@error('identificacion') error @enderror"
                                                             value="{{ old('identificacion') }}">
                                                         <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
@@ -165,12 +165,12 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
-                                                    <label for="email">Teléfono *</label>
+                                                    <label for="telefono">Teléfono *</label>
                                                     <div class="container-input-texto-govco">
                                                         <input required typeData="onlyNumber" type="text" name="telefono" id="telefono" regex="[0-9]*"
                                                             oninvalid="this.setCustomValidity('Por favor, ingrese un número de teléfono válido')"
                                                             onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
-                                                            aria-required="true" class="@error('telefono') error @enderror"
+                                                            placeholder="3123456789" aria-required="true" class="@error('telefono') error @enderror"
                                                             value="{{ old('telefono') }}" minlength="7" maxlength="10">
                                                         <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
                                                             aria-label="success" aria-hidden="true"></div>
@@ -179,24 +179,6 @@
                                                     </div>
                                                     <div class="container-detail-carga-de-archivo-govco">
                                                         <span id="telefono_error" class="alert-carga-de-archivo-govco visually-hidden"></span>
-                                                        <div class="attached-files-carga-de-archivo-govco"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-5">
-                                                <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
-                                                    <label for="email">Correo electrónico *</label>
-                                                    <div class="container-input-texto-govco">
-                                                        <input required typeData="mail" type="text" name="email" id="email"
-                                                            aria-required="true" class="@error('email') error @enderror"
-                                                            value="{{ old('email') }}">
-                                                        <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
-                                                            aria-label="success" aria-hidden="true"></div>
-                                                        <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco"
-                                                            aria-label="error" aria-hidden="true"></div>
-                                                    </div>
-                                                    <div class="container-detail-carga-de-archivo-govco">
-                                                        <span id="email_error" class="alert-carga-de-archivo-govco visually-hidden"></span>
                                                         <div class="attached-files-carga-de-archivo-govco"></div>
                                                     </div>
                                                 </div>
@@ -339,9 +321,6 @@
                 }
             @endif
 
-
-            const emailInputs = document.querySelectorAll('input[typeData="mail"]');
-            methodAssign("keyup", emailValidator, emailInputs);
             const onlyTextInputs = document.querySelectorAll('input[typeData="onlyText"]');
             methodAssign("keyup", onlyTextValidator, onlyTextInputs);
             const onlyNumberInputs = document.querySelectorAll('input[typeData="onlyNumber"]');

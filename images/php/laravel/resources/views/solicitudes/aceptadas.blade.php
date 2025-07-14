@@ -14,6 +14,7 @@
         <div class="col-lg-9">
             @include('components.session-messages')
             <h3 class="govcolor-blue-dark mb-4">Enviar recibo de pago</h3>
+            <x-table-options action="/solicitudes/aceptadas"/> 
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">
                     <thead class="encabezado-tabla">
@@ -21,7 +22,7 @@
                             <th width="1">Radicado</th>
                             <th width="1">Fecha<br />solicitud</th>
                             <th width="1">Fecha<br />aprobacion</th>
-                            <th>Asunto</th>
+                            <th>Trámite</th>
                             <!-- <th>Nombres</th>
                             <th width="1">Número<br />documento</th> -->
                             <th width="1">Recibo<br />enviado</th>
@@ -67,15 +68,21 @@
                                         VER MÁS</a> /
                                     <a class="govco-a" href="https://portal-gov.tns.co/" target="_blank" >ABRIR PORTAL TNS</a> 
                                     @if ($solicitud->recibo_pago == null || $recibo_vencido)
+                                    @if ($solicitud->tramite_id == 3)
                                     / <form class="aceptar-solicitud d-inline" action="/solicitudes/{{$solicitud->id}}/mail-recibo-pago" method="post">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$solicitud->id}}">
                                         <input type="hidden" name="responsable" value="TNS">
                                         <button type="submit" class="btn-to-govco-a govco-a">RECIBO ENVIADO POR TNS</button>
                                     </form>
+                                    @else
+                                    / <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#enviar-cupl"
+                                        data-bs-action="/solicitudes/{{$solicitud->id}}/mail-cupl">
+                                        RECIBO ENVIADO POR TNS</a>
+                                    @endif
                                     @endif
                                     @if ($recibo_vencido) 
-                                    /<a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#rechazar-modal"
+                                    / <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#rechazar-modal"
                                         data-bs-action="/solicitudes/{{$solicitud->id}}"
                                         data-bs-usuario-id="{{ $solicitud->id }}">
                                         RECHAZAR</a>
@@ -84,13 +91,26 @@
                             </td>
                         </tr>
                         @endforeach
+                        @if ($solicitudes->isEmpty())
+                        <tr>
+                            <td colspan="6" class="text-center">No se encontraron solicitudes.</td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
 
             </div>
             <div class="pagination-container-govco">
                 <nav class="nav-pagination-govco" aria-label="paginador de ejemplo">
-                    <div class="pagination-govco" id="paginationExample" total="{{$solicitudes->lastPage()}}" initialpage="{{$solicitudes->currentPage()}}">
+                    <div 
+                        class="pagination-govco" 
+                        id="paginationExample" 
+                        total="{{$solicitudes->lastPage()}}" 
+                        filterby="{{request('filter_by') ?? ''}}" 
+                        search="{{request('search') ?? ''}}"
+                        perpage="{{$solicitudes->perPage()}}" 
+                        route="/solicitudes/aceptadas" 
+                        initialpage="{{$solicitudes->currentPage()}}">
                         <ul id="lista-paginador"></ul>
                     </div>
                 </nav>
@@ -211,7 +231,7 @@
                                     <div class="container-carga-de-archivo-govco">
                                         <div class="loader-carga-de-archivo-govco">
                                             <div class="all-input-carga-de-archivo-govco">
-                                                <input type="file" name="file_recibo" id="file_recibo" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple />
+                                                <input type="file" name="file_recibo" id="file_recibo" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadReciboFile" data-action-delete="deleteReciboFile" multiple />
                                                 <label for="file_recibo" class="label-carga-de-archivo-govco">Recibo de pago*</label>
                                                 <label for="file_recibo" class="container-input-carga-de-archivo-govco">
                                                     <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
@@ -310,6 +330,70 @@
     </div>
 </div>
 
+<div class="modal fade" id="enviar-cupl" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
+    <div class="container-modal-govco">
+        <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
+            data-bs-keyboard="false" aria-labelledby="enviar-cupl" aria-hidden="true" aria-hidden="true"
+            role="dialog">
+            <div class="modal-dialog modal-dialog-govco">
+                <form action="" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-content modal-content-govco">
+                        <div class="modal-header modal-header-govco modal-header-alerts-govco">
+                            <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="container-carga-de-archivo-govco">
+                                        <div class="loader-carga-de-archivo-govco">
+                                            <div class="all-input-carga-de-archivo-govco">
+                                                <input type="file" name="file_cupl" id="file_cupl" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadCuplFile" data-action-delete="deleteCuplFile" multiple />
+                                                <label for="file_cupl" class="label-carga-de-archivo-govco">Anexar CUPL</label>
+                                                <label for="file_cupl" class="container-input-carga-de-archivo-govco">
+                                                    <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
+                                                    <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
+                                                </label>
+                                                <span class="text-validation-carga-de-archivo-govco">Tipo de archivo: <strong>.pdf</strong>. Peso máximo: 10 MB</span>
+                                            </div>
+                                            <div class="load-button-carga-de-archivo-govco" style="display: none;">
+                                                <div class="load-carga-de-archivo-govco">
+                                                    <!-- indicador de carga -->
+                                                    <div class="spinner-indicador-de-carga-govco" style="width: 32px; height: 32px; border-width: 6px;" role="status">
+                                                        <span class="visually-hidden">Cargando...</span>
+                                                    </div>
+                                                    <!-- end indicador de carga -->
+                                                </div>
+                                                <button id="file_cupl_load" disabled class="button-loader-carga-de-archivo-govco">Cargar archivo</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="container-detail-carga-de-archivo-govco">
+                                            <span class="alert-carga-de-archivo-govco visually-hidden"></span>
+                                            <div class="attached-files-carga-de-archivo-govco"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer-govco modal-footer-alerts-govco">
+                            <div class="modal-buttons-govco d-flex justify-space-between">
+                                <button type="submit" disabled="disabled" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">
+                                    Enviar
+                                </button>
+                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                    Cerrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 @push('scripts')
@@ -340,17 +424,25 @@
         renderDocumentosTable(documentos);
     })
     
-    var inputFileFiles = [];
+    var inputReciboFiles = [];
+    var inputCuplFiles = [];
     var enviarRecibo = document.getElementById('enviar-recibo');
     enviarRecibo.addEventListener('show.bs.modal', function(event) {
         var trigger = event.relatedTarget;
         enviarRecibo.querySelector('.modal-dialog form').setAttribute('action', trigger.getAttribute('data-bs-action'));
     });
-    var form = document.querySelector('.modal-dialog form');
+    var enviarCupl = document.getElementById('enviar-cupl');
+    enviarCupl.addEventListener('show.bs.modal', function(event) {
+        var trigger = event.relatedTarget;
+        enviarCupl.querySelector('.modal-dialog form').setAttribute('action', trigger.getAttribute('data-bs-action'));
+    });
+    var formRecibo = document.querySelector('#enviar-recibo form');
+    var formCupl = document.querySelector('#enviar-cupl form');
 
     // File upload
     window.addEventListener("load", function() {
         setValidationParameters('file_recibo', ['pdf'], 10485760, 1);
+        setValidationParameters('file_cupl', ['pdf'], 10485760, 1);
     });
 
     document.getElementById('rechazar-modal').addEventListener('show.bs.modal', function(event) {
@@ -363,17 +455,22 @@
         document.getElementById('rechazar-modal').querySelector('.btn-close').click();
     });
 
-    form.querySelector('#file_recibo').addEventListener('change', function(event) {
+    formRecibo.querySelector('#file_recibo').addEventListener('change', function(event) {
         setTimeout(function(){
             document.querySelector('#file_recibo_load').click();
         }, 200);
     });
+    formCupl.querySelector('#file_cupl').addEventListener('change', function(event) {
+        setTimeout(function(){
+            document.querySelector('#file_cupl_load').click();
+        }, 200);
+    });
 
-    form.addEventListener('submit', function(event) {
+    formRecibo.addEventListener('submit', function(event) {
         event.preventDefault();
         const dataTransfer = new DataTransfer();
-        inputFileFiles.forEach(file => dataTransfer.items.add(file));
-        const tempForm = cloneFileForm(form);
+        inputReciboFiles.forEach(file => dataTransfer.items.add(file));
+        const tempForm = cloneFileForm(formRecibo);
         var inputFile = document.createElement("input");
         inputFile.type = "file";
         inputFile.name = "file_recibo[]";
@@ -381,26 +478,50 @@
         tempForm.appendChild(inputFile);
         var linkPago = document.createElement("input");
         linkPago.name = "link_pago";
-        linkPago.value = form.querySelector('#link_pago').value;
+        linkPago.value = formRecibo.querySelector('#link_pago').value;
         tempForm.appendChild(linkPago);
         document.body.appendChild(tempForm);
         tempForm.submit();
     });
 
-    form.addEventListener('change', function(){
+    formCupl.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const dataTransfer = new DataTransfer();
+        inputCuplFiles.forEach(file => dataTransfer.items.add(file));
+        const tempForm = cloneFileForm(formCupl);
+        var inputFile = document.createElement("input");
+        inputFile.type = "file";
+        inputFile.name = "file_cupl[]";
+        inputFile.files = dataTransfer.files;
+        tempForm.appendChild(inputFile);
+        document.body.appendChild(tempForm);
+        tempForm.submit();
+    });
+
+    formRecibo.addEventListener('change', function(){
         setTimeout(function(){}, 1000);
-        validateFileForm(form, function(){
-            form.querySelector('button[type="submit"]').removeAttribute('disabled');
+        validateFileForm(formRecibo, function(){
+            formRecibo.querySelector('button[type="submit"]').removeAttribute('disabled');
         }, function(){
-            form.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
-            inputFileFiles = [];
+            formRecibo.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
+            inputReciboFiles = [];
         })
     });
 
-    function uploadFile(inputFiles) {
+    formCupl.addEventListener('change', function(){
+        setTimeout(function(){}, 1000);
+        validateFileForm(formCupl, function(){
+            formCupl.querySelector('button[type="submit"]').removeAttribute('disabled');
+        }, function(){
+            formCupl.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
+            inputCuplFiles = [];
+        })
+    });
+
+    function uploadReciboFile(inputFiles) {
         return new Promise(function(resolve, reject) {
             if (true) {
-                inputFileFiles = inputFiles;
+                inputReciboFiles = inputFiles;
                 const filesLoadedSuccesfully = inputFiles;
                 resolve(filesLoadedSuccesfully);
             } else {
@@ -408,9 +529,21 @@
             }
         });
     }
-    function _dibujarElementos(pages, page) {
-        __dibujarElementos(pages, page, '/solicitudes/aceptadas');
+
+    function uploadCuplFile(inputFiles) {
+        return new Promise(function(resolve, reject) {
+            if (true) {
+                inputCuplFiles = inputFiles;
+                const filesLoadedSuccesfully = inputFiles;
+                resolve(filesLoadedSuccesfully);
+            } else {
+                reject('Ocurrió un error al cargar los archivos.');
+            }
+        });
     }
+    // function _dibujarElementos(pages, page, route) {
+    //     __dibujarElementos(pages, page, '/solicitudes/aceptadas', '{{ request('filter_by') }}', '{{ request('search') }}', );
+    // }
 </script>
 
 @endpush

@@ -10,7 +10,7 @@
     <p>
         Le informamos que el proceso de solicitud inciada el dia <strong>{{ $fecha }}</strong> con número de 
         radicado <strong>{{$radicado}}</strong> para <strong>{{$tramite}}</strong> ha sido completado. 
-        Por favor preséntese en la oficina de tránsito correspondiente.
+        Por favor preséntese en la oficina de tránsito correspondiente. {{ $nota }}
     </p>
     <p>
         Si tiene alguna consulta adicional o requiere asistencia, 

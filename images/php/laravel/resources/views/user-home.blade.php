@@ -113,7 +113,7 @@
                                 </tfoot>
                             </table>
                             <p>
-                                Costo total del tramite: <strong><span data-tramite-field="total"></span></strong> (válidos durante el año 2025)
+                                Costo total del tramite: <strong><span data-tramite-field="total"></span></strong> <span class="nota"></span> (válidos durante el año 2025)
                             </p>
                         </div>
                         <div class="modal-footer-govco modal-footer-alerts-govco">
@@ -148,7 +148,12 @@
         vars.forEach((v, i) => {
             document.querySelector(`[data-tramite-field="${v}"]`).innerHTML = trigger.getAttribute(`data-tramite-${v}`);
         });
-        document.querySelector(`[data-tramite-field="id"]`).value = trigger.getAttribute(`data-tramite-id`);
+        const tramiteId = trigger.getAttribute(`data-tramite-id`);
+        document.querySelector(`span.nota`).innerHTML = "";
+        if(tramiteId == '1'){
+            document.querySelector(`span.nota`).innerHTML = '<strong>+</strong> pago adicional (rete fuente) del 1% que dependerá del avaluó comercial acorde al tipo del vehículo';
+        }
+        document.querySelector(`[data-tramite-field="id"]`).value = tramiteId;
 
         //estampillas
         const estampillas = JSON.parse(trigger.getAttribute('data-tramite-estampillas')) || [];
