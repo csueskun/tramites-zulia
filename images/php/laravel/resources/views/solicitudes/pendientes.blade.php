@@ -222,7 +222,7 @@
                 <form action="" method="post">
                     @csrf
                     @method('patch')
-                    <input type="hidden" name="fecha_validacion" value="">
+                    <input type="hidden" name="fecha_aprobacion" value="">
                     <input type="hidden" name="estado" value="APROBADA">
                     <div class="modal-content modal-content-govco">
                         <div class="modal-header modal-header-govco modal-header-alerts-govco">
