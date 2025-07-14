@@ -1,8 +1,11 @@
 const divData = document.getElementById("paginationExample");
 const totalPages = divData.getAttribute("total");
 let initialActive = Number(divData.getAttribute("initialpage"));
-(document.getElementById("lista-paginador").innerHTML =
-  dibujarElementos(totalPages, initialActive));
+const filterBy = divData.getAttribute("filterby");
+const search = divData.getAttribute("search");
+const perPage = divData.getAttribute("perpage");
+const route = divData.getAttribute("route");
+document.getElementById("lista-paginador").innerHTML = dibujarElementos(totalPages, initialActive, filterBy, search, perPage);
 
 function dibujarElementos(pages, page) {
   let liTag = "";
@@ -68,8 +71,8 @@ function dibujarElementos(pages, page) {
   document.getElementById("lista-paginador").innerHTML = liTag;
   return liTag;
 }
-function __dibujarElementos(pages, page, route) {
-  location.href = route + '?page=' + page;
+function _dibujarElementos(pages, page) {
+  location.href = `${route}?page=${page}&filter_by=${filterBy}&search=${search}&per_page=${perPage}`;
 }
 function renderDocumentosTable(documentos) {
   if (documentos.length === 0) {

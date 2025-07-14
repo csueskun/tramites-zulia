@@ -257,3 +257,6 @@ div.alert.alerta-govco>span {
     border-color: #068460;
     color: #077253;
 }
+.smaller{
+    font-size: 0.8em;
+}
