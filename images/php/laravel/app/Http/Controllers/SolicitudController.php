@@ -74,12 +74,12 @@ class SolicitudController extends Controller
                 $q->where('tipo', $has_document);
             });
         }
-
-        $solicitudes = $solicitudesQuery->paginate(10, ['*'], 'page', $current_page);
+        $perPage = $request->query('per_page', 10);
+        $solicitudes = $solicitudesQuery->paginate($perPage, ['*'], 'page', $current_page);
 
         if ($solicitudes->isEmpty() && $current_page > 1) {
             $lastPage = $solicitudes->lastPage();
-            $solicitudes = $solicitudesQuery->paginate(10, ['*'], 'page', $lastPage);
+            $solicitudes = $solicitudesQuery->paginate($perPage, ['*'], 'page', $lastPage);
         }
 
         return $solicitudes;
@@ -122,14 +122,8 @@ class SolicitudController extends Controller
     private function getQueryFromRequest(Request $request)
     {
         $q = [];
-        if($request->query('tramite', null)) {
-            $q['tramite'] = $request->query('tramite');
-        }
-        if($request->query('radicado', null)) {
-            $q['radicado'] = $request->query('radicado');
-        }
-        if($request->query('nombres', null)) {
-            $q['nombres'] = $request->query('nombres');
+        if($request->query('filter_by', null) && $request->query('search', null)) {
+            $q[$request->query('filter_by')] = $request->query('search');
         }
         return $q;
     }
@@ -142,7 +136,7 @@ class SolicitudController extends Controller
         $solicitud = Solicitud::findOrFail($id);
         $solicitud->update($request->all());
         if ($solicitud->estado == 'APROBADA') {
-            $this->mailService->sendSolicitudAceptada($solicitud);
+            $this->mailService->sendSolicitudAceptada($solicitud, $solicitud->comentarios);
         }
         if ($solicitud->estado == 'RECHAZADA') {
             $comentario = $request->input('comentario', 'No se proporcionó un motivo.');
@@ -171,14 +165,10 @@ class SolicitudController extends Controller
                 $solicitud->documentos()->create([
                     'tipo' => 'CONSTANCIA DE PAGO',
                     'responsable' => $responsable,
-                    'ruta' => $solicitud->radicado . '-recibo-de-pago.pdf',
+                    'ruta' => $solicitud->radicado . '-constancia-de-pago.pdf',
                 ]);
-                $comentario = "En su dirección de correo {$solicitud->usuario->email}, recibirá dos soportes de pago, uno para el tramite y otro para el CUPL.";
-                if($solicitud->tramite_id === 3){
-                    $comentario = "En su dirección de correo {$solicitud->usuario->email}, recibirá el soporte de pago para el tramite.";
-                }
                 $solicitud->comentarios()->create([
-                    'comentario' => $comentario,
+                    'comentario' => "En su dirección de correo {$solicitud->usuario->email}, recibirá el soporte de pago para el tramite.",
                     'autor' => 'ADMIN',
                 ]);
             } else {
@@ -224,6 +214,44 @@ class SolicitudController extends Controller
         ]);
         $solicitud->update(['estado' => 'COMPLETADA']);
         return redirect()->back()->with('success', 'Usuario notificado.');
+    }
+
+    public function mailCupl(Request $request, Solicitud $solicitud)
+    {
+        try {
+            $fileName = $solicitud->radicado . '-cupl.pdf';
+            if ($request->hasFile('file_cupl')) {
+                $file = $request->file('file_cupl');
+                $file[0]->storeAs('uploads', $fileName, 'public');
+            }
+            $this->mailService->sendCupl($solicitud, 'app/public/uploads/' . $fileName);
+            $solicitud->documentos()->create([
+                'tipo' => 'CUPL',
+                'responsable' => 'ADMIN',
+                'ruta' => '/' . $fileName,
+            ],);
+            $solicitud->documentos()->create([
+                'tipo' => 'RECIBO DE PAGO',
+                'responsable' => "TNS",
+                'ruta' => $solicitud->radicado . '-recibo-de-pago.pdf',
+            ]);
+            $solicitud->documentos()->create([
+                'tipo' => 'CONSTANCIA DE PAGO',
+                'responsable' => 'ADMIN',
+                'ruta' => $solicitud->radicado . '-constancia-de-pago.pdf',
+            ]);
+            $solicitud->comentarios()->create([
+                'comentario' => "En su dirección de correo {$solicitud->usuario->email}, recibirá dos soportes de pago, uno para el tramite y otro para el CUPL.",
+                'autor' => 'ADMIN',
+            ]);
+            $solicitud->comentarios()->create([
+                'comentario' => "Le informamos que el recibo de pago del TNS fue enviado a su correo electrónico, y tiene plazo el dia de hoy hasta 11:59 pm para realizar el correspondiente pago.",
+                'autor' => 'ADMIN',
+            ]);
+            return redirect()->back()->with('success', 'Soporte de pago enviado.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['Error al enviar el recibo de pago: ' . $e->getMessage()]);
+        }
     }
 
     /**

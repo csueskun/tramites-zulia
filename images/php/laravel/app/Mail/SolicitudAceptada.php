@@ -15,13 +15,15 @@ class SolicitudAceptada extends Mailable
     use Queueable, SerializesModels;
 
     public $solicitud;
+    public $comentarios;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($solicitud)
+    public function __construct($solicitud, $comentarios)
     {
         $this->solicitud = $solicitud;
+        $this->comentarios = $comentarios;
     }
 
     /**
@@ -46,6 +48,7 @@ class SolicitudAceptada extends Mailable
                 'radicado' => $this->solicitud->radicado,
                 'fecha' => $this->solicitud->created_at->format('d/m/Y'),
                 'tramite' => $this->solicitud->tramite->nombre,
+                'comentarios' => $this->comentarios,
             ],
         );
     }
