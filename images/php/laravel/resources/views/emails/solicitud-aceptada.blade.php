@@ -10,6 +10,7 @@
     <p>
         Le informamos que la solicitud realizada el dia <strong>{{ $fecha }}</strong> con número de 
         radicado <strong>{{$radicado}}</strong> para <strong>{{$tramite}}</strong> ha sido aceptada.
+        A continuación, se añaden las siguientes observaciones:
     </p>
     <ul>
         @foreach ($comentarios as $comentario)
