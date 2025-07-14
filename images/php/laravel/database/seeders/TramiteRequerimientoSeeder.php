@@ -19,7 +19,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'fun',
-                'tipo' => 'xls',
+                'tipo' => 'pdf',
                 'max_size' => 10485760, // 10MB
             ]),            
         ]);
@@ -53,7 +53,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Compraventa del Vehículo no mayor a 60 días de suscrita, Totalmente diligenciada sin tachones ni enmendaduras y con las firmas de las partes debidamente autenticadas',
+            'descripcion' => 'Compraventa del Vehículo no mayor a 60 días de suscrita, totalmente diligenciada sin tachones ni enmendaduras y con las firmas de las partes (se sugiere autenticadas)',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'compraventa',
@@ -100,7 +100,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados',
+            'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados (debidamente autenticado)',
             'obligatorio' => false,
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
@@ -111,7 +111,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Soporte de pago',
+            'descripcion' => 'Soporte de pago TNS y CUPL',
         ]);
 
 
@@ -122,7 +122,7 @@ class TramiteRequerimientoSeeder extends Seeder
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'fun',
-                'tipo' => 'xls',
+                'tipo' => 'pdf',
                 'max_size' => 10485760, // 10MB
             ]),            
         ]);
@@ -146,6 +146,17 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
+            'descripcion' => 'Copia de la cédula de ciudadanía del representante legal',
+            'tipo' => 'ARCHIVO',
+            'persona' => 'JURIDICA',
+            'file_metadata' => json_encode([
+                'nombre' => 'cedula_representante_legal',
+                'tipo' => 'pdf',
+                'max_size' => 10485760, // 10MB
+            ]),
+        ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 2,
             'descripcion' => 'Licencia de Transito (Tarjeta de Propiedad, Copia por Ambas Caras)',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
@@ -156,7 +167,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Carta de levantamiento de la prenda autenticada',
+            'descripcion' => 'Carta de levantamiento de la prenda autenticada autenticada y cámara de comercio “si aplica”',
             'tipo' => 'ARCHIVO',
             'persona' => 'NATURAL',
             'file_metadata' => json_encode([
@@ -167,7 +178,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Carta de levantamiento de la prenda',
+            'descripcion' => 'Carta de levantamiento de la prenda autenticada y cámara de comercio “si aplica”',
             'persona' => 'JURIDICA',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
@@ -205,7 +216,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados',
+            'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados (debidamente autenticado)',
             'tipo' => 'ARCHIVO',
             'obligatorio' => false,
             'file_metadata' => json_encode([
@@ -216,50 +227,35 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Soporte de pago',
+            'descripcion' => 'Soporte de pago TNS y CUPL',
         ]);
 
 
         //Certificación de tradición y libertad 
         TramiteRequerimiento::create([
             'tramite_id' => 3,
-            'descripcion' => 'Estar inscritos en el Registro Único Nacional de Tránsito (RUNT)',
-        ]);
-        TramiteRequerimiento::create([
-            'tramite_id' => 3,
-            'descripcion' => 'Fotocopia de la cédula de ciudadanía',
+            'descripcion' => 'Solicitud formal con los datos del vehículo (placa, marca de vehículo)',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
-                'nombre' => 'cedula',
+                'nombre' => 'solicitud_certificado',
                 'tipo' => 'pdf',
                 'max_size' => 10485760, // 10MB
             ]),
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 3,
-            'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados',
-            'obligatorio' => false,
-            'tipo' => 'ARCHIVO',
-            'file_metadata' => json_encode([
-                'nombre' => 'poder',
-                'tipo' => 'pdf',
-                'max_size' => 10485760, // 10MB
-            ]),
-        ]);
-        TramiteRequerimiento::create([
-            'tramite_id' => 3,
-            'descripcion' => 'Soporte de pago',
+            'descripcion' => 'Soporte de pago TNS',
         ]);
 
 
-        //Duplicado de tarjeta de propiedad
+        //Duplicado de placas de un vehículo automotor
         TramiteRequerimiento::create([
             'tramite_id' => 4,
             'descripcion' => 'Formato único de Solicitud de Trámite FUN, Debidamente Diligenciado',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'fun',
-                'tipo' => 'xls',
+                'tipo' => 'pdf',
                 'max_size' => 10485760, // 10MB
             ]),            
         ]);
@@ -320,7 +316,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Soporte de pago',
+            'descripcion' => 'Soporte de pago TNS y CUPL',
         ]);
 
 
@@ -366,7 +362,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 5,
-            'descripcion' => 'Soporte de pago',
+            'descripcion' => 'Soporte de pago TNS y CUPL',
         ]);
     }
 }

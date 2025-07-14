@@ -36,7 +36,7 @@ class TramiteItemSeeder extends Seeder
                 'tramite_id' => 1,
                 'nombre' => 'RUNT (CUPL)',
                 'descripcion' => '',
-                'precio' => 4900,
+                'precio' => 5500,
             ],
             [
                 'tramite_id' => 1,
@@ -88,7 +88,7 @@ class TramiteItemSeeder extends Seeder
                 'tramite_id' => 2,
                 'nombre' => 'RUNT (CUPL)',
                 'descripcion' => '',
-                'precio' => 40400,
+                'precio' => 41000,
             ],
             [
                 'tramite_id' => 2,
@@ -156,6 +156,13 @@ class TramiteItemSeeder extends Seeder
                 'tipo' => 'ESTAMPILLA',
                 'precio' => 3000,
             ],
+            [
+                'tramite_id' => 3,
+                'nombre' => 'Pro-des Fronterizo',
+                'descripcion' => '',
+                'tipo' => 'ESTAMPILLA',
+                'precio' => 3000,
+            ],
         ]);
 
         //Duplicado de placas
@@ -176,21 +183,9 @@ class TramiteItemSeeder extends Seeder
             ],
             [
                 'tramite_id' => 4,
-                'nombre' => 'Sustrato lámina',
-                'descripcion' => '',
-                'precio' => 25000,
-            ],
-            [
-                'tramite_id' => 4,
-                'nombre' => 'MT',
-                'descripcion' => '',
-                'precio' => 34300,
-            ],
-            [
-                'tramite_id' => 4,
                 'nombre' => 'RUNT (CUPL)',
                 'descripcion' => '',
-                'precio' => 2100,
+                'precio' => 2700,
             ],
             [
                 'tramite_id' => 4,
@@ -233,13 +228,13 @@ class TramiteItemSeeder extends Seeder
                 'tramite_id' => 5,
                 'nombre' => 'MT',
                 'descripcion' => '',
-                'precio' => 34300,
+                'precio' => 32600,
             ],
             [
                 'tramite_id' => 5,
                 'nombre' => 'RUNT (CUPL)',
                 'descripcion' => '',
-                'precio' => 2100,
+                'precio' => 2700,
             ],
             [
                 'tramite_id' => 5,
