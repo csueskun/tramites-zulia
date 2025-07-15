@@ -168,7 +168,7 @@ class SolicitudController extends Controller
                     'ruta' => $solicitud->radicado . '-constancia-de-pago.pdf',
                 ]);
                 $solicitud->comentarios()->create([
-                    'comentario' => "En su dirección de correo {$solicitud->usuario->email}, recibirá el soporte de pago para el tramite.",
+                    'comentario' => "En su dirección de correo {$solicitud->usuario->email}, recibirá el soporte de pago para el trámite.",
                     'autor' => 'ADMIN',
                 ]);
             } else {
@@ -241,7 +241,7 @@ class SolicitudController extends Controller
                 'ruta' => $solicitud->radicado . '-constancia-de-pago.pdf',
             ]);
             $solicitud->comentarios()->create([
-                'comentario' => "En su dirección de correo {$solicitud->usuario->email}, recibirá dos soportes de pago, uno para el tramite y otro para el CUPL.",
+                'comentario' => "En su dirección de correo {$solicitud->usuario->email}, recibirá dos soportes de pago, uno para el trámite y otro para el CUPL.",
                 'autor' => 'ADMIN',
             ]);
             $solicitud->comentarios()->create([
