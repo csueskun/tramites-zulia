@@ -67,7 +67,7 @@
                                         data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
                                         VER MÁS</a> /
                                     <a class="govco-a" href="https://portal-gov.tns.co/" target="_blank" >ABRIR PORTAL TNS</a> 
-                                    @if ($solicitud->recibo_pago == null || $recibo_vencido)
+                                    @if ($solicitud->recibo_pago == null)
                                     @if ($solicitud->tramite_id == 3)
                                     / <form class="aceptar-solicitud d-inline" action="/solicitudes/{{$solicitud->id}}/mail-recibo-pago" method="post">
                                         @csrf
