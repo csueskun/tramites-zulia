@@ -10,8 +10,8 @@
 <body>
     <p>Estimado <i>{{ $nombres }}</i>,</p>
     <p>
-        Le informamos que el recibo de pago del TNS fue enviado a su correo electrónico, 
-        y tiene plazo el dia de hoy hasta 11:59 pm para realizar el correspondiente pago.
+        Le informamos que el recibo de pago de TNS fue enviado a su correo electrónico, 
+        y tiene plazo el dia de hoy hasta las 11:59 pm para realizar el correspondiente pago.
     </p>
     <p>
         De igual forma, se adjunta el Recibo de pago correspondiente al derecho a 
