@@ -111,7 +111,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Soporte de pago TNS y CUPL',
+            'descripcion' => 'Soportes de pago TNS y CUPL',
         ]);
 
 
@@ -227,7 +227,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Soporte de pago TNS y CUPL',
+            'descripcion' => 'Soportes de pago TNS y CUPL',
         ]);
 
 
@@ -316,7 +316,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Soporte de pago TNS y CUPL',
+            'descripcion' => 'Soportes de pago TNS y CUPL',
         ]);
 
 
@@ -362,7 +362,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 5,
-            'descripcion' => 'Soporte de pago TNS y CUPL',
+            'descripcion' => 'Soportes de pago TNS y CUPL',
         ]);
     }
 }
