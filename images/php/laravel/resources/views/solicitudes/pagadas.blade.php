@@ -318,10 +318,6 @@
         validarPaogo.querySelector('p').innerHTML = cupl == "1" ? '¿Los soportes de pagos (TNS y CUPL) fueron verificados correctamente?' : '¿El soporte de pago de TNS fue verficado correctamente?';
         validarPaogo.querySelector('input[name="fecha_validacion"]').value  = new Date().toISOString();
     });
-
-    function _dibujarElementos(pages, page) {
-        __dibujarElementos(pages, page, '/solicitudes/pagadas');
-    }
 </script>
 
 @endpush

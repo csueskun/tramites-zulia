@@ -55,8 +55,15 @@ class SolicitudController extends Controller
     {
 
         $current_page = $request->query('page', 1);
+        if($estados === 'TODOS') {
+            $estados = ['EN REVISION', 'APROBADA', 'RECHAZADA', 'VALIDADA', 'COMPLETADA'];
+        }
         $solicitudesQuery = Solicitud::whereIn('estado', $estados);
         $query = $this->getQueryFromRequest($request);
+
+        if($request->query('usuario_id', null)){
+            $solicitudesQuery->where('usuario_id', $request->query('usuario_id'));
+        }
 
         if($query['tramite'] ?? null) {
             $solicitudesQuery->whereHas('tramite', function ($q) use ($query) {
@@ -90,31 +97,26 @@ class SolicitudController extends Controller
      */
     public function viewPendientes(Request $request)
     {
-        $current_page = $request->query('page', 1);
         $solicitudes = $this->getSolicitudesByStatusPaginated(['EN REVISION'], $request);
         return view('solicitudes.pendientes', compact('solicitudes'));
     }
     public function viewConsolidadas(Request $request)
     {
-        $current_page = $request->query('page', 1);
         $solicitudes = $this->getSolicitudesByStatusPaginated(['APROBADA', 'RECHAZADA'], $request);
         return view('solicitudes.consolidadas', compact('solicitudes'));
     }
     public function viewAceptadas(Request $request)
     {
-        $current_page = $request->query('page', 1);
         $solicitudes = $this->getSolicitudesByStatusPaginated(['APROBADA'], $request);
         return view('solicitudes.aceptadas', compact('solicitudes'));
     }
     public function viewPagadas(Request $request)
     {
-        $current_page = $request->query('page', 1);
         $solicitudes = $this->getSolicitudesByStatusPaginated(['APROBADA', 'VALIDADA'], $request, 'CONSTANCIA DE PAGO');
         return view('solicitudes.pagadas', compact('solicitudes'));
     }
     public function viewCompletas(Request $request)
     {
-        $current_page = $request->query('page', 1);
         $solicitudes = $this->getSolicitudesByStatusPaginated(['VALIDADA', 'COMPLETADA'], $request, );
         return view('solicitudes.completadas', compact('solicitudes'));
     }
@@ -325,10 +327,11 @@ class SolicitudController extends Controller
     /**
      * Display the solicitudes of the authenticated user.
      */
-    public function verUserSolicitudes()
+    public function verUserSolicitudes(Request $request)
     {
         $userId = Auth::user()->id;
-        $solicitudes = Solicitud::where('usuario_id', $userId)->paginate(10);
+        $request->query->set('usuario_id', $userId);
+        $solicitudes = $this->getSolicitudesByStatusPaginated('TODOS', $request, );
         return view('solicitudes.usuario-lista', compact('solicitudes'));
     }
 }

@@ -370,11 +370,6 @@
             }
         });
     }
-
-    function _dibujarElementos(pages, page) {
-        __dibujarElementos(pages, page, '/solicitudes/completas');
-    }
-
 </script>
 
 @endpush

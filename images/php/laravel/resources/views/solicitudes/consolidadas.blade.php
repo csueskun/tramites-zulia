@@ -194,9 +194,6 @@
         const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
         renderDocumentosTable(documentos);
     });
-    function _dibujarElementos(pages, page) {
-        __dibujarElementos(pages, page, '/solicitudes/consolidadas');
-    }
 </script>
 
 @endpush

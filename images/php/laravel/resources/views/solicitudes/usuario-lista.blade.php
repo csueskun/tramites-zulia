@@ -13,6 +13,7 @@
         <div class="col-lg-9">
             @include('components.session-messages')
             <h3 class="govcolor-blue-dark mb-4">Mis Solicitudes</h3>
+            <x-table-options action="/user/solicitudes"/> 
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">
                     <thead class="encabezado-tabla">
@@ -58,7 +59,15 @@
             </div>
             <div class="pagination-container-govco">
                 <nav class="nav-pagination-govco" aria-label="paginador de ejemplo">
-                    <div class="pagination-govco" id="paginationExample" total="{{$solicitudes->lastPage()}}" initialpage="{{$solicitudes->currentPage()}}">
+                    <div 
+                        class="pagination-govco" 
+                        id="paginationExample" 
+                        total="{{$solicitudes->lastPage()}}" 
+                        filterby="{{request('filter_by') ?? ''}}" 
+                        search="{{request('search') ?? ''}}"
+                        perpage="{{$solicitudes->perPage()}}" 
+                        route="/user/solicitudes" 
+                        initialpage="{{$solicitudes->currentPage()}}">
                         <ul id="lista-paginador"></ul>
                     </div>
                 </nav>
@@ -111,10 +120,6 @@
             estado.classList.add(clase);
         });
     });
-
-    function _dibujarElementos(pages, page) {
-        __dibujarElementos(pages, page, '/user/solicitudes');
-    }
 </script>
 
 @endpush

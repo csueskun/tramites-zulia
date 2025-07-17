@@ -541,9 +541,6 @@
             }
         });
     }
-    // function _dibujarElementos(pages, page, route) {
-    //     __dibujarElementos(pages, page, '/solicitudes/aceptadas', '{{ request('filter_by') }}', '{{ request('search') }}', );
-    // }
 </script>
 
 @endpush
