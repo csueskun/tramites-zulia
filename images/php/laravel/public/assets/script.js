@@ -4175,3 +4175,56 @@ function validateForm(form) {
 
   return isValid;
 }
+
+function showSkipToMainContent() {
+  if(!firstTab) return;
+  firstTab = false;
+  const skipButton = document.getElementById('skipToMainContent');
+  if (skipButton) {
+      skipButton.style.visibility = 'visible';
+      setTimeout(() => {
+          skipButton.focus();
+      }, timeout = 100);
+  }
+}
+
+function skipToMainContent(elementId){
+  document.getElementById('skipToMainContent').style.visibility = 'hidden';
+  const element = document.getElementById(elementId);
+  if(element){
+    element.focus();
+    const offset = 60; // Adjust this value for the desired padding
+    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: elementPosition, behavior: 'smooth' });
+  } else {
+    console.warn(`Element with ID ${elementId} not found or is empty.`);
+  }
+}
+
+function printSolicitudEstado(estado, certificado, constancia){
+  className = 'pendiente';
+  estadoLabel = estado;
+  switch (estadoLabel) {
+      case 'EN REVISION':
+          estadoLabel = 'EN REVISIÓN';
+          break;
+      case 'COMPLETADA':
+          className = 'completado';
+          break;
+      case 'RECHAZADA':
+          className = 'error';
+          break;
+      default:
+          className = 'pendiente';
+          break;
+  }
+  if(estadoLabel === 'APROBADA' && constancia) {
+      estadoLabel = 'EN VALIDACIÓN';
+  }
+  return `<span class="estado-pendiente etiqueta-govco ${className}"
+        data-estado="${estado}"
+        data-constancia-pago="${constancia ? 1 : 0}"
+        data-certificado="${certificado ? 1 : 0}">
+        <span>${estadoLabel}</span>
+    </span>`;
+}

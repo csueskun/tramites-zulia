@@ -260,3 +260,71 @@ div.alert.alerta-govco>span {
 .smaller{
     font-size: 0.8em;
 }
+.volver-arriba-govco:hover,
+.volver-arriba-govco:focus, .volver-arriba-govco:active {
+    transform: translateX(-30px) !important;
+    outline: none !important;
+}
+
+#skipToMainContent{
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 1000;
+    background-color: #3366cc;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    visibility: hidden;
+}
+#skipToMainContent,
+#skipToMainContent:active,
+#skipToMainContent:hover,
+#skipToMainContent:visited{
+    outline: thin solid white;
+}
+.alerta-govco {
+    height: auto;
+    max-height: fit-content;
+}
+
+@media screen and (max-width: 601px) {
+    #main-content>div>div,
+    .custom-progress{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}
+.custom-progress{
+    max-width: 1100px;
+}
+span.etiqueta-govco>span {
+    display: inline-block;
+}
+.btn-modal-govco{
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    width: fit-content;
+    min-width: 150px;
+    margin: 0 2px;
+}
+@media screen and (max-width: 520px) {
+    .modal-buttons-govco {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem !important;
+    }
+    .btn-modal-govco{
+        width: 100%;
+    }    
+    .modal-footer-govco {
+        margin: 0px 1.5rem auto 1.5rem;
+        padding-bottom: 3.5rem !important;
+    }
+    .btn-modal-govco {
+        width: 100%;
+        margin-bottom: 1rem !important;
+    }
+}
