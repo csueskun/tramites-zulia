@@ -32,7 +32,7 @@
                         @foreach ($solicitudes as $solicitud)
                         <tr>
                             <td>{{$solicitud->radicado}}</td>
-                            <td><span class="etiqueta-govco {{$solicitud->estado == 'APROBADA' ? 'completado' : 'error'}}">{{$solicitud->estado}}</span></td>
+                            <td><x-solicitud-estado :solicitud="$solicitud"/></span></td>
                             <td>{{ $solicitud->created_at->format('d/m/Y') }}</td>
                             <td><span class="max-w350">{{$solicitud->tramite->nombre}}</span></td>
                             <td>{{$solicitud->usuario->nombre_completo}}</td>
@@ -50,6 +50,8 @@
                                         data-bs-telefono="{{$solicitud->telefono}}"
                                         data-bs-correoelectronico="{{$solicitud->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
+                                        data-bs-constancia-pago="{{$solicitud->constancia_pago ? 1 : 0}}"
+                                        data-bs-certificado="{{$solicitud->certificado ? 1 : 0}}"
                                         data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
                                         VER MÁS</a>
                                 </div>
@@ -114,7 +116,7 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <span><strong>Estado:</strong></span>
-                                <p style="width: fit-content;"></p>
+                                <p></p>
                             </div>
                             <div class="col-lg-5">
                                 <span><strong>Fecha Aprobación:</strong></span>
@@ -189,7 +191,11 @@
             fields[i].innerHTML = trigger.getAttribute(`data-bs-${v}`);
         });
         const estadoField = fields[2];
-        estadoField.classList.add('etiqueta-govco', estadoField.innerHTML === "APROBADA" ? 'completado' : 'error');
+        estadoField.innerHTML = printSolicitudEstado(
+            trigger.getAttribute('data-bs-estado'),
+            trigger.getAttribute('data-bs-certificado') === '1',
+            trigger.getAttribute('data-bs-constancia-pago') === '1'
+        );
 
         const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
         renderDocumentosTable(documentos);

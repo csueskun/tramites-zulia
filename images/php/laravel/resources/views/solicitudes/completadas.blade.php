@@ -145,7 +145,7 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <span><strong>Estado:</strong></span>
-                                <p class="etiqueta-govco" style="width: fit-content;"></p>
+                                <p></p>
                             </div>
                             <div class="col-lg-7">
                                 <span><strong>Fecha Aprobación:</strong></span>
@@ -303,12 +303,17 @@
             fields[i].innerHTML = trigger.getAttribute(`data-bs-${v}`);
         });
 
-        fields[2].classList.remove('completado', 'error');
+        const estadoField = fields[2];
+        estadoField.innerHTML = printSolicitudEstado(
+            trigger.getAttribute('data-bs-estado'),
+            trigger.getAttribute('data-bs-certificado') === '1',
+            trigger.getAttribute('data-bs-constancia-pago') === '1'
+        );
+
         fields[4].classList.remove('pendiente', 'completado');
         fields[5].classList.remove('pendiente', 'completado');
         fields[6].classList.remove('pendiente', 'completado');
 
-        fields[2].classList.add(fields[2].innerHTML === "VALIDADA" ? 'completado' : 'error');
         fields[4].classList.add(fields[4].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
         fields[5].classList.add(fields[5].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
         fields[6].classList.add(fields[6].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');

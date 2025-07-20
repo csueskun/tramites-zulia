@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{ asset('assets/general/linea-avance2.css') }}">
 @endpush
 
+<x-s2mc-button element="nombres" />
+
 @push('breadcrumb')
     <li class="breadcrumb-item-govco active" aria-current="page">Nueva Solicitud</li>
 @endpush

@@ -53,18 +53,12 @@
                                         data-bs-correoelectronico="{{$solicitud->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
                                         data-bs-recibovencido="{{ $solicitud->recibo_pago->created_at->format('Ymd') < now()->format('Ymd') ? 'true' : 'false' }}"
+                                        data-bs-constancia-pago="{{$solicitud->constancia_pago ? 1 : 0}}"
+                                        data-bs-certificado="{{$solicitud->certificado ? 1 : 0}}"
                                         data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
                                         VER MÁS</a>
                                     @if($solicitud->fecha_validacion)
                                     @else
-                                    <!-- / <form class="validar-pago" action="/solicitudes/{{$solicitud->id}}" method="post">
-                                        @csrf
-                                        @method('patch')
-                                        <input type="hidden" name="id" value="{{$solicitud->id}}">
-                                        <input type="hidden" name="estado" value="VALIDADA">
-                                        <input type="hidden" name="fecha_validacion" value="">
-                                        <a class="govco-a" href="#" onclick="validarPago(this.closest('form'))">VALIDAR PAGO</a>
-                                    </form> -->
                                     / <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#validar-pago"
                                         data-bs-id="{{$solicitud->id}}"
                                         data-bs-cupl="{{ $solicitud->tramite_id != 3 }}"
@@ -134,7 +128,7 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <span><strong>Estado:</strong></span>
-                                <p class="etiqueta-govco" style="width: fit-content;"></p>
+                                <p></p>
                             </div>
                             <div class="col-lg-7">
                                 <span><strong>Fecha Aprobación:</strong></span>
@@ -275,12 +269,17 @@
             fields[i].innerHTML = trigger.getAttribute(`data-bs-${v}`);
         });
 
+        const estadoField = fields[2];
+        estadoField.innerHTML = printSolicitudEstado(
+            trigger.getAttribute('data-bs-estado'),
+            trigger.getAttribute('data-bs-certificado') === '1',
+            trigger.getAttribute('data-bs-constancia-pago') === '1'
+        );
+
         // Remove existing classes before adding new ones
-        fields[2].classList.remove('completado', 'error');
         fields[4].classList.remove('pendiente', 'completado');
         fields[5].classList.remove('pendiente', 'completado');
 
-        fields[2].classList.add(fields[2].innerHTML === "VALIDADA" ? 'completado' : 'pendiente');
         fields[4].classList.add(fields[4].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
         fields[5].classList.add(fields[5].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
 

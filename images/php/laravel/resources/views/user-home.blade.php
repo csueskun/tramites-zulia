@@ -117,8 +117,8 @@
                             </p>
                         </div>
                         <div class="modal-footer-govco modal-footer-alerts-govco">
-                            <div class="modal-buttons-govco d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary btn-modal-govco" style="width: auto; padding: 0 18px !important;">Crear nueva solicitud</button>
+                            <div class="modal-buttons-govco justify-content-center">
+                                <button type="submit" class="btn btn-primary btn-modal-govco">Crear nueva solicitud</button>
                                 <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
                                     Cerrar
                                 </button>

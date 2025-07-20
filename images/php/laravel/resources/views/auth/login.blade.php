@@ -2,6 +2,8 @@
 
 @section('title', 'Inicio de sesión')
 
+<x-s2mc-button element="email" />
+
 @push('breadcrumb')
 <li class="breadcrumb-item-govco active" aria-current="page">Inicio de sesión</li>
 @endpush

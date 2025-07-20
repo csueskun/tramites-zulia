@@ -32,13 +32,7 @@
                         <tr>
                             <td>{{$solicitud->radicado}}</td>
                             <td>{{ $solicitud->created_at->format('d/m/Y') }}</td>
-                            <td>
-                                <span class="estado-pendiente etiqueta-govco"
-                                    data-estado="{{$solicitud->estado}}"
-                                    data-constancia-pago="{{$solicitud->constancia_pago ? 1 : 0}}"
-                                    data-certificado="{{$solicitud->certificado ? 1 : 0}}">
-                                </span>
-                            </td>
+                            <td><x-solicitud-estado :solicitud="$solicitud"/></td>
                             <td><span class="max-w350">{{$solicitud->tramite->nombre}}</span></td>
                             <!-- <td>{{$solicitud->usuario->nombre_completo}}</td>
                             <td>{{$solicitud->usuario->documento_completo}}</td> -->
@@ -87,38 +81,43 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        const estadosPendientes = document.querySelectorAll('.estado-pendiente');
-        estadosPendientes.forEach(estado => {
-            var estadoSolicitud = estado.getAttribute('data-estado');
-            const constanciaPago = estado.getAttribute('data-constancia-pago');
-            const certificado = estado.getAttribute('data-certificado');
-            var clase = "pendiente";
-            let estadoNum = 1;
+        // const estadosPendientes = document.querySelectorAll('.estado-pendiente');
+        // estadosPendientes.forEach(estado => {
+        //     var estadoSolicitud = estado.getAttribute('data-estado');
+        //     const constanciaPago = estado.getAttribute('data-constancia-pago');
+        //     const certificado = estado.getAttribute('data-certificado');
+        //     var clase = "pendiente";
+        //     let estadoNum = 1;
 
-            switch (estadoSolicitud) {
-                case 'EN REVISION':
-                    estadoNum = 2;
-                    break;
-                case 'APROBADA':
-                    estadoNum = 3;
-                    break;
-                case 'VALIDADA':
-                    estadoNum = 5;
-                    break;
-            }
+        //     switch (estadoSolicitud) {
+        //         case 'EN REVISION':
+        //             estadoNum = 2;
+        //             estadoSolicitud = "EN REVISIÓN";
+        //             break;
+        //         case 'APROBADA':
+        //             estadoNum = 3;
+        //             break;
+        //         case 'VALIDADA':
+        //             estadoNum = 5;
+        //             break;
+        //         case 'COMPLETADA':
+        //             estadoNum = 5;
+        //             clase = "completado";
+        //             break;
+        //     }
 
-            if (estadoNum === 3 && constanciaPago === '1') {
-                estadoSolicitud = "EN VALIDACIÓN"
-            }
+        //     if (estadoNum === 3 && constanciaPago === '1') {
+        //         estadoSolicitud = "EN VALIDACIÓN"
+        //     }
 
-            if (estadoNum === 5 && certificado === '1') {
-                estadoSolicitud = "COMPLETADA";
-                clase = "completado";
-            }
+        //     if (estadoNum === 5 && certificado === '1') {
+        //         estadoSolicitud = "COMPLETADA";
+        //         clase = "completado";
+        //     }
 
-            estado.innerHTML = estadoSolicitud;
-            estado.classList.add(clase);
-        });
+        //     estado.innerHTML = estadoSolicitud;
+        //     estado.classList.add(clase);
+        // });
     });
 </script>
 

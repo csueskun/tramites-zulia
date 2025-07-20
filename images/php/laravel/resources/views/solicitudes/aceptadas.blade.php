@@ -64,6 +64,8 @@
                                         data-bs-telefono="{{$solicitud->telefono}}"
                                         data-bs-correoelectronico="{{$solicitud->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
+                                        data-bs-constancia-pago="{{$solicitud->constancia_pago ? 1 : 0}}"
+                                        data-bs-certificado="{{$solicitud->certificado ? 1 : 0}}"
                                         data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
                                         VER MÁS</a> /
                                     <a class="govco-a" href="https://portal-gov.tns.co/" target="_blank" >ABRIR PORTAL TNS</a> 
@@ -149,7 +151,7 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <span><strong>Estado:</strong></span>
-                                <p class="etiqueta-govco" style="width: fit-content;"></p>
+                                <p></p>
                             </div>
                             <div class="col-lg-5">
                                 <span><strong>Fecha Aprobación:</strong></span>
@@ -417,7 +419,13 @@
         fields[2].classList.remove('completado', 'error');
         fields[4].classList.remove('pendiente', 'completado');
 
-        fields[2].classList.add(fields[2].innerHTML === "APROBADA" ? 'completado' : 'error');
+        const estadoField = fields[2];
+        estadoField.innerHTML = printSolicitudEstado(
+            trigger.getAttribute('data-bs-estado'),
+            trigger.getAttribute('data-bs-certificado') === '1',
+            trigger.getAttribute('data-bs-constancia-pago') === '1'
+        );
+
         fields[4].classList.add(fields[4].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
 
         const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));

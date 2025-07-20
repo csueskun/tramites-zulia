@@ -2,6 +2,8 @@
 
 @section('title', 'Crear nuevo usuario')
 
+<x-s2mc-button element="nombres" />
+
 @push('breadcrumb')
 <li class="breadcrumb-item-govco"><a href="/login">Inicio de sesión</a></li>
 <li class="breadcrumb-item-govco active" aria-current="page">Nuevo usuario</li>
