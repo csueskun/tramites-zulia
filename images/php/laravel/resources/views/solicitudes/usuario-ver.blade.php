@@ -158,12 +158,8 @@
                                             </p>
                                         </div>
                                         <small>{{ $comentario->created_at->format('d/m/Y h:i A') }}</small>
-                                            <!-- <li class="mt-2">
-                                            </li> -->
                                         <br><br>
                                         @endforeach
-                                        <!-- <ul style="max-height: 400px;overflow-y: auto;overflow-x: clip; ">
-                                        </ul> -->
                                     @else
                                         <p>No hay comentarios.</p>
                                     @endif
