@@ -63,7 +63,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Paz y salvo del SIMIT (comprador y vendedor)',
+            'descripcion' => 'Estar a paz y salvo en el SIMIT (comprador y vendedor)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
@@ -200,7 +200,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Paz y salvo del SIMIT (Propietario)',
+            'descripcion' => 'Estar a paz y salvo en el SIMIT (Propietario)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
@@ -269,7 +269,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Paz y salvo del SIMIT',
+            'descripcion' => 'Estar a paz y salvo en el SIMIT',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
@@ -358,7 +358,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 5,
-            'descripcion' => 'Paz y salvo del SIMIT',
+            'descripcion' => 'Estar a paz y salvo en el SIMIT',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 5,
