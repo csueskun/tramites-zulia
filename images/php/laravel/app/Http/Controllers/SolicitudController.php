@@ -169,7 +169,7 @@ class SolicitudController extends Controller
                 $solicitud->documentos()->create([
                     'tipo' => 'CONSTANCIA DE PAGO',
                     'responsable' => $responsable,
-                    'ruta' => $solicitud->radicado . '-constancia-de-pago.pdf',
+                    'ruta' => '/' . $solicitud->radicado . '-constancia-de-pago.pdf',
                 ]);
                 $solicitud->comentarios()->create([
                     'comentario' => "En su dirección de correo {$solicitud->usuario->email}, recibirá el soporte de pago para el trámite.",
@@ -237,12 +237,12 @@ class SolicitudController extends Controller
             $solicitud->documentos()->create([
                 'tipo' => 'RECIBO DE PAGO',
                 'responsable' => "TNS",
-                'ruta' => $solicitud->radicado . '-recibo-de-pago.pdf',
+                'ruta' => '/' . $solicitud->radicado . '-recibo-de-pago.pdf',
             ]);
             $solicitud->documentos()->create([
                 'tipo' => 'CONSTANCIA DE PAGO',
                 'responsable' => 'ADMIN',
-                'ruta' => $solicitud->radicado . '-constancia-de-pago.pdf',
+                'ruta' => '/' . $solicitud->radicado . '-constancia-de-pago.pdf',
             ]);
             $solicitud->comentarios()->create([
                 'comentario' => "En su dirección de correo {$solicitud->usuario->email}, recibirá dos soportes de pago, uno para el trámite y otro para el CUPL.",
