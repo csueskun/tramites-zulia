@@ -4228,3 +4228,8 @@ function printSolicitudEstado(estado, certificado, constancia){
         <span>${estadoLabel}</span>
     </span>`;
 }
+function getNowDate() {
+  const now = new Date();
+  now.setHours(now.getHours() - 5);
+  return now.toISOString();
+} 

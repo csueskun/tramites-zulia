@@ -292,22 +292,7 @@
         const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
         renderDocumentosTable(documentos);
     })
-
-
-    // var forms = document.querySelectorAll('form.validar-pago');
-    // forms.forEach(function(form) {
-    //     form.addEventListener('submit', function(event) {
-    //         var fechaValidacionInput = form.querySelector('input[name="fecha_validacion"]');
-    //         fechaValidacionInput.value = new Date().toISOString();
-    //     });
-    // });
-
-    // function validarPago(form) {
-    //     var fechaValidacionInput = form.querySelector('input[name="fecha_validacion"]');
-    //     fechaValidacionInput.value = new Date().toISOString();
-    //     form.submit();
-    // }
-
+    
     var validarPaogo = document.getElementById('validar-pago');
     validarPaogo.addEventListener('show.bs.modal', function(event) {
         var trigger = event.relatedTarget;
@@ -315,7 +300,7 @@
         const cupl = trigger.getAttribute('data-bs-cupl');
         validarPaogo.querySelector('.modal-dialog form').setAttribute('action', '/solicitudes/'+solicitudId);
         validarPaogo.querySelector('p').innerHTML = cupl == "1" ? '¿Los soportes de pagos (TNS y CUPL) fueron verificados correctamente?' : '¿El soporte de pago de TNS fue verficado correctamente?';
-        validarPaogo.querySelector('input[name="fecha_validacion"]').value  = new Date().toISOString();
+        validarPaogo.querySelector('input[name="fecha_validacion"]').value  = getNowDate();
     });
 </script>
 

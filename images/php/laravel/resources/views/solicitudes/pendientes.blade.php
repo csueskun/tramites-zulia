@@ -297,7 +297,7 @@
     aceptarSolicitud.addEventListener('show.bs.modal', function(event) {
         var trigger = event.relatedTarget;
         aceptarSolicitud.querySelector('.modal-dialog form').setAttribute('action', trigger.getAttribute('data-bs-action'));
-        aceptarSolicitud.querySelector('input[name="fecha_aprobacion"]').value  = new Date().toISOString();
+        aceptarSolicitud.querySelector('input[name="fecha_aprobacion"]').value  = getNowDate();
     });
 </script>
 
