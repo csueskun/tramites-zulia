@@ -138,6 +138,7 @@ class SolicitudController extends Controller
         $solicitud = Solicitud::findOrFail($id);
         $solicitud->update($request->all());
         if ($solicitud->estado == 'APROBADA') {
+            $solicitud->update(['fecha_aprobacion' => now()]);
             $this->mailService->sendSolicitudAceptada($solicitud, $solicitud->comentarios);
         }
         if ($solicitud->estado == 'RECHAZADA') {
@@ -149,6 +150,7 @@ class SolicitudController extends Controller
             $this->mailService->sendSolicitudRechazada($solicitud, $comentario);
         }
         if ($solicitud->estado == 'VALIDADA') {
+            $solicitud->update(['fecha_validacion' => now()]);
             $this->mailService->sendPagoValidado($solicitud);
         }
         return redirect()->back()->with('success', 'Solicitud actualizada exitosamente.');

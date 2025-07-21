@@ -225,7 +225,6 @@
                     @csrf
                     @method('patch')
                     <input type="hidden" name="estado" value="VALIDADA">
-                    <input type="hidden" name="fecha_validacion" value="">
                     <div class="modal-content modal-content-govco">
                         <div class="modal-header modal-header-govco modal-header-alerts-govco">
                             <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -300,7 +299,6 @@
         const cupl = trigger.getAttribute('data-bs-cupl');
         validarPaogo.querySelector('.modal-dialog form').setAttribute('action', '/solicitudes/'+solicitudId);
         validarPaogo.querySelector('p').innerHTML = cupl == "1" ? '¿Los soportes de pagos (TNS y CUPL) fueron verificados correctamente?' : '¿El soporte de pago de TNS fue verficado correctamente?';
-        validarPaogo.querySelector('input[name="fecha_validacion"]').value  = getNowDate();
     });
 </script>
 
