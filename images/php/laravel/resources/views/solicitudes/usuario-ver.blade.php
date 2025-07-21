@@ -141,12 +141,6 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <span><strong>Correo electrónico:</strong></span>
-                                    <p>{{$solicitud->email}}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
                                     <span><strong>Comentarios:</strong></span>
                                     <br><br>
                                     @if ($solicitud->comentarios && count($solicitud->comentarios) > 0)
