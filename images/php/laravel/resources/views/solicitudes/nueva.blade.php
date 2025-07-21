@@ -25,35 +25,28 @@
                     <div class="custom-progress-container">
                         <div class="custom-step completed">
                             <div class="custom-stage"></div>
-                            <div class="custom-label">Generar<br>Solicitud</div>
+                            <div class="custom-label">Inicio<br/>&nbsp;</div>
                         </div>
                         <div class="custom-line-wrapper">
                             <div class="custom-line half-completed"></div>
                         </div>
                         <div class="custom-step">
                             <div class="custom-stage">2</div>
-                            <div class="custom-label">Esperar<br>Aprobación</div>
+                            <div class="custom-label">Hago mi<br/>solicitud</div>
                         </div>
                         <div class="custom-line-wrapper">
                             <div class="custom-line"></div>
                         </div>
                         <div class="custom-step">
                             <div class="custom-stage">3</div>
-                            <div class="custom-label">Enviar<br>Pago</div>
+                            <div class="custom-label">Procesan<br/>mi solicitud</div>
                         </div>
                         <div class="custom-line-wrapper">
                             <div class="custom-line"></div>
                         </div>
                         <div class="custom-step">
                             <div class="custom-stage">4</div>
-                            <div class="custom-label">Esperar<br>Validación</div>
-                        </div>
-                        <div class="custom-line-wrapper">
-                            <div class="custom-line"></div>
-                        </div>
-                        <div class="custom-step">
-                            <div class="custom-stage">5</div>
-                            <div class="custom-label">Recibir<br>Certificado</div>
+                            <div class="custom-label">Respuesta<br/>&nbsp;</div>
                         </div>
                     </div>
                 </div>
