@@ -17,23 +17,23 @@ class TramiteSeeder extends Seeder
         Tramite::factory()->createMany([
             [
                 'nombre' => 'Traspaso de propiedad de un vehículo automotor',
-                'descripcion' => 'Este trámite asegura que el nuevo propietario sea reconocido como el responsable legal del vehículo, cumpliendo con las obligaciones civiles y fiscales, como el pago de impuestos, multas y otros compromisos asociados al automóvil',
+                'descripcion' => 'Obtener la inscripción de la transferencia de la propiedad de un vehículo automotor',
             ],
             [
                 'nombre' => 'Levantamiento de limitacion o gravamen a un vehículo automotor',
-                'descripcion' => 'El proceso legal mediante el cual se elimina una restricción, impedimento o condición que afecta la libre disposición del vehículo. Este gravamen puede haber sido impuesto por diversas razones, y su levantamiento permite que el propietario del vehículo lo venda, transfiera o disponga de él sin restricciones legales',
+                'descripcion' => 'Levantar limitaciones o gravámenes a la propiedad de un vehículo automotor',
             ],
             [
                 'nombre' => 'Certificado de libertad y tradicion de un vehículo automotor',
-                'descripcion' => 'El certificado de libertad y tradicion de un vehiculo automotor incluye la información como su historial de propietarios, estado de los impuestos, posibles embargos, u otras restricciones legales que puedan afectar a la propiedad',
+                'descripcion' => 'Obtener el certificado que determina la titularidad del dominio, las características del vehículo, medidas cautelares, limitaciones, gravámenes y un registro histórico donde se refleja todas las actuaciones y trámites realizados al automotor desde la fecha de expedición de la matrícula inicial',
             ],
             [
                 'nombre' => 'Duplicado de placas de un vehículo automotor',
-                'descripcion' => 'Destrucción, deterioro o hurto, las cuales permiten identificar externa y privativamente un vehículo',
+                'descripcion' => 'Expedición del duplicado de la(s) placa(s) de un vehículo automotor, en caso de pérdida, destrucción, deterioro o hurto, las cuales permiten identificar externa y privativamente un vehículo',
             ],
             [
                 'nombre' => 'Renovación de licencia de conducción',
-                'descripcion' => 'Este proceso permite actualizar la vigencia del documento, certificando que la persona sigue apta para conducir un vehículo al cumplir con las normativas de tránsito, mantener las habilidades necesarias y/o contar con condiciones médicas adecuadas según los requisitos establecidos',
+                'descripcion' => 'Obtener la renovación de la fecha de vigencia de la licencia de conducción, en caso de ser para servicio público la renovación se hará por tres (3) años, si es mayor de sesenta (60) años por un (1) año, si es de servicio particular por diez (10) años para los menores de sesenta (60) años, cinco (5) años para los conductores entre sesenta (60) y ochenta (80) años y anualmente para los conductores mayores de ochenta (80) años de edad',
             ],
         ]);
     }

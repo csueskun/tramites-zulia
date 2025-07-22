@@ -246,7 +246,7 @@
                                         <div class="container-alerta-govco mt-2">
                                             <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
                                                 <p class="alerta-content-text p-4">
-                                                    El recibo de pago se emitirá y se enviará al correo <strong>{{ Auth::user()->email }}</strong> una vez sus requisitos sean revisados y
+                                                    El soporte de pago se emitirá y se enviará al correo <strong>{{ Auth::user()->email }}</strong> una vez sus requisitos sean revisados y
                                                     aprobados por la entidad.
                                                 </p>
                                             </div>
