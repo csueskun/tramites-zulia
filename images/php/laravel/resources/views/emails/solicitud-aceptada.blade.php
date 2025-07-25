@@ -20,7 +20,7 @@
     <p>
         Si tiene alguna consulta adicional o requiere asistencia, 
         no dude en comunicarse con nosotros a través de 
-        <a href="mailto:transito.sistemas@nortedesantander.gov.co">transito.sistemas@nortedesantander.gov.co</a>
+        <a href="mailto:transito.tramites@nortedesantander.gov.co">transito.tramites@nortedesantander.gov.co</a>
     </p>
     <p>
         Atentamente,<br>

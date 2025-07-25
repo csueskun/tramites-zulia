@@ -23,7 +23,7 @@
         Por favor, revise el recibo adjunto y asegúrese de que toda la información 
         sea correcta. Si encuentra algún error o tiene alguna pregunta, 
         no dude en ponerse en contacto con nosotros a través de
-        <a href="mailto:transito.sistemas@nortedesantander.gov.co">transito.sistemas@nortedesantander.gov.co</a>
+        <a href="mailto:transito.tramites@nortedesantander.gov.co">transito.tramites@nortedesantander.gov.co</a>
     </p>
     <p>
         Diríjase a la plataforma para consultar el estado de su solicitud,
