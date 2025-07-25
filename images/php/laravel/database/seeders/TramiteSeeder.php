@@ -20,11 +20,11 @@ class TramiteSeeder extends Seeder
                 'descripcion' => 'Obtener la inscripción de la transferencia de la propiedad de un vehículo automotor',
             ],
             [
-                'nombre' => 'Levantamiento de limitacion o gravamen a un vehículo automotor',
+                'nombre' => 'Levantamiento de limitación o gravamen a un vehículo automotor',
                 'descripcion' => 'Levantar limitaciones o gravámenes a la propiedad de un vehículo automotor',
             ],
             [
-                'nombre' => 'Certificado de libertad y tradicion de un vehículo automotor',
+                'nombre' => 'Certificado de libertad y tradición de un vehículo automotor',
                 'descripcion' => 'Obtener el certificado que determina la titularidad del dominio, las características del vehículo, medidas cautelares, limitaciones, gravámenes y un registro histórico donde se refleja todas las actuaciones y trámites realizados al automotor desde la fecha de expedición de la matrícula inicial',
             ],
             [

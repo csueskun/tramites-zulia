@@ -67,7 +67,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Paz y salvo de impuestos (comprador y vendedor)',
+            'descripcion' => 'Paz y salvo de impuestos de vehículo (comprador y vendedor)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
@@ -204,7 +204,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Paz y salvo de impuestos',
+            'descripcion' => 'Paz y salvo de impuestos de vehículo',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
@@ -234,7 +234,7 @@ class TramiteRequerimientoSeeder extends Seeder
         //Certificación de tradición y libertad 
         TramiteRequerimiento::create([
             'tramite_id' => 3,
-            'descripcion' => 'Solicitud formal con los datos del vehículo (placa, marca de vehículo)',
+            'descripcion' => 'Solicitud formal con los datos del vehículo (sólo placa)',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'solicitud_certificado',
@@ -273,7 +273,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Paz y salvo de impuestos',
+            'descripcion' => 'Paz y salvo de impuestos de vehículo',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
@@ -287,7 +287,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Licencia de Transito (Tarjeta de Propiedad, Copia por Ambas Caras)',
+            'descripcion' => 'Licencia de Tránsito (Tarjeta de Propiedad, Copia por Ambas Caras)',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'tarjeta_propiedad',
@@ -305,7 +305,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados',
+            'descripcion' => 'Contrato de mandato o poder especial, si el trámite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados',
             'tipo' => 'ARCHIVO',
             'obligatorio' => false,
             'file_metadata' => json_encode([

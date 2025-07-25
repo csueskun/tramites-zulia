@@ -11,7 +11,9 @@
     <p>Estimado <i>{{ $nombres }}</i>,</p>
     <p>
         Le informamos que el recibo de pago de TNS fue enviado a su correo electrónico, 
-        y tiene plazo el dia de hoy hasta las 11:59 pm para realizar el correspondiente pago.
+        y <strong><span style="color: red;">
+        TIENE PLAZO EL DIA DE HOY HASTA LAS 11:59 PM PARA REALIZAR EL CORRESPONDIENTE PAGO
+        </span></strong>.
     </p>
     <p>
         De igual forma, se adjunta el Recibo de pago correspondiente al derecho a 

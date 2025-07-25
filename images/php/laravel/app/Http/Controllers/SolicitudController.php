@@ -213,7 +213,7 @@ class SolicitudController extends Controller
     {
         $this->mailService->mailSolicitudCompletada($solicitud);
         $solicitud->comentarios()->create([
-            'comentario' => "El proceso de solicitud terminó correctamente. Por favor preséntese en la oficina de tránsito correspondiente.",
+            'comentario' => "El proceso de solicitud terminó correctamente. Por favor preséntese en la secretaria de tránsito sede operativa del municipio El Zulia.",
             'autor' => 'ADMIN',
         ]);
         $solicitud->update(['estado' => 'COMPLETADA']);

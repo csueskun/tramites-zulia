@@ -11,7 +11,7 @@
         Le informamos que el proceso de solicitud inciada el dia <strong>{{ $fecha }}</strong> con número de 
         radicado <strong>{{$radicado}}</strong> para <strong>{{$tramite}}</strong> ha sido completado. 
         <strong>
-            Por favor preséntese en la oficina de tránsito correspondiente para finalizar el proceso. {{ $nota }}
+            Por favor preséntese en la secretaria de tránsito sede operativa del municipio El Zulia. {{ $nota }}
         </strong>
     </p>
     <p>
