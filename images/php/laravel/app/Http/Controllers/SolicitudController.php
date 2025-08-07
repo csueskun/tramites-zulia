@@ -120,6 +120,11 @@ class SolicitudController extends Controller
         $solicitudes = $this->getSolicitudesByStatusPaginated(['VALIDADA', 'COMPLETADA'], $request, );
         return view('solicitudes.completadas', compact('solicitudes'));
     }
+    public function viewRechazadas(Request $request)
+    {
+        $solicitudes = $this->getSolicitudesByStatusPaginated(['RECHAZADA'], $request, );
+        return view('solicitudes.rechazadas', compact('solicitudes'));
+    }
 
     private function getQueryFromRequest(Request $request)
     {
@@ -172,7 +177,9 @@ class SolicitudController extends Controller
                     'ruta' => '/' . $solicitud->radicado . '-constancia-de-pago.pdf',
                 ]);
                 $solicitud->comentarios()->create([
-                    'comentario' => "En su dirección de correo {$solicitud->usuario->email}, recibirá el soporte de pago para el trámite.",
+                    'comentario' => "En su dirección de correo {$solicitud->usuario->email}, " .
+                                    "recibirá el soporte de pago para el trámite, y tiene plazo " .
+                                    "el dia de hoy hasta 11:59 pm para realizar el correspondiente pago.",
                     'autor' => 'ADMIN',
                 ]);
             } else {
@@ -213,7 +220,8 @@ class SolicitudController extends Controller
     {
         $this->mailService->mailSolicitudCompletada($solicitud);
         $solicitud->comentarios()->create([
-            'comentario' => "El proceso de solicitud terminó correctamente. Por favor preséntese en la secretaria de tránsito sede operativa del municipio El Zulia.",
+            'comentario' => "El proceso de solicitud terminó correctamente. Por favor preséntese " .
+                            "en la secretaria de tránsito sede operativa del municipio El Zulia.",
             'autor' => 'ADMIN',
         ]);
         $solicitud->update(['estado' => 'COMPLETADA']);
@@ -245,11 +253,14 @@ class SolicitudController extends Controller
                 'ruta' => '/' . $solicitud->radicado . '-constancia-de-pago.pdf',
             ]);
             $solicitud->comentarios()->create([
-                'comentario' => "En su dirección de correo {$solicitud->usuario->email}, recibirá dos soportes de pago, uno para el trámite y otro para el CUPL.",
+                'comentario' => "En su dirección de correo {$solicitud->usuario->email}, " .
+                                "recibirá dos soportes de pago, uno para el trámite y otro para el CUPL.",
                 'autor' => 'ADMIN',
             ]);
             $solicitud->comentarios()->create([
-                'comentario' => "Le informamos que el recibo de pago del TNS fue enviado a su correo electrónico, y tiene plazo el dia de hoy hasta 11:59 pm para realizar el correspondiente pago.",
+                'comentario' => "Le informamos que el recibo de pago del TNS fue enviado a " .
+                                "su correo electrónico, y tiene plazo el dia de hoy hasta " .
+                                "11:59 pm para realizar el correspondiente pago.",
                 'autor' => 'ADMIN',
             ]);
             return redirect()->back()->with('success', 'Soporte de pago enviado.');
