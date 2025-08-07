@@ -9,7 +9,7 @@
             </div>
         </div>
     </a>
-    <a href="javascript:void(0)" tabindex="-1" class="aservice-spacing no-decoration" id="aserviceTutorial">
+    <a href="/solicitudes/tutoriales" tabindex="-1" class="aservice-spacing no-decoration" id="aserviceTutorial">
         <div class="aservice" tabindex="0">
             <div class="aservice-item link-card">
                 <p class="aservice-text-govco aservice-link-govco aservice-spacing-card no-decoration">
