@@ -25,17 +25,6 @@
                     </a>
                 </div>
                 <div class="col-lg-4 p-2">
-                    <a class="module-tarjeta-govco fix" href="/solicitudes/consolidadas" title="Ver respuestas">
-                        <div class="header-tarjeta-govco">
-                            <h5>Ver respuestas</h5>
-                        </div>
-                        <hr>
-                        <div class="body-tarjeta-govco">
-                            <p>Revise las respuestas a sus solicitudes de legalización de documentos.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 p-2">
                     <a class="module-tarjeta-govco fix" href="/solicitudes/aceptadas" title="Enviar recibo de pago">
                         <div class="header-tarjeta-govco">
                             <h5>Enviar recibo de pago</h5>
@@ -65,6 +54,17 @@
                         <hr>
                         <div class="body-tarjeta-govco">
                             <p>Consulte solcitudes con procesos completos y envíe certificados.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 p-2">
+                    <a class="module-tarjeta-govco fix" href="/solicitudes/rechazadas" title="Ver solicitudes rechazadas">
+                        <div class="header-tarjeta-govco">
+                            <h5>Ver solicitudes rechazadas</h5>
+                        </div>
+                        <hr>
+                        <div class="body-tarjeta-govco">
+                            <p>Consulte las solicitudes rechazadas y sus motivos.</p>
                         </div>
                     </a>
                 </div>
