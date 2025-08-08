@@ -3,7 +3,7 @@
 @section('title', 'Administración de Trámites')
 
 @push('breadcrumb')
-<li class="breadcrumb-item-govco active" aria-current="page">Administración</li>
+<li class="breadcrumb-item-govco active" aria-current="page">Trámites</li>
 @endpush
 
 @section('content')
