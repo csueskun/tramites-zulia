@@ -21,7 +21,7 @@
     </p>
     <p>
         <strong>Si desea obtener el certificado en formato físico, 
-        puede acercarse directamente a la Secretaría de Tránsito</strong>
+        puede acercarse directamente a la Secretaría de Tránsito, sede operativa El Zulia</strong>
     </p>
     <p>
         Atentamente,<br>
