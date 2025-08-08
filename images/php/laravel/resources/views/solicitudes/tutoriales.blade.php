@@ -47,7 +47,7 @@
                                 'description' => 'Aprende a crear una solicitud de certificado de libertad y tradición'
                             ],
                             [
-                                'title' => 'Recuperar Contraseña',
+                                'title' => 'Crear cuenta de usuario',
                                 'src' => 'https://www.youtube.com/embed/9fq-d-fB3S4',
                                 'description' => 'En este video te mostramos cómo recuperar tu contraseña de acceso al sistema de trámites.'
                             ],
