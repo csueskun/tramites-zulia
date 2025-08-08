@@ -3,7 +3,6 @@
 @section('title', 'Recuperar contraseña')
 
 @push('breadcrumb')
-    <li class="breadcrumb-item-govco"><a href="/">Administración</a></li>
     <li class="breadcrumb-item-govco active" aria-current="page">Tutoriales</li>
 @endpush
 
