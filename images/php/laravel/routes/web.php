@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/solicitudes/{id}/documento', [DocumentoController::class, 'addDocumento']);
     Route::post('/solicitudes', [SolicitudController::class, 'addSolicitud']);
     Route::get('/documentos/download/{id}', [DocumentoController::class, 'download']);
+    Route::view('/solicitudes/tutoriales', 'solicitudes.tutoriales');
     
     Route::middleware([IsAdmin::class])->group(function () {
         Route::view('/home', 'admin-home');
@@ -50,7 +51,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/solicitudes/aceptadas', [SolicitudController::class, 'viewAceptadas']);
         Route::get('/solicitudes/pagadas', [SolicitudController::class, 'viewPagadas']);
         Route::get('/solicitudes/completas', [SolicitudController::class, 'viewCompletas']);
-        Route::view('/solicitudes/tutoriales', 'solicitudes.tutoriales');
         Route::post('/solicitudes/{solicitud}/mail-recibo-pago', [SolicitudController::class, 'mailReciboDePago']);
         Route::post('/solicitudes/{id}/mail-certificado', [SolicitudController::class, 'mailCertificado']);
         Route::post('/solicitudes/{solicitud}/mail-solicitud-completada', [SolicitudController::class, 'mailSolicitudCompletada']);

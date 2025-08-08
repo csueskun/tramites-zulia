@@ -19,7 +19,23 @@
 <body>
     <nav class="navbar navbar-expand-lg barra-superior-govco" aria-label="Barra superior">
         <a href="https://www.gov.co/" target="_blank" aria-label="Portal del Estado Colombiano - GOV.CO"></a>
-        <button class="idioma-icon-barra-superior-govco float-right" aria-label="Button to change the language of the page to English"></button>
+        
+        <div class="right-button-group" style="
+    padding: 0;
+    font-size: 10px;
+    position: absolute;
+    right: 5.375rem;">
+            @if (Auth::check())
+            
+            <div class="btn-group me-2" style="vertical-align: top;">
+            <button type="button" class="button-user" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                {{ Auth::user()->nombreCompleto }}
+            </button>
+            </div>
+            @endif
+            <button class="idioma-icon-barra-superior-govco-fix" aria-label="Button to change the language of the page to English"></button>
+        
+        </div>
     </nav>
     @yield('skip-to-main-content')
     <div class="card no-border-bottom" id="main-content">
