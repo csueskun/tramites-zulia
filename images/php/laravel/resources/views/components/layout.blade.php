@@ -126,10 +126,26 @@
         </div>
         <div class="col-md-5"></div>
     </div>
+
+    <div class="content-example-barra">
+        <div class="barra-accesibilidad-govco">
+            <button id="botoncontraste" class="icon-contraste" onclick="cambiarContexto()">
+                <span id="titlecontraste">Contraste</span>
+            </button>
+            <button id="botondisminuir" class="icon-reducir" onclick="disminuirTamanio('disminuir')">
+                <span id="titledisminuir">Reducir letra</span>
+            </button>
+            <button id="botonaumentar" class="icon-aumentar" onclick="aumentarTamanio('aumentar')">
+                <span id="titleaumentar">Aumentar letra</span>
+            </button>
+        </div>
+    </div>
+
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js') }}"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src="{{ asset('assets/script.js') }}"></script>
+    <script src="{{ asset('assets/transversal/barra-accesibilidad.js') }}"></script>
     <script>
         var firstTab = true;
         document.addEventListener('focusin', function () {
@@ -144,13 +160,11 @@
             function toggleGoToTopButton() {
                 const goToTopButton = document.querySelector('.volver-arriba-govco');
                 if (!goToTopButton) return;
-                const scrollHeight = document.body.scrollHeight;
-                const viewportHeight = window.innerHeight;
                 const scrollTop = window.scrollY;
-                if (scrollHeight <= viewportHeight || scrollTop === 0) {
-                    goToTopButton.style.display = 'none';
-                } else {
+                if (scrollTop > 100) {
                     goToTopButton.style.display = 'block';
+                } else {
+                    goToTopButton.style.display = 'none';
                 }
             }
             toggleGoToTopButton();
