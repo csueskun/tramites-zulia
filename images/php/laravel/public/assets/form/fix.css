@@ -328,3 +328,29 @@ span.etiqueta-govco>span {
         margin-bottom: 1rem !important;
     }
 }
+.idioma-icon-barra-superior-govco-fix{
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 0.313rem;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    padding: 0;
+    border: 0.125rem solid #FFFFFF;
+    font-size: 10px;
+}
+.idioma-icon-barra-superior-govco-fix::before{
+    font-family: "govco-font";
+    content: '\ec56';
+    color: #3366CC;
+    font-size: 14px;
+}
+.button-user{
+    border-radius: 0.313rem;
+    color: white;
+    border: thin solid white;
+    background-color: transparent;
+    font-size: 14px;
+}
+.header-tarjeta-govco{
+    display: initial !important;
+}
