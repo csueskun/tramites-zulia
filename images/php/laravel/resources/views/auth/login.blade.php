@@ -14,14 +14,14 @@
 <div class="card">
     <div class="card-body d-flex justify-content-center" style="background-color: #F6F8F9;">
 
-        <div class="inicio-sesion-govco" data-content="natural">
+        <div class="inicio-sesion-govco" data-content="natural"  id="para-mirar">
             <h2>Inicio de sesión</h2>
             <div class="container-login-alerta-juridica-govco">
                 <div class="icon-informacion-login-govco"></div>
                 <p>Para realizar trámites, debes estar registrado con tu número de documento y ser representante legal de la empresa.</p>
             </div>
             <div class="login-label-govco mt-3">
-                <p><strong>Los campos marcados con <span aria-required="true">*</span> son obligatorios</strong></p>
+                <p><strong>Los campos marcados con <span aria-require d="true">*</span> son obligatorios</strong></p>
             </div>
             <div class="container-login-opcion-govco" data-container-persona="natural">
                 <form method="POST" action="/login">
