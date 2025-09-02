@@ -6,6 +6,7 @@ services:
       context: ./images/php
       dockerfile: DockerfileTest
     volumes:
+      - ./images/php/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini
       - ./images/php/laravel:/var/www/html
     depends_on:
       db:
