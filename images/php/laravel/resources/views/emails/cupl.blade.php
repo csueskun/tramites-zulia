@@ -17,7 +17,9 @@
     </p>
     <p>
         De igual forma, se adjunta el Recibo de pago correspondiente al derecho a 
-        tramite del RUNT (CUPL) para realizar el pago correspondiente.
+        tramite del RUNT (CUPL) para realizar el pago correspondiente. Para realizar el pago,
+        puede hacerlo a través del siguiente enlace:
+        <a href="https://portalpublico.runt.gov.co/#/recaudospagos/pagos/solicitud">Pago de Servicios - CUPL</a>
     </p>
     <p>
         <strong><span style="color: red;">
