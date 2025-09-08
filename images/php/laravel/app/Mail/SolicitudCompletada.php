@@ -44,11 +44,8 @@ class SolicitudCompletada extends Mailable
             'radicado' => $this->solicitud->radicado,
             'fecha' => $this->solicitud->created_at->format('d/m/Y'),
             'tramite' => $this->solicitud->tramite->nombre,
-            'nota' => '', 
+            'nota' => 'Traer los documentos originales en físico.', 
         ];
-        if ($this->solicitud->tramite_id == 1) {
-            $with['nota'] = 'Traer los documentos originales en físico.';
-        }
         return new Content(
             view: 'emails.solicitud-completada',
             with: $with,
