@@ -48,7 +48,7 @@
                                         data-bs-nombres="{{$solicitud->nombres}}"
                                         data-bs-numerodocumento="{{$solicitud->tipo_documento}} {{$solicitud->identificacion}}"
                                         data-bs-telefono="{{$solicitud->telefono}}"
-                                        data-bs-correoelectronico="{{$solicitud->email}}"
+                                        data-bs-correoelectronico="{{$solicitud->usuario->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
                                         data-bs-constancia-pago="{{$solicitud->constancia_pago ? 1 : 0}}"
                                         data-bs-certificado="{{$solicitud->certificado ? 1 : 0}}"

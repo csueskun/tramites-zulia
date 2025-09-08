@@ -67,7 +67,7 @@
                                         data-bs-nombres="{{$solicitud->nombres}}"
                                         data-bs-numerodocumento="{{$solicitud->tipo_documento}} {{$solicitud->identificacion}}"
                                         data-bs-telefono="{{$solicitud->telefono}}"
-                                        data-bs-correoelectronico="{{$solicitud->email}}"
+                                        data-bs-correoelectronico="{{$solicitud->usuario->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
                                         data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
                                         VER MÁS</a>
