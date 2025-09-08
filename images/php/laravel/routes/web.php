@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/solicitudes', [SolicitudController::class, 'addSolicitud']);
     Route::get('/documentos/download/{id}', [DocumentoController::class, 'download']);
     Route::view('/solicitudes/tutoriales', 'solicitudes.tutoriales');
+    Route::post('/solicitudes/{solicitud}/comprobantes-pago', [DocumentoController::class, 'addConstanciasPago']);
     
     Route::middleware([IsAdmin::class])->group(function () {
         Route::view('/home', 'admin-home');
