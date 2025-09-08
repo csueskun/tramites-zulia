@@ -26,7 +26,7 @@
                                 'description' => 'Aprende a crear una solicitud de traspaso de propiedad de vehículo'
                             ],
                             [
-                                'title' => 'Traspaso de levantamiento de limitación o gravamen',
+                                'title' => 'Levantamiento de limitación o gravamen',
                                 'src' => 'https://www.youtube.com/embed/lSUcGfbQvYs',
                                 'description' => 'Aprende a crear una solicitud de traspaso de levantamiento de limitación o gravamen'
                             ],
