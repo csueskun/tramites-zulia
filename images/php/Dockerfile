@@ -1,6 +1,7 @@
 # Use the official PHP-FPM image
 FROM php:8.2-fpm
 
+COPY clear-laravel-caches.sh /usr/local/bin/clear-laravel-caches
 RUN chmod +x /usr/local/bin/clear-laravel-caches
 
 # Install required PHP extensions
