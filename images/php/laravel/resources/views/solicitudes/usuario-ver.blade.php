@@ -49,6 +49,12 @@
                             </div>
                             <br />
                             @endif
+                            @if (in_array($solicitud->estado, ['ACEPTADA', 'VALIDADA']))
+                            <a class="govco-a" href="#" data-bs-toggle="modal" data-bs-target="#enviar-pagos">
+                                {{ $solicitud->tramite_id === 3 ? 'ANEXAR CONSTANCIA DE PAGO' : 'ANEXAR CONSTANCIAS DE PAGO (CUPL Y TNS)' }}</a>
+                            <br>
+                            <br>
+                            @endif
                             <div class="titulo-informacion-govco mb-4">
                                 <label>Detalles de la Solicitud</label>
                             </div>
@@ -171,6 +177,72 @@
 
     </div>
 </div>
+@php
+$fileConfigs[] = [
+        'key' => 'constancia_de_pago_tns',
+        'tipo' => 'pdf',
+        'max_size' => 10485760
+];
+if($solicitud->tramite_id !== 3) {
+    $fileConfigs[] = [
+        'key' => 'constancia_de_pago_cupl',
+        'tipo' => 'pdf',
+        'max_size' => 10485760
+    ];
+}
+@endphp
+<div class="modal fade" id="enviar-pagos" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
+    <div class="container-modal-govco">
+        <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
+            data-bs-keyboard="false" aria-labelledby="enviar-pagos" aria-hidden="true" aria-hidden="true"
+            role="dialog">
+            <div class="modal-dialog modal-dialog-govco">
+                <form action="/solicitudes/{{ $solicitud->id }}/comprobantes-pago" method="post" enctype="multipart/form-data" id="constancias-pagos">
+                    @csrf
+                    <div class="modal-content modal-content-govco">
+                        <div class="modal-header modal-header-govco modal-header-alerts-govco">
+                            <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
+                            <div class="row">
+                                @if ($solicitud->tramite_id !== 3)
+                                <div class="col-lg-12">
+                                    <x-gov-file-input 
+                                        name="constancia_de_pago_cupl" 
+                                        max="10" 
+                                        type="pdf" 
+                                        required="{{ true }}" 
+                                        descripcion="Recibo de pago CUPL"/>
+                                </div>
+                                @endif
+                                <div class="col-lg-12">
+                                    <x-gov-file-input 
+                                        name="constancia_de_pago_tns" 
+                                        max="10" 
+                                        type="pdf" 
+                                        required="{{ true }}" 
+                                        descripcion="Recibo de pago TNS"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer-govco modal-footer-alerts-govco">
+                            <div class="modal-buttons-govco d-flex justify-space-between">
+                                <button type="button" disabled="disabled" class="btn btn-primary btn-modal-govco submit" data-bs-dismiss="modal">
+                                    Enviar
+                                </button>
+                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                    Cerrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <style>
     .linea-avance-interaccion-nombre-govco {
         width: 7em;
@@ -193,6 +265,10 @@
 @push('scripts')
 <script src="{{ asset('assets/form/carga-de-archivo.js') }}"></script>
 <script>
+    var fileData = {};
+    var form = document.querySelector('#constancias-pagos');
+    const fileConfigs = @json($fileConfigs);
+
     document.addEventListener('DOMContentLoaded', function() {
 
         var fileInputs = document.querySelectorAll('.input-carga-de-archivo-govco');
@@ -243,6 +319,50 @@
                 line.classList.add('half-completed');
             }
         });
+
+        window.addEventListener("load", function () {
+            fileConfigs.forEach(({ key, tipo, max_size }) => {
+                fileData[key] = [];
+                setValidationParameters('file_' + key, [tipo], max_size, 1);
+                document.querySelector('#file_' + key).addEventListener('change', function (event) {
+                    setTimeout(function(){
+                        preValidateFileForm(form);
+                    }, 2000);
+                });
+            });
+        });
     });
+
+    function addFileInputs(tempform, inputFileFiles, inputName) {
+        const dataTransfer = new DataTransfer();
+        inputFileFiles.forEach(file => dataTransfer.items.add(file));
+        var inputFile = document.createElement("input");
+        inputFile.type = "file";
+        inputFile.name = inputName.replace('file_', '');
+        inputFile.files = dataTransfer.files;
+        return inputFile;
+    }
+
+    function preValidateFileForm(form) {
+        const isFormValid = validateForm(form);
+        setTimeout(function () {
+            validateFileForm(form, function () {
+                if(isFormValid){
+                    form.querySelector('button.submit').removeAttribute('disabled');
+                    const dataTransfer = new DataTransfer();
+                    const tempForm = cloneFileForm(form);
+                    fileConfigs.forEach(({ key, tipo, max_size }) => {
+                        tempForm.appendChild(addFileInputs(tempForm, fileData[key], 'file_' + key));
+                    });
+                    document.body.appendChild(tempForm);
+                    tempForm.submit();
+                }
+                else{
+                    form.querySelector('button.submit').setAttribute('disabled', 'disabled');
+                }
+            }, function () {
+            }, true)
+        }, 200);
+    }
 </script>
 @endpush
