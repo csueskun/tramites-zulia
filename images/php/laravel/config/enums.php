@@ -10,6 +10,7 @@ return [
         'CARROEMPRESA',
         'MOTOEMPRESA',
         'CAMIONEMPRESA',
+        'PUBLICO',
     ],
     'persona_types' => [
         'TODOS',
