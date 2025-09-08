@@ -47,6 +47,37 @@ class DocumentoController extends Controller
 
         return redirect("/user/solicitudes/{$solicitudId}/ver")->with('success', 'Documento enviado exitosamente.');
     }
+    public function addConstanciasPago(Request $request, Solicitud $solicitud)
+    {
+        $documents = [
+            'constancia_de_pago_tns' => '-constancia-pago-tns.pdf',
+            'constancia_de_pago_cupl' => '-constancia-pago-cupl.pdf',
+        ];
+        $storedFiles = [];
+
+        foreach ($documents as $inputName => $suffix) {
+            try {
+                if ($request->hasFile($inputName)) {
+                    $fileName = $solicitud->radicado . $suffix;
+                    $file = $request->file($inputName);
+                    $file->storeAs('uploads', $fileName, 'public');
+                    $storedFiles[$inputName] = '/' . $fileName;
+                }
+            } catch (\Throwable $th) {
+                return redirect()->back()->withErrors(['Error al cargar documento: ' . $th->getMessage()]);
+            }
+        }
+
+        foreach ($storedFiles as $key => $value) {
+            $newDocumento = new Documento();
+            $newDocumento->tipo = strtoupper(str_replace('_', ' ', $key));
+            $newDocumento->ruta = $value;
+            $newDocumento->solicitud_id = $solicitud->id;
+            $newDocumento->save();
+        }
+
+        return redirect("/user/solicitudes/{$solicitud->id}/ver")->with('success', 'Constancias cargadas.');
+    }
 
     public function download($id)
     {
