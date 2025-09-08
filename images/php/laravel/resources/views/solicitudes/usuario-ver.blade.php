@@ -49,7 +49,7 @@
                             </div>
                             <br />
                             @endif
-                            @if (in_array($solicitud->estado, ['ACEPTADA', 'VALIDADA']))
+                            @if (in_array($solicitud->estado, ['APROBADA', 'VALIDADA']))
                             <a class="govco-a" href="#" data-bs-toggle="modal" data-bs-target="#enviar-pagos">
                                 {{ $solicitud->tramite_id === 3 ? 'ANEXAR CONSTANCIA DE PAGO' : 'ANEXAR CONSTANCIAS DE PAGO (CUPL Y TNS)' }}</a>
                             <br>
