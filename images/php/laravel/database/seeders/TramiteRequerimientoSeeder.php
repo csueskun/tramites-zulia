@@ -43,7 +43,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Licencia de Transito (Tarjeta de Propiedad, Copia por Ambas Caras)',
+            'descripcion' => 'Tarjeta de Propiedad, Copia por Ambas Caras',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'tarjeta_propiedad',
@@ -67,7 +67,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Paz y salvo de impuestos de vehículo (comprador y vendedor)',
+            'descripcion' => 'Paz y salvo de impuestos de vehículo (comprador)',
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
@@ -79,7 +79,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 1,
-            'descripcion' => 'Paz y salvo y sesión de derechos de la empresa',
+            'descripcion' => 'Paz y salvo y sesión de derechos de la empresa (Paz y salvo de la empresa afiliada)',
             'vehiculo' => 'EMPRESA',
         ]);
         TramiteRequerimiento::create([
@@ -92,6 +92,27 @@ class TramiteRequerimientoSeeder extends Seeder
             'descripcion' => 'Improntas',
             'tipo' => 'ARCHIVO',
             'vehiculo' => 'EMPRESA',
+            'file_metadata' => json_encode([
+                'nombre' => 'improntas',
+                'tipo' => 'pdf',
+                'max_size' => 10485760, // 10MB
+            ]),
+        ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 1,
+            'descripcion' => 'Paz y salvo y sesión de derechos de la empresa (Paz y salvo de la empresa afiliada)',
+            'vehiculo' => 'PUBLICO',
+        ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 1,
+            'descripcion' => 'Cámara de comercio y NIT del propietario', 
+            'vehiculo' => 'PUBLICO',
+        ]);
+        TramiteRequerimiento::create([
+            'tramite_id' => 1,
+            'descripcion' => 'Improntas',
+            'tipo' => 'ARCHIVO',
+            'vehiculo' => 'PUBLICO',
             'file_metadata' => json_encode([
                 'nombre' => 'improntas',
                 'tipo' => 'pdf',
@@ -157,7 +178,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 2,
-            'descripcion' => 'Licencia de Transito (Tarjeta de Propiedad, Copia por Ambas Caras)',
+            'descripcion' => 'Tarjeta de Propiedad, Copia por Ambas Caras',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'tarjeta_propiedad',
@@ -287,7 +308,7 @@ class TramiteRequerimientoSeeder extends Seeder
         ]);
         TramiteRequerimiento::create([
             'tramite_id' => 4,
-            'descripcion' => 'Licencia de Tránsito (Tarjeta de Propiedad, Copia por Ambas Caras)',
+            'descripcion' => 'Tarjeta de Propiedad, Copia por Ambas Caras',
             'tipo' => 'ARCHIVO',
             'file_metadata' => json_encode([
                 'nombre' => 'tarjeta_propiedad',

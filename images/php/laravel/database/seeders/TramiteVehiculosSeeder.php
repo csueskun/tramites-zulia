@@ -22,6 +22,10 @@ class TramiteVehiculosSeeder extends Seeder
             'vehiculo' => 'EMPRESA',
         ]);
         TramiteVehiculo::create([
+            'tramite_id' => 1,
+            'vehiculo' => 'PUBLICO',
+        ]);
+        TramiteVehiculo::create([
             'tramite_id' => 2,
             'vehiculo' => 'CARRO',
         ]);
