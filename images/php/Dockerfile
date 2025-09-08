@@ -1,7 +1,6 @@
 # Use the official PHP-FPM image
 FROM php:8.2-fpm
 
-COPY clear-laravel-caches.sh /usr/local/bin/clear-laravel-caches
 RUN chmod +x /usr/local/bin/clear-laravel-caches
 
 # Install required PHP extensions
@@ -24,14 +23,6 @@ RUN pecl install xdebug-3.2.2 && docker-php-ext-enable xdebug
 # Define a build argument for the Xdebug config file path
 ARG XDEBUG_INI=/usr/local/etc/php/conf.d/xdebug.ini
 ARG XDEBUG_PATH=/usr/local/lib/php/extensions/no-debug-non-zts-2022082/xdebug.so
-
-# Configure Xdebug
-RUN echo    ${XDEBUG_PATH} > ${XDEBUG_INI} \
-    && echo "xdebug.mode=debug" >> ${XDEBUG_INI} \
-    && echo "xdebug.start_with_request=yes" >> ${XDEBUG_INI} \
-    && echo "xdebug.client_host=192.168.1.35" >> ${XDEBUG_INI} \
-    && echo "xdebug.client_port=9005" >> ${XDEBUG_INI} \
-    && echo "xdebug.log=/var/log/xdebug.log" >> ${XDEBUG_INI}
 
 # Install Composer (copying it from the official Composer image)
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
