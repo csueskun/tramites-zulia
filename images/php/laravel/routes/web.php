@@ -9,9 +9,10 @@ use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\PasswordResetController;
 
 use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
-Route::redirect('/', '/home');
+Route::redirect('/', '/user/home');
 Route::get('/test-scheme', function () {
     return request()->isSecure() ? 'HTTPS ✅' : 'HTTP ❌';
 });
@@ -33,25 +34,27 @@ Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink'
 Route::post('/reset-password', [PasswordResetController::class, 'resetPassword']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/user/home', [SolicitudController::class, 'userIndex']);
-    Route::get('/user/solicitudes/nueva/{tramite_id}/{vehiculo}/{persona}', [SolicitudController::class, 'nuevaIndex'])->name('user.solicitudes.nueva');
-    Route::post('/user/solicitudes/nueva', [SolicitudController::class, 'nuevaPost']);
-    Route::get('/user/solicitudes', [SolicitudController::class, 'verUserSolicitudes']);
-    Route::get('/user/solicitudes/{id}/ver', [SolicitudController::class, 'verSolicitud']);
-    Route::post('/user/solicitudes/{id}/documento', [DocumentoController::class, 'addDocumento']);
-    Route::post('/solicitudes', [SolicitudController::class, 'addSolicitud']);
     Route::get('/documentos/download/{id}', [DocumentoController::class, 'download']);
-    Route::view('/solicitudes/tutoriales', 'solicitudes.tutoriales');
-    Route::post('/solicitudes/{solicitud}/comprobantes-pago', [DocumentoController::class, 'addConstanciasPago']);
     
-    Route::middleware([IsAdmin::class])->group(function () {
-        Route::view('/home', 'admin-home');
+    Route::middleware([CheckRole::class.':USER'])->group(function () {
+        Route::get('/user/home', [SolicitudController::class, 'userIndex']);
+        Route::get('/user/solicitudes/nueva/{tramite_id}/{vehiculo}/{persona}', [SolicitudController::class, 'nuevaIndex'])->name('user.solicitudes.nueva');
+        Route::post('/user/solicitudes/nueva', [SolicitudController::class, 'nuevaPost']);
+        Route::get('/user/solicitudes', [SolicitudController::class, 'verUserSolicitudes']);
+        Route::get('/user/solicitudes/{id}/ver', [SolicitudController::class, 'verSolicitud']);
+        Route::post('/user/solicitudes/{id}/documento', [DocumentoController::class, 'addDocumento']);
+        Route::post('/solicitudes', [SolicitudController::class, 'addSolicitud']);
+        Route::view('/solicitudes/tutoriales', 'solicitudes.tutoriales');
+        Route::post('/solicitudes/{solicitud}/comprobantes-pago', [DocumentoController::class, 'addConstanciasPago']);
+    });
+    
+    Route::middleware([CheckRole::class.':ADMIN'])->group(function () {
+        Route::view('/admin/home', 'admin-home');
         Route::get('/solicitudes/pendientes', [SolicitudController::class, 'viewPendientes']);
         Route::get('/solicitudes/consolidadas', [SolicitudController::class, 'viewConsolidadas']);
         Route::get('/solicitudes/rechazadas', [SolicitudController::class, 'viewRechazadas']);
         Route::get('/solicitudes/aceptadas', [SolicitudController::class, 'viewAceptadas']);
         Route::get('/solicitudes/pagadas', [SolicitudController::class, 'viewPagadas']);
-        Route::get('/solicitudes/completas', [SolicitudController::class, 'viewCompletas']);
         Route::post('/solicitudes/{solicitud}/mail-recibo-pago', [SolicitudController::class, 'mailReciboDePago']);
         Route::post('/solicitudes/{id}/mail-certificado', [SolicitudController::class, 'mailCertificado']);
         Route::post('/solicitudes/{solicitud}/mail-solicitud-completada', [SolicitudController::class, 'mailSolicitudCompletada']);
@@ -59,8 +62,15 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/solicitudes/{id}', [SolicitudController::class, 'patchFromView']);
         Route::post('/solicitudes/{id}/comentarios', [ComentarioController::class, 'addComentario']);
         Route::get('/solicitudes/{id}/ver', [SolicitudController::class, 'verSolicitud']);
-
         // Route::resource('/usuarios', UserController::class);
+    });
+
+    Route::middleware([CheckRole::class.':RADICADOR'])->group(function () {
+        Route::view('/radicador/home', 'admin-home');
+    });
+
+    Route::middleware([CheckRole::class.':ADMIN,RADICADOR'])->group(function () {
+        Route::get('/solicitudes/completas', [SolicitudController::class, 'viewCompletas']);
     });
 });
 
