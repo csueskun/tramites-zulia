@@ -69,7 +69,8 @@
                                         data-bs-telefono="{{$solicitud->telefono}}"
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
-                                        data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
+                                        data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}"
+                                        data-bs-envia-certificado="{{ $solicitud->tramite_id == 3 && !$solicitud->certificado ? '1' : '0' }}">
                                         VER MÁS</a>
                                     @if (Auth::user()->role === 'ADMIN')
                                     @if($solicitud->tramite_id == 3)
@@ -320,6 +321,10 @@
         fields[5].classList.add(fields[5].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
         fields[6].classList.add(fields[6].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
 
+        const enviaCertificado = trigger.getAttribute('data-bs-envia-certificado') === '1';
+        if(!enviaCertificado) {
+            fields[6].parentElement.parentElement.style.display = 'none';
+        }
         const documentos = JSON.parse(trigger.getAttribute('data-bs-documentos'));
         renderDocumentosTable(documentos);
     })
