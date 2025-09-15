@@ -71,6 +71,7 @@
                                         data-bs-comentario="{{$solicitud->comentario}}"
                                         data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
                                         VER MÁS</a>
+                                    @if (Auth::user()->role === 'ADMIN')
                                     @if($solicitud->tramite_id == 3)
                                     / <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#enviar-certificado"
                                         data-bs-action="/solicitudes/{{$solicitud->id}}/mail-certificado">
@@ -82,6 +83,7 @@
                                         <input type="hidden" name="responsable" value="TNS">
                                          <a class="govco-a" href="#" onclick="event.preventDefault(); this.closest('form').submit();">NOTIFICAR USUARIO</a>
                                     </form>
+                                    @endif
                                     @endif
                                 </div>
                             </td>

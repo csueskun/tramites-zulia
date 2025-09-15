@@ -13,6 +13,7 @@
         <div class="col-lg-6" id="para-mirar">
             <h3 class="govcolor-blue-dark mb-4">Administración de Trámites</h3>
             <div class="row">
+                @if (Auth::user()->role === 'ADMIN')
                 <div class="col-lg-4 p-2">
                     <a class="module-tarjeta-govco fix" href="/solicitudes/pendientes" title="Ver solicitudes pendientes">
                         <div class="header-tarjeta-govco">
@@ -46,6 +47,7 @@
                         </div>
                     </a>
                 </div>
+                @endif
                 <div class="col-lg-4 p-2">
                     <a class="module-tarjeta-govco fix" href="/solicitudes/completas" title="Enviar certificados">
                         <div class="header-tarjeta-govco">
@@ -57,6 +59,7 @@
                         </div>
                     </a>
                 </div>
+                @if (Auth::user()->role === 'ADMIN')
                 <div class="col-lg-4 p-2">
                     <a class="module-tarjeta-govco fix" href="/solicitudes/rechazadas" title="Ver solicitudes rechazadas">
                         <div class="header-tarjeta-govco">
@@ -68,6 +71,7 @@
                         </div>
                     </a>
                 </div>
+                @endif
             </div>
 
             <!-- <h3 class="govcolor-blue-dark my-4">Administración de Usuarios</h3>
