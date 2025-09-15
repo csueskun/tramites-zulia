@@ -24,7 +24,8 @@ class AuthController extends Controller
             }
 
             $request->session()->regenerate();
-            return redirect()->intended('/home');
+            $role = strtolower($user->role);
+            return redirect()->intended("/$role/home");
         }
 
         return back()->withErrors(['email' => 'Usuario o contraseña incorrecta.'])->withInput();

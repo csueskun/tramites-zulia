@@ -19,7 +19,19 @@
 <body>
     <nav class="navbar navbar-expand-lg barra-superior-govco" aria-label="Barra superior">
         <a href="https://www.gov.co/" target="_blank" aria-label="Portal del Estado Colombiano - GOV.CO"></a>
-        <button class="idioma-icon-barra-superior-govco float-right" aria-label="Button to change the language of the page to English"></button>
+        <!-- <button class="idioma-icon-barra-superior-govco float-right" aria-label="Button to change the language of the page to English"></button> -->
+        <div style="position: absolute; right: 5.375rem;">
+            <button type="button" class="btn btn-white-primary btn-xsm rounded">EN</button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-transparent-primary color-white btn-xsm rounded dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    <span class="govco-user"></span>
+                    <strong>{{ Auth::check() ? Auth::user()->label() : '' }}</strong>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-lg-end">
+                    <li><button class="dropdown-item" type="button" onclick="location.href='/logout'"><span class="govco-door-closed"></span> Cerrar sesión</button></li>
+                </ul>
+            </div>
+        </div>
     </nav>
     @yield('skip-to-main-content')
     <div class="card no-border-bottom" id="main-content">
