@@ -351,3 +351,27 @@ span.etiqueta-govco>span {
     background-color: transparent;
     font-size: 14px;
 }
+.btn-white-primary{
+    background-color: white;
+    border-color: #004884;
+}
+.btn-white-primary.rounded{
+    border-radius: 0.313rem;
+}
+.btn-white-primary:hover, .btn-white-primary:focus, .btn-white-primary:active{
+    background-color: #3366cc;
+    border-color: white;
+    color: white;
+}
+.btn-transparent-primary{
+    background-color: transparent;
+    border-color: transparent;
+}
+.btn-group-xsm>.btn, .btn-xsm {
+    padding: .20rem .45rem;
+    font-size: .8rem;
+    border-radius: .15rem;
+}
+.color-white{
+    color: white !important;
+}
