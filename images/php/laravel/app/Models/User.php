@@ -72,6 +72,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function label(){
+        $label = "{$this->nombres} {$this->apellidos}";
+        if($this->role != 'USER'){
+            $label .= " | {$this->role}";
+        }
+        return $label;
+    }
     
     public function getNombreCompletoAttribute()
     {

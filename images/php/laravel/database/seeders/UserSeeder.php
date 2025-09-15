@@ -62,5 +62,15 @@ class UserSeeder extends Seeder
             'password' => 'Noeli12*',
         ], );
 
+        User::factory()->create([
+            'nombres' => 'Radicador',
+            'apellidos' => 'Trámites',
+            'email' => 'radicador@tramites.com',
+            'role' => 'RADI',
+            'documento' => 37147900,
+            'tipo_documento' => 'CC',
+            'password' => 'radicador',
+        ], );
+
     }
 }
