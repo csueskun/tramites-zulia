@@ -1,14 +1,4 @@
 <div class="aservice-container">
-    <a href="/logout" tabindex="-1" class="aservice-spacing no-decoration" id="logout">
-        <div class="aservice" tabindex="0">
-            <div class="aservice-item link-card">
-                <p class="aservice-text-govco aservice-link-govco aservice-spacing-card no-decoration">
-                    <span class="govco-door-closed"></span>
-                    Cerrar sesión
-                </p>
-            </div>
-        </div>
-    </a>
     <a href="/solicitudes/tutoriales" tabindex="-1" class="aservice-spacing no-decoration" id="aserviceTutorial">
         <div class="aservice" tabindex="0">
             <div class="aservice-item link-card">
