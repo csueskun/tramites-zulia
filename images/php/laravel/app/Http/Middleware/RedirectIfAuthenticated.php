@@ -12,7 +12,8 @@ class RedirectIfAuthenticated
     {
         $user = Auth::user();
         if($user) {
-            return redirect('/home');
+            $role = strtolower($user->role);
+            return redirect("/$role/home");
         }
         return $next($request);
     }
