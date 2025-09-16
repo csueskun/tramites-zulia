@@ -70,7 +70,7 @@
                                         data-bs-correoelectronico="{{$solicitud->usuario->email}}"
                                         data-bs-comentario="{{$solicitud->comentario}}"
                                         data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}"
-                                        data-bs-envia-certificado="{{ $solicitud->tramite_id == 3 && !$solicitud->certificado ? '1' : '0' }}">
+                                        data-bs-envia-certificado="{{ $solicitud->tramite_id == 3 ? '1' : '0' }}">
                                         VER MÁS</a>
                                     @if (Auth::user()->role === 'ADMIN')
                                     @if($solicitud->tramite_id == 3)
