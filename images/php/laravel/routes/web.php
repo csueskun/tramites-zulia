@@ -13,6 +13,7 @@ use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::redirect('/', '/user/home');
+Route::redirect('/home', '/user/home');
 Route::get('/test-scheme', function () {
     return request()->isSecure() ? 'HTTPS ✅' : 'HTTP ❌';
 });
