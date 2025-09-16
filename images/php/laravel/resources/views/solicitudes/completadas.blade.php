@@ -321,6 +321,7 @@
         fields[5].classList.add(fields[5].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
         fields[6].classList.add(fields[6].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
 
+        fields[6].parentElement.parentElement.style.display = '';
         const enviaCertificado = trigger.getAttribute('data-bs-envia-certificado') === '1';
         if(!enviaCertificado) {
             fields[6].parentElement.parentElement.style.display = 'none';
