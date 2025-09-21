@@ -79,6 +79,13 @@ class TramiteItemSeeder extends Seeder
                 'precio' => 65000,
             ],
             [
+                'tramite_id' => 2,
+                'nombre' => 'Derecho de trámite',
+                'descripcion' => '',
+                'vehiculo' => 'REMOLQUE',
+                'precio' => 91000,
+            ],
+            [
                 'tramite_id' => 2,  
                 'nombre' => 'Sustrato lámina',
                 'descripcion' => '',
@@ -88,7 +95,7 @@ class TramiteItemSeeder extends Seeder
                 'tramite_id' => 2,
                 'nombre' => 'RUNT (CUPL)',
                 'descripcion' => '',
-                'precio' => 41000,
+                'precio' => 43000,
             ],
             [
                 'tramite_id' => 2,
