@@ -375,3 +375,29 @@ span.etiqueta-govco>span {
 .color-white{
     color: white !important;
 }
+div#user-tab{
+    position: absolute; 
+    right: 5.375rem;
+}
+div#user-tab{
+    position: absolute; 
+    right: 5.375rem;
+}
+li.user-label-xs{
+    display: none;
+}
+@media (max-width: 991px) {
+    .barra-superior-govco {
+        justify-content: space-between;
+        padding: 0 1rem !important;
+    }
+    span.user-label{
+        display: none;
+    }
+    li.user-label-xs{
+        display: block;
+    }
+    div#user-tab{
+        right: 1rem;
+    }
+}

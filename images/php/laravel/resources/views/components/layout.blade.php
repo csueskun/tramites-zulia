@@ -20,15 +20,16 @@
     <nav class="navbar navbar-expand-lg barra-superior-govco" aria-label="Barra superior">
         <a href="https://www.gov.co/" target="_blank" aria-label="Portal del Estado Colombiano - GOV.CO"></a>
         <!-- <button class="idioma-icon-barra-superior-govco float-right" aria-label="Button to change the language of the page to English"></button> -->
-        <div style="position: absolute; right: 5.375rem;">
+        <div id="user-tab">
             <button type="button" class="btn btn-white-primary btn-xsm rounded">EN</button>
             @if (Auth::check())
             <div class="btn-group">
                 <button type="button" class="btn btn-transparent-primary color-white btn-xsm rounded dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                     <span class="govco-user"></span>
-                    <strong>{{ Auth::user()->label() }}</strong>
+                    <span class="user-label"><strong>{{ Auth::user()->label() }}</strong></span>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-lg-end">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                    <li class="user-label-xs"><h6 class="dropdown-header">{{ Auth::user()->label() }}</h6></li>
                     <li><button class="dropdown-item" type="button" onclick="location.href='/logout'"><span class="govco-door-closed"></span> Cerrar sesión</button></li>
                 </ul>
             </div>
