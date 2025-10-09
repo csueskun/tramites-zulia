@@ -12,3 +12,4 @@ Homestead.json
 /.vscode
 /.phpunit.result.cache
 oldcode/
+images/php/Dockerfile
