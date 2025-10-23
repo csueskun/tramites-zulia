@@ -11,6 +11,8 @@ return [
         'MOTOEMPRESA',
         'CAMIONEMPRESA',
         'PUBLICO',
+        'REMOLQUE',
+
     ],
     'persona_types' => [
         'TODOS',
