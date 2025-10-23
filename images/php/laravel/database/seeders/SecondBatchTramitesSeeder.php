@@ -310,13 +310,13 @@ class SecondBatchTramitesSeeder extends Seeder
 
         $tramite->vehiculos()->createMany([
             [
-                'tipo' => 'CARRO',
+                'vehiculo' => 'CARRO',
             ],
             [
-                'tipo' => 'MOTO',
+                'vehiculo' => 'MOTO',
             ],
             [
-                'tipo' => 'CAMIÓN',
+                'vehiculo' => 'CAMIÓN',
             ]
         ]);
 
