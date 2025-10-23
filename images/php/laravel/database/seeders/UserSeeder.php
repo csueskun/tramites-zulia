@@ -66,7 +66,7 @@ class UserSeeder extends Seeder
             'nombres' => 'Radicador',
             'apellidos' => 'Trámites',
             'email' => 'radicador@tramites.com',
-            'role' => 'RADI',
+            'role' => 'RADICADO',
             'documento' => 37147900,
             'tipo_documento' => 'CC',
             'password' => 'radicador',
