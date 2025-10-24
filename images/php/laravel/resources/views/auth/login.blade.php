@@ -21,8 +21,7 @@
                 <p>Para realizar trámites, debes estar registrado con tu número de documento y ser representante legal de la empresa.</p>
             </div>
 
-           <div class="container-login-alerta-juridica-govco">
-                <div class="icon-informacion-login-govco"></div>
+           <div>
                 <p> TRAMITES EN LINEA DE EL MUNICIPIO DEL ZULIA</p>
             </div>
 
