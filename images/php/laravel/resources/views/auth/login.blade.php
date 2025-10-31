@@ -23,9 +23,7 @@
 
             <div>
                 <div class="icon-informacion-login-govco"></div>   
-                    <p>Tramites de Tránsito de el Municipio del Zulia</p>
-
-                </div>
+                <p>Tramites de Tránsito de el Municipio del Zulia</p>
             </div>
 
             <div class="login-label-govco mt-3">
