@@ -26,9 +26,8 @@
             </div>
 
             <div>
-                <div class="icon-informacion-login-govco">
-                    <p>Trámites de Tránsito de el municipio de el Zulia</p>
-                </div>
+                <div class="icon-informacion-login-govco"> </div>
+                <p>Trámites de Tránsito de el municipio de el Zulia</p>
             </div>
 
             <div class="container-login-opcion-govco" data-container-persona="natural">
