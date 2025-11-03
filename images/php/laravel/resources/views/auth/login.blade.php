@@ -21,6 +21,11 @@
                 <p>Para realizar trámites, debes estar registrado con tu número de documento y ser representante legal de la empresa.</p>
             </div>
 
+            <div>
+                <div class="icon-informacion-login-govco"></div>
+                <p>Tramites de Tránsito de el municipio de el Zulia</p>
+            </div>
+
             <div class="login-label-govco mt-3">
                 <p><strong>Los campos marcados con <span aria-require d="true">*</span> son obligatorios</strong></p>
             </div>
