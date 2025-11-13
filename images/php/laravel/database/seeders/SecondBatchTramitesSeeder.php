@@ -92,6 +92,15 @@ class SecondBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
+                'descripcion' => 'Tarjeta de Propiedad, Copia por Ambas Caras',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'tarjeta_propiedad',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760, // 10MB
+                ]),
+            ],
+            [
                 'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados (debidamente autenticado)',
                 'obligatorio' => false,
                 'tipo' => 'ARCHIVO',
@@ -103,9 +112,21 @@ class SecondBatchTramitesSeeder extends Seeder
             ],
             [
                 'descripcion' => 'Anexar Improntas en el FUN',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'improntas',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760, // 10MB
+                ]),
             ],
             [
                 'descripcion' => 'SOAT (Vigente)',
+            ],
+            [
+                'descripcion' => 'Revisión Técnico Mecánica (Vigente)',
+            ],
+            [
+                'descripcion' => 'Paz y salvo de impuestos de vehículo',
             ],
             [
                 'descripcion' => 'Soporte de pago TNS y CUPL',
@@ -162,6 +183,15 @@ class SecondBatchTramitesSeeder extends Seeder
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'tarjeta_propiedad',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760, // 10MB
+                ]),
+            ],
+            [
+                'descripcion' => 'Anexar Improntas en el FUN',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'improntas',
                     'tipo' => 'pdf',
                     'max_size' => 10485760, // 10MB
                 ]),
@@ -246,6 +276,15 @@ class SecondBatchTramitesSeeder extends Seeder
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'tarjeta_propiedad',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760, // 10MB
+                ]),
+            ],
+            [
+                'descripcion' => 'Anexar Improntas en el FUN',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'improntas',
                     'tipo' => 'pdf',
                     'max_size' => 10485760, // 10MB
                 ]),
@@ -389,6 +428,15 @@ class SecondBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
+                'descripcion' => 'FUN Sin improntas',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'improntas',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760, // 10MB
+                ]),
+            ],
+            [
                 'descripcion' => 'Declaración juramentada ante notaría (donde se manifieste que el vehículo fue vendido hace más de 3 años, y desconoce el paradero)',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
@@ -417,7 +465,16 @@ class SecondBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
+                'descripcion' => 'SOAT (Vigente)',
+            ],
+            [
+                'descripcion' => 'Revisión Técnico Mecánica (Vigente)',
+            ],
+            [
                 'descripcion' => 'Estar a paz y salvo en el SIMIT (Propietario)',
+            ],
+            [
+                'descripcion' => 'Paz y salvo de impuestos de vehículo',
             ],
             [
                 'descripcion' => 'Soporte de pago TNS y CUPL',
