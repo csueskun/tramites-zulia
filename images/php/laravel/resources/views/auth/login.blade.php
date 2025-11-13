@@ -17,7 +17,6 @@
         <div class="inicio-sesion-govco" data-content="natural"  id="para-mirar">
             <h2>Inicio de sesión</h2>
             <div class="container-login-alerta-juridica-govco">
-                <div class="icon-informacion-login-govco"></div>
                 <p>Para realizar trámites, debes estar registrado con tu número de documento y ser representante legal de la empresa.</p>
             </div>
 
