@@ -25,11 +25,6 @@
                 <p><strong>Los campos marcados con <span aria-require d="true">*</span> son obligatorios</strong></p>
             </div>
 
-            <div>
-                <div class="icon-informacion-login-govco"> </div>
-                <p>Trámites de Tránsito de el municipio de el Zulia</p>
-            </div>
-
             <div class="container-login-opcion-govco" data-container-persona="natural">
                 <form method="POST" action="/login">
                     @csrf
