@@ -13,3 +13,4 @@ Homestead.json
 /.phpunit.result.cache
 oldcode/
 images/php/Dockerfile
+k8s
