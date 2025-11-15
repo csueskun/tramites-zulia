@@ -19,7 +19,7 @@
                 En esta sección encontrarás un listado detallado de los trámites disponibles
                 relacionados con vehículos automotores. Cada trámite incluye una descripción
                 clara, los requisitos necesarios, Costo total del tramite (validos hasta el año 2025)
-                asociados y el Cuentas a Depositar. Además, podrás iniciar la solicitud del trámite o
+                asociado. Además, podrás iniciar la solicitud del trámite o
                 consultar su estado desde esta misma plataforma. Explora las opciones y selecciona el
                 trámite que necesitas realizar de manera fácil y rápida.
             </p>

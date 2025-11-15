@@ -20,7 +20,7 @@
                         <tr>
                             <th width="1">Radicado</th>
                             <th width="1">Fecha<br />Solicitud</th>
-                            <th>Estado</th>
+                            <th>Estado de la solicitud</th>
                             <th width="150">Asunto</th>
                             <!-- <th>Nombres</th>
                             <th width="1">Número<br />documento</th> -->

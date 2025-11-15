@@ -49,7 +49,7 @@
                             </div>
                             <br />
                             @endif
-                            @if (in_array($solicitud->estado, ['APROBADA', 'VALIDADA']))
+                            @if ($solicitud->recibo_pago && $solicitud->constancia_pago_tns)
                             <a class="govco-a" href="#" data-bs-toggle="modal" data-bs-target="#enviar-pagos">
                                 {{ $solicitud->tramite_id === 3 ? 'ANEXAR CONSTANCIA DE PAGO' : 'ANEXAR CONSTANCIAS DE PAGO (CUPL Y TNS)' }}</a>
                             <br>
@@ -64,7 +64,7 @@
                                     <p>{{$solicitud->radicado}}</p>
                                 </div>
                                 <div class="col-lg-7">
-                                    <span><strong>Estado:</strong></span>
+                                    <span><strong>Estado de la solicitud:</strong></span>
                                     <br>
                                     <x-solicitud-estado :solicitud="$solicitud"/>
                                 </div>
@@ -229,7 +229,7 @@ if($solicitud->tramite_id !== 3) {
 
                         <div class="modal-footer-govco modal-footer-alerts-govco">
                             <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="button" disabled="disabled" class="btn btn-primary btn-modal-govco submit" data-bs-dismiss="modal">
+                                <button type="submit" onclick="" disabled="disabled" class="btn btn-primary btn-modal-govco submit" data-bs-dismiss="modal">
                                     Enviar
                                 </button>
                                 <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
@@ -355,7 +355,6 @@ if($solicitud->tramite_id !== 3) {
                         tempForm.appendChild(addFileInputs(tempForm, fileData[key], 'file_' + key));
                     });
                     document.body.appendChild(tempForm);
-                    tempForm.submit();
                 }
                 else{
                     form.querySelector('button.submit').setAttribute('disabled', 'disabled');

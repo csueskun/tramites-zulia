@@ -28,7 +28,7 @@ class SecondBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Cédula de ciudadanía o tarjeta de identidad "apartir de los 16 años"',
+                'descripcion' => 'Cédula de ciudadanía o tarjeta de identidad (apartir de los 16 años)',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'cedula_ciudadania',
@@ -101,6 +101,15 @@ class SecondBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
+                'descripcion' => 'Anexar Improntas en el FUN',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'improntas',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760, // 10MB
+                ]),
+            ],
+            [
                 'descripcion' => 'Contrato de mandato o poder especial, si el tramite lo realiza un tercero, otorgado ó suscrito en Colombia o en Consulados (debidamente autenticado)',
                 'obligatorio' => false,
                 'tipo' => 'ARCHIVO',
@@ -111,19 +120,13 @@ class SecondBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Anexar Improntas en el FUN',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'improntas',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760, // 10MB
-                ]),
-            ],
-            [
                 'descripcion' => 'SOAT (Vigente)',
             ],
             [
                 'descripcion' => 'Revisión Técnico Mecánica (Vigente)',
+            ],
+            [
+                'descripcion' => 'Estar a paz y salvo en el SIMIT (Propietario)',
             ],
             [
                 'descripcion' => 'Paz y salvo de impuestos de vehículo',
@@ -205,9 +208,6 @@ class SecondBatchTramitesSeeder extends Seeder
                     'tipo' => 'pdf',
                     'max_size' => 10485760, // 10MB
                 ]),
-            ],
-            [
-                'descripcion' => 'Anexar Improntas en el FUN',
             ],
             [
                 'descripcion' => 'SOAT (Vigente)',

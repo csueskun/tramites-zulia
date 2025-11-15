@@ -72,4 +72,14 @@ class Solicitud extends Model
     {
         return $this->documentos->where('tipo', 'CERTIFICADO')->last();
     }
+
+    public function getConstanciaPagoTnsAttribute()
+    {
+        return $this->documentos->where('tipo', 'CONSTANCIA DE PAGO TNS')->last();
+    }
+
+    public function getConstanciaPagoCuplAttribute()
+    {
+        return $this->documentos->where('tipo', 'CONSTANCIA DE PAGO CUPL')->last();
+    }
 }
