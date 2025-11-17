@@ -49,7 +49,7 @@
                             </div>
                             <br />
                             @endif
-                            @if ($solicitud->recibo_pago && $solicitud->constancia_pago_tns && $solicitud->estado !== 'COMPLETADA')
+                            @if ($solicitud->recibo_pago && !$solicitud->constancia_pago_tns && $solicitud->estado !== 'COMPLETADA')
                             <a class="govco-a" href="#" data-bs-toggle="modal" data-bs-target="#enviar-pagos">
                                 {{ $solicitud->tramite_id === 3 ? 'ANEXAR CONSTANCIA DE PAGO' : 'ANEXAR CONSTANCIAS DE PAGO (CUPL Y TNS)' }}</a>
                             <br>
