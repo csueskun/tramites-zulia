@@ -229,7 +229,7 @@ if($solicitud->tramite_id !== 3) {
 
                         <div class="modal-footer-govco modal-footer-alerts-govco">
                             <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="submit" onclick="" disabled="disabled" class="btn btn-primary btn-modal-govco submit" data-bs-dismiss="modal">
+                                <button type="button" onclick="preValidateFileForm(this.closest('form'), true)" disabled="disabled" class="btn btn-primary btn-modal-govco submit" data-bs-dismiss="modal">
                                     Enviar
                                 </button>
                                 <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
@@ -343,7 +343,7 @@ if($solicitud->tramite_id !== 3) {
         return inputFile;
     }
 
-    function preValidateFileForm(form) {
+    function preValidateFileForm(form, submit = false) {
         const isFormValid = validateForm(form);
         setTimeout(function () {
             validateFileForm(form, function () {
@@ -355,6 +355,9 @@ if($solicitud->tramite_id !== 3) {
                         tempForm.appendChild(addFileInputs(tempForm, fileData[key], 'file_' + key));
                     });
                     document.body.appendChild(tempForm);
+                    if(submit){
+                        tempForm.submit();
+                    }
                 }
                 else{
                     form.querySelector('button.submit').setAttribute('disabled', 'disabled');
