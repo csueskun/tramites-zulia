@@ -274,7 +274,7 @@
         }
     });
 
-    function(resetCategoriacheckbox){
+    function resetCategoriacheckbox(){
         document.querySelectorAll('input[name="categoria-licencia"]').forEach((checkbox) => {
             checkbox.checked = false;
         });
