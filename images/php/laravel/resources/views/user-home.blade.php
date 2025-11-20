@@ -278,6 +278,7 @@
         document.querySelectorAll('input[name="categoria-licencia"]').forEach((checkbox) => {
             checkbox.checked = false;
         });
+        document.getElementById('licencia-categorias').classList.remove('error');
         document.querySelectorAll('input[name="categoria-licencia"]')[0].checked = true;    
     }
 
