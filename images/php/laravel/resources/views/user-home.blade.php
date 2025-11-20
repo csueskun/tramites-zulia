@@ -82,6 +82,21 @@
                                 </thead>
                                 <tbody data-tramite-field="requerimientos"></tbody>
                             </table>
+                            <div id="licencia-categorias" class="my-3 categoria-titulo">
+                                <div class="checkbox-seleccion-govco">
+                                    <label for="categoria" class="mb-1">Categoría</label><br>
+                                    <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                        <input name="categoria-licencia" value="A2" type="checkbox" checked="checked">A2-Moto
+                                    </label>
+                                    <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                        <input name="categoria-licencia" value="B1" type="checkbox">B1-Vehículo Particular
+                                    </label>
+                                    <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                        <input name="categoria-licencia" value="C1" type="checkbox">C1-Servicio público
+                                    </label>
+                                </div>
+                                <span class="error text-danger hidden">Debe seleccionar al menos una categoría</span>
+                            </div>
                             <table class="table table-general fix min" id="costos-table">
                                 <thead>
                                     <tr>
@@ -140,6 +155,14 @@
     .pestana-content:not(.active) {
         display: none;
     }
+    #licencia-categorias.error {
+    }
+    #licencia-categorias .error {
+        display: none;
+    }
+    #licencia-categorias.error .error {
+        display: inline;
+    }
 </style>
 <script>
     document.getElementById('tramite-modal').addEventListener('show.bs.modal', function(event) {
@@ -150,10 +173,14 @@
         });
         const tramiteId = trigger.getAttribute(`data-tramite-id`);
         document.querySelector(`span.nota`).innerHTML = "";
-        if(tramiteId == '1'){
+        if(tramiteId == '1' || tramiteId == '10' ){
             document.querySelector(`span.nota`).innerHTML = '<strong>+</strong> pago adicional (rete fuente) del 1% que dependerá del avaluó comercial acorde al tipo del vehículo';
         }
         document.querySelector(`[data-tramite-field="id"]`).value = tramiteId;
+        document.getElementById('licencia-categorias').style.display = 'none';
+        if(tramiteId == '5' || tramiteId == '6' ){
+            document.getElementById(`licencia-categorias`).style.display = 'block';
+        }
 
         //estampillas
         const estampillas = JSON.parse(trigger.getAttribute('data-tramite-estampillas')) || [];
@@ -235,7 +262,54 @@
             document.querySelector(`[data-tramite-field="personas"]`).innerHTML = '<input type="hidden" name="persona" value="TODOS">';
             personaSelected({ target: { value: 'TODOS' } });
         }
+
+        //categoria-licencia
+        const categoriaLicenciaCheckbox = document.querySelectorAll('input[name="categoria-licencia"]');
+        for (let i = 0; i < categoriaLicenciaCheckbox.length; i++) {
+            categoriaLicenciaCheckbox[i].addEventListener('change', categoriaCheckboxListener);
+        }        
     });
+
+    function categoriaCheckboxListener(){
+        const selectedCategories = getCategoriasSelected();
+        const container = document.getElementById('licencia-categorias');
+        const selectedCategoriesCount = selectedCategories.length;
+        const submitButton = document.querySelector('#tramite-form button[type="submit"]');
+        if(selectedCategoriesCount === 0){
+            container.classList.add('error');
+            submitButton.disabled = true;
+        } else {
+            container.classList.remove('error');
+            submitButton.disabled = false;
+            calcularTotalCategorias(selectedCategoriesCount);
+            calcularTotales();
+        }
+
+    }
+
+    function calcularTotalCategorias(selectedCategoriesCount){
+        var valuesTr = [document.querySelector('[data-tramite-field="costos"] tr:first-child')];
+        const estampillas = document.querySelectorAll('[data-tramite-field="estampillas"] tr');
+        for (let i = 0; i < estampillas.length; i++) {
+            valuesTr.push(estampillas[i]);
+        }
+
+        for (let i = 0; i < valuesTr.length; i++) {
+            const tr = valuesTr[i];
+            const precio = parseFloat(tr.getAttribute('precio')) || 0;
+            const cantidad = selectedCategoriesCount > 1 ? 2 : 1
+            tr.setAttribute('cantidad', cantidad);
+            tr.querySelector('td:nth-child(2)').innerHTML = formatCurrency(precio * cantidad);
+        }
+    }
+
+    function getCategoriasSelected() {
+        let selectedCategories = [];
+        document.querySelectorAll('input[name="categoria-licencia"]:checked').forEach((checkbox) => {
+            selectedCategories.push(checkbox.value);
+        });
+        return selectedCategories;
+    }
 
     function addVehiculoChangeListener() {
         document.querySelectorAll('[name="vehiculo"]').forEach((vehiculo) => {
@@ -309,7 +383,8 @@
                 if(req.style.display === 'none') {
                     return;
                 }
-                tableTotal += parseFloat(req.getAttribute('precio')) || 0;
+                const cantidad = req.getAttribute('cantidad') || 1;
+                tableTotal += (parseFloat(req.getAttribute('precio')) || 0) * parseInt(cantidad);
 
             });
             table.querySelector('tfoot .total').innerHTML = formatCurrency(tableTotal);
