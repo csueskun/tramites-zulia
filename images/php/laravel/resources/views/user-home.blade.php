@@ -178,8 +178,10 @@
         }
         document.querySelector(`[data-tramite-field="id"]`).value = tramiteId;
         document.getElementById('licencia-categorias').style.display = 'none';
+        document.querySelector('#tramite-form button[type="submit"]').disabled = false;
         if(tramiteId == '5' || tramiteId == '6' ){
             document.getElementById(`licencia-categorias`).style.display = 'block';
+            resetCategoriacheckbox();
         }
 
         //estampillas
@@ -267,8 +269,15 @@
         const categoriaLicenciaCheckbox = document.querySelectorAll('input[name="categoria-licencia"]');
         for (let i = 0; i < categoriaLicenciaCheckbox.length; i++) {
             categoriaLicenciaCheckbox[i].addEventListener('change', categoriaCheckboxListener);
-        }        
+        }
     });
+
+    function(resetCategoriacheckbox){
+        document.querySelectorAll('input[name="categoria-licencia"]').forEach((checkbox) => {
+            checkbox.checked = false;
+        });
+        document.querySelectorAll('input[name="categoria-licencia"]')[0].checked = true;    
+    }
 
     function categoriaCheckboxListener(){
         const selectedCategories = getCategoriasSelected();
