@@ -178,11 +178,13 @@
         }
         document.querySelector(`[data-tramite-field="id"]`).value = tramiteId;
         document.getElementById('licencia-categorias').style.display = 'none';
-        document.querySelector('#tramite-form button[type="submit"]').disabled = false;
         if(tramiteId == '5' || tramiteId == '6' ){
             document.getElementById(`licencia-categorias`).style.display = 'block';
             resetCategoriacheckbox();
         }
+        else{
+        }
+        document.querySelector('#tramite-form button[type="submit"]').disabled = false;
 
         //estampillas
         const estampillas = JSON.parse(trigger.getAttribute('data-tramite-estampillas')) || [];
