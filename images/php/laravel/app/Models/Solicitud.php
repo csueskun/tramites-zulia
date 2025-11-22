@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Documento;
 use App\Models\Comentario;
+use App\Models\Tramite;
+use App\Models\SolicitudItem;
 
 class Solicitud extends Model
 {
@@ -81,5 +83,32 @@ class Solicitud extends Model
     public function getConstanciaPagoCuplAttribute()
     {
         return $this->documentos->where('tipo', 'CONSTANCIA DE PAGO CUPL')->last();
+    }
+    public function categorias()
+    {
+        return $this->hasMany(SolicitudCategoria::class);
+    }
+
+    public function saveItems()
+    {
+        $multiCat = $this->categorias()->count() > 1;
+        SolicitudItem::where('solicitud_id', $this->id)->delete();
+        $this->tramite->items->where('vehiculo', $this->vehiculo)->where('persona', $this->persona)->each(function($item) use($multiCat) {
+            $solicitudItem = new SolicitudItem();
+            $solicitudItem->solicitud_id = $this->id;
+            $solicitudItem->nombre = $item->nombre;
+            $solicitudItem->tipo = $item->tipo;
+            $solicitudItem->cantidad = 1;
+            if($multiCat) {
+                if($item->tipo == 'ESTAMPILLA') {
+                    $solicitudItem->cantidad = 2;
+                }
+                if(str_starts_with($item->nombre, 'Derecho ')) {
+                    $solicitudItem->cantidad = 2;
+                }
+            }
+            $solicitudItem->precio = $item->precio * $solicitudItem->cantidad;
+            $solicitudItem->save();
+        });
     }
 }

@@ -36,6 +36,7 @@ class SolicitudController extends Controller
             'tramite_id' => $input['tramite_id'],
             'vehiculo' => $input['vehiculo'],
             'persona' => $input['persona'],
+            'categoria-licencia' => join(',', $input['categoria-licencia'] ?? []),
         ]);
     }
 
@@ -310,7 +311,13 @@ class SolicitudController extends Controller
             }
         }
 
-        $solicitud_id = DB::transaction(function () use ($validatedData, $storedFiles) {
+        $categoriasArray = [];
+        $categorias = $request->input('categorias-licencia', '');
+        if ($categorias != '') {
+            $categoriasArray = explode(',', $categorias);
+        }
+
+        $solicitud_id = DB::transaction(function () use ($validatedData, $storedFiles, $categoriasArray) {
             $validatedData['estado'] = 'EN REVISION';
             $validatedData['usuario_id'] = Auth::user()->id;
             $solicitud = Solicitud::create($validatedData);
@@ -322,6 +329,12 @@ class SolicitudController extends Controller
                 $newDocumento->solicitud_id = $solicitud->id;
                 $newDocumento->save();
             }
+            foreach ($categoriasArray as $categoria) {
+                $solicitud->categorias()->create([
+                    'categoria' => $categoria,
+                ]);
+            }
+            $solicitud->saveItems();
             return $solicitud->id;
         });
 
