@@ -72,6 +72,7 @@
                                     <input type="hidden" name="tramite_id" value="{{$tramite->id}}">
                                     <input type="hidden" name="persona" value="{{$persona}}">
                                     <input type="hidden" name="vehiculo" value="{{$vehiculo}}">
+                                    <input type="hidden" name="categorias-licencia" value="">
                                     <div class="modal-body modal-body-govco" style="margin: 12px 0px !important">
                                         <div class="row">
                                             @if ($vehiculo !== 'TODOS')
@@ -299,6 +300,11 @@
     <script src="{{ asset('assets/form/carga-de-archivo.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            //Read categorias from url
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoriaLicencia = urlParams.get('categoria-licencia');
+            document.querySelector('input[name="categorias-licencia"]').value = categoriaLicencia ? categoriaLicencia : '';
+
             var fileInputs = document.querySelectorAll('.input-carga-de-archivo-govco');
             fileInputs.forEach(function (fileInput) {
                 fileInput.addEventListener('change', function () {
@@ -307,7 +313,11 @@
                     }, 100);
                 });
             });
-            document.getElementById('container_file_poder').style.display = 'none'; // Hide the poder file input by default
+            try {
+                document.getElementById('container_file_poder').style.display = 'none'; // Hide the poder file input by default
+            } catch (error) {
+                
+            }
             @if(old('tipo_documento'))
                 const tipoDocumentoSelect = document.getElementById('tipo_documento');
                 const oldTipoDocumento = "{{ old('tipo_documento') }}";

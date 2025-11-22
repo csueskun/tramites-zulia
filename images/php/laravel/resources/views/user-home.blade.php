@@ -86,13 +86,13 @@
                                 <div class="checkbox-seleccion-govco">
                                     <label for="categoria" class="mb-1">Categoría</label><br>
                                     <label for="categoria-licencia" class="checkbox-label-govco me-2">
-                                        <input name="categoria-licencia" value="A2" type="checkbox" checked="checked">A2-Moto
+                                        <input name="categoria-licencia[]" value="A2" type="checkbox" checked="checked">A2-Moto
                                     </label>
                                     <label for="categoria-licencia" class="checkbox-label-govco me-2">
-                                        <input name="categoria-licencia" value="B1" type="checkbox">B1-Vehículo Particular
+                                        <input name="categoria-licencia[]" value="B1" type="checkbox">B1-Vehículo Particular
                                     </label>
                                     <label for="categoria-licencia" class="checkbox-label-govco me-2">
-                                        <input name="categoria-licencia" value="C1" type="checkbox">C1-Servicio público
+                                        <input name="categoria-licencia[]" value="C1" type="checkbox">C1-Servicio público
                                     </label>
                                 </div>
                                 <span class="error text-danger hidden">Debe seleccionar al menos una categoría</span>
@@ -180,9 +180,10 @@
         document.getElementById('licencia-categorias').style.display = 'none';
         if(tramiteId == '5' || tramiteId == '6' ){
             document.getElementById(`licencia-categorias`).style.display = 'block';
-            resetCategoriacheckbox();
+            resetCategoriacheckbox(true);
         }
         else{
+            resetCategoriacheckbox();
         }
         document.querySelector('#tramite-form button[type="submit"]').disabled = false;
 
@@ -268,18 +269,20 @@
         }
 
         //categoria-licencia
-        const categoriaLicenciaCheckbox = document.querySelectorAll('input[name="categoria-licencia"]');
+        const categoriaLicenciaCheckbox = document.querySelectorAll('input[name="categoria-licencia[]"]');
         for (let i = 0; i < categoriaLicenciaCheckbox.length; i++) {
             categoriaLicenciaCheckbox[i].addEventListener('change', categoriaCheckboxListener);
         }
     });
 
-    function resetCategoriacheckbox(){
-        document.querySelectorAll('input[name="categoria-licencia"]').forEach((checkbox) => {
+    function resetCategoriacheckbox(show=false){
+        document.querySelectorAll('input[name="categoria-licencia[]"]').forEach((checkbox) => {
             checkbox.checked = false;
         });
-        document.getElementById('licencia-categorias').classList.remove('error');
-        document.querySelectorAll('input[name="categoria-licencia"]')[0].checked = true;    
+        if(show){
+            document.getElementById('licencia-categorias').classList.remove('error');
+            document.querySelectorAll('input[name="categoria-licencia[]"]')[0].checked = true;    
+        }
     }
 
     function categoriaCheckboxListener(){
@@ -317,7 +320,7 @@
 
     function getCategoriasSelected() {
         let selectedCategories = [];
-        document.querySelectorAll('input[name="categoria-licencia"]:checked').forEach((checkbox) => {
+        document.querySelectorAll('input[name="categoria-licencia[]"]:checked').forEach((checkbox) => {
             selectedCategories.push(checkbox.value);
         });
         return selectedCategories;
