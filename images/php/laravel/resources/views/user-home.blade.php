@@ -8,143 +8,241 @@
 
 @section('content')
 
-<div class="admin-home mt-2" data-content="natural">
-    <div class="row justify-content-between">
-        <div class="col-lg-8" id="para-mirar">
-            <h3 class="govcolor-blue-dark mb-4">Solicitud de Trámites</h3>
-            <a href="/user/solicitudes">
-                <button type="button" class="btn-govco fill-btn-govco">Ver mis solicitudes</button>
-            </a>
-            <p class="text-muted my-4">
-                En esta sección encontrarás un listado detallado de los trámites disponibles
-                relacionados con vehículos automotores. Cada trámite incluye una descripción
-                clara, los requisitos necesarios, Costo total del tramite (validos hasta el año 2025)
-                asociado. Además, podrás iniciar la solicitud del trámite o
-                consultar su estado desde esta misma plataforma. Explora las opciones y selecciona el
-                trámite que necesitas realizar de manera fácil y rápida.
-            </p>
-            <div class="row">
-                <div class="tramites-boxes-container">
-                    @foreach ($tramites as $index => $tramite)
-                    <a class="module-tarjeta-govco tramite m-2" href="#"
-                        data-bs-toggle="modal" data-bs-target="#tramite-modal" 
-                        data-tramite-id="{{ $tramite->id }}"
-                        data-tramite-nombre="{{ $tramite->nombre }}"
-                        data-tramite-descripcion="{{ $tramite->descripcion }}"
-                        data-tramite-costos="{{ json_encode(array_values($tramite->costos->toArray())) }}"
-                        data-tramite-vehiculos="{{ json_encode(array_values($tramite->vehiculos->toArray())) }}"
-                        data-tramite-personas="{{ json_encode(array_values($tramite->personas->toArray())) }}"
-                        data-tramite-estampillas="{{ json_encode(array_values($tramite->estampillas->toArray())) }}"
-                        data-tramite-requerimientos="{{ json_encode(array_values($tramite->requerimientos->toArray())) }}">
-                        <div class="header-tarjeta-govco">
-                            <h5>{{ $tramite->nombre }}</h5>
+    <div class="admin-home mt-2" data-content="natural">
+        <div class="row justify-content-between">
+            <div class="col-lg-8" id="para-mirar">
+                <h3 class="govcolor-blue-dark mb-4">Solicitud de Trámites</h3>
+                <a href="/user/solicitudes">
+                    <button type="button" class="btn-govco fill-btn-govco">Ver mis solicitudes</button>
+                </a>
+                <p class="text-muted my-4">
+                    En esta sección encontrarás un listado detallado de los trámites disponibles
+                    relacionados con vehículos automotores. Cada trámite incluye una descripción
+                    clara, los requisitos necesarios, Costo total del tramite (validos hasta el año 2025)
+                    asociado. Además, podrás iniciar la solicitud del trámite o
+                    consultar su estado desde esta misma plataforma. Explora las opciones y selecciona el
+                    trámite que necesitas realizar de manera fácil y rápida.
+                </p>
+                <div class="row">
+                    <div class="tramites-boxes-container">
+                        @foreach ($tramites as $index => $tramite)
+                        <a class="module-tarjeta-govco tramite m-2" href="#"
+                            data-bs-toggle="modal" data-bs-target="#tramite-modal" 
+                            data-tramite-id="{{ $tramite->id }}"
+                            data-tramite-nombre="{{ $tramite->nombre }}"
+                            data-tramite-descripcion="{{ $tramite->descripcion }}"
+                            data-tramite-costos="{{ json_encode(array_values($tramite->costos->toArray())) }}"
+                            data-tramite-vehiculos="{{ json_encode(array_values($tramite->vehiculos->toArray())) }}"
+                            data-tramite-personas="{{ json_encode(array_values($tramite->personas->toArray())) }}"
+                            data-tramite-estampillas="{{ json_encode(array_values($tramite->estampillas->toArray())) }}"
+                            data-tramite-requerimientos="{{ json_encode(array_values($tramite->requerimientos->toArray())) }}">
+                            <div class="header-tarjeta-govco">
+                                <h5>{{ $tramite->nombre }}</h5>
+                            </div>
+                            <hr>
+                            <div class="body-tarjeta-govco">
+                                <p>{{  $tramite->descripcion }}</p>
+                            </div>
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                @include('components.area-servicio')
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="tramite-modal" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
+        <div class="container-modal-govco" id="modal_warning">
+            <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
+                data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" aria-hidden="true"
+                role="dialog">
+                <div class="modal-dialog modal-dialog-govco" style="max-width: 640px !important;">
+                    <form action="/user/solicitudes/nueva" method="POST" id="tramite-form">
+                        @csrf
+                        <input type="hidden" name="tramite_id" value="" data-tramite-field="id">
+                        <div class="modal-content modal-content-govco">
+                            <div class="modal-header modal-header-govco modal-header-alerts-govco">
+                                <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body modal-body-govco fix">
+                                <h4 data-tramite-field="nombre" class="govcolor-blue-dark mb-4"></h4>
+                                <p data-tramite-field="descripcion"></p>
+                                <p><div class="radio-seleccion-govco" data-tramite-field="personas"></div></p>
+                                <p><div class="radio-seleccion-govco" data-tramite-field="vehiculos"></div></p>
+                                <table class="table table-general fix min" id="requerimientos-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Requisitos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-tramite-field="requerimientos"></tbody>
+                                </table>
+                                <div id="licencia-categorias" class="my-3 categoria-titulo">
+                                    <div class="checkbox-seleccion-govco">
+                                        <label for="categoria" class="mb-1">Categoría</label><br>
+                                        <table class="table table-general fix min">
+                                            <thead>
+                                                <tr>
+                                                    <th>Moto</th>
+                                                    <th>Carro</th>
+                                                    <th>Servicio Público</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="A1" type="checkbox" checked="checked">A1
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Motocicletas hasta 125 c.c. de cilindrado.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="B1" type="checkbox">B1
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Automóviles, camperos, camionetas y microbuses de servicio particular.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="C1" type="checkbox">C1
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Automóviles, camperos, camionetas y microbuses de servicio público.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="A2" type="checkbox">A2
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Motocicletas, motociclos y mototriciclos de más de 125 c.c. de cilindrado.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="B2" type="checkbox">B2
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Camiones, rígidos, busetas y buses para el servicio particular.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="C2" type="checkbox">C2
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Camiones, rígidos, busetas y buses para el servicio público.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="B3" type="checkbox">B3
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Vehículos articulados de servicio particular.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="C3" type="checkbox">C3
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Vehículos articulados de servicio público.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <span class="error text-danger hidden">Debe seleccionar al menos una categoría</span>
+                                </div>
+                                <table class="table table-general fix min" id="costos-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Concepto a pagar</th>
+                                            <th class="text-end">Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-tramite-field="costos"></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Total</th>
+                                            <th class="currency total"></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <table class="table table-general fix min" id="estampillas-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Estampillas</th>
+                                            <th class="text-end">Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-tramite-field="estampillas"></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Total</th>
+                                            <th class="currency total"></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <p>
+                                    Costo total del tramite: <strong><span data-tramite-field="total"></span></strong> <span class="nota"></span> (válidos durante el año 2025)
+                                </p>
+                            </div>
+                            <div class="modal-footer-govco modal-footer-alerts-govco">
+                                <div class="modal-buttons-govco justify-content-center">
+                                    <button type="submit" class="btn btn-primary btn-modal-govco">Crear nueva solicitud</button>
+                                    <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                        Cerrar
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <hr>
-                        <div class="body-tarjeta-govco">
-                            <p>{{  $tramite->descripcion }}</p>
-                        </div>
-                    </a>
-                    @endforeach
+                    </form>
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-4">
-            @include('components.area-servicio')
-        </div>
-
     </div>
-</div>
-<div class="modal fade" id="tramite-modal" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
-    <div class="container-modal-govco" id="modal_warning">
-        <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
-            data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" aria-hidden="true"
-            role="dialog">
-            <div class="modal-dialog modal-dialog-govco" style="max-width: 640px !important;">
-                <form action="/user/solicitudes/nueva" method="POST" id="tramite-form">
-                    @csrf
-                    <input type="hidden" name="tramite_id" value="" data-tramite-field="id">
-                    <div class="modal-content modal-content-govco">
-                        <div class="modal-header modal-header-govco modal-header-alerts-govco">
-                            <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body modal-body-govco fix">
-                            <h4 data-tramite-field="nombre" class="govcolor-blue-dark mb-4"></h4>
-                            <p data-tramite-field="descripcion"></p>
-                            <p><div class="radio-seleccion-govco" data-tramite-field="personas"></div></p>
-                            <p><div class="radio-seleccion-govco" data-tramite-field="vehiculos"></div></p>
-                            <table class="table table-general fix min" id="requerimientos-table">
-                                <thead>
-                                    <tr>
-                                        <th>Requisitos</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-tramite-field="requerimientos"></tbody>
-                            </table>
-                            <div id="licencia-categorias" class="my-3 categoria-titulo">
-                                <div class="checkbox-seleccion-govco">
-                                    <label for="categoria" class="mb-1">Categoría</label><br>
-                                    <label for="categoria-licencia" class="checkbox-label-govco me-2">
-                                        <input name="categoria-licencia[]" value="A2" type="checkbox" checked="checked">A2-Moto
-                                    </label>
-                                    <label for="categoria-licencia" class="checkbox-label-govco me-2">
-                                        <input name="categoria-licencia[]" value="B1" type="checkbox">B1-Vehículo Particular
-                                    </label>
-                                    <label for="categoria-licencia" class="checkbox-label-govco me-2">
-                                        <input name="categoria-licencia[]" value="C1" type="checkbox">C1-Servicio público
-                                    </label>
-                                </div>
-                                <span class="error text-danger hidden">Debe seleccionar al menos una categoría</span>
-                            </div>
-                            <table class="table table-general fix min" id="costos-table">
-                                <thead>
-                                    <tr>
-                                        <th>Concepto a pagar</th>
-                                        <th class="text-end">Valor</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-tramite-field="costos"></tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Total</th>
-                                        <th class="currency total"></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <table class="table table-general fix min" id="estampillas-table">
-                                <thead>
-                                    <tr>
-                                        <th>Estampillas</th>
-                                        <th class="text-end">Valor</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-tramite-field="estampillas"></tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Total</th>
-                                        <th class="currency total"></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <p>
-                                Costo total del tramite: <strong><span data-tramite-field="total"></span></strong> <span class="nota"></span> (válidos durante el año 2025)
-                            </p>
-                        </div>
-                        <div class="modal-footer-govco modal-footer-alerts-govco">
-                            <div class="modal-buttons-govco justify-content-center">
-                                <button type="submit" class="btn btn-primary btn-modal-govco">Crear nueva solicitud</button>
-                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
-                                    Cerrar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+
+    <div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title govcolor-blue-dark " id="infoModalLabel">Tener en cuenta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p>A continuación, encontrarás los trámites disponibles para realizar en la plataforma. Recuerde que cada
+                        trámite se debe seleccionar de manera individual.
+                        <br>
+                        <br>
+                        Si el trámite que necesita no aparece en la lista o requiere realizar más de un trámite de
+                        manera simultánea, se recomienda recibir orientación y acompañamiento directamente en
+                        la Secretaría de Tránsito, sede operativa el Zulia.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">Aceptar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
 @endsection
 @push('scripts')
 <style>
@@ -422,6 +520,17 @@
         }
         document.querySelectorAll('.pestana-content')[panelId].classList.add('active');
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+                new bootstrap.Tooltip(el);
+            });
+
+        const infoModal = new bootstrap.Modal(document.getElementById('info-modal'));
+        infoModal.show();
+    });
+
+
 </script>
 
 @endpush
