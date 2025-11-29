@@ -10,4 +10,7 @@ class TramiteItem extends Model
 {
     //
     use HasFactory, Notifiable;
+    protected $fillable = [
+        'precio',
+    ];
 }

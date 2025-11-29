@@ -15,6 +15,11 @@ class Tramite extends Model
     //
     use HasFactory, Notifiable;
 
+    protected $fillable = [
+        'nombre',
+        'descripcion',
+    ];
+
     public function items()
     {
         return $this->hasMany(TramiteItem::class);
