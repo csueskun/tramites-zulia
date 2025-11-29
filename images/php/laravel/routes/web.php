@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\TramiteController;
+use App\Http\Controllers\TramiteItemController;
 
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\CheckRole;
@@ -63,6 +65,8 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/solicitudes/{id}', [SolicitudController::class, 'patchFromView']);
         Route::post('/solicitudes/{id}/comentarios', [ComentarioController::class, 'addComentario']);
         Route::get('/solicitudes/{id}/ver', [SolicitudController::class, 'verSolicitud']);
+        Route::resource('/tramites', TramiteController::class);
+        Route::patch('/tramite_items/{item}', [TramiteItemController::class, 'update']);
         // Route::resource('/usuarios', UserController::class);
     });
 
