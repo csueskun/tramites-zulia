@@ -86,6 +86,13 @@ class TramiteItemSeeder extends Seeder
                 'precio' => 91000,
             ],
             [
+                'tramite_id' => 2,
+                'nombre' => 'Derecho de trámite',
+                'descripcion' => '',
+                'vehiculo' => 'CAMIÓN',
+                'precio' => 91000,
+            ],
+            [
                 'tramite_id' => 2,  
                 'nombre' => 'Sustrato lámina',
                 'descripcion' => '',

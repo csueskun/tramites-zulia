@@ -257,8 +257,8 @@ class SecondBatchTramitesSeeder extends Seeder
 
         //INSCRIPCIÓN DE LIMITACIÓN O GRAVAMEN
         $tramite = Tramite::create([
-            'nombre' => 'Inscripción de limitación o gravamen',
-            'descripcion' => 'Trámite que permite registrar una limitación o gravamen sobre un vehículo en el Registro Único Nacional de Tránsito (RUNT), lo que puede afectar la propiedad o el uso del vehículo',
+            'nombre' => 'Inscripción de limitación o gravamen a la propiedad de un vehículo automotor',
+            'descripcion' => 'Trámite que permite registrar una limitación o gravamen sobre la propiedad de un vehículo en el Registro Único Nacional de Tránsito (RUNT), lo que puede afectar la propiedad o el uso del vehículo',
         ]);
 
         $tramite->requerimientos()->createMany([
@@ -355,7 +355,7 @@ class SecondBatchTramitesSeeder extends Seeder
                 'vehiculo' => 'MOTO',
             ],
             [
-                'vehiculo' => 'CAMIÓN',
+                'vehiculo' => 'REMOLQUE',
             ]
         ]);
 
@@ -384,7 +384,7 @@ class SecondBatchTramitesSeeder extends Seeder
             [
                 'nombre' => 'Derecho de trámite',
                 'descripcion' => '',
-                'vehiculo' => 'CAMIÓN',
+                'vehiculo' => 'REMOLQUE',
                 'precio' => 91000,
             ],
             [
