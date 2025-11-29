@@ -228,7 +228,7 @@ div.alert.alerta-govco>span {
 }
 
 .module-tarjeta-govco.fix .body-tarjeta-govco {
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1rem;
 }
 
 .align-start {
@@ -433,4 +433,7 @@ li.user-label-xs{
   
   #licencia-categorias span[data-bs-toggle="tooltip"] {
     color: #004884;
+  }
+  .no-wrap{
+    white-space: nowrap;
   }

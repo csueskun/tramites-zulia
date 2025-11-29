@@ -4233,3 +4233,33 @@ function getNowDate() {
   now.setHours(now.getHours() - 5);
   return now.toISOString();
 } 
+
+
+function modalTable(headers, rows, titulo='', footer=[]){
+  let table = '';
+  if(titulo !== ''){
+      table += `<strong class="govcolor-blue-dark">${titulo}</strong>`;
+  }
+  table += '<table class="table table-general fix min"><thead><tr>';
+  headers.forEach(header => {
+      table += `<th scope="col">${header}</th>`;
+  });
+  table += '</tr></thead><tbody>';
+  rows.forEach(row => {
+      table += '<tr>';
+      row.forEach(cell => {
+          table += `<td>${cell}</td>`;
+      });
+      table += '</tr>';
+  });
+  table += '</tbody>';
+  if(footer.length > 0){
+      table += '<tfoot><tr>';
+      footer.forEach(foot => {
+          table += `<td>${foot}</td>`;
+      });
+      table += '</tr></tfoot>';
+  }
+  table += '</table>';
+  return table;
+}
