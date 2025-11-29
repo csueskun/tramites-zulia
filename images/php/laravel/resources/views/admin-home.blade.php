@@ -71,6 +71,17 @@
                         </div>
                     </a>
                 </div>
+                <div class="col-lg-4 p-2">
+                    <a class="module-tarjeta-govco fix" href="/tramites/" title="Actualizar trámites">
+                        <div class="header-tarjeta-govco">
+                            <h5>Administrar trámites</h5>
+                        </div>
+                        <hr>
+                        <div class="body-tarjeta-govco">
+                            <p>Habilite, deshabilite y actualice los trámites disponibles en el sistema.</p>
+                        </div>
+                    </a>
+                </div>
                 @endif
             </div>
 
