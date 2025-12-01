@@ -282,6 +282,7 @@
         fields[4].classList.add(fields[4].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
         fields[5].classList.add(fields[5].innerHTML === "PENDIENTE" ? 'pendiente' : 'completado');
 
+        verMas.querySelector('.row.vencido').classList.add('visually-hidden');
         if(trigger.getAttribute(`data-bs-recibovencido`) === 'true') {
             if(trigger.getAttribute(`data-bs-estado`) !== 'VALIDADA'){
                 verMas.querySelector('.row.vencido').classList.remove('visually-hidden');
