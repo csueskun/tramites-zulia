@@ -40,20 +40,38 @@
 	src: url('/web/20240516205243im_/https://precdn.www.gov.co/layout/v4/assets/fonts/Montserrat/Montserrat-Medium.ttf');
 }
 
-/* WorkSans-Regular */
+/* WorkSans */
 @font-face {
-	font-family: "Work Sans", sans-serif;
+	font-family: 'WorkSans-Medium';
+	src: url('https://fonts.gstatic.com/s/worksans/v9/QGYwz_AZahWOJJI9kykWW9o.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
 }
+
+@font-face {
+	font-family: 'WorkSans-SemiBold';
+	src: url('https://fonts.gstatic.com/s/worksans/v9/QGYwz_AZahWOJJI9kykWW9o.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    font-family: 'Work Sans', sans-serif;
+}
+
+
 
 /* WorkSans-Medium */
-@font-face {
+/* @font-face {
 	font-family: "Work Sans", sans-serif;
-}
+} */
 
 /* WorkSans-SemiBold */
-@font-face {
+/* @font-face {
 	font-family: "Work Sans", sans-serif;
-}
+} */
 
 /* Montserrat-Regular */
 @font-face {
@@ -62,10 +80,10 @@
 }
 
 /* WorkSans-Regular */
-@font-face {
-	
-	font-family: "Work Sans", sans-serif;
-}
+/* @font-face {
+	font-family: 'WorkSans-Bold';
+	src: url('/web/20240516205243im_/https://precdn.www.gov.co/layout/v4/assets/fonts/Work_Sans/static/WorkSans-Bold.ttf');
+} */
 
 /* Montserrat-MediumItalic */
 @font-face {
