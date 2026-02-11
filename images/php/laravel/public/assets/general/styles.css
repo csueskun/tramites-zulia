@@ -42,8 +42,7 @@
 
 /* WorkSans-Regular */
 @font-face {
-	font-family: 'WorkSans-Regular';
-	src: url('/web/20240516205243im_/https://precdn.www.gov.co/layout/v4/assets/fonts/Work_Sans/static/WorkSans-Regular.ttf');
+	font-family: "Work Sans", sans-serif;
 }
 
 /* WorkSans-Medium */

@@ -14,6 +14,10 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/form/fix.css') }}">
     <link rel="stylesheet" href="https://cdn.www.gov.co/assets/fonts/icons/Govco-icons.woff2" type="font/woff2">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital@0;1&display=swap" rel="stylesheet">
     @stack('styles')
 </head>
 
