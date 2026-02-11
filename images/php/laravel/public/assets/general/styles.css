@@ -47,14 +47,12 @@
 
 /* WorkSans-Medium */
 @font-face {
-	font-family: 'WorkSans-Medium';
-	src: url('/web/20240516205243im_/https://precdn.www.gov.co/layout/v4/assets/fonts/Work_Sans/static/WorkSans-Medium.ttf');
+	font-family: "Work Sans", sans-serif;
 }
 
 /* WorkSans-SemiBold */
 @font-face {
-	font-family: "WorkSans-SemiBold";
-	src: url("/web/20240516205243im_/https://precdn.www.gov.co/layout/v4/assets/fonts/Work_Sans/static/WorkSans-SemiBold.ttf");
+	font-family: "Work Sans", sans-serif;
 }
 
 /* Montserrat-Regular */
@@ -65,8 +63,8 @@
 
 /* WorkSans-Regular */
 @font-face {
-	font-family: 'WorkSans-Bold';
-	src: url('/web/20240516205243im_/https://precdn.www.gov.co/layout/v4/assets/fonts/Work_Sans/static/WorkSans-Bold.ttf');
+	
+	font-family: "Work Sans", sans-serif;
 }
 
 /* Montserrat-MediumItalic */
