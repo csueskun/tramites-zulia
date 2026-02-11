@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css') }}"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('https://precdn.www.gov.co/layout/v4/all.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/general/styles.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/form/fix.css') }}">
+    <link rel="stylesheet" href="https://cdn.www.gov.co/assets/fonts/icons/Govco-icons.woff2" type="font/woff2">
     @stack('styles')
 </head>
 
