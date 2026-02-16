@@ -62,6 +62,9 @@
                     <div class="mt-3">
                         <a class="mt-3" href="/forgot-password">Olvidé mi contraseña</a>
                     </div>
+                    <p class="mt-3">¿No sabes cómo crear una cuenta? &nbsp;
+                        <a class="mt-3" data-bs-toggle="modal" data-bs-target="#crear_usuario" href="#">Ver video</a>
+                    </p>
                     <p class="mt-3">¿No tienes cuenta? &nbsp;
                         <a class="mt-3" href="/usuarios/nuevo">Regístrate aquí</a>
                     </p>
@@ -93,6 +96,41 @@
                             El proceso de restablecer contraseña se lleva a cabo por medio de correo 
                             electrónico. Por favor enviar la solicitud al siguiente email: 
                             <a href="mailto:soporte@nortedesantander.gov.co">transito.tramites@nortedesantander.gov.co</a>
+                        </p>
+                    </div>
+                    <div class="modal-footer-govco modal-footer-alerts-govco">
+                        <div class="modal-buttons-govco d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Reset Password -->
+<div class="modal fade" id="crear_usuario" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
+    <div class="container-modal-govco" id="modal_warning">
+        <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
+            data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-govco">
+                <div class="modal-content modal-content-govco">
+                    <div class="modal-header modal-header-govco modal-header-alerts-govco">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-body-govco center-elements-govco">
+                        <h3 class="modal-title-govco warning-govco">
+                            Crear cuenta de usuario
+                        </h3>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/9fq-d-fB3S4" 
+                                allowfullscreen></iframe>
+                        </div>
+                        <p class="modal-text-govco modal-text-center-govco mt-3">
+                            En este video te mostramos cómo recuperar tu contraseña de acceso al sistema de trámites.
                         </p>
                     </div>
                     <div class="modal-footer-govco modal-footer-alerts-govco">
