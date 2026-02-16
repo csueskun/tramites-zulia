@@ -18,7 +18,7 @@
             <p class="text-muted my-4">
                 En esta sección encontrarás un listado detallado de los trámites disponibles
                 relacionados con vehículos automotores. Cada trámite incluye una descripción
-                clara, los requisitos necesarios, Costo total del tramite (validos hasta el año 2025)
+                clara, los requisitos necesarios, Costo total del tramite (validos hasta el año 2026)
                 asociados y el Cuentas a Depositar. Además, podrás iniciar la solicitud del trámite o
                 consultar su estado desde esta misma plataforma. Explora las opciones y selecciona el
                 trámite que necesitas realizar de manera fácil y rápida.
@@ -67,7 +67,7 @@
                             {{ $tramite->descripcion }}
                         </p>
                         <p>
-                            Costo total del tramite: <strong>${{ number_format($tramite->precio, 0) }}</strong> (validos hasta el año 2025)
+                            Costo total del tramite: <strong>${{ number_format($tramite->precio, 0) }}</strong> (validos hasta el año 2026)
                         </p>
                         <p>
                             <strong>Cuentas a Depositar:</strong>
