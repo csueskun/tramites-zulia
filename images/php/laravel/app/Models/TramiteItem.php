@@ -13,4 +13,9 @@ class TramiteItem extends Model
     protected $fillable = [
         'precio',
     ];
+
+    public function tramite()
+    {
+        return $this->belongsTo(Tramite::class);
+    }
 }
