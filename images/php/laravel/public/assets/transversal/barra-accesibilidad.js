@@ -1,93 +1,124 @@
-function cambiarContexto() {
+/**
+ * Gov.co (https://www.gov.co) - Gobierno de Colombia
+ *  - Componente: Barra de accesibilidad
+ *  - Version: 5.0.0
+ */
 
+function methodAssign(event, method, elements) {
+  for (let i of elements) {
+    i.addEventListener(event, method, false);
+  }
+}
 
-    var botoncontraste = document.getElementById("botoncontraste");
-    var botonaumentar = document.getElementById("botonaumentar");
-    var botondisminuir = document.getElementById("botondisminuir");
-  
-      if (!botoncontraste.classList.contains("active-barra-accesibilidad-govco")) {
-        botoncontraste.classList.toggle("active-barra-accesibilidad-govco");
-        document.getElementById("titleaumentar").style.display="";
-        document.getElementById("titledisminuir").style.display="";
-        document.getElementById("titlecontraste").style.display="none";
+function addEventHandler(el, evt, sel, handler) {
+  for (const currEvt of evt.split(' ')) {
+    el.addEventListener(currEvt, function (event) {
+      let t = event.target;
+      while (t && t !== this) {
+        for (const currSel of sel.split(',') ) {
+          if (t.matches(currSel)) {
+            handler.call(t, event);
+          }
+        }
+        t = t.parentNode;
       }
-      if (botondisminuir.classList.contains("active-barra-accesibilidad-govco")) {
-        botondisminuir.classList.remove("active-barra-accesibilidad-govco");
-      }
-      if (botonaumentar.classList.contains("active-barra-accesibilidad-govco")) {
-        botonaumentar.classList.remove("active-barra-accesibilidad-govco");
-      }
-  
-    var element = document.getElementById('para-mirar');
-    if (element.className == 'modo_oscuro-govco') {
-      var element = document.getElementById('para-mirar');
-      element.className = "modo_claro-govco";
-    } else {
-      var element = document.getElementById('para-mirar');
-      element.className = "modo_oscuro-govco";
+    });
+  }
+}
+
+(function() {
+  window.addEventListener("load", function () {
+    initAccessibilityBar();
+  });
+})();
+
+function initAccessibilityBar() {
+  addEventsAccessibilityBar();
+
+  addEventHandler(
+    document.body, 
+    'click keydown', 
+    '.barra-accesibilidad-govco', 
+    function(event) {
+      addEventsAccessibilityBar(event);
     }
+  );
+}
+
+function addEventsAccessibilityBar(event = null) {
+	const bars = document.querySelectorAll('.barra-accesibilidad-govco:not(.actived-events-govco)');
+	for (const bar of bars) {
+	  bar.classList.add('actived-events-govco');
+  
+	  const constrast = bar.querySelectorAll('button.contrast');
+	  methodAssign("click", activeContrast, constrast);
+  
+	  const decrease = bar.querySelectorAll('button.decrease-font-size');
+	  methodAssign("click", activeFontSize, decrease);
+  
+	  const increase = bar.querySelectorAll('button.increase-font-size');
+	  methodAssign("click", activeFontSize, increase);
+	}
+
+	if (event == null || bars.length == 0) {
+		return false;
+	}
+
+	let element = '';
+	if (event.target.classList.contains('button.contrast', 'button.decrease-font-size', 'button.increase-font-size')) {
+		element = event.target;
+	} else if (event.target.closest('.barra-accesibilidad-govco')) {
+		element = event.target.closest('button');
+	}
+
+	if (element) {
+		element.click();
+	}
+}
+
+function activeContrast() {
+  const element = document.querySelector('body');
+  if (element.classList.contains('contrast-govco')) {
+    element.classList.remove('contrast-govco');
+  } else {
+    element.classList.add('contrast-govco');
   }
-  
-  function disminuirTamanio(operador) {
-  
-    var botoncontraste = document.getElementById("botoncontraste");
-    var botonaumentar = document.getElementById("botonaumentar");
-    var botondisminuir = document.getElementById("botondisminuir");
-  
-      if (!botondisminuir.classList.contains("active-barra-accesibilidad-govco")) {
-        botondisminuir.classList.toggle("active-barra-accesibilidad-govco");
-        document.getElementById("titleaumentar").style.display="";
-        document.getElementById("titledisminuir").style.display="none";
-        document.getElementById("titlecontraste").style.display="";
-      }
-      if (botonaumentar.classList.contains("active-barra-accesibilidad-govco")) {
-        botonaumentar.classList.remove("active-barra-accesibilidad-govco");
-      }
-      if (botoncontraste.classList.contains("active-barra-accesibilidad-govco")) {
-        botoncontraste.classList.remove("active-barra-accesibilidad-govco");
-      }
-  
-    var div1 = document.getElementById("para-mirar")
-    var texto = div1.getElementsByTagName("p");
-    for (let element of texto) {
-      const total = tamanioElemento(element);
-      const nuevoTamanio = (operador === 'aumentar' ? (total + 1) : (total - 1)) + 'px';
-      element.style.fontSize = nuevoTamanio
+  activeButtonAccessibility(this);
+}
+
+accesibilityBarCounterFontSize = 0;
+
+function activeFontSize() {
+  let addition = this.classList.contains('decrease-font-size') ? -1 : 1;
+  const decreaseLimit = parseInt(this.getAttribute('data-decrease-limit')) || -5;
+  const increaseLimit = parseInt(this.getAttribute('data-increase-limit')) || 5;
+
+  accesibilityBarCounterFontSize += addition;
+
+  if (accesibilityBarCounterFontSize >= decreaseLimit && accesibilityBarCounterFontSize <= increaseLimit) { 
+    const elements = document.querySelectorAll('body *');
+    for (const element of elements) {
+      changeFontSize(element, addition);
     }
+  } else {
+    accesibilityBarCounterFontSize = addition > 0 ? increaseLimit : decreaseLimit;
   }
   
-  function aumentarTamanio(operador) {
-  
-    var botoncontraste = document.getElementById("botoncontraste");
-    var botonaumentar = document.getElementById("botonaumentar");
-    var botondisminuir = document.getElementById("botondisminuir");
-  
-      if (!botonaumentar.classList.contains("active-barra-accesibilidad-govco")) {
-        botonaumentar.classList.toggle("active-barra-accesibilidad-govco");
-        document.getElementById("titleaumentar").style.display="none";
-        document.getElementById("titledisminuir").style.display="";
-        document.getElementById("titlecontraste").style.display="";
-      }
-      if (botondisminuir.classList.contains("active-barra-accesibilidad-govco")) {
-        botondisminuir.classList.remove("active-barra-accesibilidad-govco");
-      }
-      if (botoncontraste.classList.contains("active-barra-accesibilidad-govco")) {
-        botoncontraste.classList.remove("active-barra-accesibilidad-govco");
-      }
-  
-    var div1 = document.getElementById("para-mirar")
-    var texto = div1.getElementsByTagName("p");
-    for (let element of texto) {
-      const total = tamanioElemento(element);
-      if(total<=30)
-      {
-      const nuevoTamanio = (operador === 'aumentar' ? (total + 1) : (total - 1)) + 'px';
-      element.style.fontSize = nuevoTamanio
-      }
-    }
-  }
-  
-  function tamanioElemento(element) {
-    const tamanioParrafo = window.getComputedStyle(element, null).getPropertyValue('font-size');
-    return parseFloat(tamanioParrafo);
-  }
+  activeButtonAccessibility(this);
+}
+
+function changeFontSize(element, increse) {
+  let fontSize = getFontSize(element);
+  fontSize = (fontSize + increse) + 'px';
+  element.style.fontSize = fontSize;
+}
+
+function getFontSize(element) {
+  const fontSize = window.getComputedStyle(element, null).getPropertyValue('font-size');
+  return parseFloat(fontSize);
+}
+
+function activeButtonAccessibility(element) {
+  element.parentNode.querySelector('.active')?.classList.remove('active');
+  element.classList.add('active');
+}

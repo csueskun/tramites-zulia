@@ -1,0 +1,78 @@
+00:00:02
+Buenos días. En este momento nos disponemos a realizar el videotoral tutorial para el ingreso de trámites en la aplicación tránsito trámites del municipio El Sur. ¿Listo? Bueno, es importante saber que para el manejo de los trámites en la aplicación eh se debe contar con un correo electrónico, ¿cierto? un correo electrónico en el cual nuestro funcionario de tránsito dará respuesta a sus a sus pasos a medida que se va solicitando el trámite. ¿Listo? Eh, bueno, eh importante saber que para ingresar a
+
+00:00:43
+la aplicación podemos debemos saber debemos conocer nuestra dirección. Entonces, la dirección para ingresar a la aplicación de de los trámites es http s2/ tránsitotrámites.nortedesantander.g.com como aparece aquí arriba eh seleccionado https en las tránsito trámites norteesantander.g.com. Listo. Damos enter y él me abre la la la pantalla donde donde me voy a loguear. Y para poder loguearme, pues yo tengo que haber creado un usuario contraseña. Sí, que esto pues es explicado en en el video para crear usuario y contraseña. ¿Listo?
+
+00:01:35
+Aquí ya tenemos creado el usuario y la contraseña. Entonces el usuario va a ser este, ¿sí? Es el correo electrónico y la contraseña le vamos a dar aquí clic para mostrar contraseña para que ustedes se den cuenta pues cómo ser la contraseña, ¿no? Una mayúscula, una mayúscula, minúsculas. Sí, un símbolo y números, mínimo ocho caracteres. Aquí ya hay ocho caracteres y tiene la mayúscula, minúsculas, un símbolo cualquiera, ¿no? Eh, asterisco, peso, bueno, como ustedes lo hayan creado. Y números y le dan mostrar
+
+00:02:21
+contraseña y le dan continuar para ingresar a la aplicación. Listo. En este momento hemos ingresado a a la pantalla, ¿sí?, donde están todos los trámites que están habilitados. Todos los trámites casi que el funcionamiento es igual. Sí, es igual 95 97%. Algunos cambian los los documentos que se piden, pero es el el el proceso para solicitar el trámite es igual en todos. ¿Listo? Entonces, en este caso vamos a realizar el trámite de levantamiento de limitación o gravamen. ¿Listo? Levantamiento de limitación o graamen eh
+
+00:03:07
+se le puede hacer para persona natural o jurídica que tenga carro o que tenga moto, ¿listo? Tenga vehículos, carro o moto. ¿Listo? Entonces vamos para este caso vamos a hacer vamos a hacer el de una persona jurídica que tenga un cargo. ¿Listo? ¿Qué le pide para una persona jurídica que tenga carro? Le pide estos requisitos. El formato FUN debidamente diligenciado. Lo deben de descargar y diligenciarlo y guardarlo como PDF. No. Anexectar improntas en el F. Está inscrito en el Registro Único Nacional
+
+00:03:49
+de Tránsito. Fotocopia de la cédula también en PDF. Copia la célula se unida del representante legal. La licencia de tránsito, tarjeta de propiedad, copia por ambas caras, carta de levantamiento de la prenda autenticada y cámara de comercio se aplica cámara de comercio estará pasisalvo en el simit y salvo de impuestos de vehículos, el SOA, revisión técnicomecánica, contrato de mandato de poder especial si el trámite lo realiza un tercero otorgado suscrito en Colombia o en consulados debidamente autenticados
+
+00:04:35
+y los soportes de pago de TNS y el CPL son dos recibos que le van a llegar a usted a su correo electrónico, el cual se deben de pagar el mismo día que el funcionario tránsito se los envía. ¿Listo? Si no se pagan el mismo día, pues eh se les rechaza el trámite. ¿Listo? Y los valores que van a a pagar van a ser los siguientes. Por derecho de trámite 65,000 pesos, por sustrato de lámina 25,000 y por run QPL 41,000. Esto me da un valor de 131,000 pesos. Y por estampillas vamos a pagar 33, ¿qué? 3,000
+
+00:05:23
+por electrificación y 6,000 por prohospital para un total de 9,000 en estampillas. Y esto estos documentos eh los valores que vamos a cancelar para este trámite son 140,000. ¿Listo? Entonces, cuando ya sabemos que tenemos, contamos con todos estos requisitos que están acá, listo, entonces vamos a ingresar a crear una nueva solicitud. ¿Listo? Al crear la nueva solicitud, pues él me pide los datos de la persona que va a solicitar el trámite. Sí, si es un tercero, pues van los datos aquí el tercero que está solicitando el
+
+00:06:10
+trámite y si es una persona misma que está solicitando, pues el nombre de la persona que lo está solicitando. ¿Listo? Bueno, entonces acá va a decir que este señor se llama José Leonidas Mateus Salamanta. ¿Listo? Vamos a decir que este señor tiene cédula de ciudadanía, que su número de cédula es esta, su número de teléfono es este. Y acá si ustedes quieren descargar el formulario, no lo no lo tienen, pues entran y lo descargan, lo diligen y tienen que guardarlo en PF. Listo. Y acá empezamos a adjuntar los archivos
+
+00:06:49
+en PDF. Como vemos, este trámite tiene bastantes documentos que hay que adjuntar. El F, la fotocopia, la copia de la cédula de ciudadanía del representante legal, eh la licencia de tránsito, la carta de levantamiento, la Cámara de Comercio. Lista. Vamos a adjuntar todos los documentos que solicita para este trámite. Levantamiento de limitación de grav a un vehículo automotor. Vamos a adjuntar el full. Listo, aquí lo tenemos. Listo. Acá lo que vamos a adjuntar es este. Este es el PDF que se descarga
+
+00:07:36
+y se eligencia. Eh, vamos a adjuntar la fotocopia de la cédula de de la persona que solicita el trámite. ¿Listo? Eh, fotocopia de la cédula de ciudadanía del representante legal. Listo. Eu seía el representante legal. la licencia de tránsito. Listo. Todas en formato PDF, como se dan cuenta. Pun pfpf.Pdf. La carta de levantamiento, la carta de levantamiento, la cámara de comercio y el NIP. Listo. Vamos a adjuntarla. Acá ya está Cámara Comercio y si el la persona que está realizando el trámite es un tercero, un apoderado,
+
+00:08:56
+entonces adjuntar el documento. ¿Listo? Contrato de mandato o poder especial de autenticado. Listo, como lo pide el la Secretaría de Tránsito. Y no olviden que aparte de eso, pues deben de tener estos documentos, ¿no? Estar escritos, pas y salvo, pas y salvo. So. Listo. Y acá nos recuerda que el soporte soporte de pago, este es el que envía TNS, se envía desde la aplicación TNS, se envía al correo y una vez listo, tan pronto la aprueben los requisitos que ya estén revisados, a usted le van a enviar un un el recibo a
+
+00:09:46
+su correo electrónico. Cuando ya tenemos todos los documentos listos y cargados y todos los datos de la persona, le damos clic en guardar solicitud. En este momento se creó la solicitud exitosamente. Listo. ¿Qué hay que esperar ahora? a que el funcionario de tránsito revise si sus documentos están bien o de pronto ustedes se pudo haber confundido, haber cargado un documento donde no era, ¿sí? Y no está bien diligenciado. Entonces el funcionario tránsito le revisa y si está bien, pues eh inicia la inicia el
+
+00:10:32
+trámite para darle continuidad. Les vamos a esperar a que el funcionario de tránsito revise y nos conteste por medio de correo electrónico. Listo. En este momento ya el funcionario de tránsito nos revisó los documentos y vamos a ver qué nos contestó en el correo. nos dice, "Estimado José Rodía Mateus, le informamos que la solicitud realizada el día 6 de agosto con número radicado 2025080610 para levantamiento de limitación o gravamen a un vehículo automotor ha sido aceptada. A continuación se añaden los
+
+00:11:19
+siguientes observaciones. Las siguientes observaciones. Documentos correctos. por favor continúe con su trámite. ¿Qué quiere decir esto? Que su trámite y sus documentos fueron bien cargados y estaban bien diligenciados. Si de pronto hay algo mal, ellos le van a rechazar y el correo le va a salir que fue solicitud rechazada. ¿Listo? Bueno, acá, ¿qué hacemos? Esperemos ahora que el funcionario tránsito nos envíe el recibo de pago. Listo. Acá le vamos a actualizar y nos damos cuenta que por ahora está
+
+00:12:01
+aprobado. ¿Listo? Y el mensaje también le sale acá documentos correctos. por favor continúe con su trámite. Vamos a esperar que el funcionario de tránsito nos envíe el recibo de pago. Lista. Listo. En este momento ya el funcionario tránsito nos envió el recibo de TNS y el recibo QPL. ¿Listo? Si le damos aquí actualizar, él nos va a decir acá en su dirección de correo electrónico recibirá dos soportes de pago, uno para el trámite y otro para el PL. Y le informamos que el recibo de pago de TNS fue enviado a su correo electrónico
+
+00:12:50
+y tiene plazo hasta el día de hoy a las 11:59. Es decir, si usted le envían el el recibo hoy, hoy mismo lo tiene que pagar. Ya para mañana el funcionario revisa y si usted no lo pagó, pues le rechaza el trámite y tiene que volver a empezar con la con la con la solicitud del trámite. Sí, esas son políticas de la de del manejo de los trámites. ¿Listo? Y vamos a mirar acá cuáles son los mensajes que envían. El primero que envían es este, que es el del impuesto menor de TNS. Sí. y él envía aquí un recibo, un link para
+
+00:13:30
+que usted le dé click. Y al darle click sobre este link, él me abre eh la pasarela de pago. La pasarela de pago es es esta. Listo. Entonces acá me dice, bueno, me dice que el recibo fue por valor de tanto, eh creo que este costaba 140,000. Y acá deben de seleccionar los datos. ¿A qué banco van a ir a pagar? Ban Colombia, Banco Bogotá, eh vivienda. Sí, aquí seleccionan. Para este ejemplo se había seleccionado Bancolombia, el tipo de cuenta, persona natural o si es persona jurídica, selecciona persona
+
+00:14:11
+jurídica. El tipo de cédula, el tipo de documento, cédula, el número de la cédula, el nombre de la de la cuenta, el número del celular de la de la persona, el correo electrónico y acá le dan click y él le abre ya la la siguiente parte de la pasarela de pago, que viene siendo esta donde usted selecciona, como seleccionó, que va a pagar en el Banco Banc Colombia pues le abre la la pasarela de de Bancolombia, ¿no? Selecciona Bancolombia, Bancolombia personas o en Colombia negocios y de ahí en adelante
+
+00:14:53
+pues usted continúa con el con el pago del recibo que le generó la aplicación TNS. Listo. Si de la vivienda otro banco, bueno, le ha la pasarela de pago de del otro banco. Listo. Acá como seleccionamos Banc Colombia, nos abrió los B Colombia. Sí. Y también nos llegó otro correo electrónico que es este que se llama recibo de pago QPL. Y en este recibo de pago, pues aquí viene el recibo adjunto, hay que descargarlo. Se descarga y va y se paga en la oficina de en el banco donde el que esté autorizado, el que que
+
+00:15:39
+se pueda pagar. Listo. Pero ojo con el mensaje porque nos dice lo siguiente. Estimado José Leonías Mateo Salamanca, le informamos que recibo de pago de TNS fue enviado a su correo electrónico y tiene plazo el día de hoy. Tiene plazo el día de hoy hasta las 11:59 para realizar el correspondiente pago. De igual de igual forma adjunta recibe el pago correspondiente del RCPL, que es este que está acá. para realizar el pago correspondiente. Recuerde que de no realizarse el pago indicado, será rechazado el trámite y deberá volver a
+
+00:16:15
+realizar una nueva solicitud. ¿Listo? Entonces, cuando usted ya pague, cuando usted ya pague pues el el funcionario tránsito, va a notificar de que ya revisó y que los que los recibos sí fueron pagos. Apenas usted pague, pues eh la plata cae en las cuentas de de autorizadas y ahí se van a dar cuenta que usted sí realizó el pago. ¿Listo? Tanto del recibo de TNS como del recibo QPL. Ambos recibos se se tienen que reflejar el pago. ¿Listo? Entonces, esperemos a que el funcionario tránsito sí revise si ya pagamos los dos recibos
+
+00:17:04
+de pago. Listo. Entonces, acá en este momento verificamos, le damos aquí a actualizar y dice que ya fue validado. ¿Qué quiere decir? que ya el pago fue validado. Listo. Y vamos a revisar el correo electrónico a ver si si y efectivamente aquí me dice que el pago ya fue validado. Listo. Dice, "Estimado José Leonía Mateo Salamanca, le informamos que el pago para la solicitud realizada el día 6 de agosto con número radicado terminado 60 para levantamiento de limitación o gravament a un vehículo
+
+00:17:50
+automotor ha sido validado. ¿Qué quiere decir? Que están bien sus pagos. ¿Listo? Y acá en la aplicación nos dice que ya fue valiado, o sea, que los pagos fueron revisados y que sí están correctos. ¿Listo? ¿Qué hacemos ahora? Esperemos a que el funcionario de tránsito no nos responda para pasar por el producto en las oficinas. ¿Listo? Bueno, entonces continuamos. Listo. En este momento la vamos a dar actualizar acá la en el en el historial del del trámite y me dice que fue completado. ¿Qué quiere decir? que ya el funcionario
+
+00:18:50
+tránsito le mandó otro mensajito que dice, "El proceso de solicitud terminó correctamente. Por favor preséntese en la Secretaría de Tránsito, sede operativa municipio el Zulia. Y si revisamos el correo, pues también en el correo nos dice, "Estimado José Leonidas Mateo Salamanca, le informamos que el proceso de solicitud iniciado el día 6 de agosto con número radicado para levantamiento de limitación a gravet ha sido completado. Por favor, preséntese en la Secretaría de Tránsito se operativa operativa del municipio
+
+00:19:25
+Zuliano. ¿Listo? presentan y le entregan el producto del del levantamiento de limitación gramen de un vehículo automotor. ¿Listo? Eh, acá pues también ya terminó, sí, ya quedó el estado completado y el trámite me dice que ya fue finalizado. ¿Listo? Eh, este es el procedimiento para para realizar el trámite de levantamiento limitación o gramen a un vehículo automotor. Muchísimas gracias y espero lo sea muy productivo.
+

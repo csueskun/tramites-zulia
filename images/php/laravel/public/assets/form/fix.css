@@ -1,5 +1,5 @@
 .govco-logo-entidad {
-    content: url(https://www.nortedesantander.gov.co/assets/images/Logo-autoridad.png);
+    content: url(../assets/images/logo-autoridad.jpg);
 }
 
 .govco-co {
@@ -436,3 +436,77 @@ li.user-label-xs{
   .no-wrap{
     white-space: nowrap;
   }
+
+  .checkbox-seleccion-govco.entradas-de-texto-govco input[type="checkbox"] {
+    /* transform: scale(1.1); */
+    border: solid #004884 2px  !important;
+  }
+
+.checkbox-seleccion-govco.entradas-de-texto-govco input[type="checkbox"]:checked {
+    background-color: #004884;
+}
+
+
+#back-to-top {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    right: 17px;
+    bottom: 155px;
+    z-index: 2;
+    background: var(--govcolor-cobalt);
+    border: 0;
+    padding: 9px;
+    border-radius: 5rem;
+    text-transform: initial;
+    max-width: 8.1rem;
+    text-align: left;
+    line-height: 1.2;
+    font-size: 0;
+    color: transparent !important;
+    transition: all .4s ;
+}
+
+#back-to-top:before {
+    content: "";
+    display: inline-block;
+    background-color: #fff;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='57.07' height='35.61' viewBox='0 0 57.07 35.61'> <polygon points='50 35.61 28.54 14.14 7.07 35.61 0 28.54 28.54 0 57.07 28.54 50 35.61' style='fill: %233366cc;'/></svg>");
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+#back-to-top:hover {
+    background-color: var(--govcolor-cobalt);
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #fff !important;
+}
+
+#back-to-top:hover:before {
+    margin-right: 11px;
+}
+#back-to-top>span {
+    display: inline-block;
+}
+
+.breadcrumb-govco {
+    font-family: 'Verdana-Regular';
+    font-size: 0.9em;
+}
+.modal-content-govco{
+    padding: 12px 36px 0px 36px;
+}
+.modal-header{
+    border: none;
+}
+.modal-footer-govco{
+    border: none;
+}

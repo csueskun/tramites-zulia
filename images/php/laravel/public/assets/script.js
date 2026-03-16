@@ -51,7 +51,6 @@ window.addEventListener("load", function () {
 /* ================================= Buscador =============================== */
 function initSearchBar() {
   const inputSearch = document.querySelectorAll(".input-search-govco:not(.noActive)");
-  console.log('initSearchBar', inputSearch);
   getElementInputSearchBar(inputSearch);
   methodAssign("keyup", activeInputSearchBar, inputSearch);
   methodAssign("keydown", keydownInputSearchBar, inputSearch);
@@ -193,7 +192,7 @@ function blurcleanInputSearchBar() {
 
 
 // VOLVER ARRIBA
-var volverArriba = document.querySelectorAll(".volver-arriba-govco");
+var volverArriba = [document.getElementById("back-to-top")];
 volverArriba.forEach(e => {
   e.addEventListener("click", backGoToUp, false);
 });
@@ -4133,6 +4132,32 @@ function clearInputFeedback(element){
   element.classList.remove('error');
 }
 
+function checkboxValidator() {
+  const parent = this.closest('.checkbox-seleccion-govco') || this.parentElement;
+  const message = this.getAttribute('data-error-msg') || 'Debe aceptar los términos y condiciones';
+  if (this.checked) {
+    crearMensaje(this, '', 'success', '');
+    parent.classList.remove('error-checkbox-govco');
+    return true;
+  } else {
+    crearMensaje(this, message, 'error', '');
+    parent.classList.add('error-checkbox-govco');
+    return false;
+  }
+}
+
+function captchaValidator() {
+  if (this.value.trim().length > 0) {
+    crearMensaje(this, '', 'success', '');
+    this.classList.remove('error');
+    return true;
+  } else {
+    crearMensaje(this, 'Debe ingresar el código de seguridad', 'error', '');
+    this.classList.add('error');
+    return false;
+  }
+}
+
 function validateForm(form) {
   let isValid = true;
 
@@ -4164,6 +4189,16 @@ function validateForm(form) {
               break;
           case 'select':
               if (!selectValidator.call(input)) {
+                  isValid = false;
+              }
+              break;
+          case 'checkbox':
+              if (!checkboxValidator.call(input)) {
+                  isValid = false;
+              }
+              break;
+          case 'captcha':
+              if (!captchaValidator.call(input)) {
                   isValid = false;
               }
               break;
@@ -4238,7 +4273,7 @@ function getNowDate() {
 function modalTable(headers, rows, titulo='', footer=[]){
   let table = '';
   if(titulo !== ''){
-      table += `<strong class="govcolor-blue-dark">${titulo}</strong>`;
+      table += `<strong class="">${titulo}</strong>`;
   }
   table += '<table class="table table-general fix min"><thead><tr>';
   headers.forEach(header => {

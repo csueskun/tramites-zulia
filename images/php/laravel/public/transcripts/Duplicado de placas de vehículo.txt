@@ -1,0 +1,66 @@
+00:00:02
+Bueno, buenos buenos días. En este momento nos disponemos a a realizar eh videotutorial para el ingreso de trámites en la aplicación de eh de los trámites de tránsito del municipio del Zulia. ¿Listo? Es importante saber que para realizar un trámite en la aplicación necesitamos contar con un correo electrónico, que es donde nos van a llegar los los todos los mensajes que el funcionario de tránsito nos va transmitiendo. ¿Listo? Bueno, también es importante saber que debemos tener la dirección para ingresar
+
+00:00:37
+a la aplicación que es http sos punos enlace enlace tránsitotrámites.nordesantander.gov.co tocó, que es esta que está acá. Listo. Al tenerla damos enter y ya ingresamos a la pantalla para digitar el usuario y la contraseña y posteriormente hacer el ingreso a la aplicación. Listo. El usuario es el correo que yo que yo coloqué cuando creé el usuario. Y la contraseña, pues vamos a a ¿qué? A a digitar la contraseña de este usuario. ¿Listo? Entonces le coloco, digito la contraseña, le digo mostrar contraseña para ver si
+
+00:01:26
+sí la estoy digitando bien o mal. Cuando ya esté seguro que está bien, entonces le puedo dar continuar. para dar ingreso a la aplicación. En este videotutorial vamos a hablar de la creación del duplicado del del trámite duplicado de placas de un vehículo automotor. ¿Listo? Eh, bueno, el duplicado de placa le saca a un carro, a un vehículo y a motos. ¿Listo? Y los requisitos que piden pues son estos. Para carro son estos y para moto son estos y tienen valores, ¿no? Cada cada para cada cada uno tienen
+
+00:02:08
+diferentes valores, para carro tanto y para moto tanto. Listo. Entonces vamos a hacer uno que sea para moto. Vamos a hacer un trámite de moto. ¿Listo? ¿Qué pide para motos? Pide el FUN debidamente licenciado, estar en PDF, anelar impronta en el FUN, estar inscrito en el estar inscrito en el registro nacional run estar a pasar en el sim, pasalvo impuestos del vehículo, fotocopia de la cédula, licencia de tránsito, copia para ambas caras, SOAT vigente, revisión técnicomecánica vigente, contrato de mandato poder
+
+00:02:46
+especial. Si el trámite lo realiza una tercera persona, un tercero otorgado suscrito en Colombia o en consulados y soportes de pago de TNS y CPL. Este soporte, este recibo de TNS se envía desde la aplicación TNS, lo envía al funcionario tránsito y este recibo QPL también es enviado por el funcionario tránsito. Bueno, eh se paga un derecho a trámite por 91,205 y un QPL por 2,700. Esto tiene un valor de 93,905 y por estampillas va a pagar por electrificación 3,000 y por hospital 6,000 para un total de 9,000 y para un
+
+00:03:30
+total del trámite de 102,905. Listo. Cuando ya estoy seguro que tengo todos los documentos para empezar a hacer el trámite, listo, entonces le damos clic en crear nueva solicitud. Acá vamos a crear los los datos, ¿sí?, de la persona que está solicitando el trámite y los archivos en PDF que vamos a montar. Entonces, para este caso, vamos a suponer que eh el dueño de la moto que está solicitando la la va a solicitar se llama Leonía. Listo. José Leonías Mateus Salamanca con cédula de ciudadanía, con un número
+
+00:04:23
+de cédula, con un número de teléfono celular y ya con los documentos diligenciados. Ya el F ya lo descargó, ya lo diligenció y ya lo guardó en PDF. Entonces vamos a cargar el F. Listo, listo. Este es el FUN. Ya está en en formato PF, está diligenciado en PF. Vamos a adjuntar la cédula. Listo. La de ciudadanía de la de la persona, la licencia de tránsito. Sí. Y en este caso no vamos a adultar ningún poder porque el mismo señor José Leonías es el mismo dueño de la moto y es el que está solicitando el trámite. Listo.
+
+00:05:22
+Si José Leonidas fuera un tercero, bueno, aquí sale José Leonías, pero hay que adjuntar el poder. En este caso, vamos a suponer que él es el dueño de la moto y él mismo está haciendo el trámite. busco a nadie para que lo le colaboraran y aparte de eso debe debe tener pendiente que debe debe contar con el resto de requisitos, estar al día en todos los otros porque esto se revisa en las aplicaciones de del gobierno, ¿no? La del SOA, la del SIM, la del Pasisvo. Bueno, listo. Y también nos dice que el
+
+00:05:55
+soporte de pago se enviará al correo una vez sus requisitos sean revisados y aprobados por la entidad. ¿Listo? Cuando ya están todos los documentos cargados, le vamos a dar clic en guardar solicitud. En este momento me dice que la solicitud fue creada exitosamente. Ahora esperamos a que el funcionario tránsito revise los documentos y todo la información que le dimos para el trámite y si están correctos, él nos va a decir que continuemos. Si no llega a estar correcto, rechaza el trámite y hay que
+
+00:06:28
+volver a hacer la solicitud con los datos que él nos está pidiendo. ¿Listo? Listo. En este momento ya el funcionario de tránsito tuvo que revisado los documentos. Le damos aquí a actualizar y dice que está aprobada por el momento. Y el mensaje que nos envió el funcionario de tránsito que llegó a la aplicación es documentos correctos, por favor continúe con su trámite. Pero también al correo electrónico nos llegó la respuesta y donde dice que estimado José Leonías, le informamos que la solicitud
+
+00:07:10
+tal día con tal número erradicado del trámite duplicado de placas ha sido aceptada. Y los comentarios son los siguientes. Documentos correctos, por favor continúe con su trámite. Quiere decir que toda la información que usted proporcionó para el trámite está bien. ¿Listo? Listo. Ahora vamos a esperar a que el funcionario tránsito nos envíe el el recibo de pago de TNS y el recibo de pago QPL para realizar los respectivos pagos. Listo, listo. En este momento ya el funcionario de tránsito nos envió
+
+00:08:00
+el recibo de pago de de TNS y el recibo de pago de de CPL. Entonces, le damos aquí a actualizar en aplicación y efectivamente nos dice en su dirección de correo electrónico reciá dos soportes de pago, uno para el trámite y otro para el CPL. Y también nos dice otro mensaje donde nos dice, "Le informamos que el recibo de pago TNS fue enviado a su correo electrónico y tiene plazo hasta el día de hoy mismo, de hoy a las 11:59 para realizar el pago. 11:59 de la noche. Si no paga hoy, ya mañana el trámite eh
+
+00:08:36
+será rechazado. es una política que tiene el ministerio y pues eh la secretaría pues hay que hay que hacer el pago el mismo día que se le envía el recibo. Y miramos eh la aplicación, el correo electrónico y efectivamente aquí está listo. ¿Qué dice? recibo de pago QPL y nos da unos mensajes. Bueno, primero nos envía un correo electrónico igual a este donde nos da un link, ¿cierto? Un link para nosotros realizar el pack o si no lo queremos hacer por la por la pasarela de pago por medio de stering,
+
+00:09:22
+descargamos el recibo y vamos y lo pagamos. ¿Listo? Si le damos click a la pasarela de pago, él nos muestra algo como esto. Listo. Primero nos abre la pasarela de pago de TNS. Acá viene el valor del del recibo, lo que del valor del del trámite, lo que haya costado el trámite. Acá se selecciona el banco, Banco Colombia, la vivienda, Banco Bogotado, en el banco donde donde usted vaya a realizar el pago, persona natural o persona jurídica. Se selecciona la cédula, el número de la cédula, el nombre del cliente,
+
+00:10:06
+el número del teléfono, el correo electrónico y acá y se le se le da clic al darle clic acá, sí, él continúa y me abre esta pantalla. Y en esta pantalla yo selecciono por Bancolombia personas o Bancolombia negocios. Listo, como seleccionado Ban Colombia, pues me abre la la la aplicación de Banc Colombia. Si hubiese seleccionado la vivienda, me abre la vivienda o la del Banco de Bogotá o bueno, banco que haya seleccionado. Listo. Bueno, si no lo quiere pagar por este lado, pues descarga el recibo y va y lo paga.
+
+00:10:50
+Y el momento de pagar, pues ya la en la cuenta de de la secretaría se hace efectivo el pago y el funcionario tránsito revisará si usted sí pagó o no pagó. Y el otro recibo que debe pagar es recibo QPL, ¿cierto? Este recibo QPL nos llega el correo que dice, "Le informamos que, estimado José Leonías, le informamos que el recibo de pago TNS fue enviado al correo electrónico y tiene plazo hasta el día de hoy a las 11:59 pm para realizar el correspondiente pago. De igual forma se adjunta recibo de pago
+
+00:11:27
+correspondiente al Rom QPL para realizar el pago correspondiente. Recuerde que no realizase el pago el plazo en el plazo indicado será rechazado el trámite y deberá volver a realizar una nueva solicitud. ¿Listo? Entonces aquí tiene que descargar el recibo. Para este no hay plataforma, no hay pasarela de pago. Tiene que descargarlo e ir a pagarlo. Listo. Ojo que si no pagan el mismo día, pues el trámite será rechazado. ¿Listo? Bueno, entonces usted va a hacer el respectivo pago y el funcionario tránsito va a estar revisando si usted
+
+00:12:06
+sí pagó o no pagó el mismo día. ¿Listo? Si pagó le acepta continúan y si no le rechaza el trámite y tiene que volver a empezar a revisarlo. ¿Listo? Entonces esperemos a que el funcionario de tránsito nos revise. ¿Listo? Listo. En este momento ya el funcionario de tránsito nos revisó el el pago. Si le damos aquí a actualizar, él nos va a decir que ya este estado nos va a cambiar. Listo. Nos dice que ya está, ya fue validado el pago y en el correo electrónico nos llegó un mensaje donde dice pago validado
+
+00:12:49
+y nos dice que el pago ya ha sido validado. Le informamos, estimado José Leonía, le informamos que el pago para la solicitud realizada el día 6 con número radicado tal para duplicado de placas de un vehíc automotor ha sido validado. ¿Listo? ¿Qué quiere decir? que los pagos que usted realizó sí fueron correctos, tanto el del recibo de TNS como el recibo QPL. ¿Listo? Y aquí pues como le digo, ya fue validado. Ahora, ¿qué esperamos? A que el funcionario tránsito nos dé la respuesta para pasar por las
+
+00:13:25
+placas que ya fueron eh ya están listas. Vale, vamos a esperar a que el funcionario de tránsito nos dé la respuesta por medio correo electrónico. Listo. En este momento ya el funcionario tránsito nos envió el correo. Vamos a dar aquí actualizar y este ya cambiará aquí el estado. Dice que completar. Listo, ya nuestro trámite fue completado y él dice el proceso de solicitud terminó correctamente. Por favor, preséntese en la Secretaría de Tránsito C operativa municipio listo. Y le vamos a dar clic acá y ya nos dice que la
+
+00:14:16
+solicitud fue completada. Listo. Dice, "Estimado José Leonías, le informamos que el proceso de solicitud iniciado tal día con número de raya de cado tal duplicado de placas de un vehículo automotor ha sido completado. Por favor, preséntese en la Secretaría de Tránsito sede operativa municipio del municipio El Zulia." Listo, ya está listo el trámite. Entonces, usted debe pasar para que le entreguen las el duplicado de sus placas, ¿vale? Y acá ya termina y esta es la traza del del del correo del trámite duplicado de
+
+00:14:55
+placa de un vehículo automotor. Muchas gracias. Espero les sea claro este
+

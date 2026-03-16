@@ -1,49 +1,51 @@
 .custom-progress {
     padding: 1rem;
-    font-family: sans-serif;
+    font-family: 'Verdana-Regular';
+    font-size: 0.9em;
 }
 
 .custom-progress-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     gap: 0;
+    flex: 1;
+    width: 100%;
+    justify-content: flex-start;
 }
 
 .custom-step {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     z-index: 1;
+    flex-grow: 1;
 }
 
 .custom-stage {
-    width: 32px;
-    height: 32px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background-color: lightgray;
-    color: #004884;
+    color: var(--govcolor-cobalt);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
     z-index: 2;
-    border: 1px solid #3366CC;
-    padding: 20px;
-    font-size: 1.6rem;
+    border: 1px solid var(--govcolor-cobalt);
+    padding: 11px;
+    margin-left: 8px;
 }
 
 .custom-step.completed .custom-stage {
-    background-color: #3366CC;
+    background-color: var(--govcolor-matterhorn);
+    border-color: var(--govcolor-matterhorn);
     color: white;
 }
 
-.custom-step.completed .custom-stage::before {
-    content: '\e8a7';
-    font-family: "govco-font";
-    color: #FFFF;
-    font-size: 1.6rem;
+.custom-step.current .custom-stage {
+    background-color: var(--govcolor-cobalt);
+    color: white;
 }
 
 .custom-step.current .custom-stage {
@@ -53,21 +55,33 @@
 
 .custom-step .custom-label {
     margin-top: 6px;
-    font-size: 15px;
+    padding-left: 4px;
     text-align: center;
-    font-family: "WorkSans-SemiBold";
-    color: #4B4B4B;
+    color: var(--govcolor-cobalt);
 }
 
-.custom-step.current .custom-label,
+.custom-step{
+    border-top: 4px solid var(--govcolor-tropical-blue);
+    padding-top: 8px;
+}
+
+.custom-step.completed,
+.custom-step.current{
+    border-top: 4px solid var(--govcolor-tulip);
+}
+
 .custom-step.completed .custom-label {
-    color: #3366CC;
+    color: var(--govcolor-matterhorn);
+}
+
+.custom-step.current .custom-label{
+    color: var(--govcolor-cobalt);
 }
 
 .custom-line {
     height: 4px;
     flex: 1;
-    background-color: lightgray;
+    background-color: var(--govcolor-tropical-blue);
     position: relative;
     z-index: 0;
 }
@@ -76,24 +90,21 @@
     background-color: #3366CC;
 }
 
-.custom-line.half-completed {
-    background: linear-gradient(to right, #3366CC 50%, lightgray 50%);
-}
-
 .custom-line-wrapper {
     position: relative;
     flex: 1;
     display: flex;
     align-items: center;
     height: 0;
+    margin-top: -75px;
 }
 
 .custom-line {
     height: 4px;
     width: calc(100% + 50px);
-    background-color: lightgray;
+    background-color: var(--govcolor-tropical-blue);
     position: absolute;
     z-index: 0;
-    margin-top: -50px;
+    margin-top: 28px;
     margin-left: -25px;
 }

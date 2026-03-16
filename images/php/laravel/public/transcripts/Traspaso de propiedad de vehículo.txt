@@ -1,0 +1,129 @@
+00:00:02
+Muy buenos días. Bueno, bienvenidos al uso de la aplicación para el desarrollo o para la solicitud de trámites en la Secretaría del Tránsito del municipio el Zulia. Sí. Eh, tal y como lo habíamos mencionado en el video anterior, cuando crearon el usuario y la contraseña, ustedes van a ingresar a la plataforma o a la aplicación con la siguiente dirección que ya es conocida. HTTP http sos punos slash tránsitotrámites.nordesantander.g. com. Listo. Cuando ingresan, él les sale para que ustedes coloquen el
+
+00:00:57
+usuario y la contraseña que crearon cuando se hizo solicitud del usuario. El usuario es el correo electrónico para el caso. Para este caso es sejo@gmail.com y la contraseña que crearon. En mi caso, pues yo creé este usuario contraseña. Sí, ustedes pueden habilitar acá mostrar contraseña por si se equivocan. Y la que yo creé para este ejemplo, sí, es asterisco 1 2. Recuerden que la contraseña debe tener mínimo ocho caracteres, letras en mayúscula, en minúscula y números y un signo. Cuando creamos el usuario, pues dimos esas
+
+00:01:45
+indicaciones. ¿Sí? Entonces, cuando lo cuando lo ingresan, le vamos a dar clic en continuar. Listo. En continuar es ingresar a la aplicación. Al ingresar a la aplicación ustedes por el momento eh tienen acceso a crear cualquiera de estos cinco trámites. Sí. Traspaso de propiedad un vehículo automotor, levantamiento limitación o gravamen a un vehículo, certificado libertad y tradición, duplicado de placas de un vehículo automotor o renovación de licencias. Cualquiera de estos ustedes pueden seleccionar, ¿cierto?
+
+00:02:20
+Y acá ingresan y ven cuáles son los requisitos que piden, cuáles son los conceptos a pagar por el derecho del trámite, por el sustrato de lámina, por eh MT y por el room, por las estampillas. Y esto tiene un costo total de tanto. ¿Listo? Para este caso, pues este trámite que se llama traspaso de propiedad un vehículo automotor, el trámite cuesta 234,000 y un valor del 1% de retofuente que depende de la valudo comercial acorde al típulo al tipo de vehículo. Sí, al tipo de vehículo. ¿Listo? Eh, y así pues están los otros trámites.
+
+00:03:03
+Vamos a mirar rápidamente qué tiene cada trámite y empezamos a hacer el trámite de traspaso de propiedad un vehículo automotor. Levantamiento limitación tiene estos requisitos, ¿sí? Y cuesta 166,205 pesos. Certificado de libertad y tradición tiene estos requisitos. Listo. Duplicado de placas tiene estos requisitos. Renovación de licencia tiene estos requisitos. Listo. Vamos a empezar con este trámite. Vamos a a explicarles cómo es. Todos todos los trámites funcionan igual la creación del trámite. Lo único
+
+00:03:45
+es que algunos trámites solicitan unos requisitos diferentes a otros. Eso pues lo tienen que leer ustedes en el momento en que en que van a realizar la solicitud del trámite. En este caso entramos a traspaso propi un vehículo automotor, ¿cierto? Para este tipo de de para este para este trámite pues eh se escoge particular o empresa. Sí, si es un una propiedad de un traspaso de propiedad para un vehículo particular o si es para una empresa. Si es para particular me pide estos requisitos. Ustedes deben de
+
+00:04:19
+contar con estos requisitos. Algunos de estos requisitos, como por ejemplo cédula, eh licencia, eh bueno, algunos de estos requisitos los pide anexarlos, ¿sí? En formato PDF acá en la misma aplicación. Y otros sol otros requisitos de estos, como por ejemplo el SOAT, ¿sí? El SOAT, el el SIMIT, ¿sí? Estos deben de estar ustedes a pasalvo, ¿sí? A ver, tener el SUAT del carro del vehículo al día, eh, en el simil ningún ningún inconveniente. Estos son otras plataformas que se consultan acá desde la desde tránsito para ver si
+
+00:05:03
+ustedes están al día. Sí, esto no se estos documentos no se van a adjuntar, pero ustedes sí deben de estar al día en varios requisitos que se solicitan acá y los otros pues se piden para que ustedes los adjunten acá en el en la aplicación de de trámite. ¿Listo? Por lo menos este vamos a hacer el ejemplo, este video para un vehículo en particular, un vehículo de tipo particular. ¿Qué sugiere? que tengan de requisitos. Los requisitos es el formato del FUN, se debe diligenciar y se debe anexar en PDF. Las improntas en el FUN o en la
+
+00:05:43
+anexar impronta en el FUN o en la compraventa. Estar inscritos en el room. También deben de estar inscritos en el room, tanto la persona que compra como el vendedor. La cédula de ciudadanía, el comprador y el vendedor. Licencia de tránsito de propiedad, eh licencia de tránsito, tarjeta de propiedad o y copia por ambas caras. ¿Listo? Esto en un solo en un solo PDF también. Sí. Al igual que la cédula en un solo PF, tanto la del comprador como la del vendedor. Compraventa del vehículo, no mayor a 60
+
+00:06:16
+días de suscrita totalmente diligenciada, sin tachones ni enmendaduras y con afirmas de las partes. Se sugiere que esté autenticada la compraventa, ¿no? Esta compraventa est autenticada. estar a pas y salvo en el simit tanto el comprador como el vendedor. Pas y salvo impuestos, tanto el comprador como el vendedor. El SOAT debe estar vigente, la revisión tecnicomecánica vigente. Esta también se consulta por la página de una página de que hay. Sí, el contrato de mandato especial. Esto es un un archivo
+
+00:06:50
+adjunto también que se se debe de tener debidamente autenticado. Sí. contrato de mandato, poder especial. Si el trámite lo realiza un tercero, sí, otorgado, suscrito en Colombia o en consulados, este debe estar debidamente autenticado. Para que un tercero pueda realizar el trámite a otra persona, debe estar autenticado. Si no está autenticado, pues no cumple con los requisitos y no tampoco y no se hace efectivo la el inicio del trámite. Y soportes de pago de de TNS, que es un recibo que se les envía. Ya ahorita les les muestro. y
+
+00:07:29
+otro recibo que es el QPL. ¿Listo? Estos dos recibos los debe pagar. Eh, ¿qué pide para pagar? Un derecho a trámite, ¿vale? Que cuesta 160,000, el MT que cuesta 25,000 pesos, el sustrato de lámina 25,000, perdón, el MT 34300 y el Run QPL que cuesta 5,500. Esto es un total de 225,000. En estampillas debe pagar 3,000 de electrificación, 6,000es de pro hospital, pro adulto no paga nada, o sea, en estampillas paga 29,000. En total de este trámite son 234,000 pesos, que es la suma de de 225 + 9,000.
+
+00:08:14
+Esto cuesta 234,000 más un pago adicional del 1% que depende de la valuda comercial acorde al tipo de vehículo. Sí, este valor de estos 234 más el 1% del valor del evaluercial ese va en este recibo de soportes de pago TNS. Ahí se lo se lo la aplicación TNS se le calcula ese valor 234 más el 1%. Listo. Bueno, cuando usted ya sabe con qué requisitos debe contar, pues eh se crea una nueva solicitud, ¿cierto? Listo. Se crea una nueva solicitud, se le va a crear nueva solicitud y el momento de crear la nueva solicitud
+
+00:08:59
+le va le va a pedir a usted los los documentos. ¿Listo? Entonces, ya vamos a darle click en nueva solicitud. Listo. Entonces, entramos a crear nueva solicitud y acá vamos aciar los datos primero y luego vamos a cargar los documentos que nos pide la aplicación. ¿Listo? Entonces, para este caso, el señor se llama José Leonidas Mateus Salamanca. Sí. Este es el señor que va a solicitar el trámite. ¿Listo? Tipo documento, cédula de ciudadanía. ¿Listo? Ojo, tiene que ingresar los datos como lo piden acá, ¿no? Usted no aquí en el
+
+00:09:53
+nombre, no puede ir a colocar números porque una vez le dice que debe ingresar solo texto, ¿listo? Ni le va a permitir ingresar esto, símbolos. ¿Listo? Entonces, solo texto, la cédula de ciudadanía, el número de la cédula, vamos a decir que este número de la cédula del señor, el número de teléfono, vamos a decir que este el número del teléfono. Listo. Y acá empezamos a ligenciar los campos. Este F ustedes lo pueden descargar, es un archivo PDF, lo deben de descargar y lo diligencian y luego de que lo
+
+00:10:30
+diligencien con los datos que necesitan, le dan guardar y lo guardan como PF. Y acá donde dice formato único de trámite, que es este mismo que descargamos, lo van a cargar, pero con tipo PDF. Si ustedes lo cargan en Excel, él no se lo va a guardar. ¿Listo? Entonces vamos a suponer que ya lo descargamos y ya lo diligenciamos. Ustedes lo ven de diligenciar. Listo, lo vamos a diligenciar. Le vamos a seleccionar archivo. Listo. Yo tengo uno aquí que dice, este es el full B10, pero lo van a montar en Excel para que se den cuenta
+
+00:11:09
+que me dice que el formato no está permitido, solamente debe ser PF. Entonces, vamos a formarlo, vamos a montarlo en PDF. ¿Listo? Yo ya tengo aquí eh unos archivos para para el ejemplo de la de la capacitación. Sí. Entonces, yo supongo que yo ya lo descargué, yo ya lo diligencié en Excel y yo ya lo guardé en PDF y acá lo voy a cargar. En el momento que lo cargue, pues él me lo muestra. Acá no me botó error porque solamente recibe PDF y este archivo es tipo PF. Listo. ¿Qué otro dato me pía aquí? la cédula de
+
+00:11:49
+ciudadanía. ¿Listo? Entonces, yo tengo aquí la cédula. Vamos a suponer que esta es mi cédula. Sí. Listo. La cédula de ciudadanía. La licencia de tránsito también ya la tengo acá. Listo. La compraventa tal cual como dice acá, compraventa del vehículo, no mayor a 60 días, totalmente diligenciada. Todo estos todos estos archivos que están aquí, él me lo mostraba como requisitos antes de empezar y licenciar el trámite. Por eso yo debo contar con todos los requisitos para que el trámite no me lo rechace.
+
+00:12:23
+Sí, si yo no cuento con estos requisitos bien diligenciados en la forma que son y con los datos correctos, pues el funcionario tránsito pues eh no puede continuar. Por lo tanto, él le mandará un mensaje que no coincid información o que la información no está correcta y pues ustedes tienen que volver a hacer el trámite. ¿Listo? Entonces acá vamos a adjuntar la compraventa del vehículo. Compraventa del vehículo. Y si este señor José León es una persona tercera que le está haciendo el trámite a otra persona
+
+00:12:56
+que le pido el favor, debemos de adjuntar acá el poder. Sí. contrato de mandato poder especial que le otorgaron a él para que él hacer el el trámite a la persona que que se lo pidió. Entonces, si así entonces adjunta el el poder, yo lo tengo acá, contrato de mandato, poder especial, listo. Y ya con esto, pues si usted diligencia bien su sus datos, su información y carga bien sus documentos que le piden, pues él va a poder iniciar el trámite. ¿Listo? Y acá me dice que pues usted debe contar con el resto de documentos, con
+
+00:13:36
+impronta, con el run, con con salvo en el simit, con el SOA, bueno, con impuestos de comprador y vendedor, técnicomecánica y los soportes de pago que se le van a enviar para que usted los pague también, ¿no? Estos son los recibos de pago. Y acá le da un recorderis diciéndole que usted a usted le va a llegar a su correo con el que creó el usuario y la contraseña. Le va a llegar el soporte de pago, ¿cierto? Una vez sus requisitos sean revisados y aprobados por la entidad. O sea, cuando la entidad le revise a usted los
+
+00:14:10
+requisitos estos más todos estos que están acá y usted está bien y no tiene ningún problema, todos están correctos, pues a usted le van a enviar un correo a al correo, le van a enviar una información a su correo diciéndole que el trámite inicia. ¿Listo? Cuando lo creamos, le vamos a dar guardar solicitud. ¿Listo? Guardar solicitud. Y el trámite ya empezó a ser creado exitosamente. Sí, por el momento voy a estar en estado en revisión y con fecha de aprobación pendiente. ¿Listo? Acá le salen lo la información
+
+00:14:51
+eh suya, la información de la persona que está solicitando el trámite. Vamos aquí en este proceso. Procesa mi solicitud. Esperamos a que el funcionario tránsito le revise los documentos y se los se los apruebe. ¿Listo? Le va a llegar un correo donde le va a decir que sus documentos están correctos y si no están correctos también le llega un correo donde le rechazan porque la información no está correcta. ¿Listo? Bueno, listo. Entonces, usted debe de esperar a que su documentos sean revisados. Entonces,
+
+00:15:39
+espera. Aquí tiene que estar usted familiarizado con el ingreso al correo. Tan pronto ingresa un trámite usted de tener su correo listo para estar revisando las respuestas que le dé la Secretaría del Tránsito. El funcionario tránsito le va a estar dando respuesta. En este momento ya le dio respuesta, listo. Y le llega un correo que le dice que su solicitud fue aceptada. ¿Listo? Es esta. Acá le dice, "Estimado José Leonías, José Leonías es el ejemplo que yo puse, ¿sí? Un señor que llama José Leonido
+
+00:16:13
+Mateus. Le informamos que la solicitud realizada el día 24 de julio con radicado número, este es el número radicado con el con el que se identifica su trámite, 20257 24008 para traspaso de propiedad de un vehículo ha sido aceptada. A continuación se añade las siguientes observaciones. Como fue aceptada se le colocan unas observaciones. Sí. Para para para el ejemplo. Le digo que todos sus documentos están correctos. Por por favor continuamos con el proceso. En el caso de que se lo rechacen, le va a decir solicitud
+
+00:16:50
+rechazada del trámite tal, trámite con radicado número tal. ¿Sí? Y acá le van a decir el motivo por el que se le rechazó el trámite. Sí. Se lo pueden rechazar porque la cédula no está bien, porque el poder no está bien diligenciado. ¿Sí? Entonces, por cualquier motivo se lo pueden rechazar. ¿Listo? Y acá en aplicación también usted tiene que estar ingresando. Entonces, cuando ingresamos, yo le dar aquí actualizar a la aplicación y ya me da la misma respuesta y se la da el funcionario tránsito. Todos sus documentos están
+
+00:17:25
+correctos. por favor, continuemos por el con el proceso de su trámite. ¿Listo? Y se lo dio pues eh a esta hora el día 24 de julio. ¿Listo? Bueno, ahora tiene que esperar a que el el funcionario tránsito le envíe el recibo de pago de TNS y el de CPL para que usted muy juicioso lo pague. Y ya les muestro cómo vamos a continuar con el procedimiento. ¿Listo? Por ahora va este va este correo que se lo enviaron y por ahora pues va el trámite eh creado y con esta información acá. Listo. Bueno, entonces eh vamos a esperar a que el
+
+00:18:10
+funcionario de tránsito le nos envíe el o les envíe el el los recibos para que ustedes realicen los respectivos pagos. Bueno, ya en este momento ya el funcionario tránsito ya les revisó eh el ya les envió el recibo tanto de TNS, tanto como el recibo QPL para que ustedes hagan la respectiv respectivos pagos. ¿Listo? Entonces, en este momento nos disponemos a ir a a al correo electrónico, ¿sí? Y le llegó dos recibos. Le llegó este de impuesto menor, ¿sí? Para que ustedes lo paguen, que es el de el que genera la aplicación
+
+00:19:06
+TNS. ¿Listo? Y acá este recibo, este correo les envía un link de pago al cual ustedes le van a dar click y les envía un link para que hagan consulta del estado de su de su recibo. En este link, en este primer link, es para que les hagan una pasarela de pago, ¿sí? y ustedes hagan la el pago por internet o igualmente lo pueden descargar por acá, recibe un puesto menor, lo descargan, lo imprimen y van al banco de su preferencia y le hacen el pago al banco que pues que esté autorizado, ¿no? Y si lo quieren hacer
+
+00:19:45
+acá virtualmente por la pasarela de pago, pues le dan clic aquí a la pasarela de pago, ¿cierto? Él les abre, ¿sí? Y les pide seleccionar. Para este caso, pues el recibo tiene un valor de 99,000 en TNS, ¿no? Sí. Y le dice que seleccione el banco. Vamos a suponer que ustedes van a pagar en Bancolombia, ¿sí? O en cualquier banco, ¿cierto? O bueno, en Banco Caja Social o en vivienda, Bogotá. Bueno, aquí B Colombia, bueno, aquí están los bancos, lo seleccionan, le dicen que usted es cliente natural, persona natural, su
+
+00:20:23
+número de cédula, su nombre, su número de celular. Vamos a suponer que es 321 9085 el correo electrónico y acá empiezan, le dan clic en PC débito y acá les abre la pasarela. Listo. Y acá ustedes continúan realizando el pago a través de la del botón de Ban Colombia. Sí, ahí continúan realizándolo. Listo. Cuando ustedes hacen el pago, ¿sí? Luego van y realizan el pago del del QPL. El CPL también nos mandó, el funcionario tránsito nos mandó un recibo para pagar, listo, un correo con el recibo anexo adjunto
+
+00:21:06
+para que ustedes lo descarguen y vayan y lo y lo realicen el pago también. ¿Listo? Entonces, aquí dice, "Estimado José Leonías Mateus Salamanca, le informamos que recibo de pago TNS fue enviado a su correo electrónico y tiene plazo hasta el día de hoy. Si él le contesta el correo hoy a las, supongamos a las 8 de la mañana, ¿sí? Usted tiene plazo hasta el día hoy a las 11:59 de la noche para realizar el pago. Sí, se lo estoy subrayando acá para que ustedes lo tengan en cuenta. ¿Listo? De igual forma se adjunta el recibo de
+
+00:21:42
+pago correspondiente al run, ¿sí?, que es el QPL para que realicen el pago correspondiente. Recuerde que no de no realizarse este pago indicado, será rechazado el trámite y deberá empezar nuevamente la solicitud, ¿cierto? Bueno, entonces ustedes descargan este recibo, hacen el pago y también hacen el pago de de recibo de TNS acá por la pasarela de pago. Sí. Y luego que ustedes ya hacen el pago, el funcionario tránsito les va a validar, ¿cierto? Mire que cuando ustedes eh cuando ustedes esto se les envió el el recibo,
+
+00:22:26
+él les mostró aquí en su dirección de correo electrónico recibirá dos soportes de pago, uno para el trámite y el otro para CPL. Y aquí también les está recordando, le informamos que recibo de pago de TNS fue enviado a su correo electrónico y tiene plazo hasta el día de hoy a las 11:59 para realizar el pago. ¿Listo? Ustedes deben de estar pendientes de eso. Entonces ahora esperemos que el funcionario tránsito nos validee y nos diga si el pago que usted que el usuario que yo como usuario realicé si está
+
+00:22:58
+correcto o no. Sí. Entonces le valía si la plata le ingresó al a la cuenta o no le ingresó. Y si no le ingresó, pues y si no pagó en el día que es el mismo día, pues el trámite se lo rechazan. Entonces, vamos a a esperar a ver qué nos responde el funcionario tránsito después de la revisión de los recibos de pago de TS y el CPL. ¿Listo? Entonces, esperemos a que nos a que nos contesten. Listo. En este momento ya el funcionario tránsito ya les les valió a ustedes si el pago que realizaron, porque ustedes
+
+00:23:40
+ya fueron y realizaron el pago, el cliente ya fue, el usuario ya fue y realizó el pago tanto de como el recibo TNS como el recibo QPL. Sí. Entonces, como ya realizó el pago, pues él se lo revisó y le mandó un correo muy seguramente y ya se lo envió. Dice pago validado. Ese pago validado, ¿qué le dice? Estimado José Leonías Mateus Salamanca, le informamos que el pago para la solicitud realizada el día 24 de julio con número radicado 24008 para traspaso de propiedad de un vehículo automotor ha sido validado, o
+
+00:24:18
+sea, quiere decir que su su sus pagos estuvieron correctos. ¿Listo? Al estar correctos, pues continuamos con el trámite. ¿Listo? Acá continuamos y le dice que su estado ya fue validado. Aquí me muestra esta información. Usted puede entrar al trámite acá por mis solicitudes y se da cuenta que el trámite lo tiene aquí. Usted aquí le pueden salir varios trámites que usted haya realizado. Puede mirar el historial. Para este ejemplo. Vamos en este primer trámite por ahora. Para el señor José Leonías. es el único que ha
+
+00:24:54
+solicitado, el único trámite que ha solicitado y él le puede decir aquí click en ver más. Al decirle click en ver más le abre todo la traza de la del trámite del proceso del trámite que está realizando. ¿Listo? El trámite es el radicado 2025 0724008. ¿Listo? Bueno, entonces después de que ya está validado tiene que esperar a a que al siguiente paso y también se lo van a a notificar mediante correo electrónico. ¿Listo? Entonces, esperemos a que el funcionario tránsito nos dé el resultado para para qué, para continuar con el trámite
+
+00:25:41
+y ya realizar la finalización el trámite. Listo. Entonces, en este momento ya el funcionario tránsito ya le le combinó el trámite. Y si usted entra acá y mira mis solicitudes, ¿sí? Usted dice, entre y mire el trámite que necesita ver. Sí, le dice ver más. Y si mira, le ya llegó la a a la última fase que es la respuesta y aquí abajo ya le dice el funcionario de tránsito ya le respondió el proceso de solicitud terminó correctamente. Por favor preséntese la oficina de tránsito del Zulia para para que le entreguen la
+
+00:26:31
+el traspaso de propiedad al vehículo automotor. ¿Listo? Y igual acá en el correo electrónico también le le envía un correíto donde le dice que su solicitud fue completada. le dice, "Estimado José Leonías Mateus Salamanca, le informamos que el proceso de solicitud iniciado el día 247 del 2025 con radicado 202507 24008 para traspaso de propiedad ha sido completado. Por favor, preséntese en la oficina del tránsito del Zulia para realizar el para finalizar el proceso. Y acá para este trámite, sí, para trámite de traspaso de
+
+00:27:11
+propiedad, usted tiene que llevar los documentos originales cuando vaya a a que le entreguen el traspaso de propiedad al vehículo automotor. ¿Listo? Como ustedes pueden como ustedes pueden ven ver el proceso lo hacen en cinco pasos. Ustedes deben de contar con los documentos en físico, en en PDF para que los puedan cargar y al final contar con los documentos originales en físico para que los lleven y les entreguen el el e en este caso el traspaso de la propiedad, ¿listo? Que es el el resultado que ustedes esperan. traspaso
+
+00:27:50
+de propiedad un vehículo automotor y acá ya debe finalizar el trámite. Listo. Acá el estado, ¿sí? Ustedes le pueden dar aquí clic en autorizar y él le pasó el estado completado. Completado quiere decir que ya el trámite terminó. Listo, así se manejan todos los trámites y este es el proceso para el trámite de traspaso de propiedad de un vehículo automotor. Esperamos que sea de fácil entendimiento. Muchísimas gracias a ustedes, señores usuarios, por por realizar sus trámites, que sé que les va a servir mucho y les
+
+00:28:32
+agiliza el proceso para para los para para sus trámites que necesiten en cualquier momento. Muchas gracias.
+

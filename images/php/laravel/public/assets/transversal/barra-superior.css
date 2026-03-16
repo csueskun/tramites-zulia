@@ -21,8 +21,9 @@
 }
 
 .barra-superior-govco a {
-  content: url('../assets/images/logo.svg');
-  height: calc(1.5rem * 1.5);
+  content: url('../assets/images/header_govco.png');
+  height: 30px;
+  width: auto;
 }
 
 .barra-superior-govco a:focus-visible {

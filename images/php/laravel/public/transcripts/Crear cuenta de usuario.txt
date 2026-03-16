@@ -1,0 +1,42 @@
+00:00:02
+Muy buenos días. Eh, en este momento nos disponemos a realizar eh videotutorial para la creación de la del usuario y la contraseña de la aplicación Tránsito Tramitis de del municipio El Zulia. ¿Listo? Entonces, bueno, eh importante saber que pues debemos contar con internet y la dirección para el ingreso de la aplicación es la siguiente. Deben de tener la http s pun/ránsitotrámites.nortedesantander.gov.com. Listo. Esa esa que está aquí https pun enl enl tránsito trámite norteesantander.gov.co. Listo. Y le damos enter.
+
+00:00:56
+Él me muestra la interfaz donde voy a crear la el usuario y la contraseña. ¿Listo? Bueno, entonces eh es importante saber que para el el manejo del de toda la aplicación, nosotros como usuarios debemos contrar contrar con un correo electrónico. En este correo electrónico es donde nos va a llegar toda la información respecto a la creación del usuario de la contraseña y toda la información cuando nosotros estamos realizando un trámite que necesitemos eh hacer. ¿Listo? Entonces, inicialmente vamos a darle clic en registrar aquí.
+
+00:01:38
+Listo. Listo. Bueno, entonces acá eh vamos a a crear el usuario y la contraseña. ¿Listo? Entonces lo primero que me pide es el nombre del usuario. ¿Listo? Entonces, él se llama Diego. ¿Listo? Eh, si yo escribo un un número acá en el nombre si escribo un símbolo o algo diferent letras, él me bota error porque el nombre pues debe ser solamente letra. ¿Listo? Lo mismo el los apellidos. Listo. Entonces él se llama Diego Quesada Manrique. Vamos a colocarle Quesada Manrique. Listo. Igual si escribo algún
+
+00:02:29
+símbolo, él me bota que error. Solamente se de ingresar solo texto. Debe ingresar solo texto. Listo. Entonces le damos el apellido. Tipo documento. Vamos a seleccionar la cédula. Listo. Cédula de ciudadanía de la persona. El documento va a ser, vamos a suponer que el documento este señor es eh 88 795 237. Listo. Es el número de la cédula de Diego, Diego Quesada Manrique. El correo electrónico de él es Diegoeman@gmail.com. Listo. Si usted escribe mal el correo, él le bota un errorcito, le dice correo
+
+00:03:19
+electrónico no válido. ¿Listo? Entonces debe ir con el @ y con el gmail.com o con la hotmail, bueno, el correo donde pertenezca. ¿Listo? En este caso me está diciendo que el correo esté incompleto, entonces yo voy a colocarle que pertenece a gmail.com mi correo. Luego viene la contraseña. La contraseña debe cumplir con los siguientes requisitos. Mínimo ocho caracteres, al menos debe incluir una mayúscula, una minúscula, un número o un símbolo, cualquiera esos símbolos. @pesos eh bueno, porcentaje más
+
+00:03:54
+asterisco, numeral. Bueno, listo. Entonces, para este caso, a este señor Diego le vamos a crear una contraseña. Para eso le vamos a dar click en mostrar contraseña. ¿Listo? Cuando le damos clic en mostrar contraseña, él yo la empiezo a digitar. y voy a decir, bueno, que la voy a crear de la siguiente manera. Listo, una mayúscula. Eh, vamos a decir que la contraseña va a ser así, minúsculas, números, listo, y un símbolo, vamos a decir, que el asterisco, ¿vale? Igualmente aquí va a escribir la misma
+
+00:04:37
+contraseña que le coloqué allá. Entonces va a ser eh de eh 1 2 3 asterisco. Si yo le coloco otra, él me dice que no coinciden. Las contraseñas no coinciden. Entonces deben de coincidir las dos contraseñas. ¿Listo? Entonces para este ejemplo le coloqué que es asterisco y ya está cumpliendo con con todos los requisitos. Por eso ya aquí no se me coloca rojo. Mínimo ocho caracteres. 1 2 3 4 5 6 7 8 y 9. tiene una mayúscula que es la D, tiene minúsculas que son y ego, tiene números, dígitos, tiene dígitos
+
+00:05:14
+que es igual a números 1 2 3 y un símbolo de los que está acá y es el símbolo asterisco. Cuando ya he creado toda la información para el usuario y la contraseña, le doy clic en guardar, ¿cierto? Clic en guardar y él me crea la contraseña. ¿Listo? pendientes porque apenas yo creo el usuario me dice, "Usuario creado exitosamente, por favor verifica tu correo electrónico." Y el correo electrónico, ¿qué me dice? que llegó un correo de trámites del Zulia, trámites en línea. Listo. Dice, "Estimado Diego Quesada Manrrique,
+
+00:05:56
+le informamos que su código de verificación, este código de verificación lo veo colocar en en la aplicación para que me termine de para que me habilite el usuario." ¿Listo? ¿Cuál es el código? 47 9530. Entonces, colocamos acá el código 47 95 y le damos verificar. Listo. Bueno, cuando ya lo creamos, entonces vamos a ingresar y el usuario va a ser el mismo correo que utilizamos, Diego Kemán, Gmail y la contraseña que acabé de de crear. Entonces le voy a dar mostrar contraseña para estar seguro que la estoy digitando
+
+00:06:42
+bien. ¿Listo? Entonces, Diego, listo, Diego 1 2 3 asterisco. Y le voy a dar continuar. Ya cuando ya digito el usuario y la contraseña, él ya me da acceso a al resto de la aplicación para empezar a crear los trámites con los que vamos a solicitar. Listo, aquí le vamos a dar sesión, cerrar sesión. Listo, resulta que se me puede presentar otro inconveniente. Se me puede presentar que a mí se me olvidó la contraseña porque de pronto yo creé el usuario hoy y vuelvo a hacer otro trámite por ahí el año entrante.
+
+00:07:27
+Entonces, el año entrante yo ya no me acuerdo de la contraseña, pero sí me debo acordar del usuario que es el correo, el correo personal. ¿Listo? Entonces, le vamos a dar clic en Olvidé mi contraseña y en Olvidé de mi contraseña vamos a escribir el correo que es Diego. Diego Quemá, ¿cierto? Es el correo él. Sí, Diego Queman@gmail. Entonces vamos a escribirlo. Diego, Diego Queman y @gmail.com. Al decirle diegoqueman@gmail.com, le damos clic en enviar y él me va a mandar un mensaje al correo electrónico. Me dice, "Le hemos enviado
+
+00:08:16
+por correo electrónico el enlace para restablecer su contraseña." Y acá está listo. Cambio de contraseña. Me dice, "Estimado Diego Quesada Manrique." Bueno, ahora listo. Diego Quesada Manrique. Para crear una nueva contraseña, por favor haga clic en el siguiente enlace. Yo le doy clic en crear nueva contraseña y igualmente para crear la nueva contraseña cumplir con los requisitos, ¿no? Mínimo ocho caracteres, mayúscula, minúscula, un dígito o alguno de estos símbolos. Vamos a crear la nueva contraseña. Igual
+
+00:08:50
+le doy aquí click en mostrar contraseña y yo la voy a crear. Entonces vamos a a decir que mi nueva contraseña es Diego, pero le voy a colocar un dígito de más. 1 2 3 4 e cuatro, ¿sí? Y un un símbolo. Vamos a decirle que el símbolo es eh el SLAS. ¿Listo? Y lo mismo acá en confirmar contraseña. Vamos a escribirle lo mismo. Diego 1 2 3 4 5 esa es mi contraseña, la nueva contraseña que creé para ingresar a la aplicación. ¿Listo? Y le damos clic en enviar. Ahí en este momento me dice que su contraseña ha sido restablecida
+
+00:09:43
+y me lleva para la para la interfaz de de inicio de sesión en la cual, bueno, digito el usuario, que es el correo electrónico, digito la nueva contraseña que es Diego 1 2 3 4/ y le vamos a dar clic en continuar. Listo. Y de esta manera hago el cambio de la contraseña y me ingresa nuevamente a la a la aplicación. Listo. Muchísimas gracias. Espero esté claro el video para crear nuestro usuario y contraseña.
+

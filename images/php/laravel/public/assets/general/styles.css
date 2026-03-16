@@ -7,8 +7,7 @@
 	src: url('/assets/fonts/govco/govco-fontv2.eot?35076025#iefix') format('embedded-opentype'),
 		url('/assets/fonts/govco/govco-fontv2.woff2?35076025') format('woff2'),
 		url('/assets/fonts/govco/govco-fontv2.woff?35076025') format('woff'),
-		url('/assets/icons/fonts/govco-font-icons.ttf') format('truetype'),
-		url('/assets/fonts/govco/govco-fontv2.svg?35076025#govco-fontv2') format('svg');
+		url('/assets/icons/fonts/govco-font-icons.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -8559,7 +8558,7 @@ html {
 
 /* ================================= Color =============================== */
 
-.govcolor-blue-dark {
+.{
 	color: #004884;
 }
 
@@ -8943,7 +8942,7 @@ html {
 }
 
 .barra-superior-govco a {
-	content: url(https://web.archive.org/web/20240516205243im_/https://cdn.www.gov.co/assets/images/logo.svg);
+	content: url('/assets/images/logo.svg');
 	height: 1.875rem;
 	width: 8.5rem;
 }
@@ -11729,14 +11728,12 @@ table.table-externa tbody {
 .govco-logo-entidad {
 	height: 64px;
 	display: inline-block;
-	content: url(https://web.archive.org/web/20240516205243im_/https://govco-and.xyz/cdn-v4/assets/images/Entidad.svg);
 }
 
 .govco-co {
 	height: 48px;
 	margin-top: 24px;
 	display: inline-block;
-	content: url(https://web.archive.org/web/20240516205243im_/https://govco-and.xyz/cdn-v4/assets/images/logo-colombia.svg);
 }
 
 .govco-separator {
@@ -11751,7 +11748,6 @@ table.table-externa tbody {
 .govco-logo {
 	height: 30px;
 	display: inline-block;
-	content: url(https://web.archive.org/web/20240516205243im_/https://govco-and.xyz/cdn-v4/assets/images/logo.svg);
 	vertical-align: super;
 }
 
