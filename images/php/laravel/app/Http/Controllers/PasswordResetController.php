@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 
 class PasswordResetController extends Controller
 {
@@ -15,10 +17,23 @@ class PasswordResetController extends Controller
     {
         $request->validate(['email' => 'required|email']);
 
+        $throttleKey = 'password-reset|'.Str::transliterate(Str::lower($request->input('email')).'|'.$request->ip());
+
+        if (RateLimiter::tooManyAttempts($throttleKey, 3)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+            return back()->with('error', 'Demasiados intentos de recuperación. Intente de nuevo en '.$seconds.' segundos.')->withInput(['email' => $request->email]);
+        }
+
         $status = Password::sendResetLink(
             $request->only('email')
         );
 
+        if ($status !== Password::RESET_LINK_SENT) {
+            RateLimiter::hit($throttleKey, 3600); // Block for 1 hour on fail
+            return back()->withErrors(['email' => __($status)])->withInput(['email' => $request->email]);
+        }
+
+        RateLimiter::clear($throttleKey);
         return redirect('/login')->with('success',  __($status))->withInput(['email' => $request->email]);
     }
 
