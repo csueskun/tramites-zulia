@@ -16,8 +16,16 @@ class UserController extends Controller
     }
     public function createUser(Request $request)
     {
-        $validatedData = $request->validate((new User)->rules(), [
+        $rules = (new User)->rules();
+        $rules['captcha'] = 'required|captcha';
+        $rules['habeas_data'] = 'required|accepted';
+        $rules['terms_conditions'] = 'required|accepted';
+
+        $validatedData = $request->validate($rules, [
             'password.regex' => 'La contraseña debe incluir una letra mayúscula, una letra minúscula, un número y un carácter especial.',
+            'captcha.captcha' => 'Código de seguridad incorrecto.',
+            'habeas_data.accepted' => 'Debe autorizar el tratamiento de sus datos personales.',
+            'terms_conditions.accepted' => 'Debe aceptar los términos y condiciones.',
         ]);
 
         $user = User::create([

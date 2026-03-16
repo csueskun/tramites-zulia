@@ -24,7 +24,7 @@
 
 <div class="new-user-content mt-2" data-content="natural">
     <div class="col-lg-6">
-        <h3 class="govcolor-blue-dark">Crear nuevo usuario</h3>
+        <h3 class="">Crear nuevo usuario</h3>
         <div class="container-login-alerta-juridica-govco">
             <div class="icon-informacion-login-govco"></div>
             <p>Para crear un nuevo usuario, por favor completa el siguiente formulario con tu información personal.</p>
@@ -131,6 +131,12 @@
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="">
+                            <div class="checkbox-seleccion-govco entradas-de-texto-govco">
+                                <input id="togglePassword" name="habeas_data" type="checkbox">
+                                <label for="togglePassword">Mostrar contraseña.</label>
+                            </div>
+                        </div>
                         <div id="info-password" class="col-lg-12 text-box info-text-box mb-4">
                             <strong>La contraseña debe cumplir con los siguientes requisitos:</strong>
                             <ul class="mb-0">
@@ -141,9 +147,41 @@
                                 <li>Incluir al menos un símbolo @ $ & - _ ? \ / # * ^ % + . ( ) </li>
                             </ul>
                         </div>
-                        <label class="mb-4">
-                            <input type="checkbox" id="togglePassword"> Mostrar contraseña
-                        </label>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="checkbox-seleccion-govco entradas-de-texto-govco">
+                            <input id="habeas_data" name="habeas_data" type="checkbox" typeData="checkbox" data-error-msg="Debe autorizar el tratamiento de sus datos personales">
+                            <label for="habeas_data">Autorizo el tratamiento de mis datos personales de acuerdo con la política de privacidad y protección de datos.</label>
+                        </div>
+                        <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="checkbox-seleccion-govco entradas-de-texto-govco">
+                            <input id="terms_conditions" name="terms_conditions" type="checkbox" typeData="checkbox" data-error-msg="Debe aceptar los términos y condiciones">
+                            <label for="terms_conditions">Acepto los términos y condiciones de uso del portal.</label>
+                        </div>
+                        <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive"></span>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <div class="captcha-container entradas-de-texto-govco">
+                            <label for="captcha">Código de seguridad*</label>
+                            <div class="captcha-image mb-2 d-flex align-items-center">
+                                <span id="captcha-img">{!! captcha_img('flat') !!}</span>
+                                <button type="button" class="btn-govco outline-btn-govco btn-sm ms-2" onclick="refreshCaptcha()" style="width: auto; height: auto; padding: 5px 10px;">
+                                    Recargar
+                                </button>
+                            </div>
+                            <div class="container-input-texto-govco">
+                                <input typeData="captcha" type="text" name="captcha" id="captcha" placeholder="Ingrese el código" required class="@error('captcha') error @enderror">
+                                <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                            </div>
+                            @error('captcha')
+                            <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -190,7 +228,6 @@
             document.getElementById('dropdown_container').addEventListener('change', function(event) {
                 const input = this.querySelector('input[typedata="select"]');
                 selectValidator.call(input);
-                
             });
         });
         function preSubmit(){
@@ -204,5 +241,18 @@
             }
         }
 
+        function refreshCaptcha() {
+            fetch('/captcha/api/flat')
+                .then(response => response.json())
+                .then(data => {
+                    const captchaContainer = document.getElementById('captcha-img');
+                    const img = captchaContainer.querySelector('img');
+                    if (img) {
+                        img.src = data.img;
+                    } else {
+                        captchaContainer.innerHTML = `<img src="${data.img}">`;
+                    }
+                });
+        }
     </script>
 @endpush
