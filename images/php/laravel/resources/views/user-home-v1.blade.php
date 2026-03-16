@@ -11,7 +11,7 @@
 <div class="admin-home mt-2" data-content="natural">
     <div class="row justify-content-between">
         <div class="col-lg-8">
-            <h3 class="govcolor-blue-dark mb-4">Solicitud de Trámites</h3>
+            <h3 class="mb-4">Solicitud de Trámites</h3>
             <a href="/user/solicitudes">
                 <button type="button" class="btn-govco fill-btn-govco">Ver mis solicitudes</button>
             </a>
@@ -60,7 +60,7 @@
                 <div class="col-lg-8 ps-4">
                     @foreach ($tramites as $index => $tramite)
                     <div class="pestana-content @if ($index == 0) active @endif">
-                        <h4 class="govcolor-blue-dark mb-4">
+                        <h4 class="mb-4">
                             {{ $tramite->nombre }}
                         </h4>
                         <p>

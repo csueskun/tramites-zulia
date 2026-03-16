@@ -22,11 +22,11 @@
                         </div>
                         <div class="modal-footer-govco modal-footer-alerts-govco">
                             <div class="modal-buttons-govco d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary btn-modal-govco fit-content">
+                                <button type="submit" class="btn-govco fill-btn-govco fit-content fit-content">
                                     Continuar
                                 </button>
                                 &nbsp;
-                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno"
+                                <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno"
                                     data-bs-dismiss="modal">
                                     Cerrar
                                 </button>

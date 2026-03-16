@@ -12,7 +12,7 @@
     <div class="new-user-content mt-2" data-content="natural">
         <div class="row justify-content-between">
             <div class="col-lg-6">
-                <h3 class="govcolor-blue-dark">Te explicamos con video tutoriales</h3>
+                <h3 class="">Te explicamos con video tutoriales</h3>
                 <div class="container-login-alerta-juridica-govco">
                     <div class="icon-informacion-login-govco"></div>
                 </div>
@@ -23,27 +23,27 @@
                             [
                                 'title' => 'Traspaso de propiedad de vehículo',
                                 'src' => 'https://www.youtube.com/embed/Uzh2zUQe_EY',
-                                'description' => 'Aprende a crear una solicitud de traspaso de propiedad de vehículo'
+                                'description' => 'Aprende a crear una solicitud de traspaso de propiedad de vehículo.'
                             ],
                             [
                                 'title' => 'Levantamiento de limitación o gravamen',
                                 'src' => 'https://www.youtube.com/embed/lSUcGfbQvYs',
-                                'description' => 'Aprende a crear una solicitud de traspaso de levantamiento de limitación o gravamen'
+                                'description' => 'Aprende a crear una solicitud de traspaso de levantamiento de limitación o gravamen.'
                             ],
                             [
                                 'title' => 'Duplicado de placas de vehículo',
                                 'src' => 'https://www.youtube.com/embed/KFMiadc06jA',
-                                'description' => 'Aprende a crear una solicitud de duplicado de placas de vehículo'
+                                'description' => 'Aprende a crear una solicitud de duplicado de placas de vehículo.'
                             ],
                             [
                                 'title' => 'Renovación de licencia de conducción',
                                 'src' => 'https://www.youtube.com/embed/O-8MP-1H4vg',
-                                'description' => 'Aprende a crear una solicitud de renovación de licencia de conducción'
+                                'description' => 'Aprende a crear una solicitud de renovación de licencia de conducción.'
                             ],
                             [
                                 'title' => 'Certificado de libertad y tradición',
                                 'src' => 'https://www.youtube.com/embed/KN4bxnTry-I',
-                                'description' => 'Aprende a crear una solicitud de certificado de libertad y tradición'
+                                'description' => 'Aprende a crear una solicitud de certificado de libertad y tradición.'
                             ],
                             [
                                 'title' => 'Crear cuenta de usuario',
@@ -72,7 +72,14 @@
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                             style="width: 100%; height: 250px;"
                                             allowfullscreen></iframe>
-                                        <p class="text-one-accordion-govco">{{ $video['description'] }}</p>
+                                        <p class="text-one-accordion-govco">
+                                            {{ $video['description'] }}<br>
+                                            @if (file_exists(public_path('transcripts/' . $video['title'] . '.txt')))
+                                                <a href="{{ asset('transcripts/' . $video['title'] . '.txt') }}" class="link-tipografia-govco" download>
+                                                    Descargar transcripción
+                                                </a>
+                                            @endif
+                                        </p>
                                     </div>
                                 </div>
                             </div>

@@ -12,7 +12,7 @@
     <div class="row justify-content-between">
         <div class="col-lg-9">
             @include('components.session-messages')
-            <h3 class="govcolor-blue-dark mb-4">Mis Solicitudes</h3>
+            <h3 class="mb-4">Mis Solicitudes</h3>
             <x-table-options action="/user/solicitudes"/> 
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">

@@ -100,7 +100,7 @@
                     </div>
                     <div class="modal-footer-govco modal-footer-alerts-govco">
                         <div class="modal-buttons-govco d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                            <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
                                 Cerrar
                             </button>
                         </div>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="modal-footer-govco modal-footer-alerts-govco">
                         <div class="modal-buttons-govco d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                            <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
                                 Cerrar
                             </button>
                         </div>

@@ -22,6 +22,7 @@ Route::get('/test-scheme', function () {
 });
 
 Route::view('/usuarios/nuevo', 'auth.new-user');
+Route::view('/terminos-condiciones', 'util.terminos-condiciones');
 Route::view('/util/icons', 'util.icons');
 Route::post('/usuarios/nuevo', [UserController::class, 'createUser']);
 Route::get('/usuarios/verificar', [UserController::class, 'viewVerifyEmail']);

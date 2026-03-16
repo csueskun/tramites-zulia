@@ -17,37 +17,22 @@
     <div class="admin-home mt-2" data-content="natural">
         <div class="row justify-content-between">
             <div class="col-lg-8">
-                <h3 class="govcolor-blue-dark mb-4">Nueva Solicitud de {{$tramite->nombre}}</h3>
+                <h3 class="mb-4">Nueva Solicitud de {{$tramite->nombre}}</h3>
                 @php
-                    $stages = ['Generar<br/>Solicitud', 'Esperar<br/>Aprobación', 'Enviar<br/>Pago', 'Esperar<br/>Validación', 'Recibir<br/>Certificado'];
+                $stages = ['Inicio', 'Hago mi solicitud', 'Procesan mi solicitud', 'Respuesta'];
                 @endphp
                 <div class="custom-progress">
                     <div class="custom-progress-container">
-                        <div class="custom-step completed">
-                            <div class="custom-stage"></div>
-                            <div class="custom-label">Inicio<br/>&nbsp;</div>
+                        @foreach ($stages as $index => $label)
+                        <div class="custom-step @if ($index == 0) current @endif">
+                            <table>
+                                <tr>
+                                    <td class="custom-stage">{{ $index + 1 }}</td>
+                                    <td class="custom-label">{!! $label !!}</td>
+                                </tr>
+                            </table>
                         </div>
-                        <div class="custom-line-wrapper">
-                            <div class="custom-line half-completed"></div>
-                        </div>
-                        <div class="custom-step">
-                            <div class="custom-stage">2</div>
-                            <div class="custom-label">Hago mi<br/>solicitud</div>
-                        </div>
-                        <div class="custom-line-wrapper">
-                            <div class="custom-line"></div>
-                        </div>
-                        <div class="custom-step">
-                            <div class="custom-stage">3</div>
-                            <div class="custom-label">Procesan<br/>mi solicitud</div>
-                        </div>
-                        <div class="custom-line-wrapper">
-                            <div class="custom-line"></div>
-                        </div>
-                        <div class="custom-step">
-                            <div class="custom-stage">4</div>
-                            <div class="custom-label">Respuesta<br/>&nbsp;</div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="container-principal-linea-interaccion-govco">
@@ -166,7 +151,7 @@
                                                         <input required typeData="onlyNumber" type="text" name="telefono" id="telefono" regex="[0-9]*"
                                                             oninvalid="this.setCustomValidity('Por favor, ingrese un número de teléfono válido')"
                                                             onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
-                                                            placeholder="3123456789" aria-required="true" class="@error('telefono') error @enderror"
+                                                            placeholder="Ejemplo: 300123456" aria-required="true" class="@error('telefono') error @enderror"
                                                             value="{{ old('telefono') }}" minlength="7" maxlength="10">
                                                         <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
                                                             aria-label="success" aria-hidden="true"></div>
@@ -222,6 +207,51 @@
                                             @endforeach
                                         </div>
                                     </div>
+                                    <div class="col-lg-12">
+                                        <div class="container-alerta-govco mt-2">
+                                            <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
+                                                <p class="alerta-content-text p-4">
+                                                    El soporte de pago se emitirá y se enviará al correo <strong>{{ Auth::user()->email }}</strong> una vez sus requisitos sean revisados y
+                                                    aprobados por la entidad.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="checkbox-seleccion-govco entradas-de-texto-govco">
+                                            <input id="habeas_data" name="habeas_data" type="checkbox" typeData="checkbox" data-error-msg="Debe autorizar el tratamiento de sus datos personales">
+                                            <label for="habeas_data">Autorizo el tratamiento de mis datos personales de acuerdo con la política de privacidad y protección de datos.</label>
+                                        </div>
+                                        <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive"></span>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="checkbox-seleccion-govco entradas-de-texto-govco">
+                                            <input id="terms_conditions" name="terms_conditions" type="checkbox" typeData="checkbox" data-error-msg="Debe aceptar los términos y condiciones">
+                                            <label for="terms_conditions">Acepto los términos y condiciones de uso del portal.</label>
+                                        </div>
+                                        <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive"></span>
+                                    </div>
+
+                                    <div class="col-lg-6 mb-4">
+                                        <div class="captcha-container entradas-de-texto-govco">
+                                            <label for="captcha">Código de seguridad*</label>
+                                            <div class="captcha-image mb-2 d-flex align-items-center">
+                                                <span id="captcha-img">{!! captcha_img('flat') !!}</span>
+                                                <button type="button" class="btn-govco outline-btn-govco btn-sm ms-2" onclick="refreshCaptcha()" style="width: auto; height: auto; padding: 5px 10px;">
+                                                    Recargar
+                                                </button>
+                                            </div>
+                                            <div class="container-input-texto-govco">
+                                                <input typeData="captcha" type="text" name="captcha" id="captcha" placeholder="Ingrese el código" required class="@error('captcha') error @enderror">
+                                                <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                                            </div>
+                                            @error('captcha')
+                                            <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <table class="table table-general fix min" id="requerimientos-table"
@@ -243,19 +273,9 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
-                                        <div class="container-alerta-govco mt-2">
-                                            <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
-                                                <p class="alerta-content-text p-4">
-                                                    El soporte de pago se emitirá y se enviará al correo <strong>{{ Auth::user()->email }}</strong> una vez sus requisitos sean revisados y
-                                                    aprobados por la entidad.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-lg-12 mt-4">
-                                        <button onclick="preValidateFileForm(this.closest('form'))" type="button" class="btn btn-primary btn-modal-govco fit-content submit">
-                                            Guardar Solicitud
+                                        <button onclick="preValidateFileForm(this.closest('form'))" type="button" class="btn-govco fill-btn-govco fit-content submit">
+                                            Realizar Solicitud
                                         </button>
                                     </div>
                                 </div>
@@ -385,6 +405,20 @@
                 }, function () {
                 }, true)
             }, 200);
+        }
+
+        function refreshCaptcha() {
+            fetch('/captcha/api/flat')
+                .then(response => response.json())
+                .then(data => {
+                    const captchaContainer = document.getElementById('captcha-img');
+                    const img = captchaContainer.querySelector('img');
+                    if (img) {
+                        img.src = data.img;
+                    } else {
+                        captchaContainer.innerHTML = `<img src="${data.img}">`;
+                    }
+                });
         }
     </script>
 @endpush

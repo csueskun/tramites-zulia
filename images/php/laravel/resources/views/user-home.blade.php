@@ -11,11 +11,9 @@
     <div class="admin-home mt-2" data-content="natural">
         <div class="row justify-content-between">
             <div class="col-lg-8" id="para-mirar">
-                <h3 class="govcolor-blue-dark mb-4">Solicitud de Trámites</h3>
-                <a href="/user/solicitudes">
-                    <button type="button" class="btn-govco fill-btn-govco">Ver mis solicitudes</button>
-                </a>
-                <p class="text-muted my-4">
+                <h3 class="mb-4">Solicitud de Trámites</h3>
+                <button type="button" class="btn-govco fill-btn-govco fit-content" onclick="window.location.href='/user/solicitudes'">Ver mis solicitudes</button>
+                <p class="text2-govco my-4">
                     En esta sección encontrarás un listado detallado de los trámites disponibles
                     relacionados con vehículos automotores. Cada trámite incluye una descripción
                     clara, los requisitos necesarios, Costo total del tramite (validos hasta el año 2026)
@@ -70,7 +68,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body modal-body-govco fix">
-                                <h4 data-tramite-field="nombre" class="govcolor-blue-dark mb-4"></h4>
+                                <h4 data-tramite-field="nombre" class="mb-4"></h4>
                                 <p data-tramite-field="descripcion"></p>
                                 <p><div class="radio-seleccion-govco" data-tramite-field="personas"></div></p>
                                 <p><div class="radio-seleccion-govco" data-tramite-field="vehiculos"></div></p>
@@ -206,8 +204,8 @@
                             </div>
                             <div class="modal-footer-govco modal-footer-alerts-govco">
                                 <div class="modal-buttons-govco justify-content-center">
-                                    <button type="submit" class="btn btn-primary btn-modal-govco">Crear nueva solicitud</button>
-                                    <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                    <button type="submit" class="btn-govco fill-btn-govco fit-content">Crear nueva solicitud</button>
+                                    <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
                                         Cerrar
                                     </button>
                                 </div>
@@ -221,13 +219,13 @@
 
     <div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content modal-content-govco">
                 <div class="modal-header">
-                    <h5 class="modal-title govcolor-blue-dark " id="infoModalLabel">Tener en cuenta</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body p-4">
-                    <p>A continuación, encontrarás los trámites disponibles para realizar en la plataforma. Recuerde que cada
+                <div class="modal-body">
+                    <h3 class="modal-title-govco " id="infoModalLabel">Tener en cuenta</h3>
+                    <p class="modal-text-govco">A continuación, encontrarás los trámites disponibles para realizar en la plataforma. Recuerde que cada
                         trámite se debe seleccionar de manera individual.
                         <br>
                         <br>
@@ -236,8 +234,10 @@
                         la Secretaría de Tránsito, sede operativa el Zulia.
                     </p>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">Aceptar</button>
+                <div class="modal-footer modal-footer-govco">
+                    <div class="modal-buttons-govco">
+                        <button type="button" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">Aceptar</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@
     <div class="row justify-content-between">
         <div class="col-lg-9">
             @include('components.session-messages')
-            <h3 class="govcolor-blue-dark mb-4">Enviar recibo de pago</h3>
+            <h3 class="mb-4">Enviar recibo de pago</h3>
             <x-table-options action="/solicitudes/aceptadas"/> 
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">
@@ -203,7 +203,7 @@
 
                     <div class="modal-footer-govco modal-footer-alerts-govco">
                         <div class="modal-buttons-govco d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                            <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
                                 Cerrar
                             </button>
                         </div>
@@ -272,10 +272,10 @@
 
                         <div class="modal-footer-govco modal-footer-alerts-govco">
                             <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="submit" disabled="disabled" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">
+                                <button type="submit" disabled="disabled" class="btn-govco fill-btn-govco fit-content" data-bs-dismiss="modal">
                                     Enviar
                                 </button>
-                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
                                     Cerrar
                                 </button>
                             </div>
@@ -317,10 +317,10 @@
                         </div>
                         <div class="modal-footer-govco modal-footer-alerts-govco">
                             <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="submit" class="btn btn-primary btn-modal-govco auto-width">
+                                <button type="submit" class="btn-govco fill-btn-govco fit-content auto-width">
                                     Rechazar
                                 </button>
-                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
                                     Cerrar
                                 </button>
                             </div>
@@ -382,10 +382,10 @@
 
                         <div class="modal-footer-govco modal-footer-alerts-govco">
                             <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="submit" disabled="disabled" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">
+                                <button type="submit" disabled="disabled" class="btn-govco fill-btn-govco fit-content" data-bs-dismiss="modal">
                                     Enviar
                                 </button>
-                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
                                     Cerrar
                                 </button>
                             </div>

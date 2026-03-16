@@ -16,20 +16,21 @@
 <div class="admin-home mt-2" data-content="natural">
     <div class="row justify-content-between">
         <div class="col-lg-8">
-            <h3 class="govcolor-blue-dark mb-4">Ver Solicitud</h3>
+            <h3 class="mb-4">Ver Solicitud</h3>
             @php
-                $stages = ['Inicio<br/>&nbsp;', 'Hago mi<br/>solicitud', 'Procesan<br/>mi solicitud', 'Respuesta<br/>&nbsp;'];
+                $stages = ['Inicio', 'Hago mi solicitud', 'Procesan mi solicitud', 'Respuesta'];
             @endphp
             <div class="custom-progress">
                 <div class="custom-progress-container">
                     @foreach ($stages as $index => $label)
                         <div class="custom-step">
-                            <div class="custom-stage">{{ $index + 1 }}</div>
-                            <div class="custom-label">{!! $label !!}</div>
+                            <table>
+                                <tr>
+                                    <td class="custom-stage">{{ $index + 1 }}</td>
+                                    <td class="custom-label">{!! $label !!}</td>
+                                </tr>
+                            </table>
                         </div>
-                        @if ($index < count($stages) - 1)
-                            <div class="custom-line-wrapper"><div class="custom-line"></div></div>
-                        @endif
                     @endforeach
                 </div>
             </div>
@@ -229,10 +230,10 @@ if($solicitud->tramite_id !== 3) {
 
                         <div class="modal-footer-govco modal-footer-alerts-govco">
                             <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="button" onclick="preValidateFileForm(this.closest('form'), true)" disabled="disabled" class="btn btn-primary btn-modal-govco submit" data-bs-dismiss="modal">
+                                <button type="button" onclick="preValidateFileForm(this.closest('form'), true)" disabled="disabled" class="btn-govco fill-btn-govco fit-content submit" data-bs-dismiss="modal">
                                     Enviar
                                 </button>
-                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                <button type="button" class="btn-govco fill-btn-govco fit-content submit" data-bs-dismiss="modal">
                                     Cerrar
                                 </button>
                             </div>
@@ -307,7 +308,6 @@ if($solicitud->tramite_id !== 3) {
         document.querySelectorAll('.custom-step').forEach(function(step, index) {
             if (index < estadoNum - 1) {
                 step.classList.add('completed');
-                step.querySelector('.custom-stage').innerHTML = '';
             } else if (index === estadoNum - 1) {
                 step.classList.add('current');
             }

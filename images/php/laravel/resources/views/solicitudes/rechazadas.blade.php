@@ -13,7 +13,7 @@
     <div class="row justify-content-between">
         <div class="col-lg-9">
             @include('components.session-messages')
-            <h3 class="govcolor-blue-dark mb-4">Solicitudes rechazadas</h3>
+            <h3 class="mb-4">Solicitudes rechazadas</h3>
             <x-table-options action="/solicitudes/rechazadas"/> 
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">
@@ -164,7 +164,7 @@
 
                     <div class="modal-footer-govco modal-footer-alerts-govco">
                         <div class="modal-buttons-govco d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                            <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
                                 Cerrar
                             </button>
                         </div>

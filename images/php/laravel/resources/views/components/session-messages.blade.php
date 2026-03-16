@@ -1,8 +1,8 @@
 @if (session('success'))
 <div class="container-alerta-govco">
-    <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
-        <span class="alerta-icon-govco alerta-icon-notificacion-govco asuccess"></span>
-        <p class="alerta-content-text">
+    <div class="alert alerta-govco notificacion-success-govco" role="alert">
+        <span class="govco-svg govco-check-circle-fix fs-mr" aria-label="success"></span>
+        <p>
             {{ session('success') }}
         </p>
     </div>
@@ -10,9 +10,9 @@
 <br />
 @elseif (session('error'))
 <div class="container-alerta-govco">
-    <div class="alert alerta-govco alerta-error-govco aerror" role="alert">
-        <span class="alerta-icon-govco alerta-icon-notificacion-govco aerror"></span>
-        <p class="alerta-content-text">
+    <div class="alert alerta-govco notificacion-error-govco" role="alert">
+        <span class="govco-icon govco-times-cancel fs-mr" aria-label="error"></span>
+        <p>
             {{ session('error') }}
         </p>
     </div>

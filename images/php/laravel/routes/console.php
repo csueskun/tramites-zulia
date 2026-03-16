@@ -15,6 +15,17 @@ Artisan::command('dev:hash {value}', function ($value) {
     $this->comment("Hash: $hashedValue");
 })->purpose('Hash the given value');
 
+Artisan::command('dev:update-password {email} {password}', function ($email, $password) {
+    $user = \App\Models\User::where('email', $email)->first();
+    if (!$user) {
+        $this->error("User with email $email not found.");
+        return;
+    }
+    $user->password = Hash::make($password);
+    $user->save();
+    $this->info("Password for user with email $email has been updated successfully.");    
+})->purpose('Update user password by email');
+
 Artisan::command('report:generate {type}', function ($type) {
     $this->info("Starting report generation for type: $type");
 

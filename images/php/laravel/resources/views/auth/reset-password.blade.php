@@ -13,7 +13,7 @@
 <div class="new-user-content mt-2" data-content="natural">
     <div class="col-lg-6">
         @include('components.session-messages')
-        <h3 class="govcolor-blue-dark">Nueva contraseña</h3>
+        <h3 class="">Nueva contraseña</h3>
         <div class="container-login-alerta-juridica-govco">
             <div class="icon-informacion-login-govco"></div>
         </div>

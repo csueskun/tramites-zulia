@@ -14,7 +14,7 @@
         <div class="row justify-content-between">
             <div class="col-lg-8">
                 @include('components.session-messages')
-                <h3 class="govcolor-blue-dark mb-4">{{ $tramite->nombre }}</h3>
+                <h3 class="mb-4">{{ $tramite->nombre }}</h3>
                 <form method="post" action="/tramites/{{ $tramite->id }}" id="new-user-form">
                     @csrf
                     @method('patch')
@@ -62,7 +62,7 @@
                             style="width: 165px; height: 42px;">Guardar</button>
                     </div>
                 </form>
-                <h4 class="mt-4 govcolor-blue-dark">Estampillas</h4>
+                <h4 class="mt-4 ">Estampillas</h4>
                 <div class="container-tabla">
                     <table class="table table-general fix min" aria-describedby="tableDescCursorRows">
                         <thead class="encabezado-tabla">
@@ -95,7 +95,7 @@
                         </tbody>
                     </table>
                 </div>
-                <h4 class="mt-4 govcolor-blue-dark">Costos</h4>
+                <h4 class="mt-4 ">Costos</h4>
                 <div class="container-tabla">
                     <table class="table table-general fix min" aria-describedby="tableDescCursorRows">
                         <thead class="encabezado-tabla">
@@ -146,7 +146,7 @@
                 <div class="modal-dialog modal-dialog-govco">
                     <div class="modal-content modal-content-govco" style="font-size: 0.9em">
                         <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
-                            <h4 class="govcolor-blue-dark" data-content></h4>
+                            <h4 class="" data-content></h4>
                             <form method="post" action="" id="update-form">
                                 @csrf
                                 @method('patch')
@@ -177,7 +177,7 @@
                         </div>
                         <div class="modal-footer-govco modal-footer-alerts-govco">
                             <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno"
+                                <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno"
                                     data-bs-dismiss="modal">
                                     Cerrar
                                 </button>

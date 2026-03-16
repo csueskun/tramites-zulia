@@ -13,7 +13,7 @@
     <div class="row justify-content-between">
         <div class="col-lg-9">
             @include('components.session-messages')
-            <h3 class="govcolor-blue-dark mb-4">Trámites</h3>
+            <h3 class="mb-4">Trámites</h3>
             <div class="container-tabla">
                 <table class="table table-general fix" aria-describedby="tableDescCursorRows">
                     <thead class="encabezado-tabla">
@@ -66,7 +66,7 @@
             <div class="modal-dialog modal-dialog-govco">
                 <div class="modal-content modal-content-govco" style="font-size: 0.9em">
                     <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
-                        <h4 class="govcolor-blue-dark" data-content></h4>
+                        <h4 class="" data-content></h4>
                         <p data-content></p>
                         <div data-content></div>
                         <div data-content></div>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="modal-footer-govco modal-footer-alerts-govco">
                         <div class="modal-buttons-govco d-flex justify-space-between">
-                            <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                            <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
                                 Cerrar
                             </button>
                         </div>

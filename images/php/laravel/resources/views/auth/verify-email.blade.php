@@ -23,7 +23,7 @@
         </div>
         <br>
         @endif
-        <h3 class="govcolor-blue-dark">Verificar correo</h3>
+        <h3 class="">Verificar correo</h3>
         <div class="container-login-alerta-juridica-govco">
             <div class="icon-informacion-login-govco"></div>
         </div>
