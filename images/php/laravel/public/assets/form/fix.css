@@ -439,11 +439,11 @@ li.user-label-xs{
 
   .checkbox-seleccion-govco.entradas-de-texto-govco input[type="checkbox"] {
     /* transform: scale(1.1); */
-    border: solid #004884 2px  !important;
+    border: solid var(--govcolor-cobalt) 2px  !important;
   }
 
 .checkbox-seleccion-govco.entradas-de-texto-govco input[type="checkbox"]:checked {
-    background-color: #004884;
+    background-color: var(--govcolor-cobalt);
 }
 
 
@@ -498,8 +498,8 @@ li.user-label-xs{
 }
 
 .breadcrumb-govco {
-    font-family: 'Verdana-Regular';
     font-size: 0.9em;
+    padding-left: 0 !important;
 }
 .modal-content-govco{
     padding: 12px 36px 0px 36px;
@@ -561,4 +561,15 @@ li.user-label-xs{
 }
 .link-tipografia-govco:visited {
     color: var(--govcolor-cobalt);
+}
+
+.display-flex {
+    display: flex !important;
+}
+
+.display-block {
+    display: block !important;
+}
+.captcha-image span{
+    width: initial !important;
 }

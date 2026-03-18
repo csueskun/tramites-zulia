@@ -118,29 +118,29 @@
                 </li>
             </ul>
             <div class="links-container">
-                <a href="https://twitter.com/GoberNorte" role="button" class="btn-govco link-btn-govco" style="width: 123px; height: 33px;"
+                <a href="https://twitter.com/GoberNorte" target="_blank" role="button" class="btn-govco link-btn-govco" style="width: 123px; height: 33px;"
                     aria-label="enlace al twiter de la entidad">
                     <span class="govco-svg govco-twitter" aria-hidden="true"></span>
                     <span>@GoberNorte</span>
                 </a>
-                <a href="https://instagram.com/gobernorte" role="button" class="btn-govco link-btn-govco" style="width: 123px; height: 33px;"
+                <a href="https://instagram.com/gobernorte" target="_blank" role="button" class="btn-govco link-btn-govco" style="width: 123px; height: 33px;"
                     aria-label="enlace al instagram de la entidad">
                     <span class="govco-svg govco-instagram" aria-hidden="true"></span>
                     <span>@gobernorte</span>
                 </a>
-                <a href="https://www.facebook.com/GobernaciondeNortedeSantander" role="button" class="btn-govco link-btn-govco" style="width: 123px; height: 33px;"
+                <a href="https://www.facebook.com/GobernaciondeNortedeSantander" target="_blank" role="button" class="btn-govco link-btn-govco" style="width: 123px; height: 33px;"
                     aria-label="enlace al facebook de la entidad">
                     <span class="govco-svg govco-facebook-f" aria-hidden="true"></span>
                     <span>@GobernaciondeNortedeSantander</span>
                 </a>
             </div>
             <div class="end-links-container add-link-container">
-                <a href="https://www.nortedesantander.gov.co/" class="btn-govco link-btn-govco">Directorio Institucional</a>
+                <a href="https://www.nortedesantander.gov.co/" target="_blank" class="btn-govco link-btn-govco">Directorio Institucional</a>
             </div>
             <div class="end-links-container">
-                <a href="https://www.nortedesantander.gov.co/#/pagina/politicas-de-privacidad-y-terminos-de-uso" class="btn-govco link-btn-govco">Políticas</a>
-                <a href="https://www.nortedesantander.gov.co/#/mapa-del-sitio" class="btn-govco link-btn-govco">Mapa del sitio</a>
-                <a href="https://www.nortedesantander.gov.co/#/pagina/terminos-y-condiciones-de-uso" class="btn-govco link-btn-govco">Términos y condiciones</a>
+                <a target="_blank" href="https://www.nortedesantander.gov.co/#/pagina/politicas-de-privacidad-y-terminos-de-uso" class="btn-govco link-btn-govco">Políticas</a>
+                <a target="_blank" href="https://www.nortedesantander.gov.co/#/mapa-del-sitio" class="btn-govco link-btn-govco">Mapa del sitio</a>
+                <a target="_blank" href="https://www.nortedesantander.gov.co/#/pagina/terminos-y-condiciones-de-uso" class="btn-govco link-btn-govco">Términos y condiciones</a>
             </div>
         </div>
         <div class="second-section">

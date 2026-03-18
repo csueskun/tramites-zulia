@@ -53,8 +53,7 @@
                         <div class="entradas-de-texto-govco col-lg-12 px-2 mt-4">
                             <label for="apellidos">Apellidos*</label>
                             <div class="input-container actived-events-govco">
-                                <input typeData="onlyText" type="text" required pattern="[A-Za-z\s]+" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
-                                    name="apellidos" id="apellidos" placeholder="Ejemplo: Pérez" aria-required="true" class="@error('apellidos') error @enderror" value="{{ old('apellidos') }}">
+                                <input typeData="onlyText" required type="text" name="apellidos" id="apellidos" aria-invalid="{{ $errors->has('apellidos') ? 'true' : 'false' }}" placeholder="Ejemplo: Perez" aria-required="true" class="@error('apellidos') error @enderror" value="{{ old('apellidos') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="apellidos-note">
                                 <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
                                 <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
@@ -64,28 +63,65 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="entradas-de-texto-govco col-lg-6 px-2 mt-4">
-                            <label for="tipo_documento" class="label-desplegable-govco">Tipo de documento<span aria-required="true">*</span></label>
-                            <div id="dropdown_container" class="desplegable-govco @error('tipo_documento') error-desplegable-govco @enderror" id="lista-desplegables" data-type="basic">
-                                <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="false"></div>
-                                <select typeData="select" required="true" aria-required="true" aria-invalid="false" aria-describedby="tipo_documento" name="tipo_documento">
-                                    <option disabled selected>Escoger</option>
-                                    <option value="CC">Cédula de ciudadanía</option>
-                                    <option value="CE">Cédula de extranjería</option>
-                                    <option value="PA">Pasaporte</option>
-                                    <option value="RC">Registro civil</option>
-                                    <option value="TI">Tarjeta de identidad</option>
-                                </select>
+                        <div class="entradas-de-texto-govco dropdown desplegable-govco col-lg-6 px-2 mt-4">
+                            <label for="dropdown1" class="display-flex m-0">Etiqueta<span aria-required="true">*</span></label>
+                            <div class="container-dropdown">
+                                <input typeData="onlyText" required aria-required="true" type="hidden" value="" aria-invalid="false" aria-describedby="alert-id" name="tipo_documento" id="tipo_documento_input">
+                                <button class="btn-dropdown" type="button" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false">Elegir</button>
+                                <div class="input-group icons-dropdown">
+                                    <span class="input-group-text govco-icon govco-angle-down" id="dropdown-icon"></span>
+                                </div>          
+                                <div class="dropdown-menu dropdown-options-govco" aria-labelledby="dropdown1" style="">
+                                    <ul>
+                                        <li tabindex="0" class="dropdown-item" data-value="CC">Cédula de ciudadanía</li>
+                                        <li tabindex="0" class="dropdown-item" data-value="CE">Cédula de extranjería</li>
+                                        <li tabindex="0" class="dropdown-item" data-value="PA">Pasaporte</li>
+                                        <li tabindex="0" class="dropdown-item" data-value="RC">Registro civil</li>
+                                        <li tabindex="0" class="dropdown-item" data-value="TI">Tarjeta de identidad</li>
+                                    </ul>
+                                </div>
                             </div>
-                            @error('tipo_documento')
+                            @error('documento')
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="entradas-de-texto-govco col-lg-6 px-2 mt-4">
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const dropdown = document.getElementById('dropdown1');
+                                const input = document.getElementById('tipo_documento_input');
+                                const dropdownItems = document.querySelectorAll('.dropdown-item');
+                                const dropdownIcon = document.getElementById('dropdown-icon');
+                                const dropdownMenu = document.querySelector('.dropdown-menu');
+
+                                dropdownItems.forEach(item => {
+                                    item.addEventListener('click', function () {
+                                        const value = this.getAttribute('data-value');
+                                        const text = this.textContent;
+
+                                        input.value = value;
+                                        dropdown.textContent = text;
+
+                                        dropdownItems.forEach(i => i.classList.remove('active'));
+                                        this.classList.add('active');
+
+                                        // Hide the dropdown menu after selection
+                                        if (dropdownMenu) {
+                                            dropdownIcon.click();
+                                            // dropdownMenu.classList.remove('show');
+                                        }
+                                    });
+                                });
+
+                                // Show dropdown menu on icon click
+                                dropdownIcon.addEventListener('click', function () {
+                                    dropdownMenu.classList.toggle('show');
+                                });
+                            });
+                        </script>
+                        <div class="entradas-de-texto-govco actived-events-govco col-lg-6 px-2 mt-4">
                             <label for="documento">Documento*</label>
                             <div class="input-container actived-events-govco">
-                                <input typeData="onlyNumber" type="text" required name="documento" id="documento" placeholder="Ejemplo: 1234567890" minlength="7" maxlength="10"
-                                    aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}">
+                                <input typeData="num" required type="text" name="documento" id="documento" aria-invalid="{{ $errors->has('documento') ? 'true' : 'false' }}" placeholder="Ejemplo: Perez" aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="documento-note">
                                 <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
                                 <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
@@ -95,15 +131,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="entradas-de-texto-govco px-2 mt-4">
+                        <div class="entradas-de-texto-govco col-lg-12 px-2 mt-4">
                             <label for="email">Correo electrónico*</label>
                             <div class="input-container actived-events-govco">
-                                <input typeData="mail" type="text" required name="email" id="email" placeholder="Ejemplo: correo@email.com" aria-required="true" class="@error('email') error @enderror" value="{{ old('email') }}">
+                                <input required type="mail" name="email" id="email" aria-invalid="{{ $errors->has('email') ? 'true' : 'false' }}" placeholder="Ejemplo: correo@email.com" typedata="mail" aria-required="true" class="@error('email') error @enderror" value="{{ old('email') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="email-note">
                                 <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
                                 <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
                             @error('email')
-                            <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                            <span class="error-texto-govco information-text" id="email-note" role="alert" aria-live="assertive">{{$message}}</span>
                             @enderror
                         </div>
                     </div>
@@ -111,7 +147,9 @@
                         <div class="entradas-de-texto-govco col-lg-6 px-2 mt-4">
                             <label for="email">Contraseña*</label>
                             <div class="input-container actived-events-govco">
-                                <input data-confirm-input="password_confirmation" typeData="mypassword" type="password" required name="password" id="password" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
+                                <!-- <input data-confirm-input="password_confirmation" typeData="mypassword" type="password" required name="password" id="password" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror"> -->
+                                <input data-confirm-input="password_confirmation" type="password" name="password" id="password" aria-describedby="password-note" aria-required="true" aria-invalid="{{ $errors->has('email') ? 'true' : 'false' }}" placeholder="******" minlength="4" typedata="password" value="" onkeyup="this.setAttribute('value', this.value);" class="@error('password') error @enderror">
+                                <button id="togglePassword" type="button" class="govco-icon govco-eye-slash" aria-label="Mostrar contraseña"></button>
                                 <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
                                 <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
@@ -130,42 +168,42 @@
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="">
-                            <div class="checkbox-seleccion-govco entradas-de-texto-govco">
-                                <input id="togglePassword" name="habeas_data" type="checkbox">
-                                <label for="togglePassword">Mostrar contraseña.</label>
-                            </div>
-                        </div>
-                        <div id="info-password" class="col-lg-12 text-box info-text-box mb-4">
-                            <strong>La contraseña debe cumplir con los siguientes requisitos:</strong>
-                            <ul class="mb-0">
-                                <li>Mínimo 8 caracteres</li>
-                                <li>Incluir al menos una mayúscula</li>
-                                <li>Incluir al menos una minúscula</li>
-                                <li>Incluir al menos un dígito</li>
-                                <li>Incluir al menos un símbolo @ $ & - _ ? \ / # * ^ % + . ( ) </li>
-                            </ul>
-                        </div>
                     </div>
 
                     <div class="col-lg-12">
-                        <div class="checkbox-seleccion-govco entradas-de-texto-govco">
-                            <input id="habeas_data" name="habeas_data" type="checkbox" typeData="checkbox" data-error-msg="Debe autorizar el tratamiento de sus datos personales">
-                            <label for="habeas_data">Autorizo el tratamiento de mis datos personales de acuerdo con la política de privacidad y protección de datos.</label>
+                        <div class="checkbox-seleccion-govco mt-4 entradas-de-texto-govco display-block">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input id="habeas_data" name="habeas_data" type="checkbox" typeData="checkbox" data-error-msg="Debe autorizar el tratamiento de sus datos personales">
+                                    </td>
+                                    <td>
+                                        <label for="habeas_data">Autorizo el tratamiento de mis datos personales de acuerdo con la <a class="link-tipografia-govco" href="https://www.nortedesantander.gov.co/#/pagina/politicas-de-privacidad-y-terminos-de-uso" target="_blank">política de privacidad y protección de datos</a></label>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                         <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive"></span>
                     </div>
 
                     <div class="col-lg-12">
-                        <div class="checkbox-seleccion-govco entradas-de-texto-govco">
-                            <input id="terms_conditions" name="terms_conditions" type="checkbox" typeData="checkbox" data-error-msg="Debe aceptar los términos y condiciones">
-                            <label for="terms_conditions">Acepto los términos y condiciones de uso del portal.</label>
+                        <div class="checkbox-seleccion-govco mt-4 entradas-de-texto-govco display-block">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input id="terms_conditions" name="terms_conditions" type="checkbox" typeData="checkbox" data-error-msg="Debe aceptar los términos y condiciones">
+                                    </td>
+                                    <td>
+                                        <label for="terms_conditions">Acepto los <a class="link-tipografia-govco" href="https://www.nortedesantander.gov.co/#/pagina/terminos-y-condiciones-de-uso" target="_blank">términos y condiciones</a> de uso del portal.</label>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                         <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive"></span>
                     </div>
 
                     <div class="col-lg-6">
-                        <div class="captcha-container entradas-de-texto-govco">
+                        <div class="captcha-container entradas-de-texto-govco mt-4">
                             <label for="captcha">Código de seguridad*</label>
                             <div class="captcha-image mb-2 d-flex align-items-center">
                                 <span id="captcha-img">{!! captcha_img('flat') !!}</span>
@@ -183,7 +221,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="mt-4">
                     <button onclick="preSubmit()" type="button" class="btn-govco fill-btn-govco" name="continuar" style="width: 165px; height: 42px;">Guardar</button>
                 </div>
             </form>
@@ -206,7 +244,7 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            return false;
+            // return false;
             @if(old('tipo_documento'))
                 const tipoDocumentoSelect = document.getElementById('tipo_documento');
                 const oldTipoDocumento = "{{ old('tipo_documento') }}";
@@ -225,10 +263,12 @@
             methodAssign("keyup", onlyTextValidator, onlyTextInputs);
             const onlyNumberInputs = document.querySelectorAll('input[typeData="onlyNumber"]');
             methodAssign("keyup", onlyNumberValidator, onlyNumberInputs);
-            document.getElementById('dropdown_container').addEventListener('change', function(event) {
-                const input = this.querySelector('input[typedata="select"]');
-                selectValidator.call(input);
-            });
+            const numInputs = document.querySelectorAll('input[typeData="num"]');
+            methodAssign("keyup", onlyNumberValidator, numInputs);
+            // document.getElementById('dropdown_container').addEventListener('change', function(event) {
+            //     const input = this.querySelector('input[typedata="select"]');
+            //     selectValidator.call(input);
+            // });
         });
         function preSubmit(){
             const form = document.getElementById('new-user-form');
@@ -254,5 +294,18 @@
                     }
                 });
         }
+    </script>
+    <script>
+        const passwordInputB = document.getElementById('password');
+        const confirmInput = document.getElementById('password_confirmation');
+        const toggleButton = document.getElementById('togglePassword');
+
+        document.getElementById('togglePassword').addEventListener('click', () => {
+            passwordInputB.type = passwordInputB.type === 'password' ? 'text' : 'password';
+            confirmInput.type = confirmInput.type === 'password' ? 'text' : 'password';
+            toggleButton.classList.toggle('govco-eye-slash');
+            toggleButton.classList.toggle('govco-eye');
+        });
+
     </script>
 @endpush

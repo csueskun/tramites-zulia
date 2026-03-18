@@ -4187,6 +4187,11 @@ function validateForm(form) {
                   isValid = false;
               }
               break;
+          case 'num':
+              if (!onlyNumberValidator.call(input)) {
+                  isValid = false;
+              }
+              break;
           case 'select':
               if (!selectValidator.call(input)) {
                   isValid = false;
