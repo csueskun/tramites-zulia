@@ -15,14 +15,16 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/form/fix.css') }}">
     <link rel="stylesheet" href="https://cdn.www.gov.co/assets/fonts/icons/Govco-icons.woff2" type="font/woff2">
+    <!-- 
     <link href="{{ asset('assets/transversal/botones.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/transversal/alerta-notificacion.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/transversal/barra-superior.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/transversal/pie-de-pagina.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/transversal/volver-arriba.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/transversal/barra-accesibilidad.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/transversal/botones.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/transversal/tipografia.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/transversal/pie-de-pagina.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/transversal/tipografia.css') }}" rel="stylesheet" type="text/css"> 
+    -->
     
     @stack('styles')
 </head>

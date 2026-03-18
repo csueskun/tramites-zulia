@@ -37,13 +37,12 @@
                 @csrf
                 <div class="mt-2">
                     <div class="row">
-                        <div class="entradas-de-texto-govco col-lg-12 px-2">
+                        <div class="entradas-de-texto-govco col-lg-12 px-2 mt-4">
                             <label for="nombres">Nombres*</label>
-                            <div class="container-input-texto-govco">
-                                <input typeData="onlyText" type="text" required pattern="[A-Za-z\s]+" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
-                                    name="nombres" id="nombres" placeholder="Ejemplo: Juan" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}">
-                                <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
-                                <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                            <div class="input-container actived-events-govco">
+                                <input typeData="onlyText" required type="text" name="nombres" id="nombres" aria-invalid="{{ $errors->has('nombres') ? 'true' : 'false' }}" placeholder="Ejemplo: Carlos" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="nombres-note">
+                                <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
+                                <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
                             @error('nombres')
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
@@ -51,13 +50,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="entradas-de-texto-govco col-lg-12 px-2">
+                        <div class="entradas-de-texto-govco col-lg-12 px-2 mt-4">
                             <label for="apellidos">Apellidos*</label>
-                            <div class="container-input-texto-govco">
+                            <div class="input-container actived-events-govco">
                                 <input typeData="onlyText" type="text" required pattern="[A-Za-z\s]+" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
                                     name="apellidos" id="apellidos" placeholder="Ejemplo: Pérez" aria-required="true" class="@error('apellidos') error @enderror" value="{{ old('apellidos') }}">
-                                <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
-                                <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                                <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
+                                <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
                             @error('apellidos')
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
@@ -65,11 +64,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="entradas-de-texto-govco col-lg-6 px-2">
+                        <div class="entradas-de-texto-govco col-lg-6 px-2 mt-4">
                             <label for="tipo_documento" class="label-desplegable-govco">Tipo de documento<span aria-required="true">*</span></label>
                             <div id="dropdown_container" class="desplegable-govco @error('tipo_documento') error-desplegable-govco @enderror" id="lista-desplegables" data-type="basic">
                                 <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="false"></div>
-                                <select typeData="select" required="true" aria-invalid="false" aria-describedby="tipo_documento" name="tipo_documento">
+                                <select typeData="select" required="true" aria-required="true" aria-invalid="false" aria-describedby="tipo_documento" name="tipo_documento">
                                     <option disabled selected>Escoger</option>
                                     <option value="CC">Cédula de ciudadanía</option>
                                     <option value="CE">Cédula de extranjería</option>
@@ -82,13 +81,13 @@
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="entradas-de-texto-govco col-lg-6 px-2">
+                        <div class="entradas-de-texto-govco col-lg-6 px-2 mt-4">
                             <label for="documento">Documento*</label>
-                            <div class="container-input-texto-govco">
+                            <div class="input-container actived-events-govco">
                                 <input typeData="onlyNumber" type="text" required name="documento" id="documento" placeholder="Ejemplo: 1234567890" minlength="7" maxlength="10"
                                     aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}">
-                                <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
-                                <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                                <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
+                                <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
                             @error('documento')
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
@@ -96,12 +95,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="entradas-de-texto-govco px-2">
+                        <div class="entradas-de-texto-govco px-2 mt-4">
                             <label for="email">Correo electrónico*</label>
-                            <div class="container-input-texto-govco">
+                            <div class="input-container actived-events-govco">
                                 <input typeData="mail" type="text" required name="email" id="email" placeholder="Ejemplo: correo@email.com" aria-required="true" class="@error('email') error @enderror" value="{{ old('email') }}">
-                                <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
-                                <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                                <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
+                                <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
                             @error('email')
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
@@ -109,23 +108,23 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="entradas-de-texto-govco col-lg-6 px-2">
+                        <div class="entradas-de-texto-govco col-lg-6 px-2 mt-4">
                             <label for="email">Contraseña*</label>
-                            <div class="container-input-texto-govco">
+                            <div class="input-container actived-events-govco">
                                 <input data-confirm-input="password_confirmation" typeData="mypassword" type="password" required name="password" id="password" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
-                                <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
-                                <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                                <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
+                                <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
                             @error('password')
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="entradas-de-texto-govco col-lg-6 px-2">
+                        <div class="entradas-de-texto-govco col-lg-6 px-2 mt-4">
                             <label for="password_confirmation">Confirmar Contraseña*</label>
-                            <div class="container-input-texto-govco">
+                            <div class="input-container actived-events-govco">
                                 <input typeData="confirm" data-password-input="password" type="password" required name="password_confirmation" id="password_confirmation" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
-                                <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
-                                <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                                <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
+                                <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
                             @error('password')
                             <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
@@ -165,7 +164,7 @@
                         <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive"></span>
                     </div>
 
-                    <div class="col-lg-6 mb-4">
+                    <div class="col-lg-6">
                         <div class="captcha-container entradas-de-texto-govco">
                             <label for="captcha">Código de seguridad*</label>
                             <div class="captcha-image mb-2 d-flex align-items-center">
@@ -174,7 +173,7 @@
                                     Recargar
                                 </button>
                             </div>
-                            <div class="container-input-texto-govco">
+                            <div class="input-container actived-events-govco">
                                 <input typeData="captcha" type="text" name="captcha" id="captcha" placeholder="Ingrese el código" required class="@error('captcha') error @enderror">
                                 <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
                             </div>
@@ -207,6 +206,7 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
+            return false;
             @if(old('tipo_documento'))
                 const tipoDocumentoSelect = document.getElementById('tipo_documento');
                 const oldTipoDocumento = "{{ old('tipo_documento') }}";

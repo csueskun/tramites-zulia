@@ -510,3 +510,55 @@ li.user-label-xs{
 .modal-footer-govco{
     border: none;
 }
+.pie-pagina-govco .govco-logo-entidad {
+    height: 4rem;
+    content: url(../assets/images/logo-autoridad.jpg);
+}
+
+.pie-pagina-govco .first-section {
+    padding: 3rem 1.25rem 2.5rem 99px;
+    border-radius: 0.625rem;
+    border: 0.125rem solid var(--govcolor-tropical-blue);
+    -webkit-box-shadow: 0.625rem 3.75rem 0 -5.625rem var(--govcolor-cobalt), 
+    -3.75rem 3.75rem 0 -2.5rem var(--govcolor-cobalt), 0 0 0 0 var(--govcolor-cobalt), 
+    3.75rem 3.75rem 0 -2.5rem var(--govcolor-cobalt), -50px 5rem 0 -3.75rem var(--govcolor-cobalt);
+    box-shadow: 0.625rem 3.75rem 0 -5.625rem var(--govcolor-cobalt), 
+    -3.75rem 3.75rem 0 -2.5rem var(--govcolor-cobalt), 0 0 0 0 var(--govcolor-cobalt), 
+    3.75rem 3.75rem 0 -2.5rem var(--govcolor-cobalt), -50px 5rem 0 -3.75rem var(--govcolor-cobalt);
+    width: calc(100% - 2.5rem);
+    margin-left: 1.25rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+.barra-superior-govco a {
+    content: url('../assets/images/header_govco.png');
+    height: 30px;
+    width: auto;
+}
+
+.pie-pagina-govco .govco-logo,
+.portales-pie-pagina-govco .govco-logo  {
+  height: 2.5rem;
+  content: url(../assets/images/header_govco.png);
+}
+.entradas-de-texto-govco input[type="text"]:not(.browser-default):focus-visible:not([readonly]):not(:active), .entradas-de-texto-govco input[type="password"]:not(.browser-default):focus-visible:not([readonly]):not(:active), .entradas-de-texto-govco input[type="mail"]:not(.browser-default):focus-visible:not([readonly]):not(:active), .entradas-de-texto-govco input[type="tel"]:not(.browser-default):focus-visible:not([readonly]):not(:active), .entradas-de-texto-govco input[aria-invalid="false"]:not(.browser-default):focus-visible:not([readonly]):not(:active), .entradas-de-texto-govco input[aria-invalid="true"]:not(.browser-default):focus-visible:not([readonly]):not(:active) {
+    outline: none;
+    border-width: 1px;
+}
+.login-container{
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 0.313rem !important;
+    width: 500px;
+    padding: 27px 40px;
+}
+
+.entradas-de-texto-govco .error-texto-govco {
+    color: var(--govcolor-red);
+}
+.entradas-de-texto-govco .success-texto-govco{
+    color: var(--govcolor-green);
+}
+.link-tipografia-govco:visited {
+    color: var(--govcolor-cobalt);
+}

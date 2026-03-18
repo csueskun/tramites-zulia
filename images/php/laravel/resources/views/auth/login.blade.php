@@ -14,10 +14,11 @@
 <div class="card">
     <div class="card-body d-flex justify-content-center" style="background-color: #F6F8F9;">
 
-        <div class="inicio-sesion-govco" data-content="natural"  id="para-mirar">
+    <div class="card login-container">
+    <div class="card-body">
             <h2>Inicio de sesión</h2>
             <div class="container-login-alerta-juridica-govco">
-                <p>Para realizar trámites, debes estar registrado con tu número de documento y ser representante legal de la empresa.</p>
+                <p class="text2-govco">Para realizar trámites, debes estar registrado con tu número de documento y ser representante legal de la empresa.</p>
             </div>
 
             <div class="login-label-govco mt-3">
@@ -26,50 +27,49 @@
             <div class="container-login-opcion-govco" data-container-persona="natural">
                 <form method="POST" action="/login">
                     @csrf
-                    <div class="mt-4">
-                        <div class="entradas-de-texto-govco">
+                    <div>
+                        <div class="entradas-de-texto-govco mt-4">
                             <label id="valor-login" for="email">Correo electrónico*</label>
-                            <div class="container-input-texto-govco">
-                                <input type="email" name="email" id="email" aria-invalid="false" placeholder="Ejemplo: correo@email.com" typedata="mail" aria-required="true" class="@error('email') error @enderror" value="{{ old('email') }}">
-                                <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
-                                <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                            <div class="input-container actived-events-govco">
+                                <input required type="mail" name="email" id="email" aria-invalid="{{ $errors->has('email') ? 'true' : 'false' }}" placeholder="Ejemplo: correo@email.com" typedata="mail" aria-required="true" class="@error('email') error @enderror" value="{{ old('email') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="email-note">
+                                <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
+                                <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
                             @error('email')
-                            <span class="error-texto-govco alert-entradas-de-texto-govco" id="campoWarning-id" role="alert" aria-live="assertive">{{ $message }}</span>
+                            <span class="error-texto-govco information-text" id="email-note" role="alert" aria-live="assertive">{{$message}}</span>
                             @enderror
                         </div>
-                        <div class="entradas-de-texto-govco">
+                        <div class="entradas-de-texto-govco mt-4">
                             <label id="valor-login" for="password">Contraseña*</label>
-                            <div class="container-input-texto-govco">
-                                <input type="password" name="password" id="password" aria-invalid="false" placeholder="Ejemplo: ********" aria-required="true" maxlength="20" class="@error('password') error @enderror">
-                                <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco" aria-label="success" aria-hidden="true"></div>
-                                <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                            <div class="input-container actived-events-govco">
+                                <input type="password" name="password" id="password" aria-describedby="password-note" aria-required="true" aria-invalid="{{ $errors->has('email') ? 'true' : 'false' }}" placeholder="******" minlength="4" typedata="password" value="" onkeyup="this.setAttribute('value', this.value);" class="@error('password') error @enderror">
+                                <button id="togglePassword" type="button" class="govco-icon govco-eye-slash" aria-label="Mostrar contraseña"></button>
+                                <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>      
+                                <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
                             @error('password')
-                            <span class="error-texto-govco alert-entradas-de-texto-govco" id="campoWarning-id" role="alert" aria-live="assertive">{{ $message }}</span>
+                            <span class="error-texto-govco information-text" id="password-note" role="alert" aria-live="assertive">{{$message}}</span>
                             @enderror
                         </div>
-                        <label class="mb-4">
-                            <input type="checkbox" id="togglePassword"> Mostrar contraseña
-                        </label>
                     </div>
-                    <div>
+                    <div class="mt-4">
                         <button type="submit" class="btn-govco fill-btn-govco" name="continuar" style="width: 165px; height: 42px;">Continuar</button>
                     </div>
                 </form>
 
                 <div class="container-options-login-govco">
                     <div class="mt-3">
-                        <a class="mt-3" href="/forgot-password">Olvidé mi contraseña</a>
+                        <a class="mt-3 link-tipografia-govco" href="/forgot-password">Olvidé mi contraseña</a>
                     </div>
-                    <p class="mt-3">¿No sabes cómo crear una cuenta? &nbsp;
-                        <a class="mt-3" data-bs-toggle="modal" data-bs-target="#crear_usuario" href="#">Ver video</a>
+                    <p class="mt-3 text2-govco">¿No sabes cómo crear una cuenta? &nbsp;
+                        <a class="mt-3 link-tipografia-govco" data-bs-toggle="modal" data-bs-target="#crear_usuario" href="#">Ver video</a>
                     </p>
-                    <p class="mt-3">¿No tienes cuenta? &nbsp;
-                        <a class="mt-3" href="/usuarios/nuevo">Regístrate aquí</a>
+                    <p class="mt-3 text2-govco">¿No tienes cuenta? &nbsp;
+                        <a class="mt-3 link-tipografia-govco" href="/usuarios/nuevo">Regístrate aquí</a>
                     </p>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>
@@ -150,10 +150,12 @@
 @push('scripts')
     <script>
         const passwordInput = document.getElementById('password');
-        const toggleCheckbox = document.getElementById('togglePassword');
+        const toggleButton = document.getElementById('togglePassword');
 
-        toggleCheckbox.addEventListener('change', () => {
-            passwordInput.type = toggleCheckbox.checked ? 'text' : 'password';
+        document.getElementById('togglePassword').addEventListener('click', () => {
+            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+            toggleButton.classList.toggle('govco-eye-slash');
+            toggleButton.classList.toggle('govco-eye');
         });
 
     </script>

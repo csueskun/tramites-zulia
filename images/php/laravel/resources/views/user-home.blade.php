@@ -224,7 +224,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h3 class="modal-title-govco " id="infoModalLabel">Tener en cuenta</h3>
+                    <h3 class="modal-title-govco mb-4" id="infoModalLabel">Tener en cuenta</h3>
                     <p class="modal-text-govco">A continuación, encontrarás los trámites disponibles para realizar en la plataforma. Recuerde que cada
                         trámite se debe seleccionar de manera individual.
                         <br>
