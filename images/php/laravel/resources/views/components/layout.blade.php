@@ -11,11 +11,11 @@
     rel="stylesheet" crossorigin="anonymous">
     <link href="{{ asset('assets/all.css') }}" rel="stylesheet" type="text/css">
     <!-- <link rel="stylesheet" href="{{ asset('assets/general/styles.css') }}"> -->
+    <link rel="stylesheet" href="https://cdn.www.gov.co/assets/fonts/icons/Govco-icons.woff2" type="font/woff2">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('assets/form/fix.css') }}">
-    <link rel="stylesheet" href="https://cdn.www.gov.co/assets/fonts/icons/Govco-icons.woff2" type="font/woff2">
     <link href="{{ asset('assets/transversal/area-servicio.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/form/fix.css') }}">
     <!-- 
     <link href="{{ asset('assets/transversal/alerta-notificacion.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/transversal/barra-superior.css') }}" rel="stylesheet" type="text/css">
@@ -34,9 +34,8 @@
         <div class="barra-superior-govco">
             <a href="https://www.gov.co/" target="_blank" rel=noopener
                 aria-label="Portal del Estado Colombiano - GOV.CO"></a>
-                <button type="button" class="btn btn-white-primary btn-xsm rounded idioma-btn-barra-superior-govco" style="visibility: hidden;">EN</button>
                 @if (Auth::check())
-                <div class="btn-group">
+                <div class="btn-group user-container">
                     <button type="button" class="btn btn-transparent-primary color-white btn-xsm rounded dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                         <span class="govco-user"></span>
                         <span class="user-label"><strong>{{ Auth::user()->label() }}</strong></span>
@@ -46,6 +45,7 @@
                         <li><button class="dropdown-item" type="button" onclick="location.href='/logout'"><span class="govco-door-closed"></span> Cerrar sesión</button></li>
                     </ul>
                 </div>
+                <button type="button" class="btn btn-white-primary btn-xsm rounded idioma-btn-barra-superior-govco" style="visibility: hidden;">EN</button>
                 @endif
         </div>
     </div>

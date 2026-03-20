@@ -1,5 +1,9 @@
 @extends('components.layout')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/transversal/paginacion.css') }}">
+@endpush
+
 @section('title', 'Solicitudes completadas')
 
 @push('breadcrumb')
@@ -16,7 +20,7 @@
             <h3 class="mb-4">Solicitudes completadas</h3>
             <x-table-options action="/solicitudes/completas"/> 
             <div class="container-tabla">
-                <table class="table table-general fix" aria-describedby="tableDescCursorRows">
+                <table class="table table-general fix tabla-govco actived-events-govcotabla-govco actived-events-govco" aria-describedby="tableDescCursorRows">
                     <thead class="encabezado-tabla">
                         <tr>
                             <th width="1">Radicado</th>

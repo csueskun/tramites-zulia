@@ -15,7 +15,7 @@
             @include('components.session-messages')
             <h3 class="mb-4">Trámites</h3>
             <div class="container-tabla">
-                <table class="table table-general fix" aria-describedby="tableDescCursorRows">
+                <table class="table table-general fix tabla-govco actived-events-govcotabla-govco actived-events-govco" aria-describedby="tableDescCursorRows">
                     <thead class="encabezado-tabla">
                         <tr>
                             <th style="width:100%">Nombre</th>

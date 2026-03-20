@@ -1,7 +1,18 @@
-<div class="filtro-container row">
+<div class="filtro-container row mb-4">
     <div class="col-lg-12">
         <form class="form-inline" action="{{ $action }}" method="get">
             <div class="row">
+                <div class="col-lg-6">
+                    <label class="smaller" for="search">Filtrar:</label>
+                    <div class="govco-search-basic">
+                        <div class="container-govco d-flex" id="containter-default">
+                            <input name="buscar" value="{{ request('buscar') }}" type="text" class="input-search-basic-govco" id="input-basic" placeholder="Filtrar" aria-label="Filtrar">
+                            <button onclick="window.location.href='{{ $action }}'" class="btn-clean-basic-govco me-2" type="button" id="btn-clean-basic" aria-label="Limpiar"><span class="govco-svg govco-times"></span></button>
+                            <div class="line-basic-govco"></div>
+                            <button class="btn-search-basic-govco" type="submit"><span class="govco-svg govco-search" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3">
                     <label class="smaller" for="buscar_por">Filtrar por:</label>
                     <select class="form-select" name="filter_by" id="filter_by">
@@ -9,17 +20,6 @@
                         <option value="tramite" {{ request('filter_by') == 'tramite' ? 'selected' : '' }}>Trámite</option>
                         <option value="nombres" {{ request('filter_by') == 'nombres' ? 'selected' : '' }}>Nombres</option>
                     </select>
-                </div>
-                <div class="col-lg-4">
-                    <label class="smaller" for="search">Buscar:</label>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="search" placeholder="Buscar" value="{{ request('search') }}">
-                        <a href="{{ $action }}" class="btn btn-secondary">✖</a>
-                        <button class="btn-govco fill-btn-govco" type="submit">Buscar</button>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-
                 </div>
                 <div class="col-lg-3">
                     <label class="smaller" for="buscar_por">Resultados pág:</label>
@@ -34,3 +34,4 @@
         </form>
     </div>
 </div>
+<script src="{{ asset('assets/transversal/buscador.js') }}"></script>

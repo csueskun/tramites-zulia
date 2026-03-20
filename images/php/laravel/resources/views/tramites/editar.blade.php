@@ -64,7 +64,7 @@
                 </form>
                 <h4 class="mt-4 ">Estampillas</h4>
                 <div class="container-tabla">
-                    <table class="table table-general fix tabla-govco actived-events-govcomin" aria-describedby="tableDescCursorRows">
+                    <table class="table table-general fix tabla-govco actived-events-govcotabla-govco actived-events-govco" aria-describedby="tableDescCursorRows">
                         <thead class="encabezado-tabla">
                             <tr>
                                 <th style="width: 100% !important">Nombre</th>
@@ -97,7 +97,7 @@
                 </div>
                 <h4 class="mt-4 ">Costos</h4>
                 <div class="container-tabla">
-                    <table class="table table-general fix tabla-govco actived-events-govcomin" aria-describedby="tableDescCursorRows">
+                    <table class="table table-general fix tabla-govco actived-events-govcotabla-govco actived-events-govco" aria-describedby="tableDescCursorRows">
                         <thead class="encabezado-tabla">
                             <tr>
                                 <th style="width: 100% !important">Nombre</th>

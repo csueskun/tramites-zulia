@@ -10,7 +10,7 @@
 
 <div class="admin-home mt-2" data-content="natural">
     <div class="row justify-content-between">
-        <div class="col-lg-6" id="para-mirar">
+        <div class="col-lg-8" id="para-mirar">
             <h3 class="mb-4">Administración de Trámites</h3>
             <div class="row">
                 @if (Auth::user()->role === 'ADMIN')

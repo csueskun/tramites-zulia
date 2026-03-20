@@ -123,13 +123,16 @@
 	line-height: 0;
 	margin-left: auto;
 }
-
 .button-aservice-govco::after {
-	content: "\e813";
+	content: "\e816"; /* caret up */
+	color: var(--govcolor-gray-dark);
+	font-size: 20px;
 }
 
 .button-aservice-govco.collapsed::after {
-	content: "\e814";
+	content: "\e815"; /* caret down */
+	color: var(--govcolor-gray-dark);
+	font-size: 20px;
 }
 
 .aservice-body {

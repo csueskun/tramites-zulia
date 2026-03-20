@@ -588,3 +588,44 @@ li.user-label-xs{
     -webkit-mask: url(../icons/times-circle.svg) no-repeat center;
     background-color: var(--govcolor-cobalt);
 }
+.barra-superior-govco .user-container{
+    font-family: "Nunito Sans", sans-serif;
+    cursor: pointer;
+    padding: 0;
+    position: absolute;
+    right: 5.375rem;
+    top: 1rem;
+    font-size: 1.2em;
+}
+.dropdown-toggle:not(.btn-menu-govco):after{
+    color: white;
+    display: inline-block;
+}
+
+.barra-superior-govco .user-container .dropdown-item{
+    font-family: "Verdana Regular", sans-serif;
+    
+}
+a.module-tarjeta-govco:focus, a.module-tarjeta-govco:focus-visible, button.module-tarjeta-govco:focus, button.module-tarjeta-govco:focus-visible {
+    outline: none;
+    outline-offset: none;
+}
+.govco-svg.govco-search{
+    width: 24px;
+    margin-left: 4px;
+}
+.input-search-basic-govco{
+
+}
+.aservice-text-govco{
+    color: var(--govcolor-dark-gray) !important;
+}
+.aservice-link-govco.link-tipografia-govco{
+    color: var(--govcolor-cobalt) !important;
+    text-decoration: underline !important;
+}
+.link-card:hover, .link-card.hover,
+.button-aservice-govco[aria-expanded="false"]:hover, .button-aservice-govco[aria-expanded="false"].hover {
+    background-color: var(--govcolor-cobalt);
+    color: white;
+}

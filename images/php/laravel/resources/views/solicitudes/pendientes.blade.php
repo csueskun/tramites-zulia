@@ -65,7 +65,6 @@
                                         data-bs-action="/solicitudes/{{$solicitud->id}}"
                                         data-bs-usuario-id="{{ $solicitud->id }}">
                                         RECHAZAR</a>
-                                    &nbsp;
                                 </div>
                             </td>
                         </tr>
