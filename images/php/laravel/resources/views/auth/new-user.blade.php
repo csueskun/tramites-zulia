@@ -40,7 +40,7 @@
                         <div class="entradas-de-texto-govco col-lg-12 px-2 mt-4">
                             <label for="nombres">Nombres*</label>
                             <div class="input-container actived-events-govco">
-                                <input typeData="onlyText" required type="text" name="nombres" id="nombres" aria-invalid="{{ $errors->has('nombres') ? 'true' : 'false' }}" placeholder="Ejemplo: Carlos" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="nombres-note">
+                                <input typeData="onlyText" required type="text" name="nombres" id="nombres" aria-invalid="{{ $errors->has('nombres') ? 'true' : 'false' }}" placeholder="Ejemplo: Pedro" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="nombres-note">
                                 <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
                                 <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>

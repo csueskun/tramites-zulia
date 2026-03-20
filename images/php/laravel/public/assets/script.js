@@ -4280,7 +4280,7 @@ function modalTable(headers, rows, titulo='', footer=[]){
   if(titulo !== ''){
       table += `<strong class="">${titulo}</strong>`;
   }
-  table += '<table class="table table-general fix min"><thead><tr>';
+  table += '<table class="table table-general fix tabla-govco actived-events-govcomin"><thead><tr>';
   headers.forEach(header => {
       table += `<th scope="col">${header}</th>`;
   });

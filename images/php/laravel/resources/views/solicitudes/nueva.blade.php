@@ -254,7 +254,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <table class="table table-general fix min" id="requerimientos-table"
+                                            <table class="table table-general fix tabla-govco actived-events-govcomin" id="requerimientos-table"
                                                 style="display: table;">
                                                 <thead>
                                                     <tr>

@@ -72,7 +72,7 @@
                                 <p data-tramite-field="descripcion"></p>
                                 <p><div class="radio-seleccion-govco" data-tramite-field="personas"></div></p>
                                 <p><div class="radio-seleccion-govco" data-tramite-field="vehiculos"></div></p>
-                                <table class="table table-general fix min" id="requerimientos-table">
+                                <table class="table table-general fix tabla-govco actived-events-govcomin" id="requerimientos-table">
                                     <thead>
                                         <tr>
                                             <th>Requisitos</th>
@@ -83,7 +83,7 @@
                                 <div id="licencia-categorias" class="my-3 categoria-titulo">
                                     <div class="checkbox-seleccion-govco">
                                         <label for="categoria" class="mb-1">Categoría</label><br>
-                                        <table class="table table-general fix min">
+                                        <table class="table table-general fix tabla-govco actived-events-govcomin">
                                             <thead>
                                                 <tr>
                                                     <th>Moto</th>
@@ -168,7 +168,7 @@
                                     </div>
                                     <span class="error text-danger hidden">Debe seleccionar al menos una categoría</span>
                                 </div>
-                                <table class="table table-general fix min" id="costos-table">
+                                <table class="table table-general fix tabla-govco actived-events-govcomin" id="costos-table">
                                     <thead>
                                         <tr>
                                             <th>Concepto a pagar</th>
@@ -183,7 +183,7 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                                <table class="table table-general fix min" id="estampillas-table">
+                                <table class="table table-general fix tabla-govco actived-events-govcomin" id="estampillas-table">
                                     <thead>
                                         <tr>
                                             <th>Estampillas</th>

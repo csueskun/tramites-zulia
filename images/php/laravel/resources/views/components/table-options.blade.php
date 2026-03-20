@@ -15,7 +15,7 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="search" placeholder="Buscar" value="{{ request('search') }}">
                         <a href="{{ $action }}" class="btn btn-secondary">✖</a>
-                        <button class="btn btn-primary" type="submit">Buscar</button>
+                        <button class="btn-govco fill-btn-govco" type="submit">Buscar</button>
                     </div>
                 </div>
                 <div class="col-lg-2">

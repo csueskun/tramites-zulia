@@ -573,3 +573,18 @@ li.user-label-xs{
 .captcha-image span{
     width: initial !important;
 }
+.easy-icon-govco,
+.hard-icon-govco {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    mask: url(../icons/check-circle.svg) no-repeat center;
+    -webkit-mask: url(../icons/check-circle.svg) no-repeat center;
+    background-color: var(--govcolor-cobalt);
+}
+
+.hard-icon-govco {
+    mask: url(../icons/times-circle.svg) no-repeat center;
+    -webkit-mask: url(../icons/times-circle.svg) no-repeat center;
+    background-color: var(--govcolor-cobalt);
+}

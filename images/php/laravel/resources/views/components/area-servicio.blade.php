@@ -14,13 +14,12 @@
                 <button class="button-aservice-govco collapsed" type="button"
                     data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
                     aria-controls="collapseOne" id="collapseOneButton">
-                    <a class="aservice-text-govco">
+                    <span class="aservice-text-govco">
                         ¿Tienes dudas sobre este trámite o consulta?
-                    </a>
+                    </span>
                 </button>
             </h2>
-            <div id="collapseOne" class="aservice-collapse collapse" aria-labelledby="headingOne"
-                data-bs-parent="#aserviceExampleOne">
+            <div id="collapseOne" class="aservice-collapse collapse" aria-labelledby="headingOne">
                 <div class="aservice-body">
                     <div class="row aservice-row-govco">
                         <span class="mail-icon-govco"></span>
@@ -44,13 +43,12 @@
                 <button class="button-aservice-govco collapsed" type="button"
                     data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
                     aria-controls="collapseTwo" id="collapseTwoButton">
-                    <a class="aservice-text-govco">
+                    <span class="aservice-text-govco">
                         ¿Cómo fue tu experiencia durante el proceso?
-                    </a>
+                    </span>
                 </button>
             </h2>
-            <div id="collapseTwo" class="aservice-collapse collapse" aria-labelledby="headingTwo"
-                data-bs-parent="#aserviceExampleTwo">
+            <div id="collapseTwo" class="aservice-collapse collapse" aria-labelledby="headingTwo">
                 <div class="aservice-body aservice-body-two">
                     <ul class="aservice-item-menu-ul">
                         <li class="aservice-item-menu-li">
