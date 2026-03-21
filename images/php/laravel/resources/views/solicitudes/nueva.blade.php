@@ -79,103 +79,77 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-9">
-                                                <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
+                                                <div class="entradas-de-texto-govco col-lg-12 px-2 mt-4">
                                                     <label for="nombres">Nombres*</label>
-                                                    <div class="container-input-texto-govco">
-                                                        <input required typeData="onlyText" type="text" name="nombres" id="nombres"
-                                                            placeholder="Ejemplo: Juan Pérez" aria-required="true"
-                                                            class="@error('nombres') error @enderror" oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')" 
-                                                            onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
-                                                            value="{{ old('nombres') }}" pattern="[A-Za-z\s]+" title="Solo se permiten letras y espacios">
-                                                        <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
-                                                            aria-label="success" aria-hidden="true"></div>
-                                                        <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco"
-                                                            aria-label="error" aria-hidden="true"></div>
+                                                    <div class="input-container actived-events-govco">
+                                                        <input typeData="onlyText" required type="text" name="nombres" id="nombres" aria-invalid="{{ $errors->has('nombres') ? 'true' : 'false' }}" placeholder="Ejemplo: Pedro" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="nombres-note">
+                                                        <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
+                                                        <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                                                     </div>
-                                                    <div class="container-detail-carga-de-archivo-govco">
-                                                        <span id="nombres_error" class="alert-carga-de-archivo-govco visually-hidden"></span>
-                                                        <div class="attached-files-carga-de-archivo-govco"></div>
-                                                    </div>
+                                                    @error('nombres')
+                                                    <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-5">
-                                                <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
-                                                    <label for="tipo_documento" class="label-desplegable-govco">Tipo de
-                                                        documento<span aria-required="true">*</span></label>
-                                                    <div id="dropdown_container" class="desplegable-govco @error('tipo_documento') error-desplegable-govco @enderror"
-                                                        id="lista-desplegables" data-type="basic">
-                                                        <select required typeData="select" aria-invalid="false" aria-describedby="tipo_documento"
-                                                            name="tipo_documento" id="tipo_documento">
-                                                            <option disabled selected>Escoger</option>
-                                                            <option value="CC">Cédula de ciudadanía</option>
-                                                            <option value="CE">Cédula de extranjería</option>
-                                                            <option value="PA">Pasaporte</option>
-                                                            <option value="RC">Registro civil</option>
-                                                            <option value="TI">Tarjeta de identidad</option>
-                                                        </select>
-                                                        <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
-                                                        aria-label="success" aria-hidden="true"></div>
-                                                        <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco"
-                                                        aria-label="error" aria-hidden="true"></div>
+                                                <div class="entradas-de-texto-govco dropdown desplegable-govco col-lg-6 px-2 mt-4">
+                                                    <label for="dropdown1" class="display-flex m-0">Etiqueta<span aria-required="true">*</span></label>
+                                                    <div class="container-dropdown">
+                                                        <input typeData="onlyText" required aria-required="true" type="hidden" value="" aria-invalid="false" aria-describedby="alert-id" name="tipo_documento" id="tipo_documento_input">
+                                                        <button class="btn-dropdown" type="button" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false">Elegir</button>
+                                                        <div class="input-group icons-dropdown">
+                                                            <span class="input-group-text govco-icon govco-angle-down" id="dropdown-icon"></span>
+                                                        </div>          
+                                                        <div class="dropdown-menu dropdown-options-govco" aria-labelledby="dropdown1" id="documento-dropdown">
+                                                            <ul>
+                                                                <li tabindex="0" class="dropdown-item" data-value="CC">Cédula de ciudadanía</li>
+                                                                <li tabindex="0" class="dropdown-item" data-value="CE">Cédula de extranjería</li>
+                                                                <li tabindex="0" class="dropdown-item" data-value="PA">Pasaporte</li>
+                                                                <li tabindex="0" class="dropdown-item" data-value="RC">Registro civil</li>
+                                                                <li tabindex="0" class="dropdown-item" data-value="TI">Tarjeta de identidad</li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                    <sp class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive"></span>
+                                                    @error('documento')
+                                                    <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 ps-0">
-                                                <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
-                                                    <label for="identificacion">Identificacion*</label>
-                                                    <div class="container-input-texto-govco">
-                                                        <input required typeData="onlyNumber" type="number" name="identificacion" id="identificacion"
-                                                            placeholder="Ejemplo: 1234567890" aria-required="true" minlength="7" maxlength="10"
-                                                            class="@error('identificacion') error @enderror"
-                                                            value="{{ old('identificacion') }}">
-                                                        <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
-                                                            aria-label="success" aria-hidden="true"></div>
-                                                        <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco"
-                                                            aria-label="error" aria-hidden="true"></div>
-                                                    </div>
-                                                    <div class="container-detail-carga-de-archivo-govco">
-                                                        <span id="identificacion_error" class="alert-carga-de-archivo-govco visually-hidden"></span>
-                                                        <div class="attached-files-carga-de-archivo-govco"></div>
-                                                    </div>
+                                            <div class="entradas-de-texto-govco actived-events-govco col-lg-4 px-2 mt-4">
+                                                <label for="documento">Documento*</label>
+                                                <div class="input-container actived-events-govco">
+                                                    <input typeData="num" required type="text" name="documento" id="documento" aria-invalid="{{ $errors->has('documento') ? 'true' : 'false' }}" placeholder="Ejemplo: 13444555" aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="documento-note">
+                                                    <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
+                                                    <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                                                 </div>
+                                                @error('documento')
+                                                <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="entradas-de-texto-govco col-lg-12 px-2 nueva-solicitud">
-                                                    <label for="telefono">Teléfono *</label>
-                                                    <div class="container-input-texto-govco">
-                                                        <input required typeData="onlyNumber" type="text" name="telefono" id="telefono" regex="[0-9]*"
-                                                            oninvalid="this.setCustomValidity('Por favor, ingrese un número de teléfono válido')"
-                                                            onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')"
-                                                            placeholder="Ejemplo: 300123456" aria-required="true" class="@error('telefono') error @enderror"
-                                                            value="{{ old('telefono') }}" minlength="7" maxlength="10">
-                                                        <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
-                                                            aria-label="success" aria-hidden="true"></div>
-                                                        <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco"
-                                                            aria-label="error" aria-hidden="true"></div>
+                                            <div class="col-lg-5">
+                                                <div class="entradas-de-texto-govco actived-events-govco col-lg-12 px-2 mt-4">
+                                                    <label for="telefono">Teléfono*</label>
+                                                    <div class="input-container actived-events-govco">
+                                                        <input typeData="phone" required aria-required="true" type="text" name="telefono" id="telefono" aria-invalid="{{ $errors->has('telefono') ? 'true' : 'false' }}" placeholder="Ejemplo: 3001231234" aria-required="true" class="@error('telefono') error @enderror" value="{{ old('telefono') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="telefono-note">
+                                                        <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
+                                                        <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                                                     </div>
-                                                    <div class="container-detail-carga-de-archivo-govco">
-                                                        <span id="telefono_error" class="alert-carga-de-archivo-govco visually-hidden"></span>
-                                                        <div class="attached-files-carga-de-archivo-govco"></div>
-                                                    </div>
+                                                    @error('telefono')
+                                                    <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
                                         @if (in_array($tramite->id, [1, 2, 4, 7, 8, 9]))
                                         <div class="row">
-                                            <div class="col-lg-12 mb-4">
-                                                <label for="documento_identidad"
-                                                    class="label-carga-de-archivo-govco">Descargar y diligenciar archivo
-                                                    (FUN)</label>
-                                                <a href="{{ asset('assets/FUN.xls') }}"
-                                                    download="B16-Ministerio-de-Transporte.xls" class="boton-descarga">
-                                                    <button type="button" class="btn-govco outline-btn-govco">Descargar
-                                                        Formulario Fun</button>
-                                                </a>
+                                            <div class="col-lg-12 mt-4">
+                                                <label for="documento_identidad" class="label-carga-de-archivo-govco">Descargar y diligenciar archivo
+                                                    (FUN)</label><br>
+                                                <a href="{{ asset('assets/FUN.xls') }}" class="link-tipografia-govco">Descargar Formulario Fun</a>
                                             </div>
                                         </div>
                                         @endif
@@ -208,28 +182,46 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <div class="container-alerta-govco mt-2">
-                                            <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
-                                                <p class="alerta-content-text p-4">
-                                                    El soporte de pago se emitirá y se enviará al correo <strong>{{ Auth::user()->email }}</strong> una vez sus requisitos sean revisados y
-                                                    aprobados por la entidad.
+                                        <div class="container-alerta-govco">
+                                            <div class="alert alerta-govco notificacion-info-govco no-max-height" role="alert">
+                                                <span class="govco-icon govco-info-circle fs-mr" aria-label="info"></span>
+                                                <p>
+                                                El soporte de pago se emitirá y se enviará al correo <strong>{{ Auth::user()->email }}</strong> <br>
+                                                una vez sus requisitos sean revisados y
+                                                aprobados por la entidad
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
-                                        <div class="checkbox-seleccion-govco entradas-de-texto-govco">
-                                            <input id="habeas_data" name="habeas_data" type="checkbox" typeData="checkbox" data-error-msg="Debe autorizar el tratamiento de sus datos personales">
-                                            <label for="habeas_data">Autorizo el tratamiento de mis datos personales de acuerdo con la política de privacidad y protección de datos.</label>
+                                        <div class="checkbox-seleccion-govco mt-4 entradas-de-texto-govco display-block">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <input id="habeas_data" name="habeas_data" type="checkbox" typeData="checkbox" data-error-msg="Debe autorizar el tratamiento de sus datos personales">
+                                                    </td>
+                                                    <td>
+                                                        <label for="habeas_data">Autorizo el tratamiento de mis datos personales de acuerdo con la <a class="link-tipografia-govco" href="https://www.nortedesantander.gov.co/#/pagina/politicas-de-privacidad-y-terminos-de-uso" target="_blank">política de privacidad y protección de datos</a></label>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                         <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive"></span>
                                     </div>
 
                                     <div class="col-lg-12">
-                                        <div class="checkbox-seleccion-govco entradas-de-texto-govco">
-                                            <input id="terms_conditions" name="terms_conditions" type="checkbox" typeData="checkbox" data-error-msg="Debe aceptar los términos y condiciones">
-                                            <label for="terms_conditions">Acepto los términos y condiciones de uso del portal.</label>
+                                        <div class="checkbox-seleccion-govco mt-4 entradas-de-texto-govco display-block">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <input id="terms_conditions" name="terms_conditions" type="checkbox" typeData="checkbox" data-error-msg="Debe aceptar los términos y condiciones">
+                                                    </td>
+                                                    <td>
+                                                        <label for="terms_conditions">Acepto los <a class="link-tipografia-govco" href="https://www.nortedesantander.gov.co/#/pagina/terminos-y-condiciones-de-uso" target="_blank">términos y condiciones</a> de uso del portal.</label>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                         <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive"></span>
                                     </div>
@@ -254,7 +246,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <table class="table table-general fix tabla-govco actived-events-govcomin" id="requerimientos-table"
+                                            <table class="table table-general fix tabla-govco actived-events-govco min" id="requerimientos-table"
                                                 style="display: table;">
                                                 <thead>
                                                     <tr>
@@ -320,6 +312,39 @@
     <script src="{{ asset('assets/form/carga-de-archivo.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            const dropdown = document.getElementById('dropdown1');
+            const input = document.getElementById('tipo_documento_input');
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+            const dropdownIcon = document.getElementById('dropdown-icon');
+            const dropdownMenu = document.getElementById('documento-dropdown');
+
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const value = this.getAttribute('data-value');
+                    const text = this.textContent;
+
+                    input.value = value;
+                    dropdown.textContent = text;
+
+                    dropdownItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Hide the dropdown menu after selection
+                    if (dropdownMenu) {
+                        dropdownIcon.click();
+                        // dropdownMenu.classList.remove('show');
+                    }
+                });
+            });
+
+            // Show dropdown menu on icon click
+            dropdownIcon.addEventListener('click', function () {
+                dropdownMenu.classList.toggle('show');
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             //Read categorias from url
             const urlParams = new URLSearchParams(window.location.search);
             const categoriaLicencia = urlParams.get('categoria-licencia');
@@ -350,10 +375,12 @@
             methodAssign("keyup", onlyTextValidator, onlyTextInputs);
             const onlyNumberInputs = document.querySelectorAll('input[typeData="onlyNumber"]');
             methodAssign("keyup", onlyNumberValidator, onlyNumberInputs);
-            document.getElementById('dropdown_container').addEventListener('change', function(event) {
-                const input = this.querySelector('input[typedata="select"]');
-                selectValidator.call(input);
-            });
+            const phoneInputs = document.querySelectorAll('input[typeData="phone"]');
+            methodAssign("keyup", onlyNumberValidator, phoneInputs);
+            // document.getElementById('dropdown_container').addEventListener('change', function(event) {
+            //     const input = this.querySelector('input[typedata="select"]');
+            //     selectValidator.call(input);
+            // });
         });
 
         var fileDocumentoIdentidad = [];

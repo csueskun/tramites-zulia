@@ -17,10 +17,10 @@ function asignaFuncion(e, f, elements) {
 
 window.addEventListener("load", function () {
   /* ============================= carga de archivo ===================================================*/
-  var inputsFile = document.querySelectorAll('.input-carga-de-archivo-govco');
+  var inputsFile = document.querySelectorAll('.input-carga-archivo-govco');
   methodAssignFileInput("change", selectingFiles, inputsFile);
 
-  var buttonsFile = document.querySelectorAll('.button-loader-carga-de-archivo-govco');
+  var buttonsFile = document.querySelectorAll('.button-loader-carga-archivo-govco');
   methodAssign("click", clickButtonFile, buttonsFile);
 
   window.addEventListener('resize', windowSize);
@@ -2923,7 +2923,7 @@ function methodAssignFileInput(e, f, a) {
 }
 
 function windowSize() {
-  let containerInputsFile = document.querySelectorAll('.container-carga-de-archivo-govco');
+  let containerInputsFile = document.querySelectorAll('.container-carga-archivo-govco');
   for (let e of containerInputsFile) {
     if (e.offsetWidth < 340) {
       e.classList.add('responsive-govco', 'small-fileupload-govco');
@@ -2940,7 +2940,7 @@ function selectingFiles() {
   const idInput = this.id;
   const parent = this.parentNode;
   const parentCarga = parent.parentNode;
-  const button = parentCarga.querySelector('.button-loader-carga-de-archivo-govco');
+  const button = parentCarga.querySelector('.button-loader-carga-archivo-govco');
   let fileName = '';
   const maximumQuantity = configFileInputs[idInput]['maximumQuantity'];
   selectedFiles[idInput] = [];
@@ -3045,7 +3045,7 @@ function setValidationParameters(idElement, extensions = [], size = 0, quantity 
 }
 
 function assignName(container, fileName) {
-  const containerNameFile = container.querySelector('.file-name-carga-de-archivo-govco');
+  const containerNameFile = container.querySelector('.file-name-carga-archivo-govco');
   containerNameFile.innerHTML = fileName ? fileName : 'Sin archivo seleccionado';
 }
 
@@ -3056,15 +3056,15 @@ function enableDisableFileUploadButton(element, value) {
 async function clickButtonFile() {
   const parentButton = this.parentNode;
   const parent = parentButton.parentNode;
-  const inputFile = parent.querySelector('.input-carga-de-archivo-govco');
+  const inputFile = parent.querySelector('.input-carga-archivo-govco');
   const idInput = inputFile.id;
-  const containerLoader = parent.querySelector('.load-carga-de-archivo-govco');
+  const containerLoader = parent.querySelector('.load-carga-archivo-govco');
   activateContainerLoader(containerLoader, true);
   enableDisableFileUploadButton(this, true);
 
   if (inputFile.value) {
     const containerParent = parent.nextElementSibling;
-    const container = containerParent.querySelector('.attached-files-carga-de-archivo-govco');
+    const container = containerParent.querySelector('.attached-files-carga-archivo-govco');
 
     const filesResponse = await validateFunction(inputFile, containerLoader, parent, 'add', selectedFiles[idInput]);
     if (filesResponse.length > 0) {
@@ -3123,7 +3123,7 @@ function errorInputFile(input, active, message) {
   const parentInput = input.parentNode;
   const parentAllInput = parentInput.parentNode;
   const containerParent = parentAllInput.nextElementSibling;
-  const containerAlert = containerParent.querySelector('.alert-carga-de-archivo-govco');
+  const containerAlert = containerParent.querySelector('.alert-carga-archivo-govco');
   const idInput = input.id;
   input.setAttribute('data-error', active ? "1" : "0");
   activateContainer(containerAlert, active);
@@ -3167,19 +3167,19 @@ function createAttachedFiles(container, files, idInput) {
 
 function createElement(container, name, type) {
   const newDivAttached = document.createElement('div');
-  newDivAttached.classList.add('attached-file-carga-de-archivo-govco');
+  newDivAttached.classList.add('attached-file-carga-archivo-govco');
   newDivAttached.setAttribute("tabindex", "0");
 
   const newDivContainerIcon = document.createElement('div');
-  newDivContainerIcon.classList.add('icon-text-carga-de-archivo-govco');
+  newDivContainerIcon.classList.add('icon-text-carga-archivo-govco');
 
   const newDivIconFile = document.createElement('div');
-  newDivIconFile.classList.add('file-alt-carga-de-archivo-govco');
+  newDivIconFile.classList.add('file-alt-carga-archivo-govco');
 
   const newDiv = document.createElement('div');
-  newDiv.classList.add('container-text-name-carga-de-archivo-govco');
+  newDiv.classList.add('container-text-name-carga-archivo-govco');
   const span1 = document.createElement('span');
-  span1.classList.add('text-name-carga-de-archivo-govco');
+  span1.classList.add('text-name-carga-archivo-govco');
   const textSpan1 = document.createTextNode(name);
   span1.appendChild(textSpan1); //añade texto al div creado.
   const span2 = document.createElement('span');
@@ -3187,7 +3187,7 @@ function createElement(container, name, type) {
   span2.appendChild(textSpan2); //añade texto al div creado.
 
   const newButtonIconTrash = document.createElement('button');
-  newButtonIconTrash.classList.add('trash-alt-1-carga-de-archivo-govco');
+  newButtonIconTrash.classList.add('trash-alt-1-carga-archivo-govco');
 
   newDivContainerIcon.appendChild(newDivIconFile);
   newDiv.appendChild(span1);
@@ -3220,10 +3220,10 @@ async function removeAttachment() {
   const containerAttachments = container.parentNode;
   const containerDetail = containerAttachments.parentNode;
   const containerAll = containerDetail.parentNode;
-  const inputFile = containerAll.querySelector('.input-carga-de-archivo-govco');
+  const inputFile = containerAll.querySelector('.input-carga-archivo-govco');
   const idInput = inputFile.id;
-  const containerLoader = containerAll.querySelector('.load-carga-de-archivo-govco');
-  const containerName = container.querySelector('.text-name-carga-de-archivo-govco');
+  const containerLoader = containerAll.querySelector('.load-carga-archivo-govco');
+  const containerName = container.querySelector('.text-name-carga-archivo-govco');
   const name = containerName.innerHTML;
   const element = attachmentList[idInput].find(file => file.name === name);
   const index = attachmentList[idInput].indexOf(element);
@@ -4188,6 +4188,11 @@ function validateForm(form) {
               }
               break;
           case 'num':
+              if (!onlyNumberValidator.call(input)) {
+                  isValid = false;
+              }
+              break;
+          case 'phone':
               if (!onlyNumberValidator.call(input)) {
                   isValid = false;
               }

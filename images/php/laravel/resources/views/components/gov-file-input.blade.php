@@ -1,35 +1,35 @@
-<div class="container-carga-de-archivo-govco mb-4" id="container_file_{{ $name }}">
-    <div class="loader-carga-de-archivo-govco">
-        <div class="all-input-carga-de-archivo-govco">
+<div class="carga-archivo-govco actived-events-govco mb-4" id="container_file_{{ $name }}">
+    <div class="loader-carga-archivo-govco">
+        <div class="all-input-carga-archivo-govco">
             <input {{ $required ? 'required' : '' }} type="file" name="file_{{ $name }}" id="file_{{ $name }}"
-                class="input-carga-de-archivo-govco active" data-error="0" data-action="{{ $name }}FileUpload"
+                class="input-carga-archivo-govco active" data-error="0" data-action="{{ $name }}FileUpload"
                 data-action-delete="{{ $name }}DeleteFile"/>
-            <label for="{{ $name }}" class="label-carga-de-archivo-govco">{{ $descripcion }}</label>
-            <label for="{{ $name }}" class="container-input-carga-de-archivo-govco">
-                <span class="button-file-carga-de-archivo-govco">Seleccionar
+            <label for="{{ $name }}" class="label-carga-archivo-govco">{{ $descripcion }}</label>
+            <label for="{{ $name }}" class="container-input-carga-archivo-govco">
+                <span class="button-file-carga-archivo-govco">Seleccionar
                     archivo</span>
-                <span class="file-name-carga-de-archivo-govco">Sin archivo
+                <span class="file-name-carga-archivo-govco">Sin archivo
                     seleccionado</span>
             </label>
-            <span class="text-validation-carga-de-archivo-govco">
+            <span class="text-validation-carga-archivo-govco">
                 Tipo de archivo: <strong>{{ $type }}</strong>. Peso máximo: {{ $max }} MB
             </span>
         </div>
-        <div class="load-button-carga-de-archivo-govco" style="display: none;">
-            <div class="load-carga-de-archivo-govco">
+        <div class="load-button-carga-archivo-govco" style="display: none;">
+            <div class="load-carga-archivo-govco">
                 <div class="spinner-indicador-de-carga-govco" style="width: 32px; height: 32px; border-width: 6px;"
                     role="status">
                     <span class="visually-hidden">Cargando...</span>
                 </div>
             </div>
-            <button id="file_{{ $name }}_load" class="button-loader-carga-de-archivo-govco" disabled>
+            <button id="file_{{ $name }}_load" class="button-loader-carga-archivo-govco" disabled>
                 Cargar archivo
             </button>
         </div>
     </div>
-    <div class="container-detail-carga-de-archivo-govco">
-        <span id="file_{{ $name }}_error" class="alert-carga-de-archivo-govco visually-hidden"></span>
-        <div class="attached-files-carga-de-archivo-govco"></div>
+    <div class="container-detail-carga-archivo-govco">
+        <span id="file_{{ $name }}_error" class="alert-carga-archivo-govco visually-hidden"></span>
+        <div class="attached-files-carga-archivo-govco"></div>
     </div>
 
 </div>

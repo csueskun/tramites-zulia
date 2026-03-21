@@ -629,3 +629,27 @@ a.module-tarjeta-govco:focus, a.module-tarjeta-govco:focus-visible, button.modul
     background-color: var(--govcolor-cobalt);
     color: white;
 }
+table.table-general.fix.tabla-govco.actived-events-govco.min thead th {
+    padding: 8px;
+    height: fit-content !important;
+}
+
+table.table-general.fix.tabla-govco.actived-events-govco.min tbody td {
+    height: fit-content !important;
+    padding: 2px 8px;
+}
+.no-pt{
+    padding-top: 0 !important;
+}
+.btn-close{
+    fill: var(--govcolor-cobalt) !important;
+    stroke: var(--govcolor-cobalt) !important;
+}
+.alert.alerta-govco.notificacion-info-govco.no-max-height {
+    max-height: none !important;
+}
+.alert.alerta-govco.notificacion-info-govco.no-max-height p{
+    display: initial;
+    line-height: 1.4rem;
+    padding: 4px 2px;
+}

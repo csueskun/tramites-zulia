@@ -63,16 +63,17 @@
                         @csrf
                         <input type="hidden" name="tramite_id" value="" data-tramite-field="id">
                         <div class="modal-content modal-content-govco">
-                            <div class="modal-header modal-header-govco modal-header-alerts-govco">
-                                <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                            <div class="no-pt mt-2 modal-header modal-header-govco modal-header-alerts-govco">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
                             </div>
                             <div class="modal-body modal-body-govco fix">
-                                <h4 data-tramite-field="nombre" class="mb-4"></h4>
-                                <p data-tramite-field="descripcion"></p>
+                                <h4 data-tramite-field="nombre" class="mb-4 modal-title-govco"></h4>
+                                <p class="modal-text-govco" data-tramite-field="descripcion"></p>
                                 <p><div class="radio-seleccion-govco" data-tramite-field="personas"></div></p>
                                 <p><div class="radio-seleccion-govco" data-tramite-field="vehiculos"></div></p>
-                                <table class="table table-general fix tabla-govco actived-events-govcomin" id="requerimientos-table">
+                                <table class="table table-general fix tabla-govco actived-events-govco min" id="requerimientos-table">
                                     <thead>
                                         <tr>
                                             <th>Requisitos</th>
@@ -83,7 +84,7 @@
                                 <div id="licencia-categorias" class="my-3 categoria-titulo">
                                     <div class="checkbox-seleccion-govco">
                                         <label for="categoria" class="mb-1">Categoría</label><br>
-                                        <table class="table table-general fix tabla-govco actived-events-govcomin">
+                                        <table class="table table-general fix tabla-govco actived-events-govco min">
                                             <thead>
                                                 <tr>
                                                     <th>Moto</th>
@@ -168,7 +169,7 @@
                                     </div>
                                     <span class="error text-danger hidden">Debe seleccionar al menos una categoría</span>
                                 </div>
-                                <table class="table table-general fix tabla-govco actived-events-govcomin" id="costos-table">
+                                <table class="table table-general fix tabla-govco actived-events-govco min" id="costos-table">
                                     <thead>
                                         <tr>
                                             <th>Concepto a pagar</th>
@@ -183,7 +184,7 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                                <table class="table table-general fix tabla-govco actived-events-govcomin" id="estampillas-table">
+                                <table class="table table-general fix tabla-govco actived-events-govco min" id="estampillas-table">
                                     <thead>
                                         <tr>
                                             <th>Estampillas</th>
@@ -205,6 +206,7 @@
                             <div class="modal-footer-govco modal-footer-alerts-govco">
                                 <div class="modal-buttons-govco justify-content-center">
                                     <button type="submit" class="btn-govco fill-btn-govco fit-content">Crear nueva solicitud</button>
+                                    &nbsp;
                                     <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
                                         Cerrar
                                     </button>
