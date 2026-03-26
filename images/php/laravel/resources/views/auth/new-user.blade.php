@@ -24,7 +24,7 @@
 
 <div class="new-user-content mt-2" data-content="natural">
     <div class="col-lg-6">
-        <h3 class="">Crear nuevo usuario</h3>
+        <h1 class="">Crear nuevo usuario</h1>
         <div class="container-login-alerta-juridica-govco">
             <div class="icon-informacion-login-govco"></div>
             <p>Para crear un nuevo usuario, por favor completa el siguiente formulario con tu información personal.</p>
@@ -221,8 +221,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-4">
+                <div class="mt-4 cookie-buttons">
                     <button onclick="preSubmit()" type="button" class="btn-govco fill-btn-govco" name="continuar" style="width: 165px; height: 42px;">Guardar</button>
+                    <button type="button" class="btn-govco outline-btn-govco" onclick="window.location.href='/'">Cancelar</button>
                 </div>
             </form>
         </div>

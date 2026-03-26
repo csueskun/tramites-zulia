@@ -23,7 +23,7 @@
         </div>
         <br>
         @endif
-        <h3 class="">Verificar correo</h3>
+        <h1 class="">Verificar correo</h1>
         <div class="container-login-alerta-juridica-govco">
             <div class="icon-informacion-login-govco"></div>
         </div>

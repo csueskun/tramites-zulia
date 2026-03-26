@@ -16,7 +16,7 @@
 <div class="admin-home mt-2" data-content="natural">
     <div class="row justify-content-between">
         <div class="col-lg-8">
-            <h3 class="mb-4">Ver Solicitud</h3>
+            <h1 class="mb-4">Ver Solicitud</h1>
             @php
                 $stages = ['Inicio', 'Hago mi solicitud', 'Procesan mi solicitud', 'Respuesta'];
             @endphp
@@ -57,7 +57,7 @@
                             <br>
                             @endif
                             <div class="titulo-informacion-govco mb-4">
-                                <label>Detalles de la Solicitud</label>
+                                <h2>Detalles de la Solicitud</h2>
                             </div>
                             <div class="row">
                                 <div class="col-lg-5">
@@ -152,11 +152,10 @@
                                     <br><br>
                                     @if ($solicitud->comentarios && count($solicitud->comentarios) > 0)
                                         @foreach ($solicitud->comentarios as $comentario)
-                                        <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
-                                            <p class="alerta-content-text px-3 py-1 align-start smaller">
-                                                <strong>{{ $comentario->autor == "ADMIN" ? "FUNCIONARIO TRÁNSITO" : "USUARIO" }}:</strong>
-                                                {{ $comentario->comentario }}
-                                            </p>
+                                        <div class="container-alerta-govco left">
+                                            <div class="alert alerta-govco notificacion-success-govco" role="alert">
+                                                <strong>{{ $comentario->autor == "ADMIN" ? "FUNCIONARIO TRÁNSITO" : "USUARIO" }}:&nbsp;</strong>{{ $comentario->comentario }}
+                                            </div>
                                         </div>
                                         <small>{{ $comentario->created_at->format('d/m/Y h:i A') }}</small>
                                         <br><br>

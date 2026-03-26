@@ -17,7 +17,7 @@
     <div class="admin-home mt-2" data-content="natural">
         <div class="row justify-content-between">
             <div class="col-lg-8">
-                <h3 class="mb-4">Nueva Solicitud de {{$tramite->nombre}}</h3>
+                <h1 class="mb-4">Nueva Solicitud de {{$tramite->nombre}}</h1>
                 @php
                 $stages = ['Inicio', 'Hago mi solicitud', 'Procesan mi solicitud', 'Respuesta'];
                 @endphp
@@ -265,10 +265,11 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 mt-4">
+                                    <div class="col-lg-12 mt-4 cookie-buttons">
                                         <button onclick="preValidateFileForm(this.closest('form'))" type="button" class="btn-govco fill-btn-govco fit-content submit">
                                             Realizar Solicitud
                                         </button>
+                                        <button type="button" class="btn-govco outline-btn-govco" onclick="window.location.href='/'">Cancelar</button>
                                     </div>
                                 </div>
                             </form>

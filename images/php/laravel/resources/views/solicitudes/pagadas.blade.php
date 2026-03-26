@@ -17,7 +17,7 @@
     <div class="row justify-content-between">
         <div class="col-lg-9">
             @include('components.session-messages')
-            <h3 class="mb-4">Solicitudes pendientes de validar pago</h3>
+            <h1 class="mb-4">Solicitudes pendientes de validar pago</h1>
             <x-table-options action="/solicitudes/pagadas"/> 
             <div class="container-tabla">
                 <table class="table table-general fix tabla-govco actived-events-govcotabla-govco actived-events-govco" aria-describedby="tableDescCursorRows">

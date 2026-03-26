@@ -48,13 +48,18 @@
                 <button type="button" class="btn btn-white-primary btn-xsm rounded idioma-btn-barra-superior-govco" style="visibility: hidden;">EN</button>
                 @endif
         </div>
+        <div class="barra-inferior-govco">
+          <div class="barra-logos-govco">
+                <a href="/"><span class="govco-logo-entidad"></span></a>
+          </div>
+        </div>
+        <div class="border-bottom-govco"></div>
     </div>
 
     @yield('skip-to-main-content')
     <div class="card no-border-bottom" id="main-content">
         <div class="card-body p-4 pt-0">
             <div class="col-lg-12 p-4 text-start">
-                <a href="/"><span class="govco-logo-entidad"></span></a>
                 <nav aria-label="Miga de pan predeterminada de dos niveles">
                     <ul class="breadcrumb-govco">
                         <li class="breadcrumb-item-govco"><a href="/">Inicio</a></li>
@@ -150,6 +155,19 @@
         </div>
     </div>
 
+    <div id="cookie-banner" class="cookie-banner-govco" style="display: none;">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <span class="govco-svg govco-cookie-bite" style="filter: var(--govcolor-svg-cobalt); width: 24px; height: 24px;"></span>
+                <p>Este sitio web utiliza cookies para asegurar que obtenga la mejor experiencia en nuestro sitio web. Al continuar navegando, usted acepta el uso de cookies.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button type="button" class="btn-govco fill-btn-govco" onclick="closeCookieBanner()">Aceptar</button>
+                <button type="button" class="btn-govco outline-btn-govco" onclick="closeCookieBanner()">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
     <button id="back-to-top" class="btn btn-primary btn-lg" type="button" aria-label="Volver arriba"
         data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Volver arriba" style="">
         <span>Volver<br>arriba</span>
@@ -204,6 +222,21 @@
             window.addEventListener('scroll', toggleGoToTopButton);
             window.addEventListener('resize', toggleGoToTopButton);
 
+        });
+    </script>
+
+    <script>
+        function closeCookieBanner() {
+            document.getElementById('cookie-banner').style.display = 'none';
+            localStorage.setItem('cookieConsent', 'true');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(function() {
+                    document.getElementById('cookie-banner').style.display = 'block';
+                }, 1000);
+            }
         });
     </script>
     @stack('scripts')

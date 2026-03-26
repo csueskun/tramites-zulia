@@ -12,7 +12,7 @@
     <div class="new-user-content mt-2" data-content="natural">
         <div class="row justify-content-between">
             <div class="col-lg-6">
-                <h3 class="">Te explicamos con video tutoriales</h3>
+                <h1 class="">Te explicamos con video tutoriales</h1>
                 <div class="container-login-alerta-juridica-govco">
                     <div class="icon-informacion-login-govco"></div>
                 </div>

@@ -12,11 +12,11 @@
 
 @include('components.session-messages')
 <div class="card">
-    <div class="card-body d-flex justify-content-center" style="background-color: #F6F8F9;">
+    <div class="card-body d-flex justify-content-center" style="background-color: var(--govcolor-white-smoke);">
 
     <div class="card login-container">
     <div class="card-body">
-            <h2>Inicio de sesión</h2>
+            <h1>Inicio de sesión</h1>
             <div class="container-login-alerta-juridica-govco">
                 <p class="text2-govco">Para realizar trámites, debes estar registrado con tu número de documento y ser representante legal de la empresa.</p>
             </div>

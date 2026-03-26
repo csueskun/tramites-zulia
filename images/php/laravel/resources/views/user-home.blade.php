@@ -11,7 +11,7 @@
     <div class="admin-home mt-2" data-content="natural">
         <div class="row justify-content-between">
             <div class="col-lg-8" id="para-mirar">
-                <h3 class="mb-4">Solicitud de Trámites</h3>
+                <h1 class="mb-4">Solicitud de Trámites</h1>
                 <button type="button" class="btn-govco fill-btn-govco fit-content" onclick="window.location.href='/user/solicitudes'">Ver mis solicitudes</button>
                 <p class="text2-govco my-4">
                     En esta sección encontrarás un listado detallado de los trámites disponibles
