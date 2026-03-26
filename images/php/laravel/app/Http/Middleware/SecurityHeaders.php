@@ -19,7 +19,14 @@ class SecurityHeaders
 
         // Content-Security-Policy (CSP)
         // Adjust these rules based on your app requirements
-        $response->headers->set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';");
+        $csp = "default-src 'self'; " .
+               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; " .
+               "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://use.fontawesome.com https://fonts.googleapis.com; " .
+               "font-src 'self' data: https://cdn.www.gov.co https://use.fontawesome.com https://fonts.gstatic.com; " .
+               "img-src 'self' data: https://www.nortedesantander.gov.co; " .
+               "frame-src 'self' https://www.youtube.com; " .
+               "connect-src 'self';";
+        $response->headers->set('Content-Security-Policy', $csp);
 
         // X-Content-Type-Options
         $response->headers->set('X-Content-Type-Options', 'nosniff');
