@@ -51,6 +51,25 @@
                             <span class="error-texto-govco information-text" id="password-note" role="alert" aria-live="assertive">{{$message}}</span>
                             @enderror
                         </div>
+
+                        <div class="captcha-container entradas-de-texto-govco mt-4">
+                            <label for="captcha">Código de seguridad*</label>
+                            <div class="captcha-image mb-2 d-flex align-items-center">
+                                <div style="display: inline-block; vertical-align: middle;">
+                                    <span id="captcha-img" style="display: block; line-height: 0;">{!! captcha_img('flat', ['style' => 'width: 200px; height: auto; display: block;']) !!}</span>
+                                </div>
+                                <button type="button" class="btn-govco outline-btn-govco btn-sm ms-2" onclick="refreshCaptcha()" style="width: auto; height: auto; padding: 5px 10px;">
+                                    Recargar
+                                </button>
+                            </div>
+                            <div class="input-container actived-events-govco">
+                                <input typeData="captcha" type="text" name="captcha" id="captcha" placeholder="Ingrese el código" required class="@error('captcha') error @enderror">
+                                <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco" aria-label="error" aria-hidden="true"></div>
+                            </div>
+                            @error('captcha')
+                            <span class="error-texto-govco alert-entradas-de-texto-govco" role="alert" aria-live="assertive">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="mt-4">
                         <button type="submit" class="btn-govco fill-btn-govco" name="continuar" style="width: 165px; height: 42px;">Continuar</button>
@@ -158,5 +177,13 @@
             toggleButton.classList.toggle('govco-eye');
         });
 
+        function refreshCaptcha() {
+            fetch('/captcha/api/flat')
+                .then(response => response.json())
+                .then(data => {
+                    const captchaContainer = document.getElementById('captcha-img');
+                    captchaContainer.innerHTML = `<img src="${data.img}" style="width: 130px; height: auto; display: block;">`;
+                });
+        }
     </script>
 @endpush

@@ -45,8 +45,8 @@
                         <li><button class="dropdown-item" type="button" onclick="location.href='/logout'"><span class="govco-door-closed"></span> Cerrar sesión</button></li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-white-primary btn-xsm rounded idioma-btn-barra-superior-govco" style="visibility: hidden;">EN</button>
                 @endif
+                <button type="button" class="btn btn-white-primary btn-xsm rounded idioma-btn-barra-superior-govco" style="visibility: hidden;">EN</button>
         </div>
         <div class="barra-inferior-govco">
           <div class="barra-logos-govco">
@@ -159,10 +159,14 @@
         <div class="cookie-content">
             <div class="cookie-text">
                 <span class="govco-svg govco-cookie-bite" style="filter: var(--govcolor-svg-cobalt); width: 24px; height: 24px;"></span>
-                <p>Este sitio web utiliza cookies para asegurar que obtenga la mejor experiencia en nuestro sitio web. Al continuar navegando, usted acepta el uso de cookies.</p>
+                <p style="font-size: 14px; margin-left: 8px;">
+                    Necesitamos usar cookies para que funcione todo, si permanece aquí acepta su uso, mas informacion en <a class="link-tipografia-govco" style="font-size: 14px;" href="https://www.nortedesantander.gov.co/#/pagina/terminos-y-condiciones-de-uso">Términos y Condiciones</a>.
+                    Usamos rastreadores los cuales se pueden identificar oprimiendo el boton 'Rastreadores en sitio'.
+                </p>
             </div>
             <div class="cookie-buttons">
-                <button type="button" class="btn-govco fill-btn-govco" onclick="closeCookieBanner()">Aceptar</button>
+                <button type="button" class="btn-govco fill-btn-govco" onclick="closeCookieBanner()">Acepto el uso de cookies</button>
+                <button type="button" class="btn-govco fill-btn-govco" data-bs-toggle="modal" data-bs-target="#modal-rastreadores">Rastreadores de Sitio</button>
                 <button type="button" class="btn-govco outline-btn-govco" onclick="closeCookieBanner()">Rechazar</button>
             </div>
         </div>
@@ -186,7 +190,32 @@
         </div>
       </div>
 
-
+    <div class="modal fade" id="modal-rastreadores" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-govco">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3 id="titulo-modal-rastreadores" class="modal-title-govco">Rastreadores utilizados</h3>
+                    <p class="mt-2 modal-text-govco mb-3">Este sitio web utiliza los siguientes rastreadores:</p>
+                    <ul class="">
+                        <li><p class="modal-text-govco mb-2">fonts.gstatic.com</p></li>
+                        <li><p class="modal-text-govco mb-2">fonts.googleapis.com</p></li>
+                        <li><p class="modal-text-govco mb-2">syndication.twitter.com</p></li>
+                        <li><p class="modal-text-govco mb-2">pbs.twimg.com</p></li>
+                        <li><p class="modal-text-govco mb-2">abs.twimg.com</p></li>
+                        <li><p class="modal-text-govco mb-2">abs-0.twimg.com</p></li>
+                    </ul>
+                </div>
+                <div class="modal-footer modal-footer-govco">
+                    <div class="modal-buttons-govco">
+                        <button type="button" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js') }}"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
