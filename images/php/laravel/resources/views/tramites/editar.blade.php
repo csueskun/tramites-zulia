@@ -14,13 +14,13 @@
         <div class="row justify-content-between">
             <div class="col-lg-8">
                 @include('components.session-messages')
-                <h3 class="mb-4">{{ $tramite->nombre }}</h3>
+                <h1 class="mb-4">{{ $tramite->nombre }}</h1>
                 <form method="post" action="/tramites/{{ $tramite->id }}" id="new-user-form">
                     @csrf
                     @method('patch')
                     <div class="mt-2">
                         <div class="row">
-                            <div class="entradas-de-texto-govco col-lg-12 px-2">
+                            <div class="entradas-de-texto-govco col-lg-12 px-2 mb-2">
                                 <label for="nombre">Nombres*</label>
                                 <div class="container-input-texto-govco">
                                     <input typeData="onlyText" type="text" required name="nombre" id="nombre"
@@ -38,13 +38,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="entradas-de-texto-govco col-lg-12 px-2">
+                            <div class="entradas-de-texto-govco col-lg-12 px-2 mb-2">
                                 <label for="descripcion">Descripción*</label>
                                 <div class="container-input-texto-govco">
                                     <textarea typeData="onlyText" type="text" required name="descripcion" id="descripcion"
                                         aria-required="true"
                                         class="aservice-comentarios-textarea @error('descripcion') error @enderror"
                                         style="width: 100%; height: 100px;">{{ old('descripcion') ?? $tramite->descripcion }}</textarea>
+                                    <br>
                                     <div class="icon-entradas-de-texto-govco success-icon-entradas-de-texto-govco"
                                         aria-label="success" aria-hidden="true"></div>
                                     <div class="icon-entradas-de-texto-govco error-icon-entradas-de-texto-govco"
@@ -64,7 +65,7 @@
                 </form>
                 <h4 class="mt-4 ">Estampillas</h4>
                 <div class="container-tabla">
-                    <table class="table table-general fix tabla-govco actived-events-govcotabla-govco actived-events-govco" aria-describedby="tableDescCursorRows">
+                    <table class="table table-general fix tabla-govco actived-events-govco min" aria-describedby="tableDescCursorRows">
                         <thead class="encabezado-tabla">
                             <tr>
                                 <th style="width: 100% !important">Nombre</th>
@@ -97,7 +98,7 @@
                 </div>
                 <h4 class="mt-4 ">Costos</h4>
                 <div class="container-tabla">
-                    <table class="table table-general fix tabla-govco actived-events-govcotabla-govco actived-events-govco" aria-describedby="tableDescCursorRows">
+                    <table class="table table-general fix tabla-govco actived-events-govco min" aria-describedby="tableDescCursorRows">
                         <thead class="encabezado-tabla">
                             <tr>
                                 <th style="width: 100% !important">Nombre</th>
@@ -138,26 +139,31 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editar-modal" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
-        <div class="container-modal-govco">
-            <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
-                data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" aria-hidden="true"
-                role="dialog">
+    <div class="modal fade" id="editar-modal" role="dialog" aria-labelledby="editar-modal" aria-hidden="true">
+        <div class="container-modal-govco" id="modal_editar_precio">
+            <div class="modal-container-govco" id="editarModalContainer" tabindex="-1" data-bs-backdrop="false"
+                data-bs-keyboard="false" aria-labelledby="editar-modal" aria-hidden="true" role="dialog">
                 <div class="modal-dialog modal-dialog-govco">
-                    <div class="modal-content modal-content-govco" style="font-size: 0.9em">
-                        <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
-                            <h4 class="" data-content></h4>
+                    <div class="modal-content modal-content-govco">
+                        <div class="modal-header modal-header-govco">
+                            <a href="javascript:void(0)" role="button" data-bs-dismiss="modal" class="close-btn-modal"
+                                aria-label="Close" aria-expanded="false" onclick="closeModal('modal_editar_precio')">
+                                <span class="modal-close-govco govco-times"></span>
+                            </a>
+                        </div>
+                        <div class="modal-body modal-body-govco">
+                            <h3 class="modal-title-govco mb-4" data-content></h3>
                             <form method="post" action="" id="update-form">
                                 @csrf
                                 @method('patch')
                                 <div class="row">
-                                    <div class="entradas-de-texto-govco col-lg-12 px-2">
-                                        <label for="nombre">Precio Anterior*</label>
-                                        <span data-content></span>
-                                        <label class="mt-3" for="nombre">Precio Nuevo*</label>
+                                    <div class="entradas-de-texto-govco col-lg-12 px-2 mb-4">
+                                        <label for="precio_anterior" class="modal-text-govco">Precio Anterior*</label>
+                                        <p class="modal-text-govco mb-3"><strong data-content></strong></p>
+                                        <label for="precio" class="modal-text-govco">Precio Nuevo*</label>
                                         <div class="container-input-texto-govco">
                                             <div class="input-group">
-                                                <span class="input-group-text" style="height: 40px;">$</span>
+                                                <span class="input-group-text" style="height: 40px; width: 40px;">$</span>
                                                 <input data-content typeData="onlyNumber" type="text" required name="precio"
                                                     id="precio" aria-required="true"
                                                     class="@error('precio') error @enderror" value="" style="width: auto;">
@@ -175,14 +181,15 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer-govco modal-footer-alerts-govco">
-                            <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno"
+                        <div class="modal-footer-govco">
+                            <div class="modal-buttons-govco d-flex justify-content-center">
+                                <button onclick="preSubmit()" type="button" class="btn btn-primary btn-modal-govco">
+                                    Guardar
+                                </button>
+                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno"
                                     data-bs-dismiss="modal">
                                     Cerrar
                                 </button>
-                                <button onclick="preSubmit()" type="button" class="btn-govco fill-btn-govco"
-                                    name="continuar" style="width: 165px; height: 42px;">Guardar</button>
                             </div>
                         </div>
                     </div>

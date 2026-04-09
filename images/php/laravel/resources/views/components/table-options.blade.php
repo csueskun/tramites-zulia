@@ -6,7 +6,7 @@
                     <label class="smaller" for="search">Filtrar:</label>
                     <div class="govco-search-basic">
                         <div class="container-govco d-flex" id="containter-default">
-                            <input name="buscar" value="{{ request('buscar') }}" type="text" class="input-search-basic-govco" id="input-basic" placeholder="Filtrar" aria-label="Filtrar" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            <input name="buscar" value="{{ request('buscar') }}" type="text" class="input-search-basic-govco" id="input-basic" placeholder="Filtrar" aria-label="Filtrar">
                             <button onclick="window.location.href='{{ $action }}'" class="btn-clean-basic-govco me-2" type="button" id="btn-clean-basic" aria-label="Limpiar"><span class="govco-svg govco-times"></span></button>
                             <div class="line-basic-govco"></div>
                             <button class="btn-search-basic-govco" type="submit"><span class="govco-svg govco-search" aria-hidden="true"></span></button>
@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-lg-3">
                     <label class="smaller" for="buscar_por">Filtrar por:</label>
-                    <select class="form-select" name="filter_by" id="filter_by">
+                    <select class="form-select" name="filter_by" id="filter_by" onchange="validateSearchInput()">
                         <option value="radicado" {{ request('filter_by') == 'radicado' ? 'selected' : '' }}>Radicado</option>
                         <option value="tramite" {{ request('filter_by') == 'tramite' ? 'selected' : '' }}>Trámite</option>
                         <option value="nombres" {{ request('filter_by') == 'nombres' ? 'selected' : '' }}>Nombres</option>
@@ -35,3 +35,19 @@
     </div>
 </div>
 <script src="{{ asset('assets/transversal/buscador.js') }}"></script>
+<script>
+    function validateSearchInput() {
+        const input = document.getElementById('input-basic');
+        const filterBy = document.getElementById('filter_by').value;
+        
+        if (filterBy === 'radicado') {
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+        else{
+            input.value = input.value.replace(/[^a-zA-Z\s]/g, '');
+        }
+    }
+
+    document.getElementById('input-basic').addEventListener('input', validateSearchInput);
+    window.addEventListener('load', validateSearchInput);
+</script>

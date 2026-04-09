@@ -101,69 +101,69 @@
     </div>
 </div>
 
-<div class="modal fade" id="ver-mas" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
-    <div class="container-modal-govco" id="modal_warning">
-        <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
-            data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" aria-hidden="true"
-            role="dialog">
-            <div class="modal-dialog modal-dialog-govco">
+<div class="modal fade" id="ver-mas" role="dialog" aria-labelledby="ver-mas" aria-hidden="true">
+    <div class="container-modal-govco" id="modal_ver_mas">
+        <div class="modal-container-govco" id="verMasModalContainer" tabindex="-1" data-bs-backdrop="false"
+            data-bs-keyboard="false" aria-labelledby="ver-mas" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-govco modal-lg">
                 <div class="modal-content modal-content-govco">
-                    <div class="modal-header modal-header-govco modal-header-alerts-govco">
-                        <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                    <div class="modal-header modal-header-govco">
+                        <a href="javascript:void(0)" role="button" data-bs-dismiss="modal" class="close-btn-modal"
+                            aria-label="Close" aria-expanded="false" onclick="closeModal('modal_ver_mas')">
+                            <span class="modal-close-govco govco-times"></span>
+                        </a>
                     </div>
-                    <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
+                    <div class="modal-body modal-body-govco">
+                        <h3 class="modal-title-govco mb-4">Detalle de la solicitud</h3>
                         <div class="row">
                             <div class="col-lg-5">
-                                <span><strong>Radicado:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Radicado:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                             <div class="col-lg-5">
-                                <span><strong>Fecha Solicitud:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Fecha Solicitud:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <span><strong>Asunto:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Asunto:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <span><strong>Nombres:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Nombres:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-5">
-                                <span><strong>Número documento:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Número documento:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                             <div class="col-lg-7">
-                                <span><strong>Teléfono:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Teléfono:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <span><strong>Correo Electrónico:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Correo Electrónico:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                         </div>
                         <div id="documentos-container">
-                            <span><strong>Documentos:</strong></span>
+                            <span class="modal-text-govco"><strong>Documentos:</strong></span>
                             <table id="documentos-table" class="table table-general fix" aria-describedby="tableDescCursorRows">
                                 <tbody class="contenido-tablas contenido-hover">
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
-
-                    <div class="modal-footer-govco modal-footer-alerts-govco">
+                    <div class="modal-footer-govco">
                         <div class="modal-buttons-govco d-flex justify-content-center">
-                            <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
+                            <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
                                 Cerrar
                             </button>
                         </div>
@@ -173,39 +173,34 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="rechazar-modal" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
-    <div class="container-modal-govco">
-        <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
-            data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" aria-hidden="true"
-            role="dialog">
+<div class="modal fade" id="rechazar-modal" role="dialog" aria-labelledby="rechazar-modal" aria-hidden="true">
+    <div class="container-modal-govco" id="modal_rechazar">
+        <div class="modal-container-govco" id="rechazarModalContainer" tabindex="-1" data-bs-backdrop="false"
+            data-bs-keyboard="false" aria-labelledby="rechazar-modal" aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-govco">
                 <form action="" method="post">
                     @csrf
                     @method('patch')
                     <input type="hidden" name="estado" value="RECHAZADA">
                     <div class="modal-content modal-content-govco">
-                        <div class="modal-header modal-header-govco modal-header-alerts-govco">
-                            <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                        <div class="modal-header modal-header-govco">
                         </div>
-                        <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
-                            <div class="modal-icon center-elements-govco">
-                                <span class="modal-icon-govco modal-warning-icon"></span>
+                        <div class="modal-body modal-body-govco">
+                            <div class="modal-icon text-center">
+                                <span class="govco-icon govco-info-circle"></span>
                             </div>
-                            <p class="modal-title modal-title-govco text-center">
-                                ¿Está seguro de rechazar esta solicitud?
-                            </p>
-                            <p class="text-center">¿Está seguro de rechazar esta solicitud?</p>
-                            <div class="row mt-2">
+                            <h3 class="modal-title-govco mb-4 text-center">¿Está seguro de rechazar esta solicitud?</h3>
+                            <p class="modal-text-govco text-center">Por favor, ingrese el motivo del rechazo:</p>
+                            <div class="row my-4">
                                 <textarea required class="aservice-comentarios-textarea" name="comentario"></textarea>
                             </div>
                         </div>
-                        <div class="modal-footer-govco modal-footer-alerts-govco">
-                            <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="submit" class="btn-govco fill-btn-govco fit-content auto-width">
+                        <div class="modal-footer-govco">
+                            <div class="modal-buttons-govco d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary btn-modal-govco">
                                     Rechazar
                                 </button>
-                                <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
+                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
                                     Cerrar
                                 </button>
                             </div>
@@ -216,30 +211,31 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="aceptar-solicitud" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
-    <div class="container-modal-govco">
+<div class="modal fade" id="aceptar-solicitud" role="dialog" aria-labelledby="aceptar-solicitud" aria-hidden="true">
+    <div class="container-modal-govco" id="modal_aceptar">
         <div class="modal-container-govco" id="aceptar-solicitud-modal" tabindex="-1" data-bs-backdrop="false"
-            data-bs-keyboard="false" aria-labelledby="aceptar-solicitud" aria-hidden="true" aria-hidden="true"
-            role="dialog">
+            data-bs-keyboard="false" aria-labelledby="aceptar-solicitud" aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-govco">
                 <form action="" method="post">
                     @csrf
                     @method('patch')
                     <input type="hidden" name="estado" value="APROBADA">
                     <div class="modal-content modal-content-govco">
-                        <div class="modal-header modal-header-govco modal-header-alerts-govco">
-                            <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                        <div class="modal-header modal-header-govco">
                         </div>
-                        <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
-                            <p class="text-center">¿Está seguro de aceptar esta solicitud?</p>
+                        <div class="modal-body modal-body-govco">
+                            <div class="modal-icon text-center">
+                                <span class="govco-icon govco-info-circle"></span>
+                            </div>
+                            <h3 class="modal-title-govco mb-4 text-center">¿Está seguro de aceptar esta solicitud?</h3>
+                            <p class="modal-text-govco text-center">Esta acción aprobará el trámite solicitado.</p>
                         </div>
-                        <div class="modal-footer-govco modal-footer-alerts-govco">
-                            <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="submit" class="btn-govco fill-btn-govco fit-content auto-width">
+                        <div class="modal-footer-govco">
+                            <div class="modal-buttons-govco d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary btn-modal-govco">
                                     Aceptar
                                 </button>
-                                <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
+                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
                                     Cerrar
                                 </button>
                             </div>

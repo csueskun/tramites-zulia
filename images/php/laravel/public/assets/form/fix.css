@@ -64,7 +64,7 @@
 }
 
 .govco-a {
-    color: #3366CC;
+    color: var(--govcolor-cobalt) !important;
     height: fit-content !important;
     text-decoration: underline !important;
     width: fit-content !important;
@@ -729,3 +729,15 @@ table.table-general.fix.tabla-govco.actived-events-govco.min tbody td {
     }
 }
 /* END COOKIE */
+
+@media(min-width:576px) {
+    .modal-lg {
+        max-width: 600px !important;
+    }
+    .modal-lg .modal-content-govco {
+        padding: 12px 36px 0px 18px;
+    }
+}
+.margin-auto {
+    margin: auto !important;
+}

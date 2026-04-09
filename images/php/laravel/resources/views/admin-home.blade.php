@@ -11,7 +11,7 @@
 <div class="admin-home mt-2" data-content="natural">
     <div class="row">
         <div class="col-lg-8" id="para-mirar">
-            <h3 class="mb-4">Administración de Trámites</h3>
+            <h1 class="mb-4">Administración de Trámites</h1>
             <div class="row row-cols-xl-3 row-cols-lg-2 row-cols-md-2 g-3">
                 @if (Auth::user()->role === 'ADMIN')
                 <div class="col p-2">

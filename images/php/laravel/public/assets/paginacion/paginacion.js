@@ -78,28 +78,36 @@ function renderDocumentosTable(documentos) {
   if (documentos.length === 0) {
     const documentosContainer = verMas.querySelector('#documentos-container');
     documentosContainer.style.display = 'block';
-    documentosContainer.querySelector('tbody').innerHTML = '<tr><td colspan="1"><span>-- No se han cargado archivos --</span></td></tr>';
+    documentosContainer.querySelector('tbody').innerHTML = '<tr><td colspan="1"><span class="modal-text-govco">-- No se han cargado archivos --</span></td></tr>';
     return;
   }
-  var table = verMas.querySelector('#documentos-table tbody');
-  table.innerHTML = '';
+  var table = verMas.querySelector('#documentos-table');
+  table.className = 'table table-general fix tabla-govco actived-events-govco min';
+  
+  // Ensure we don't have a header for document list
+  var thead = table.querySelector('thead');
+  if (thead) thead.remove();
+
+  var tbody = table.querySelector('tbody');
+  tbody.innerHTML = '';
   documentos.forEach((doc, index) => {
     var row = document.createElement('tr');
     var cell1 = document.createElement('td');
+    cell1.className = 'modal-text-govco';
     cell1.textContent = doc.tipo;
     var cell2 = document.createElement('td');
-    cell1.style.setProperty('width', '315px', 'important');
-    var button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'btn-govco no-fill-btn-govco symbol-btn-govco mixed-btn-govco govco-download';
-    button.innerHTML = '<span class="sub-btn-govco w-80">Descargar</span>';
-    button.onclick = function () {
-      window.open('/documentos/download/' + doc.id, '_blank');
-    };
-    cell2.appendChild(button);
+    
+    var link = document.createElement('a');
+    link.href = '/documentos/download/' + doc.id;
+    link.target = '_blank';
+    link.className = 'link-tipografia-govco';
+    link.style.fontSize = '0.95em';
+    link.innerHTML = 'DESCARGAR';
+    
+    cell2.appendChild(link);
     row.appendChild(cell1);
     row.appendChild(cell2);
-    table.appendChild(row);
+    tbody.appendChild(row);
   });
 
 }

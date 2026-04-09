@@ -107,86 +107,88 @@
     </div>
 </div>
 
-<div class="modal fade" id="ver-mas" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
-    <div class="container-modal-govco" id="modal_warning">
-        <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
-            data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" aria-hidden="true"
-            role="dialog">
-            <div class="modal-dialog modal-dialog-govco">
+<div class="modal fade" id="ver-mas" role="dialog" aria-labelledby="ver-mas" aria-hidden="true">
+    <div class="container-modal-govco" id="modal_ver_mas">
+        <div class="modal-container-govco" id="verMasModalContainer" tabindex="-1" data-bs-backdrop="false"
+            data-bs-keyboard="false" aria-labelledby="ver-mas" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-govco modal-lg">
                 <div class="modal-content modal-content-govco">
-                    <div class="modal-header modal-header-govco modal-header-alerts-govco">
-                        <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                    <div class="modal-header modal-header-govco">
+                        <a href="javascript:void(0)" role="button" data-bs-dismiss="modal" class="close-btn-modal"
+                            aria-label="Close" aria-expanded="false" onclick="closeModal('modal_ver_mas')">
+                            <span class="modal-close-govco govco-times"></span>
+                        </a>
                     </div>
-                    <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
+                    <div class="modal-body modal-body-govco">
+                        <h3 class="modal-title-govco mb-4">Detalle de la solicitud</h3>
                         <div class="row">
                             <div class="col-lg-5">
-                                <span><strong>Radicado:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Radicado:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                             <div class="col-lg-7">
-                                <span><strong>Fecha Solicitud:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Fecha Solicitud:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-5">
-                                <span><strong>Estado:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Estado:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                             <div class="col-lg-7">
-                                <span><strong>Fecha Aprobación:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Fecha Aprobación:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-5">
-                                <span><strong>Recibo enviado:</strong></span>
-                                <p class="etiqueta-govco" style="width: fit-content;"></p>
+                                <span class="modal-text-govco"><strong>Recibo enviado:</strong></span>
+                                <p class="modal-text-govco etiqueta-govco" style="width: fit-content;"></p>
                             </div>
                             <div class="col-lg-7">
-                                <span><strong>Pago validado:</strong></span>
-                                <p class="etiqueta-govco" style="width: fit-content;"></p>
+                                <span class="modal-text-govco"><strong>Pago validado:</strong></span>
+                                <p class="modal-text-govco etiqueta-govco" style="width: fit-content;"></p>
                             </div>
                         </div>
                         <div class="row vencido visually-hidden">
                             <div class="col-lg-12 pb-2">
                                 <div class="text-box error-text-box">
-                                    <span><strong>Recibo Vencido:</strong></span>
-                                    <span>El recibo de pago ha vencido, por favor vuelva al módulo <a href="/solicitudes/aceptadas">Enviar recibo de pago</a> para generar un recibo nuevo</span>
+                                    <span class="modal-text-govco"><strong>Recibo Vencido:</strong></span>
+                                    <span class="modal-text-govco">El recibo de pago ha vencido, por favor vuelva al módulo <a class="link-tipografia-govco" href="/solicitudes/aceptadas">Enviar recibo de pago</a> para generar un recibo nuevo</span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <span><strong>Asunto:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Asunto:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <span><strong>Nombres:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Nombres:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-5">
-                                <span><strong>Número documento:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Número documento:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                             <div class="col-lg-7">
-                                <span><strong>Teléfono:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Teléfono:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <span><strong>Correo Electrónico:</strong></span>
-                                <p></p>
+                                <span class="modal-text-govco"><strong>Correo Electrónico:</strong></span>
+                                <p class="modal-text-govco"></p>
                             </div>
                         </div>
                         <div id="documentos-container">
-                            <span><strong>Documentos:</strong></span>
+                            <span class="modal-text-govco"><strong>Documentos:</strong></span>
                             <table id="documentos-table" class="table table-general fix" aria-describedby="tableDescCursorRows">
                                 <tbody class="contenido-tablas contenido-hover">
                                 </tbody>
@@ -194,20 +196,20 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <span>
+                                <p class="modal-text-govco">
                                     <strong>
                                         Para consultar si el pago fue realizado, lo puede hacer dando click 
                                         en el siguiente enlace:
-                                        <a href="https://oficinavirtual.tns.co/RecPago/Accesar?codemp=fos6Xzuc65b4kjqAZQxbQQ%253d%253d" target="_blank">Consultar pagos</a>
-                                    </strong></span>
-                                <p></p>
+                                        <a class="link-tipografia-govco" href="https://oficinavirtual.tns.co/RecPago/Accesar?codemp=fos6Xzuc65b4kjqAZQxbQQ%253d%253d" target="_blank">Consultar pagos</a>
+                                    </strong>
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="modal-footer-govco modal-footer-alerts-govco">
+                    <div class="modal-footer-govco">
                         <div class="modal-buttons-govco d-flex justify-content-center">
-                            <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
+                            <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
                                 Cerrar
                             </button>
                         </div>
@@ -219,30 +221,31 @@
 </div>
 
 
-<div class="modal fade" id="validar-pago" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
-    <div class="container-modal-govco">
+<div class="modal fade" id="validar-pago" role="dialog" aria-labelledby="validar-pago" aria-hidden="true">
+    <div class="container-modal-govco" id="modal_validar_pago">
         <div class="modal-container-govco" id="validar-pago-modal" tabindex="-1" data-bs-backdrop="false"
-            data-bs-keyboard="false" aria-labelledby="validar-pago" aria-hidden="true" aria-hidden="true"
-            role="dialog">
+            data-bs-keyboard="false" aria-labelledby="validar-pago" aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-govco">
                 <form action="" method="post">
                     @csrf
                     @method('patch')
                     <input type="hidden" name="estado" value="VALIDADA">
                     <div class="modal-content modal-content-govco">
-                        <div class="modal-header modal-header-govco modal-header-alerts-govco">
-                            <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                        <div class="modal-header modal-header-govco">
                         </div>
-                        <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
-                            <p class="text-center"></p>
+                        <div class="modal-body modal-body-govco">
+                            <div class="modal-icon text-center">
+                                <span class="govco-icon govco-info-circle"></span>
+                            </div>
+                            <h3 class="modal-title-govco mb-4 text-center margin-auto">Validar Pago<br><br></h3>
+                            <p class="modal-text-govco text-center">¿Está seguro de validar el pago de esta solicitud?</p>
                         </div>
-                        <div class="modal-footer-govco modal-footer-alerts-govco">
-                            <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="submit" class="btn-govco fill-btn-govco fit-content auto-width fit-content">
+                        <div class="modal-footer-govco">
+                            <div class="modal-buttons-govco d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary btn-modal-govco">
                                     Validar
                                 </button>
-                                <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno fit-content" data-bs-dismiss="modal">
+                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
                                     Cancelar
                                 </button>
                             </div>

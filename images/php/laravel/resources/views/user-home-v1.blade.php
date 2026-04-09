@@ -11,7 +11,7 @@
 <div class="admin-home mt-2" data-content="natural">
     <div class="row justify-content-between">
         <div class="col-lg-8">
-            <h3 class="mb-4">Solicitud de Trámites</h3>
+            <h1 class="mb-4">Solicitud de Trámites</h1>
             <a href="/user/solicitudes">
                 <button type="button" class="btn-govco fill-btn-govco">Ver mis solicitudes</button>
             </a>

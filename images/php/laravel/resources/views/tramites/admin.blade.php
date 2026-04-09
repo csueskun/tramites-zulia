@@ -13,7 +13,7 @@
     <div class="row justify-content-between">
         <div class="col-lg-9">
             @include('components.session-messages')
-            <h3 class="mb-4">Trámites</h3>
+            <h1 class="mb-4">Trámites</h1>
             <div class="container-tabla">
                 <table class="table table-general fix tabla-govco actived-events-govcotabla-govco actived-events-govco" aria-describedby="tableDescCursorRows">
                     <thead class="encabezado-tabla">
@@ -58,25 +58,30 @@
 
     </div>
 </div>
-<div class="modal fade" id="detalles-modal" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
-    <div class="container-modal-govco">
-        <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
-            data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" aria-hidden="true"
-            role="dialog">
-            <div class="modal-dialog modal-dialog-govco">
-                <div class="modal-content modal-content-govco" style="font-size: 0.9em">
-                    <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
-                        <h4 class="" data-content></h4>
-                        <p data-content></p>
-                        <div data-content></div>
-                        <div data-content></div>
-                        <div data-content></div>
-                        <div data-content></div>
-                        <div data-content></div>
+<div class="modal fade" id="detalles-modal" role="dialog" aria-labelledby="detalles-modal" aria-hidden="true">
+    <div class="container-modal-govco" id="modal_detalles">
+        <div class="modal-container-govco" id="detallesModalContainer" tabindex="-1" data-bs-backdrop="false"
+            data-bs-keyboard="false" aria-labelledby="detalles-modal" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-govco modal-lg">
+                <div class="modal-content modal-content-govco">
+                    <div class="modal-header modal-header-govco">
+                        <a href="javascript:void(0)" role="button" data-bs-dismiss="modal" class="close-btn-modal"
+                            aria-label="Close" aria-expanded="false" onclick="closeModal('modal_detalles')">
+                            <span class="modal-close-govco govco-times"></span>
+                        </a>
                     </div>
-                    <div class="modal-footer-govco modal-footer-alerts-govco">
-                        <div class="modal-buttons-govco d-flex justify-space-between">
-                            <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
+                    <div class="modal-body modal-body-govco">
+                        <h3 class="modal-title-govco mb-4" data-content></h3>
+                        <p class="modal-text-govco" data-content></p>
+                        <div class="mt-4" data-content></div>
+                        <div class="mt-4" data-content></div>
+                        <div class="mt-4" data-content></div>
+                        <div class="mt-4" data-content></div>
+                        <div class="mt-4" data-content></div>
+                    </div>
+                    <div class="modal-footer-govco">
+                        <div class="modal-buttons-govco d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
                                 Cerrar
                             </button>
                         </div>

@@ -9,6 +9,7 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 /.idea
+/.docs
 /.vscode
 /.phpunit.result.cache
 oldcode/
