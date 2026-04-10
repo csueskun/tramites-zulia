@@ -6,7 +6,7 @@
                     <label class="smaller" for="search">Filtrar:</label>
                     <div class="govco-search-basic">
                         <div class="container-govco d-flex" id="containter-default">
-                            <input name="buscar" value="{{ request('buscar') }}" type="text" class="input-search-basic-govco" id="input-basic" placeholder="Filtrar" aria-label="Filtrar">
+                            <input name="search" value="{{ request('search') }}" type="text" class="input-search-basic-govco" id="input-basic" placeholder="Filtrar" aria-label="Filtrar">
                             <button onclick="window.location.href='{{ $action }}'" class="btn-clean-basic-govco me-2" type="button" id="btn-clean-basic" aria-label="Limpiar"><span class="govco-svg govco-times"></span></button>
                             <div class="line-basic-govco"></div>
                             <button class="btn-search-basic-govco" type="submit"><span class="govco-svg govco-search" aria-hidden="true"></span></button>
