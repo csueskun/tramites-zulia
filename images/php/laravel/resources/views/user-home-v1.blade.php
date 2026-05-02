@@ -60,9 +60,9 @@
                 <div class="col-lg-8 ps-4">
                     @foreach ($tramites as $index => $tramite)
                     <div class="pestana-content @if ($index == 0) active @endif">
-                        <h4 class="mb-4">
+                        <h3 class="mb-4">
                             {{ $tramite->nombre }}
-                        </h4>
+                        </h3>
                         <p>
                             {{ $tramite->descripcion }}
                         </p>

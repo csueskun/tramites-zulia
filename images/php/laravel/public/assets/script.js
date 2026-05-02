@@ -319,7 +319,7 @@ function activeInputCorreo(element) {
 
 // teléfono
 function activeInputTelefono(element) {
-  var expresionRegularE = /^[+]\(?(\d{2})\)? [-]?(\d{3})[-]? (\d{7,10})$/;
+  var expresionRegularE = /^(\+?\d{1,3})?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4,10}$/;
   var textExito = "Número de teléfono válido";
   var textError = "Número de teléfono no válido";
 
@@ -4070,7 +4070,7 @@ function onlyNumberValidator(element){
   } else {
       this.classList.remove('error');
       this.classList.add('success');
-      crearMensaje(this, '', 'success', '');
+      crearMensaje(this, 'Número válido', 'success', '');
       return true;
   }
 }
@@ -4158,6 +4158,47 @@ function captchaValidator() {
   }
 }
 
+function nameValidator(element) {
+  const regex = /^[a-zA-ZÀ-ÿ\s]*$/;
+  const names = this.value.trim().split(/\s+/);
+  this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+  if (this.value.length < 1) {
+    if (this.getAttribute('required') !== null) {
+      this.classList.remove('success');
+      this.classList.add('error');
+      crearMensaje(this, 'Este campo es obligatorio', 'error', '');
+      return false;
+    } else {
+      clearInputFeedback(this);
+      return true;
+    }
+  }
+  if (!regex.test(this.value)) {
+    this.classList.remove('success');
+    this.classList.add('error');
+    crearMensaje(this, 'Debe ingresar sólo texto', 'error', '');
+    return false;
+  }
+  if (this.value.endsWith(' ')) {
+    this.classList.remove('success');
+    this.classList.add('error');
+    crearMensaje(this, 'El nombre no puede terminar con un espacio', 'error', '');
+    return false;
+  }
+  for (const name of names) {
+    if (name.length < 2 || !/[aeiouáéíóú]/i.test(name)) {
+      this.classList.remove('success');
+      this.classList.add('error');
+      crearMensaje(this, 'Cada nombre debe tener al menos 2 caracteres y contener al menos una vocal', 'error', '');
+      return false;
+    }
+  }
+  this.classList.remove('error');
+  this.classList.add('success');
+  crearMensaje(this, 'Nombre válido', 'success', '');
+  return true;
+}
+
 function validateForm(form) {
   let isValid = true;
 
@@ -4209,6 +4250,11 @@ function validateForm(form) {
               break;
           case 'captcha':
               if (!captchaValidator.call(input)) {
+                  isValid = false;
+              }
+              break;
+          case 'name':
+              if (!nameValidator.call(input)) {
                   isValid = false;
               }
               break;

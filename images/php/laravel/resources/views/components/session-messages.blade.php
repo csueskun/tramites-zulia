@@ -18,4 +18,14 @@
     </div>
 </div>
 <br />
+@elseif (session('warning'))
+<div class="container-alerta-govco">
+    <div class="alert alerta-govco notificacion-advertencia-govco" role="alert">
+        <span class="govco-icon govco-exclamation-triangle fs-mr" aria-label="advertencia"></span>
+        <p>
+            {{ session('warning') }}
+        </p>
+    </div>
+</div>
+<br />
 @endif

@@ -48,6 +48,10 @@ class SecurityHeaders
         // Permissions-Policy (Replaced Feature-Policy)
         $response->headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), browsing-topics=()');
 
+        // Remove identifying headers to prevent version leakage
+        $response->headers->remove('X-Powered-By');
+        $response->headers->remove('Server');
+
         return $response;
     }
 }

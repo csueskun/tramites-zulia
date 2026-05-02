@@ -35,7 +35,7 @@
                             data-tramite-estampillas="{{ json_encode(array_values($tramite->estampillas->toArray())) }}"
                             data-tramite-requerimientos="{{ json_encode(array_values($tramite->requerimientos->toArray())) }}">
                             <div class="header-tarjeta-govco">
-                                <h5>{{ $tramite->nombre }}</h5>
+                                <h3>{{ $tramite->nombre }}</h3>
                             </div>
                             <hr>
                             <div class="body-tarjeta-govco">
@@ -220,6 +220,41 @@
     </div>
 
     <div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-container-govco" id="exampleModalConfirmacion" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalConfirmacion" aria-hidden="true" role="dialog">
+                <div class="modal-dialog modal-dialog-govco">
+                  <div class="modal-content modal-content-govco">
+                    <div class="modal-header modal-header-govco modal-header-alerts-govco">
+                    </div>
+                    <div class="modal-body modal-body-govco center-elements-govco">
+                      <div class="modal-icon">
+                        <span class="govco-icon govco-info-circle"></span>
+                      </div>
+                      <h3 class="modal-title-govco confirmation-govco">
+                        Tener en cuenta
+                      </h3>
+                      <p class="modal-text-govco modal-text-center-govco">
+                        Seleccione un trámite de la lista para continuar.
+                        <br>
+                        <br>
+                        Si no encuentra el trámite deseado, acuda a la Secretaría de Tránsito, sede operativa el Zulia.
+                      </p>
+                    </div>
+                    <div class="modal-footer-govco modal-footer-alerts-govco">
+                      <div class="modal-buttons-govco">
+                        <button type="button" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">
+                          Aceptar
+                        </button>
+                        <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                          Cerrar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    </div>
+
+    <div class="modal fade" id="info-modal2" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-content-govco">
                 <div class="modal-header">

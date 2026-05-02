@@ -16,13 +16,9 @@
 
     <div class="card login-container">
     <div class="card-body">
-            <h1>Inicio de sesión</h1>
-            <div class="container-login-alerta-juridica-govco">
-                <p class="text2-govco">Para realizar trámites, debes estar registrado con tu número de documento y ser representante legal de la empresa.</p>
-            </div>
-
-            <div class="login-label-govco mt-3">
-                <p><strong>Los campos marcados con <span aria-require d="true">*</span> son obligatorios</strong></p>
+            <h1 style="font-size: 2.2em">Inicio de sesión</h1>
+            <div class="login-label-govco mt-4">
+                <p>Los campos marcados con <span aria-require d="true">*</span> son obligatorios</p>
             </div>
             <div class="container-login-opcion-govco" data-container-persona="natural">
                 <form method="POST" action="/login">
@@ -71,6 +67,8 @@
                             @enderror
                         </div>
                     </div>
+                    <br>
+                    <br>
                     <div class="mt-4">
                         <button type="submit" class="btn-govco fill-btn-govco" name="continuar" style="width: 165px; height: 42px;">Continuar</button>
                     </div>

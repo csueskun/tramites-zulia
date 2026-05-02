@@ -82,7 +82,7 @@
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 mt-4">
                                                     <label for="nombres">Nombres*</label>
                                                     <div class="input-container actived-events-govco">
-                                                        <input typeData="onlyText" required type="text" name="nombres" id="nombres" aria-invalid="{{ $errors->has('nombres') ? 'true' : 'false' }}" placeholder="Ejemplo: Pedro" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="nombres-note">
+                                                        <input typeData="name" required type="text" name="nombres" id="nombres" aria-invalid="{{ $errors->has('nombres') ? 'true' : 'false' }}" placeholder="Ejemplo: Pedro" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}" aria-describedby="nombres-note" onkeyup="this.setAttribute('value', this.value);">
                                                         <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
                                                         <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                                                     </div>
@@ -266,10 +266,11 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 mt-4 cookie-buttons">
+                                        <button type="button" class="btn-govco outline-btn-govco" onclick="window.location.href='/'">Atrás</button>
+                                        <button type="button" class="btn-govco outline-btn-govco" onclick="window.location.href='/'">Cancelar</button>
                                         <button onclick="preValidateFileForm(this.closest('form'))" type="button" class="btn-govco fill-btn-govco fit-content submit">
                                             Realizar Solicitud
                                         </button>
-                                        <button type="button" class="btn-govco outline-btn-govco" onclick="window.location.href='/'">Cancelar</button>
                                     </div>
                                 </div>
                             </form>
@@ -378,6 +379,8 @@
             methodAssign("keyup", onlyNumberValidator, onlyNumberInputs);
             const phoneInputs = document.querySelectorAll('input[typeData="phone"]');
             methodAssign("keyup", onlyNumberValidator, phoneInputs);
+            const nameInputs = document.querySelectorAll('input[typeData="name"]');
+            methodAssign("keyup", nameValidator, nameInputs);
             // document.getElementById('dropdown_container').addEventListener('change', function(event) {
             //     const input = this.querySelector('input[typedata="select"]');
             //     selectValidator.call(input);

@@ -741,3 +741,11 @@ table.table-general.fix.tabla-govco.actived-events-govco.min tbody td {
 .margin-auto {
     margin: auto !important;
 }
+.module-tarjeta-govco .header-tarjeta-govco h3 {
+    font-size: 16px;
+    line-height: 1.2rem;
+    color: var(--govcolor-cobalt);
+    margin: 0;
+    text-align: center;
+    width: 95%;
+}
