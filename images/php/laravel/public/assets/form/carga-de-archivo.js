@@ -1,12 +1,21 @@
 function validateFileForm(formElement, successCallback, errorCallback, newSolicitud = false) {
     let hasError = false;
     const fileInputs = formElement.querySelectorAll('input[type="file"]');
+    var fileCount = 0;
+    var fileLabels = [];
     for (let i = 0; i < fileInputs.length; i++) {
         const input = fileInputs[i];
         if (input.getAttribute('data-error') == '1') {
             hasError = true;
         }
-        const fileCount = input.parentElement.parentElement.parentElement.querySelectorAll('.attached-file-carga-de-archivo-govco').length;
+        fileCount = 0;
+        fileLabels = [];
+        try {
+            fileLabels = input.parentElement.parentElement.parentElement.querySelectorAll('.file-name-carga-archivo-govco');
+            fileCount = fileLabels[0].innerText.trim() !== 'Sin archivo seleccionado' ? 1 : 0;
+            
+        } catch (error) {
+        }
         const required = input.getAttribute('required') !== null;
         if (required && fileCount == 0) {
             const inputName = input.getAttribute('name');

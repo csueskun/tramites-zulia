@@ -9,6 +9,8 @@
 <x-s2mc-button element="nombres" />
 
 @push('breadcrumb')
+    <li class="breadcrumb-item-govco" aria-current="page">Trámites</li>
+    <li class="breadcrumb-item-govco active" aria-current="page">{{$tramite->nombre}}</li>
     <li class="breadcrumb-item-govco active" aria-current="page">Nueva Solicitud</li>
 @endpush
 
@@ -95,7 +97,7 @@
                                         <div class="row">
                                             <div class="col-lg-5">
                                                 <div class="entradas-de-texto-govco dropdown desplegable-govco col-lg-6 px-2 mt-4">
-                                                    <label for="dropdown1" class="display-flex m-0">Etiqueta<span aria-required="true">*</span></label>
+                                                    <label for="dropdown1" class="display-flex m-0">Tipo de documento<span aria-required="true">*</span></label>
                                                     <div class="container-dropdown">
                                                         <input typeData="onlyText" required aria-required="true" type="hidden" value="" aria-invalid="false" aria-describedby="alert-id" name="tipo_documento" id="tipo_documento_input">
                                                         <button class="btn-dropdown" type="button" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false">Elegir</button>

@@ -149,3 +149,14 @@ html {
 .contrast-govco .accesibility-example p {
   color: var(--govcolor-white);
 }
+
+.contrast-govco {
+  background-color: var(--govcolor-black) !important;
+  color: var(--govcolor-white) !important;
+}
+
+.contrast-govco * {
+  background-color: var(--govcolor-black) !important;
+  color: var(--govcolor-white) !important;
+  border-color: var(--govcolor-white) !important;
+}
