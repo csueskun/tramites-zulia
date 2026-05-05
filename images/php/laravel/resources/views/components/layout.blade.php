@@ -41,7 +41,7 @@
                         <span class="user-label"><strong>{{ Auth::user()->label() }}</strong></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                        <li class="user-label-xs"><h6 class="dropdown-header">{{ Auth::user()->label() }}</h6></li>
+                        <li class="user-label-xs"><h5 class="dropdown-header">{{ Auth::user()->label() }}</h5></li>
                         <li><button class="dropdown-item" type="button" onclick="location.href='/logout'"><span class="govco-door-closed"></span> Cerrar sesión</button></li>
                     </ul>
                 </div>

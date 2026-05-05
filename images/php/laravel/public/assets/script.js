@@ -319,7 +319,7 @@ function activeInputCorreo(element) {
 
 // teléfono
 function activeInputTelefono(element) {
-  var expresionRegularE = /^(\+?\d{1,3})?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4,10}$/;
+  var expresionRegularE = /^\+?(\d{1,3})?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4,10}$/;
   var textExito = "Número de teléfono válido";
   var textError = "Número de teléfono no válido";
 

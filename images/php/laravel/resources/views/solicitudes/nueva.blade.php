@@ -9,8 +9,8 @@
 <x-s2mc-button element="nombres" />
 
 @push('breadcrumb')
-    <li class="breadcrumb-item-govco" aria-current="page">Trámites</li>
-    <li class="breadcrumb-item-govco active" aria-current="page">{{$tramite->nombre}}</li>
+    <li class="breadcrumb-item-govco"><a href="/">Trámites</a></li>
+    <li class="breadcrumb-item-govco"><a href="/user/home?tramite={{ $tramite->id }}">{{$tramite->nombre}}</a></li>
     <li class="breadcrumb-item-govco active" aria-current="page">Nueva Solicitud</li>
 @endpush
 
@@ -26,7 +26,7 @@
                 <div class="custom-progress">
                     <div class="custom-progress-container">
                         @foreach ($stages as $index => $label)
-                        <div class="custom-step @if ($index == 0) current @endif">
+                        <div class="custom-step @if ($index == 1) current @elseif($index==0) completed @endif">
                             <table>
                                 <tr>
                                     <td class="custom-stage">{{ $index + 1 }}</td>
@@ -79,6 +79,9 @@
                                             </p>
                                             @endif
                                         </div>
+                                        <div class="login-label-govco mt-4">
+                                            <p>Los campos marcados con <span aria-require d="true">*</span> son obligatorios</p>
+                                        </div>
                                         <div class="row">
                                             <div class="col-lg-9">
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 mt-4">
@@ -97,7 +100,7 @@
                                         <div class="row">
                                             <div class="col-lg-5">
                                                 <div class="entradas-de-texto-govco dropdown desplegable-govco col-lg-6 px-2 mt-4">
-                                                    <label for="dropdown1" class="display-flex m-0">Tipo de documento<span aria-required="true">*</span></label>
+                                                    <label for="dropdown1" class="m-0">Tipo de documento*</label>
                                                     <div class="container-dropdown">
                                                         <input typeData="onlyText" required aria-required="true" type="hidden" value="" aria-invalid="false" aria-describedby="alert-id" name="tipo_documento" id="tipo_documento_input">
                                                         <button class="btn-dropdown" type="button" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false">Elegir</button>
@@ -268,7 +271,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 mt-4 cookie-buttons">
-                                        <button type="button" class="btn-govco outline-btn-govco" onclick="window.location.href='/'">Atrás</button>
+                                        <button type="button" class="btn-govco outline-btn-govco" onclick="window.location.href='/user/home?tramite={{ $tramite->id }}'">Atrás</button>
                                         <button type="button" class="btn-govco outline-btn-govco" onclick="window.location.href='/'">Cancelar</button>
                                         <button onclick="preValidateFileForm(this.closest('form'))" type="button" class="btn-govco fill-btn-govco fit-content submit">
                                             Realizar Solicitud

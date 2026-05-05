@@ -2,6 +2,10 @@
 
 @section('title', 'Solicitud de Trámites')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/general/linea-avance2.css') }}">
+@endpush
+
 @push('breadcrumb')
 <li class="breadcrumb-item-govco active" aria-current="page">Trámites</li>
 @endpush
@@ -21,6 +25,27 @@
                     consultar su estado desde esta misma plataforma. Explora las opciones y selecciona el
                     trámite que necesitas realizar de manera fácil y rápida.
                 </p>
+
+
+                @php
+                $stages = ['Inicio', 'Hago mi solicitud', 'Procesan mi solicitud', 'Respuesta'];
+                @endphp
+                <div class="custom-progress mb-2">
+                    <div class="custom-progress-container">
+                        @foreach ($stages as $index => $label)
+                        <div class="custom-step @if ($index == 0) current @endif">
+                            <table>
+                                <tr>
+                                    <td class="custom-stage">{{ $index + 1 }}</td>
+                                    <td class="custom-label">{!! $label !!}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+
+
                 <div class="row">
                     <div class="tramites-boxes-container">
                         @foreach ($tramites as $index => $tramite)
@@ -306,6 +331,17 @@
         vars.forEach((v, i) => {
             document.querySelector(`[data-tramite-field="${v}"]`).innerHTML = trigger.getAttribute(`data-tramite-${v}`);
         });
+
+        const tramiteNombre = trigger.getAttribute('data-tramite-nombre');
+        const breadcrumb = document.querySelector('.breadcrumb-item-govco.active').parentElement;
+        const newBreadcrumb = document.createElement('li');
+        newBreadcrumb.className = 'breadcrumb-item-govco active tramite-breadcrumb';
+        newBreadcrumb.setAttribute('aria-current', 'page');
+        newBreadcrumb.innerHTML = tramiteNombre;
+        
+        document.querySelector('.breadcrumb-item-govco.active').classList.remove('active');
+        breadcrumb.appendChild(newBreadcrumb);
+
         const tramiteId = trigger.getAttribute(`data-tramite-id`);
         document.querySelector(`span.nota`).innerHTML = "";
         if(tramiteId == '1' || tramiteId == '10' ){
@@ -407,6 +443,18 @@
         const categoriaLicenciaCheckbox = document.querySelectorAll('input[name="categoria-licencia[]"]');
         for (let i = 0; i < categoriaLicenciaCheckbox.length; i++) {
             categoriaLicenciaCheckbox[i].addEventListener('change', categoriaCheckboxListener);
+        }
+    });
+
+    document.getElementById('tramite-modal').addEventListener('hidden.bs.modal', function() {
+        const activeBreadcrumb = document.querySelector('.tramite-breadcrumb');
+        if (activeBreadcrumb) {
+            const parent = activeBreadcrumb.parentElement;
+            activeBreadcrumb.remove();
+            const lastItem = parent.querySelector('li:last-child');
+            if (lastItem) {
+                lastItem.classList.add('active');
+            }
         }
     });
 
@@ -563,8 +611,18 @@
                 new bootstrap.Tooltip(el);
             });
 
-        const infoModal = new bootstrap.Modal(document.getElementById('info-modal'));
-        infoModal.show();
+        const urlParams = new URLSearchParams(window.location.search);
+        const tramiteId = urlParams.get('tramite');
+        if (tramiteId) {
+            const element = document.querySelector(`a[data-tramite-id="${tramiteId}"]`);
+            if (element) {
+                element.click();
+            }
+        }
+        else{
+            const infoModal = new bootstrap.Modal(document.getElementById('info-modal'));
+            infoModal.show();
+        }
     });
 
 
