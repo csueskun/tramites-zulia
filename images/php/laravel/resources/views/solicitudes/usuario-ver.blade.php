@@ -8,7 +8,7 @@
 
 @push('breadcrumb')
 <li class="breadcrumb-item-govco"><a href="/user/solicitudes">Mis Solicitudes</a></li>
-<li class="breadcrumb-item-govco active" aria-current="page">{{ $solicitud->radicado }}</li>
+<li class="breadcrumb-item-govco active" aria-current="page">{{ $solicitud->radicado }} - {{ $solicitud->tramite->nombre }}</li>
 @endpush
 
 @section('content')
@@ -34,22 +34,14 @@
                     @endforeach
                 </div>
             </div>
-
+            <br>
+            <br>
+            <br>
             <div class="container-principal-linea-interaccion-govco">
                 <div id="contactohorizontaluno" class="m-0 container-informacion-principal-interaccion-govco">
                     <div id="contactohorizontal" class="container-informacion-principal-campos-interaccion-govco">
                         <div class="informacion-vertical-govco">
-                            @if (session('success'))
-                            <div class="container-alerta-govco">
-                                <div class="alert alerta-govco alerta-success-govco asuccess" role="alert">
-                                    <span class="alerta-icon-govco alerta-icon-notificacion-govco asuccess"></span>
-                                    <p class="alerta-content-text">
-                                        {{ session('success') }}
-                                    </p>
-                                </div>
-                            </div>
-                            <br />
-                            @endif
+                            @include('components.session-messages')
                             @if ($solicitud->recibo_pago && !$solicitud->constancia_pago_tns && $solicitud->estado !== 'COMPLETADA')
                             <a class="govco-a" href="#" data-bs-toggle="modal" data-bs-target="#enviar-pagos">
                                 {{ $solicitud->tramite_id === 3 ? 'ANEXAR CONSTANCIA DE PAGO' : 'ANEXAR CONSTANCIAS DE PAGO (CUPL Y TNS)' }}</a>
@@ -58,6 +50,12 @@
                             @endif
                             <div class="titulo-informacion-govco mb-4">
                                 <h2>Detalles de la Solicitud</h2>
+                            </div>
+                            <div class="row">
+                                    <div class="col-lg-12">
+                                        <span><strong>Trámite</strong></span>
+                                        <p>{{ $solicitud->tramite->nombre }}</p>
+                                    </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-5">
