@@ -60,7 +60,7 @@
                             data-tramite-estampillas="{{ json_encode(array_values($tramite->estampillas->toArray())) }}"
                             data-tramite-requerimientos="{{ json_encode(array_values($tramite->requerimientos->toArray())) }}">
                             <div class="header-tarjeta-govco">
-                                <h3>{{ $tramite->nombre }}</h3>
+                                <h4>{{ $tramite->nombre }}</h4>
                             </div>
                             <hr>
                             <div class="body-tarjeta-govco">

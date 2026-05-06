@@ -741,11 +741,29 @@ table.table-general.fix.tabla-govco.actived-events-govco.min tbody td {
 .margin-auto {
     margin: auto !important;
 }
-.module-tarjeta-govco .header-tarjeta-govco h3 {
+.module-tarjeta-govco .header-tarjeta-govco h4 {
     font-size: 16px;
     line-height: 1.2rem;
     color: var(--govcolor-cobalt);
     margin: 0;
     text-align: center;
     width: 95%;
+}
+
+.pie-pagina-govco h3 {
+    color: var(--govcolor-cobalt);
+    font-size: 22px;
+    font-family: 'Nunito_Sans-Bold';
+    margin-bottom: 1.875rem;
+}
+.attached-file-carga-archivo-govco>.trash-alt-1-carga-archivo-govco{
+    width: 20px;
+    height: 20px;
+    background-image: url(../assets/icons/trash.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    margin-right: 8px;
 }

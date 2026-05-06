@@ -83,7 +83,7 @@
 
     <div class="pie-pagina-govco">
         <div class="first-section">
-            <h4>Gobernación de Norte de Santander</h4>
+            <h3>Gobernación de Norte de Santander</h3>
             <div class="logo-container">
                 <a href="/"><span class="govco-logo-entidad"></span></a>
             </div>

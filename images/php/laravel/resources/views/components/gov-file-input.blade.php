@@ -15,7 +15,7 @@
                 Tipo de archivo: <strong>{{ $type }}</strong>. Peso máximo: {{ $max }} MB
             </span>
         </div>
-        <div class="load-button-carga-archivo-govco" style="display: none;">
+        <div class="load-button-carga-archivo-govco">
             <div class="load-carga-archivo-govco">
                 <div class="spinner-indicador-de-carga-govco" style="width: 32px; height: 32px; border-width: 6px;"
                     role="status">
