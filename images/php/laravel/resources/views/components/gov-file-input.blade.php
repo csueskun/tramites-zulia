@@ -1,17 +1,18 @@
 <div class="carga-archivo-govco actived-events-govco mb-4" id="container_file_{{ $name }}">
+    <label for="{{ $name }}">{{ $descripcion }} {{ $required ? '*' : '' }}</label><br>
     <div class="loader-carga-archivo-govco">
         <div class="all-input-carga-archivo-govco">
             <input {{ $required ? 'required' : '' }} type="file" name="file_{{ $name }}" id="file_{{ $name }}"
                 class="input-carga-archivo-govco active" data-error="0" data-action="{{ $name }}FileUpload"
                 data-action-delete="{{ $name }}DeleteFile"/>
-            <label for="{{ $name }}" class="label-carga-archivo-govco">{{ $descripcion }}</label>
+            <!-- <label for="{{ $name }}" class="label-carga-archivo-govco">&nbsp;</label> -->
             <label for="{{ $name }}" class="container-input-carga-archivo-govco">
                 <span class="button-file-carga-archivo-govco">Seleccionar
                     archivo</span>
                 <span class="file-name-carga-archivo-govco">Sin archivo
                     seleccionado</span>
             </label>
-            <span class="text-validation-carga-archivo-govco">
+            <span class="text-validation-carga-archivo-govco mt-0">
                 Tipo de archivo: <strong>{{ $type }}</strong>. Peso máximo: {{ $max }} MB
             </span>
         </div>
