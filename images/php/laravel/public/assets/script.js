@@ -4160,6 +4160,7 @@ function captchaValidator() {
 
 function nameValidator(element) {
   const regex = /^[a-zA-ZÀ-ÿ\s]*$/;
+  this.value = this.value.replace(/\s{2,}/g, ' '); // Replace double spaces with single space
   const names = this.value.trim().split(/\s+/);
   this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
   if (this.value.length < 1) {
@@ -4183,6 +4184,12 @@ function nameValidator(element) {
     this.classList.remove('success');
     this.classList.add('error');
     crearMensaje(this, 'El nombre no puede terminar con un espacio', 'error', '');
+    return false;
+  }
+  if (/([a-zA-ZÀ-ÿ])\1\1/.test(this.value)) {
+    this.classList.remove('success');
+    this.classList.add('error');
+    crearMensaje(this, 'No se permiten tres caracteres iguales consecutivos', 'error', '');
     return false;
   }
   for (const name of names) {

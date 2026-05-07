@@ -85,7 +85,7 @@
                                         <div class="row">
                                             <div class="col-lg-9">
                                                 <div class="entradas-de-texto-govco col-lg-12 px-2 mt-4">
-                                                    <label for="nombres">Nombres*</label>
+                                                    <label for="nombres">Nombre completo*</label>
                                                     <div class="input-container actived-events-govco">
                                                         <input typeData="name" required type="text" name="nombres" id="nombres" aria-invalid="{{ $errors->has('nombres') ? 'true' : 'false' }}" placeholder="Ejemplo: Pedro" aria-required="true" class="@error('nombres') error @enderror" value="{{ old('nombres') }}" aria-describedby="nombres-note" onkeyup="this.setAttribute('value', this.value);">
                                                         <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
@@ -123,7 +123,7 @@
                                                 </div>
                                             </div>
                                             <div class="entradas-de-texto-govco actived-events-govco col-lg-4 px-2 mt-4">
-                                                <label for="documento">Documento*</label>
+                                                <label for="documento">Número de documento*</label>
                                                 <div class="input-container actived-events-govco">
                                                     <input typeData="num" required type="text" name="identificacion" id="documento" aria-invalid="{{ $errors->has('documento') ? 'true' : 'false' }}" placeholder="Ejemplo: 13444555" aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="documento-note">
                                                     <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
