@@ -543,7 +543,7 @@ li.user-label-xs{
   content: url(../assets/images/header_govco.png);
 }
 .entradas-de-texto-govco input[type="text"]:not(.browser-default):focus-visible:not([readonly]):not(:active), .entradas-de-texto-govco input[type="password"]:not(.browser-default):focus-visible:not([readonly]):not(:active), .entradas-de-texto-govco input[type="mail"]:not(.browser-default):focus-visible:not([readonly]):not(:active), .entradas-de-texto-govco input[type="tel"]:not(.browser-default):focus-visible:not([readonly]):not(:active), .entradas-de-texto-govco input[aria-invalid="false"]:not(.browser-default):focus-visible:not([readonly]):not(:active), .entradas-de-texto-govco input[aria-invalid="true"]:not(.browser-default):focus-visible:not([readonly]):not(:active) {
-    outline: none;
+    /* outline: none; */
     border-width: 1px;
 }
 .login-container{
@@ -766,4 +766,8 @@ table.table-general.fix.tabla-govco.actived-events-govco.min tbody td {
     cursor: pointer;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
     margin-right: 8px;
+}
+
+input:focus-visible{
+    outline: auto !important;
 }
