@@ -206,7 +206,7 @@
                         <div class="captcha-container entradas-de-texto-govco mt-4">
                             <label for="captcha">Código de seguridad*</label>
                             <div class="captcha-image mb-2 d-flex align-items-center">
-                                <span id="captcha-img">{!! captcha_img('flat') !!}</span>
+                                <span id="captcha-img">{!! captcha_img('flat', ['alt' => 'Código de seguridad']) !!}</span>
                                 <button type="button" class="btn-govco outline-btn-govco btn-sm ms-2" onclick="refreshCaptcha()" style="width: auto; height: auto; padding: 5px 10px;">
                                     Recargar
                                 </button>
@@ -291,7 +291,7 @@
                     if (img) {
                         img.src = data.img;
                     } else {
-                        captchaContainer.innerHTML = `<img src="${data.img}">`;
+                        captchaContainer.innerHTML = `<img src="${data.img}" alt="Código de seguridad">`;
                     }
                 });
         }

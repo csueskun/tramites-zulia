@@ -52,7 +52,7 @@
                             <label for="captcha">Código de seguridad*</label>
                             <div class="captcha-image mb-2 d-flex align-items-center">
                                 <div style="display: inline-block; vertical-align: middle;">
-                                    <span id="captcha-img" style="display: block; line-height: 0;">{!! captcha_img('flat', ['style' => 'width: 200px; height: auto; display: block;']) !!}</span>
+                                    <span id="captcha-img" style="display: block; line-height: 0;">{!! captcha_img('flat', ['style' => 'width: 200px; height: auto; display: block;', 'alt' => 'Código de seguridad']) !!}</span>
                                 </div>
                                 <button type="button" class="btn-govco outline-btn-govco btn-sm ms-2" onclick="refreshCaptcha()" style="width: auto; height: auto; padding: 5px 10px;">
                                     Recargar
@@ -180,7 +180,7 @@
                 .then(response => response.json())
                 .then(data => {
                     const captchaContainer = document.getElementById('captcha-img');
-                    captchaContainer.innerHTML = `<img src="${data.img}" style="width: 130px; height: auto; display: block;">`;
+                    captchaContainer.innerHTML = `<img src="${data.img}" alt="Código de seguridad" style="width: 130px; height: auto; display: block;">`;
                 });
         }
     </script>
