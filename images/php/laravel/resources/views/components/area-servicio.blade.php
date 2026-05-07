@@ -29,10 +29,6 @@
                             </a>
                         </div>
                     </div>
-                    <div class="row aservice-row-govco aservice-row-center-govco">
-                        <span class="headset-icon-govco"></span>
-                        <p class="aservice-number-govco">(601) 123-45-78<br>01-8000-456-768</p>
-                    </div>
                 </div>
             </div>
         </div>
