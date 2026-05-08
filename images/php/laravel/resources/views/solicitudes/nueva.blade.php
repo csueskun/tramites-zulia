@@ -114,6 +114,7 @@
                                                                 <li tabindex="0" class="dropdown-item" data-value="PA">Pasaporte</li>
                                                                 <li tabindex="0" class="dropdown-item" data-value="RC">Registro civil</li>
                                                                 <li tabindex="0" class="dropdown-item" data-value="TI">Tarjeta de identidad</li>
+                                                                <li tabindex="0" class="dropdown-item" data-value="PPT">Permiso por Protección Temporal</li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -125,7 +126,7 @@
                                             <div class="entradas-de-texto-govco actived-events-govco col-lg-4 px-2 mt-4">
                                                 <label for="documento">Número de documento*</label>
                                                 <div class="input-container actived-events-govco">
-                                                    <input typeData="num" required type="text" name="identificacion" id="documento" aria-invalid="{{ $errors->has('documento') ? 'true' : 'false' }}" placeholder="Ejemplo: 13444555" aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="documento-note">
+                                                    <input typeData="documento" data-tipo="tipo_documento_input" required type="text" name="identificacion" id="documento" aria-invalid="{{ $errors->has('documento') ? 'true' : 'false' }}" placeholder="Ejemplo: 13444555" aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="documento-note">
                                                     <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
                                                     <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                                                 </div>
@@ -321,6 +322,13 @@
         document.addEventListener('DOMContentLoaded', function () {
             const dropdown = document.getElementById('dropdown1');
             const input = document.getElementById('tipo_documento_input');
+            Array.from(document.getElementsByClassName('dropdown-item')).forEach(function (item) {
+                item.addEventListener('click', function () {
+                    setTimeout(function () {
+                        document.getElementById('documento').dispatchEvent(new Event('keyup'));
+                    }, 300);
+                });
+            });
             const dropdownItems = document.querySelectorAll('.dropdown-item');
             const dropdownIcon = document.getElementById('dropdown-icon');
             const dropdownMenu = document.getElementById('documento-dropdown');
@@ -383,9 +391,11 @@
             const onlyNumberInputs = document.querySelectorAll('input[typeData="onlyNumber"]');
             methodAssign("keyup", onlyNumberValidator, onlyNumberInputs);
             const phoneInputs = document.querySelectorAll('input[typeData="phone"]');
-            methodAssign("keyup", onlyNumberValidator, phoneInputs);
+            methodAssign("keyup", phoneValidator, phoneInputs);
             const nameInputs = document.querySelectorAll('input[typeData="name"]');
             methodAssign("keyup", nameValidator, nameInputs);
+            const documentoInputs = document.querySelectorAll('input[typeData="documento"]');
+            methodAssign("keyup", documentoValidator, documentoInputs);
             // document.getElementById('dropdown_container').addEventListener('change', function(event) {
             //     const input = this.querySelector('input[typedata="select"]');
             //     selectValidator.call(input);

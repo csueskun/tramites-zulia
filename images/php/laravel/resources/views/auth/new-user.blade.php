@@ -78,6 +78,7 @@
                                         <li tabindex="0" class="dropdown-item" data-value="PA">Pasaporte</li>
                                         <li tabindex="0" class="dropdown-item" data-value="RC">Registro civil</li>
                                         <li tabindex="0" class="dropdown-item" data-value="TI">Tarjeta de identidad</li>
+                                        <li tabindex="0" class="dropdown-item" data-value="PPT">Permiso por Protección Temporal</li>
                                     </ul>
                                 </div>
                             </div>
@@ -121,7 +122,7 @@
                         <div class="entradas-de-texto-govco actived-events-govco col-lg-6 px-2 mt-4">
                             <label for="documento">Documento*</label>
                             <div class="input-container actived-events-govco">
-                                <input typeData="num" required type="text" name="documento" id="documento" aria-invalid="{{ $errors->has('documento') ? 'true' : 'false' }}" placeholder="Ejemplo: Perez" aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="documento-note">
+                                <input typeData="documento" data-tipo="tipo_documento_input" required type="text" name="documento" id="documento" aria-invalid="{{ $errors->has('documento') ? 'true' : 'false' }}" placeholder="Ejemplo: 123456" aria-required="true" class="@error('documento') error @enderror" value="{{ old('documento') }}" onkeyup="this.setAttribute('value', this.value);" aria-describedby="documento-note">
                                 <span class="govco-svg govco-check-circle success" aria-label="Válido" aria-hidden="true"></span>
                                 <span class="govco-svg govco-exclamation-circle error" aria-label="Inválido" aria-hidden="true"></span>
                             </div>
@@ -254,6 +255,15 @@
                 }
             @endif
 
+
+            Array.from(document.getElementsByClassName('dropdown-item')).forEach(function (item) {
+                item.addEventListener('click', function () {
+                    setTimeout(function () {
+                        document.getElementById('documento').dispatchEvent(new Event('keyup'));
+                    }, 300);
+                });
+            });
+
             const emailInputs = document.querySelectorAll('input[typeData="mail"]');
             methodAssign("keyup", emailValidator, emailInputs);
             const passwordInputs = document.querySelectorAll('input[typeData="mypassword"]');
@@ -266,6 +276,8 @@
             methodAssign("keyup", onlyNumberValidator, onlyNumberInputs);
             const numInputs = document.querySelectorAll('input[typeData="num"]');
             methodAssign("keyup", onlyNumberValidator, numInputs);
+            const documentoInput = document.getElementById('documento');
+            methodAssign("keyup", documentoValidator, [documentoInput]);
             // document.getElementById('dropdown_container').addEventListener('change', function(event) {
             //     const input = this.querySelector('input[typedata="select"]');
             //     selectValidator.call(input);

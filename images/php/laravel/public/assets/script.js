@@ -4075,6 +4075,122 @@ function onlyNumberValidator(element){
   }
 }
 
+function phoneValidator(element) {
+  const regex = /^\+?(\d{1,3})?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4,}$/;
+  if (this.value.length < 1) {
+    if (this.getAttribute('required') !== null) {
+      this.classList.remove('success');
+      this.classList.add('error');
+      crearMensaje(this, 'Este campo es obligatorio', 'error', '');
+      return false;
+    } else {
+      clearInputFeedback(this);
+      return true;
+    }
+  }
+  if (this.value.length < 10) {
+    this.classList.remove('success');
+    this.classList.add('error');
+    crearMensaje(this, 'El número debe tener al menos 10 dígitos', 'error', '');
+    return false;
+  }
+  if (!regex.test(this.value)) {
+    this.classList.remove('success');
+    this.classList.add('error');
+    crearMensaje(this, 'Número de teléfono no válido', 'error', '');
+    return false;
+  } else {
+    this.classList.remove('error');
+    this.classList.add('success');
+    crearMensaje(this, 'Número de teléfono válido', 'success', '');
+    return true;
+  }
+}
+function documentoValidator() {
+  const regex = /^[0-9]{6,10}$/;
+  const _tipo = this.getAttribute('data-tipo');
+  const value = this.value.trim();
+  const tipo = (document.getElementById(_tipo) ? document.getElementById(_tipo).value : '');
+
+  if (!tipo) {
+    this.value = '';
+    this.classList.remove('success');
+    this.classList.add('error');
+    crearMensaje(this, 'Seleccione el tipo de documento', 'error', '');
+    return false;
+  }
+
+  if (value.length < 1) {
+    if (this.getAttribute('required') !== null) {
+      this.classList.remove('success');
+      this.classList.add('error');
+      crearMensaje(this, 'Este campo es obligatorio', 'error', '');
+      return false;
+    } else {
+      clearInputFeedback(this);
+      return true;
+    }
+  }
+
+  switch (tipo) {
+    case 'CC': // Cédula de Ciudadanía
+      if (!/^[0-9]{6,11}$/.test(value)) {
+        this.classList.remove('success');
+        this.classList.add('error');
+        crearMensaje(this, 'Número de documento no válido', 'error', '');
+        return false;
+      }
+      break;
+    case 'CE': // Tarjeta de Extranjería
+      if (!/^[0-9]{6,10}$/.test(value)) {
+        this.classList.remove('success');
+        this.classList.add('error');
+        crearMensaje(this, 'Número de documento no válido', 'error', '');
+        return false;
+      }
+      break;
+    case 'PA': // Pasaporte
+      if (!/^[a-zA-Z0-9]{6,15}$/.test(value)) {
+        this.classList.remove('success');
+        this.classList.add('error');
+        crearMensaje(this, 'Número de documento no válido', 'error', '');
+        return false;
+      }
+      break;
+    case 'RC': // Registro Civil
+      if (!/^[0-9]{1,15}$/.test(value)) {
+        this.classList.remove('success');
+        this.classList.add('error');
+        crearMensaje(this, 'Número de documento no válido', 'error', '');
+        return false;
+      }
+      break;
+    case 'TI': // Tarjeta de Identidad
+      if (!/^[0-9]{1,15}$/.test(value)) {
+        this.classList.remove('success');
+        this.classList.add('error');
+        crearMensaje(this, 'Número de documento no válido', 'error', '');
+        return false;
+      }
+      break;
+    case 'PPT':
+      if (!/^[a-zA-Z0-9]{6,15}$/.test(value)) {
+        this.classList.remove('success');
+        this.classList.add('error');
+        crearMensaje(this, 'Número de documento no válido', 'error', '');
+        return false;
+      }
+      break;
+    default:
+      console.warn(`Tipo de documento "${tipo}" no reconocido.`);
+      return false;
+  }
+
+  this.classList.remove('error');
+  this.classList.add('success');
+  crearMensaje(this, 'Número de documento válido', 'success', '');
+  return true;
+}
 
 function emailValidator(element) {
   const wordLength = this.value.length;
@@ -4241,7 +4357,7 @@ function validateForm(form) {
               }
               break;
           case 'phone':
-              if (!onlyNumberValidator.call(input)) {
+              if (!phoneValidator.call(input)) {
                   isValid = false;
               }
               break;
@@ -4262,6 +4378,11 @@ function validateForm(form) {
               break;
           case 'name':
               if (!nameValidator.call(input)) {
+                  isValid = false;
+              }
+              break;
+          case 'documento':
+              if (!documentoValidator.call(input)) {
                   isValid = false;
               }
               break;
