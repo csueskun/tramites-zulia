@@ -353,36 +353,58 @@
                             <h3 class="modal-title-govco mb-4">Anexar CUPL</h3>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="container-carga-de-archivo-govco">
-                                        <div class="loader-carga-de-archivo-govco">
-                                            <div class="all-input-carga-de-archivo-govco">
-                                                <input type="file" name="file_cupl" id="file_cupl" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadCuplFile" data-action-delete="deleteCuplFile" multiple />
-                                                <label for="file_cupl" class="label-carga-de-archivo-govco">Anexar CUPL</label>
-                                                <label for="file_cupl" class="container-input-carga-de-archivo-govco">
-                                                    <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
-                                                    <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
+                                    <div class="carga-archivo-govco actived-events-govco mb-4" id="container_file_cupl">
+                                        <label for="file_cupl">Anexar CUPL *</label><br>
+                                        <div class="loader-carga-archivo-govco">
+                                            <div class="all-input-carga-archivo-govco">
+                                                <input type="file" name="file_cupl" id="file_cupl"
+                                                    class="input-carga-archivo-govco active" data-error="0" 
+                                                    data-action="uploadCuplFile" data-action-delete="deleteCuplFile"/>
+                                                <label for="file_cupl" class="container-input-carga-archivo-govco">
+                                                    <span class="button-file-carga-archivo-govco">Seleccionar
+                                                        archivo</span>
+                                                    <span class="file-name-carga-archivo-govco">Sin archivo
+                                                        seleccionado</span>
                                                 </label>
-                                                <span class="text-validation-carga-de-archivo-govco">Tipo de archivo: <strong>.pdf</strong>. Peso máximo: 10 MB</span>
+                                                <span class="text-validation-carga-archivo-govco mt-0">
+                                                    Tipo de archivo: <strong>.pdf</strong>. Peso máximo: 10 MB
+                                                </span>
                                             </div>
-                                            <div class="load-button-carga-de-archivo-govco" style="display: none;">
-                                                <div class="load-carga-de-archivo-govco">
-                                                    <!-- indicador de carga -->
-                                                    <div class="spinner-indicador-de-carga-govco" style="width: 32px; height: 32px; border-width: 6px;" role="status">
+                                            <div class="load-button-carga-archivo-govco">
+                                                <button id="file_cupl_load" class="button-loader-carga-archivo-govco" disabled>Cargar archivo</button>
+                                                <div class="load-carga-archivo-govco">
+                                                    <div class="spinner-indicador-de-carga-govco" style="width: 32px; height: 32px; border-width: 6px;"
+                                                        role="status">
                                                         <span class="visually-hidden">Cargando...</span>
                                                     </div>
-                                                    <!-- end indicador de carga -->
                                                 </div>
-                                                <button id="file_cupl_load" disabled class="button-loader-carga-de-archivo-govco">Cargar archivo</button>
                                             </div>
                                         </div>
-
-                                        <div class="container-detail-carga-de-archivo-govco">
-                                            <span class="alert-carga-de-archivo-govco visually-hidden"></span>
-                                            <div class="attached-files-carga-de-archivo-govco"></div>
+                                        <div class="container-detail-carga-archivo-govco">
+                                            <span id="file_cupl_error" class="alert-carga-archivo-govco visually-hidden"></span>
+                                            <div class="attached-files-carga-archivo-govco"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- <script>
+                                function cuplFileUpload(inputFiles) {
+                                    return new Promise(function (resolve, reject) {
+                                        if (true) {
+                                            fileData['cupl'] = inputFiles;
+                                            const filesLoadedSuccesfully = inputFiles;
+                                            resolve(filesLoadedSuccesfully);
+                                        } else {
+                                            reject('Ocurrió un error al cargar los archivos.');
+                                        }
+                                    });
+                                }
+
+                                function cuplDeleteFile() {
+                                    fileData['cupl'] = [];
+                                    preValidateFileForm(form)
+                                }
+                            </script> -->
                         </div>
 
                         <div class="modal-footer-govco">
@@ -391,7 +413,7 @@
                                     Enviar
                                 </button>
                                 <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
-                                    Cerrar
+                                    Cancelar
                                 </button>
                             </div>
                         </div>
@@ -468,16 +490,16 @@
         document.getElementById('rechazar-modal').querySelector('.btn-close').click();
     });
 
-    formRecibo.querySelector('#file_recibo').addEventListener('change', function(event) {
-        setTimeout(function(){
-            document.querySelector('#file_recibo_load').click();
-        }, 200);
-    });
-    formCupl.querySelector('#file_cupl').addEventListener('change', function(event) {
-        setTimeout(function(){
-            document.querySelector('#file_cupl_load').click();
-        }, 200);
-    });
+    // formRecibo.querySelector('#file_recibo').addEventListener('change', function(event) {
+    //     setTimeout(function(){
+    //         document.querySelector('#file_recibo_load').click();
+    //     }, 200);
+    // });
+    // formCupl.querySelector('#file_cupl').addEventListener('change', function(event) {
+    //     setTimeout(function(){
+    //         document.querySelector('#file_cupl_load').click();
+    //     }, 200);
+    // });
 
     formRecibo.addEventListener('submit', function(event) {
         event.preventDefault();

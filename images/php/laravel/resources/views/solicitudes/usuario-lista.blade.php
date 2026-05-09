@@ -6,6 +6,7 @@
 @section('title', 'Mis Solicitudes')
 
 @push('breadcrumb')
+<li class="breadcrumb-item-govco"><a href="/">Trámites</a></li>
 <li class="breadcrumb-item-govco active" aria-current="page">Mis Solicitudes</li>
 @endpush
 

@@ -149,9 +149,9 @@
             </div>
         </div>
         <div class="second-section">
-            <a href="https://www.gov.co/" target="_blank"><span class="govco-logo"></span></a>
-            <span class="separator"></span>
             <a href="https://www.colombia.co/" target="_blank"><span class="govco-co mt-0"></span></a>
+            <span class="separator"></span>
+            <a href="https://www.gov.co/" target="_blank"><span class="govco-logo"></span></a>
         </div>
     </div>
 

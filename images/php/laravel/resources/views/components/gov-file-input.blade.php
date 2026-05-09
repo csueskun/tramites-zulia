@@ -17,15 +17,15 @@
             </span>
         </div>
         <div class="load-button-carga-archivo-govco">
+            <button id="file_{{ $name }}_load" class="button-loader-carga-archivo-govco" disabled>
+                Cargar archivo
+            </button>
             <div class="load-carga-archivo-govco">
                 <div class="spinner-indicador-de-carga-govco" style="width: 32px; height: 32px; border-width: 6px;"
                     role="status">
                     <span class="visually-hidden">Cargando...</span>
                 </div>
             </div>
-            <button id="file_{{ $name }}_load" class="button-loader-carga-archivo-govco" disabled>
-                Cargar archivo
-            </button>
         </div>
     </div>
     <div class="container-detail-carga-archivo-govco">

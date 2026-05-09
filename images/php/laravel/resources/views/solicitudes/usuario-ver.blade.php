@@ -7,8 +7,9 @@
 @endpush
 
 @push('breadcrumb')
-<li class="breadcrumb-item-govco"><a href="/user/solicitudes">Mis Solicitudes</a></li>
-<li class="breadcrumb-item-govco active" aria-current="page">{{ $solicitud->radicado }} - {{ $solicitud->tramite->nombre }}</li>
+<li class="breadcrumb-item-govco"><a href="/user/home">Trámites</a></li>
+<li class="breadcrumb-item-govco"><a href="/user/solicitudes">Mis solicitudes</a></li>
+<li class="breadcrumb-item-govco active" aria-current="page">{{ $solicitud->tramite->nombre }} - <span id="bc_etapa">Procesan mi solicitud</span></li>
 @endpush
 
 @section('content')
@@ -42,15 +43,15 @@
                     <div id="contactohorizontal" class="container-informacion-principal-campos-interaccion-govco">
                         <div class="informacion-vertical-govco">
                             @include('components.session-messages')
+                            <div class="titulo-informacion-govco mb-4">
+                                <h2>Detalles de la Solicitud</h2>
+                            </div>
                             @if ($solicitud->recibo_pago && !$solicitud->constancia_pago_tns && $solicitud->estado !== 'COMPLETADA')
                             <a class="govco-a" href="#" data-bs-toggle="modal" data-bs-target="#enviar-pagos">
                                 {{ $solicitud->tramite_id === 3 ? 'ANEXAR CONSTANCIA DE PAGO' : 'ANEXAR CONSTANCIAS DE PAGO (CUPL Y TNS)' }}</a>
                             <br>
                             <br>
                             @endif
-                            <div class="titulo-informacion-govco mb-4">
-                                <h2>Detalles de la Solicitud</h2>
-                            </div>
                             <div class="row">
                                     <div class="col-lg-12">
                                         <span><strong>Trámite</strong></span>
@@ -198,11 +199,14 @@ if($solicitud->tramite_id !== 3) {
                 <form action="/solicitudes/{{ $solicitud->id }}/comprobantes-pago" method="post" enctype="multipart/form-data" id="constancias-pagos">
                     @csrf
                     <div class="modal-content modal-content-govco">
-                        <div class="modal-header modal-header-govco modal-header-alerts-govco">
-                            <button type="button" disabled class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                        <div class="modal-header modal-header-govco">
+                            <a href="javascript:void(0)" role="button" data-bs-dismiss="modal" class="close-btn-modal"
+                                aria-label="Close" aria-expanded="false" onclick="closeModal('modal_enviar_cupl')">
+                                <span class="modal-close-govco govco-times"></span>
+                            </a>
                         </div>
                         <div class="modal-body modal-body-govco" style="margin: 12px 40px !important">
+                            <h3 class="modal-title-govco mb-4">Anexar constancias de pago</h3>
                             <div class="row">
                                 @if ($solicitud->tramite_id !== 3)
                                 <div class="col-lg-12">
@@ -225,13 +229,13 @@ if($solicitud->tramite_id !== 3) {
                             </div>
                         </div>
 
-                        <div class="modal-footer-govco modal-footer-alerts-govco">
-                            <div class="modal-buttons-govco d-flex justify-space-between">
-                                <button type="button" onclick="preValidateFileForm(this.closest('form'), true)" disabled="disabled" class="btn-govco fill-btn-govco fit-content submit" data-bs-dismiss="modal">
+                        <div class="modal-footer-govco">
+                            <div class="modal-buttons-govco d-flex justify-content-center">
+                                <button type="submit" disabled="disabled" class="btn btn-primary btn-modal-govco" onclick="preValidateFileForm(this.closest('form'), true)">
                                     Enviar
                                 </button>
-                                <button type="button" class="btn-govco fill-btn-govco fit-content submit" data-bs-dismiss="modal">
-                                    Cerrar
+                                <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                                    Cancelar
                                 </button>
                             </div>
                         </div>
@@ -316,6 +320,10 @@ if($solicitud->tramite_id !== 3) {
                 line.classList.add('half-completed');
             }
         });
+
+        if(estadoNum === 4){
+            document.querySelector('#bc_etapa').innerText = 'Respuesta';
+        }
 
         window.addEventListener("load", function () {
             fileConfigs.forEach(({ key, tipo, max_size }) => {
