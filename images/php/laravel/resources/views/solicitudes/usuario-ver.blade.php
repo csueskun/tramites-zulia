@@ -231,7 +231,7 @@ if($solicitud->tramite_id !== 3) {
 
                         <div class="modal-footer-govco">
                             <div class="modal-buttons-govco d-flex justify-content-center">
-                                <button type="submit" disabled="disabled" class="btn btn-primary btn-modal-govco" onclick="preValidateFileForm(this.closest('form'), true)">
+                                <button type="submit" class="submit btn btn-primary btn-modal-govco" onclick="preValidateFileForm(this.closest('form'), true)">
                                     Enviar
                                 </button>
                                 <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
