@@ -70,7 +70,7 @@
                                         data-bs-comentario="{{$solicitud->comentario}}"
                                         data-bs-constancia-pago="{{$solicitud->constancia_pago ? 1 : 0}}"
                                         data-bs-certificado="{{$solicitud->certificado ? 1 : 0}}"
-                                        data-bs-documentos="{{ json_encode($solicitud->documentos_usuario) }}">
+                                        data-bs-documentos="{{ json_encode(array_values($solicitud->documentos_usuario->toArray())) }}">
                                         VER MÁS</a> /
                                     <a class="govco-a" href="https://portal-gov.tns.co/" target="_blank" >ABRIR PORTAL TNS</a> 
                                     @if ($solicitud->recibo_pago == null)
