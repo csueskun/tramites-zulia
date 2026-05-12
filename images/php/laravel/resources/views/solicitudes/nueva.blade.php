@@ -288,6 +288,7 @@
                 @include('components.area-servicio')
             </div>
         </div>
+        @include('components.experiencia-banner')
     </div>
     <style>
         #letrainthrz1 {

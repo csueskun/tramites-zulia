@@ -102,4 +102,4 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('assets/general/area-de-servicio.js') }}"></script>
+@include('components.partials.area-de-servicio-script')
