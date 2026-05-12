@@ -7853,7 +7853,7 @@ h6 {
 .carga-archivo-govco .loader-carga-archivo-govco {
   margin-bottom: 0.438rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   row-gap: 0.625rem;
 }

@@ -16,7 +16,7 @@
                 Tipo de archivo: <strong>{{ $type }}</strong>. Peso máximo: {{ $max }} MB
             </span>
         </div>
-        <div class="load-button-carga-archivo-govco">
+        <div class="load-button-carga-archivo-govco" style="padding: 10px;">
             <button id="file_{{ $name }}_load" class="button-loader-carga-archivo-govco" disabled>
                 Cargar archivo
             </button>
