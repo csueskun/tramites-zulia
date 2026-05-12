@@ -33,6 +33,7 @@ function addEventHandler(el, evt, sel, handler) {
 })();
 
 function initAccessibilityBar() {
+  captureAccessibilityRootFontSize();
   addEventsAccessibilityBar();
 
   addEventHandler(
@@ -65,10 +66,9 @@ function addEventsAccessibilityBar(event = null) {
 	}
 
 	let element = '';
-	if (event.target.classList.contains('button.contrast', 'button.decrease-font-size', 'button.increase-font-size')) {
-		element = event.target;
-	} else if (event.target.closest('.barra-accesibilidad-govco')) {
-		element = event.target.closest('button');
+	const barButton = event.target.closest('.barra-accesibilidad-govco button');
+	if (barButton && barButton.matches('.contrast, .decrease-font-size, .increase-font-size')) {
+		element = barButton;
 	}
 
 	if (element) {
@@ -88,34 +88,42 @@ function activeContrast() {
 
 accesibilityBarCounterFontSize = 0;
 
+/** Root `html` font-size in px before any bar adjustment (captured once). */
+let accesibilityBarRootFontPx = null;
+
+function captureAccessibilityRootFontSize() {
+  if (accesibilityBarRootFontPx !== null) {
+    return;
+  }
+  const raw = window.getComputedStyle(document.documentElement).getPropertyValue('font-size');
+  accesibilityBarRootFontPx = parseFloat(raw);
+  if (!Number.isFinite(accesibilityBarRootFontPx) || accesibilityBarRootFontPx <= 0) {
+    accesibilityBarRootFontPx = 16;
+  }
+}
+
+function applyAccessibilityRootFontSize() {
+  captureAccessibilityRootFontSize();
+  document.documentElement.style.fontSize =
+    accesibilityBarRootFontPx + accesibilityBarCounterFontSize + 'px';
+}
+
 function activeFontSize() {
   let addition = this.classList.contains('decrease-font-size') ? -1 : 1;
-  const decreaseLimit = parseInt(this.getAttribute('data-decrease-limit')) || -5;
-  const increaseLimit = parseInt(this.getAttribute('data-increase-limit')) || 5;
+  const decreaseLimit = parseInt(this.getAttribute('data-decrease-limit'), 10);
+  const increaseLimit = parseInt(this.getAttribute('data-increase-limit'), 10);
+  const decreaseLimitFinal = Number.isFinite(decreaseLimit) ? decreaseLimit : -5;
+  const increaseLimitFinal = Number.isFinite(increaseLimit) ? increaseLimit : 5;
 
   accesibilityBarCounterFontSize += addition;
 
-  if (accesibilityBarCounterFontSize >= decreaseLimit && accesibilityBarCounterFontSize <= increaseLimit) { 
-    const elements = document.querySelectorAll('body *');
-    for (const element of elements) {
-      changeFontSize(element, addition);
-    }
+  if (accesibilityBarCounterFontSize >= decreaseLimitFinal && accesibilityBarCounterFontSize <= increaseLimitFinal) {
+    applyAccessibilityRootFontSize();
   } else {
-    accesibilityBarCounterFontSize = addition > 0 ? increaseLimit : decreaseLimit;
+    accesibilityBarCounterFontSize = addition > 0 ? increaseLimitFinal : decreaseLimitFinal;
   }
-  
+
   activeButtonAccessibility(this);
-}
-
-function changeFontSize(element, increse) {
-  let fontSize = getFontSize(element);
-  fontSize = (fontSize + increse) + 'px';
-  element.style.fontSize = fontSize;
-}
-
-function getFontSize(element) {
-  const fontSize = window.getComputedStyle(element, null).getPropertyValue('font-size');
-  return parseFloat(fontSize);
 }
 
 function activeButtonAccessibility(element) {

@@ -9,7 +9,8 @@
 @push('breadcrumb')
 <li class="breadcrumb-item-govco"><a href="/user/home">Trámites</a></li>
 <li class="breadcrumb-item-govco"><a href="/user/solicitudes">Mis solicitudes</a></li>
-<li class="breadcrumb-item-govco active" aria-current="page">{{ $solicitud->tramite->nombre }} - <span id="bc_etapa">Procesan mi solicitud</span></li>
+<li class="breadcrumb-item-govco active"><a href="/user/home?tramite={{ $solicitud->tramite_id }}">{{ $solicitud->tramite->nombre }}</a></li>
+<li class="breadcrumb-item-govco active" aria-current="page"><span id="bc_etapa">Procesan mi solicitud</span></li>
 @endpush
 
 @section('content')
