@@ -2,7 +2,9 @@ name: tramites
 services:
   php:
     container_name: php
-    build: images/php
+    build:
+      context: ./images/php
+      dockerfile: DockerfileLocal
     volumes:
       - ./images/php/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini
       - ./images/php/laravel:/var/www/html
