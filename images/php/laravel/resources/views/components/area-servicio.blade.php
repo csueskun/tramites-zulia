@@ -24,7 +24,7 @@
                     <div class="row aservice-row-govco">
                         <span class="mail-icon-govco"></span>
                         <div class="aservice-mailto-container">
-                            <a href="mailto:soporteccc@mintic.gov.co" class="aservice-mailto-govco">
+                            <a href="mailto:transito.tramites@nortedesantander.gov.co" class="aservice-mailto-govco">
                                 Enviar correo electrónico
                             </a>
                         </div>
