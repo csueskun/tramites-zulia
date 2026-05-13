@@ -70,6 +70,7 @@ class DocumentoController extends Controller
 
         foreach ($storedFiles as $key => $value) {
             $newDocumento = new Documento();
+            $newDocumento->responsable = 'USER';
             $newDocumento->tipo = strtoupper(str_replace('_', ' ', $key));
             $newDocumento->ruta = $value;
             $newDocumento->solicitud_id = $solicitud->id;
