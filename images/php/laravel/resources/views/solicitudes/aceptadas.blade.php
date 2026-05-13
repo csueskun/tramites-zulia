@@ -387,24 +387,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <script>
-                                function cuplFileUpload(inputFiles) {
-                                    return new Promise(function (resolve, reject) {
-                                        if (true) {
-                                            fileData['cupl'] = inputFiles;
-                                            const filesLoadedSuccesfully = inputFiles;
-                                            resolve(filesLoadedSuccesfully);
-                                        } else {
-                                            reject('Ocurrió un error al cargar los archivos.');
-                                        }
-                                    });
-                                }
-
-                                function cuplDeleteFile() {
-                                    fileData['cupl'] = [];
-                                    preValidateFileForm(form)
-                                }
-                            </script> -->
                         </div>
 
                         <div class="modal-footer-govco">

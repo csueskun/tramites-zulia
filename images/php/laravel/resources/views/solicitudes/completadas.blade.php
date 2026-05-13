@@ -245,46 +245,49 @@
                             <h3 class="modal-title-govco mb-4">Enviar Certificado</h3>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="container-carga-de-archivo-govco">
-                                        <div class="loader-carga-de-archivo-govco">
-                                            <div class="all-input-carga-de-archivo-govco">
-                                                <input type="file" name="file_certificado" id="file_certificado" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple />
-                                                <label for="file_certificado" class="label-carga-de-archivo-govco">Certificado*</label>
-                                                <label for="file_certificado" class="container-input-carga-de-archivo-govco">
-                                                    <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
-                                                    <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
+                                    <div class="carga-archivo-govco actived-events-govco mb-4" id="container_file_certificado">
+                                        <label for="file_certificado">Certificado *</label><br>
+                                        <div class="loader-carga-archivo-govco">
+                                            <div class="all-input-carga-archivo-govco">
+                                                <input type="file" name="file_certificado" id="file_certificado"
+                                                    class="input-carga-archivo-govco active" data-error="0" 
+                                                    data-action="uploadCertificadoFile" data-action-delete="deleteCertificadoFile"/>
+                                                <label for="file_certificado" class="container-input-carga-archivo-govco">
+                                                    <span class="button-file-carga-archivo-govco">Seleccionar
+                                                        archivo</span>
+                                                    <span class="file-name-carga-archivo-govco">Sin archivo
+                                                        seleccionado</span>
                                                 </label>
-                                                <span class="text-validation-carga-de-archivo-govco">Tipo de archivo: <strong>.pdf</strong>. Peso máximo: 10 MB</span>
+                                                <span class="text-validation-carga-archivo-govco mt-0">
+                                                    Tipo de archivo: <strong>.pdf</strong>. Peso máximo: 10 MB
+                                                </span>
                                             </div>
-                                            <div class="load-button-carga-de-archivo-govco" style="display: none;">
-                                                <div class="load-carga-de-archivo-govco">
-                                                    <!-- indicador de carga -->
-                                                    <div class="spinner-indicador-de-carga-govco" style="width: 32px; height: 32px; border-width: 6px;" role="status">
+                                            <div class="load-button-carga-archivo-govco">
+                                                <button id="file_certificado_load" class="button-loader-carga-archivo-govco" disabled>Cargar archivo</button>
+                                                <div class="load-carga-archivo-govco">
+                                                    <div class="spinner-indicador-de-carga-govco" style="width: 32px; height: 32px; border-width: 6px;"
+                                                        role="status">
                                                         <span class="visually-hidden">Cargando...</span>
                                                     </div>
-                                                    <!-- end indicador de carga -->
                                                 </div>
-                                                <button id="file_certificado_load" class="button-loader-carga-de-archivo-govco" disabled>Cargar archivo</button>
                                             </div>
                                         </div>
-
-                                        <div class="container-detail-carga-de-archivo-govco">
-                                            <span class="alert-carga-de-archivo-govco visually-hidden"></span>
-                                            <div class="attached-files-carga-de-archivo-govco"></div>
+                                        <div class="container-detail-carga-archivo-govco">
+                                            <span id="file_certificado_error" class="alert-carga-archivo-govco visually-hidden"></span>
+                                            <div class="attached-files-carga-archivo-govco"></div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
 
                         <div class="modal-footer-govco">
                             <div class="modal-buttons-govco d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary btn-modal-govco">
+                                <button type="submit" disabled="disabled" class="btn btn-primary btn-modal-govco">
                                     Enviar
                                 </button>
                                 <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
-                                    Cerrar
+                                    Cancelar
                                 </button>
                             </div>
                         </div>
@@ -350,11 +353,11 @@
         setValidationParameters('file_certificado', ['pdf'], 10485760, 1);
     });
 
-    form.querySelector('#file_certificado').addEventListener('change', function(event) {
-        setTimeout(function(){
-            document.querySelector('#file_certificado_load').click();
-        }, 200);
-    });
+    // form.querySelector('#file_certificado').addEventListener('change', function(event) {
+    //     setTimeout(function(){
+    //         document.querySelector('#file_certificado_load').click();
+    //     }, 200);
+    // });
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -380,7 +383,7 @@
         })
     });
 
-    function uploadFile(inputFiles) {
+    function uploadCertificadoFile(inputFiles) {
         return new Promise(function(resolve, reject) {
             if (true) {
                 inputFileFiles = inputFiles;
@@ -389,6 +392,15 @@
             } else {
                 reject('Ocurrió un error al cargar los archivos.');
             }
+        });
+    }
+
+    function deleteCertificadoFile() {
+        inputFileFiles = [];
+        validateFileForm(form, function(){
+            form.querySelector('button[type="submit"]').removeAttribute('disabled');
+        }, function(){
+            form.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
         });
     }
 </script>
