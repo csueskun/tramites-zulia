@@ -5,9 +5,6 @@ function validateFileForm(formElement, successCallback, errorCallback, newSolici
     // var fileLabels = [];
     for (let i = 0; i < fileInputs.length; i++) {
         const input = fileInputs[i];
-        if (input.getAttribute('data-error') == '1') {
-            hasError = true;
-        }
         const fileCount = input.parentElement.parentElement.parentElement.querySelectorAll('.attached-file-carga-archivo-govco').length;
 
         // fileCount = 0;
@@ -28,6 +25,16 @@ function validateFileForm(formElement, successCallback, errorCallback, newSolici
             }
             errorSpan.classList.remove('visually-hidden');
             errorSpan.parentElement.style.display = 'block';
+            hasError = true;
+        }
+        else{
+            input.setAttribute('data-error', '0');
+            // const errorSpan = formElement.querySelector('#' + input.getAttribute('name') + '_error');
+            // errorSpan.classList.add('visually-hidden');
+            // errorSpan.parentElement.style.display = 'none';
+        }
+
+        if (input.getAttribute('data-error') == '1') {
             hasError = true;
         }
     }
