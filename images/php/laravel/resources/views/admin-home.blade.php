@@ -82,6 +82,17 @@
                         </div>
                     </a>
                 </div>
+                <div class="col p-2">
+                    <a class="module-tarjeta-govco fix h-100" href="{{ route('reports.users-summary') }}" title="Descargar reporte de usuarios">
+                        <div class="header-tarjeta-govco">
+                            <h5>Reporte de usuarios</h5>
+                        </div>
+                        <hr>
+                        <div class="body-tarjeta-govco">
+                            <p>Descargue un resumen detallado de los usuarios registrados en el sistema.</p>
+                        </div>
+                    </a>
+                </div>
                 @endif
             </div>
         </div>

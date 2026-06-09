@@ -4,6 +4,7 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use App\Exports\MasterFeesExport;
+use App\Exports\UsersSummaryExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 Artisan::command('inspire', function () {
@@ -35,8 +36,13 @@ Artisan::command('report:generate {type}', function ($type) {
             $fileName = 'reports/master-fees-' . now()->format('Y-m-d_H-i') . '.xlsx';
             break;
         
+        case 'users-summary':
+            $export = new UsersSummaryExport();
+            $fileName = 'reports/users-summary-' . now()->format('Y-m-d_H-i') . '.xlsx';
+            break;
+        
         default:
-            $this->error("Invalid report type. Available types: master-fees");
+            $this->error("Invalid report type. Available types: master-fees, users-summary");
             return;
     }
 

@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
         
         // Reports
         Route::get('/admin/reports/master-fees', [ReportController::class, 'exportMasterFees'])->name('reports.master-fees');
+        Route::get('/admin/reports/users-summary', [ReportController::class, 'exportUsersSummary'])->name('reports.users-summary');
     });
 
     Route::middleware([CheckRole::class.':RADICADOR'])->group(function () {
