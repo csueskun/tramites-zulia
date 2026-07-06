@@ -49,6 +49,7 @@
                 <div class="row">
                     <div class="tramites-boxes-container">
                         @foreach ($tramites as $index => $tramite)
+                        @if ($tramite->activo)
                         <a class="module-tarjeta-govco tramite m-2" href="#"
                             data-bs-toggle="modal" data-bs-target="#tramite-modal" 
                             data-tramite-id="{{ $tramite->id }}"
@@ -67,6 +68,7 @@
                                 <p>{{  $tramite->descripcion }}</p>
                             </div>
                         </a>
+                        @endif
                         @endforeach
                     </div>
                 </div>
