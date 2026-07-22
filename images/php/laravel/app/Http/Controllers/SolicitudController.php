@@ -179,8 +179,8 @@ class SolicitudController extends Controller
                 ]);
                 $solicitud->comentarios()->create([
                     'comentario' => "En su dirección de correo {$solicitud->usuario->email}, " .
-                                    "recibirá el soporte de pago para el trámite, y tiene plazo " .
-                                    "el dia de hoy hasta 11:59 pm para realizar el correspondiente pago.",
+                                    "recibirá el soporte de pago para el trámite, y tiene plazo hasta " .
+                                    "el dia de mañana a las 11:59 pm para realizar el correspondiente pago.",
                     'autor' => 'ADMIN',
                 ]);
             } else {
@@ -260,7 +260,7 @@ class SolicitudController extends Controller
             ]);
             $solicitud->comentarios()->create([
                 'comentario' => "Le informamos que el recibo de pago del TNS fue enviado a " .
-                                "su correo electrónico, y tiene plazo el dia de hoy hasta " .
+                                "su correo electrónico, y tiene plazo hasta el dia de mañana a las " .
                                 "11:59 pm para realizar el correspondiente pago.",
                 'autor' => 'ADMIN',
             ]);

@@ -39,12 +39,16 @@ class SolicitudCompletada extends Mailable
      */
     public function content(): Content
     {
+        $nota = 'Traer los documentos originales en físico.';
+        if ($this->solicitud->codigo != 'CLTV1') {
+            $nota = 'Traer los documentos originales en físico para dar por finalizada su solicitud con huella.';
+        }
         $with = [
             'nombres' => $this->solicitud->usuario->nombre_completo,
             'radicado' => $this->solicitud->radicado,
             'fecha' => $this->solicitud->created_at->format('d/m/Y'),
             'tramite' => $this->solicitud->tramite->nombre,
-            'nota' => 'Traer los documentos originales en físico.', 
+            'nota' => $nota, 
         ];
         return new Content(
             view: 'emails.solicitud-completada',

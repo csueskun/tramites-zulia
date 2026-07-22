@@ -404,7 +404,8 @@
                     <td>${item.descripcion}</td>
                 </tr>`;
             });
-            target.innerHTML = requerimientosHtml;
+            var nota = "<tr vehiculo='TODOS' persona='TODOS'><td>Nota: Antes de realizar el trámite debe consultar datos del vehículo en: <a class='link-tipografia-govco' href='https://portalpublico.runt.gov.co/#/consulta-vehiculo/consulta/consulta-ciudadana' target='_blank'>CONSULTA CIUDADANA</a></td></tr>";
+            target.innerHTML = nota + requerimientosHtml;
         }
         //vehiculos
         const vehiculos = JSON.parse(trigger.getAttribute('data-tramite-vehiculos')) || [];

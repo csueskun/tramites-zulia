@@ -40,6 +40,7 @@ Route::post('/reset-password', [PasswordResetController::class, 'resetPassword']
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/documentos/download/{id}', [DocumentoController::class, 'download']);
+    Route::get('/documentos/view/{id}', [DocumentoController::class, 'view']);
     
     Route::middleware([CheckRole::class.':USER'])->group(function () {
         Route::get('/user/home', [SolicitudController::class, 'userIndex']);

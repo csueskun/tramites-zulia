@@ -76,7 +76,7 @@
                                     <p>{{$solicitud->created_at->format('d/m/Y')}}</p>
                                 </div>
                                 <div class="col-lg-7">
-                                    <span><strong>Fecha Aprobación:</strong></span>
+                                    <span><strong>Fecha {{$solicitud->fecha_aprobacion ? 'Aprobación' : 'Pre-aprobado'}}:</strong></span>
                                     <p class="etiqueta-govco {{$solicitud->fecha_aprobacion ? 'completado' : 'pendiente'}}" style="width: fit-content;">
                                         {{$solicitud->fecha_aprobacion ? $solicitud->fecha_aprobacion->format('d/m/Y') : 'PENDIENTE'}}
                                     </p>

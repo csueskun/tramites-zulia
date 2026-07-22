@@ -88,4 +88,13 @@ class DocumentoController extends Controller
         // Explicitly specify the 'public' disk for downloading
         return Storage::disk('public')->download($filePath);
     }
+
+    public function view($id)
+    {
+        $documento = Documento::findOrFail($id);
+        $filePath = "uploads{$documento->ruta}";
+
+        // Serve the file inline so it opens in the browser tab
+        return Storage::disk('public')->response($filePath);
+    }
 }

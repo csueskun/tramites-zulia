@@ -12,7 +12,7 @@
     <p>
         Le informamos que el recibo de pago de TNS fue enviado a su correo electrónico, y 
         <strong><span style="color: red;">
-            TIENE PLAZO EL DIA DE HOY HASTA LAS 11:59 PM PARA REALIZAR EL CORRESPONDIENTE PAGO
+            TIENE PLAZO HASTA EL DIA DE MAÑANA A LAS 11:59 PM PARA REALIZAR EL CORRESPONDIENTE PAGO
         </span></strong>
     </p>
     <p>

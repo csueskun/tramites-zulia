@@ -97,13 +97,22 @@ function renderDocumentosTable(documentos) {
     cell1.textContent = doc.tipo;
     var cell2 = document.createElement('td');
     
+    var viewLink = document.createElement('a');
+    viewLink.href = '/documentos/view/' + doc.id;
+    viewLink.target = '_blank';
+    viewLink.className = 'link-tipografia-govco';
+    viewLink.style.fontSize = '0.95em';
+    viewLink.innerHTML = 'VER';
+
     var link = document.createElement('a');
     link.href = '/documentos/download/' + doc.id;
     link.target = '_blank';
     link.className = 'link-tipografia-govco';
     link.style.fontSize = '0.95em';
+    link.style.marginLeft = '0.75rem';
     link.innerHTML = 'DESCARGAR';
-    
+
+    cell2.appendChild(viewLink);
     cell2.appendChild(link);
     row.appendChild(cell1);
     row.appendChild(cell2);
