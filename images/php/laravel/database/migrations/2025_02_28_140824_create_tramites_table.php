@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->longText('descripcion');
             $table->string('codigo')->unique();
+            $table->boolean('activo')->default(true);
             $table->timestamps();
         });
 
