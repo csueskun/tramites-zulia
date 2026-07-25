@@ -460,7 +460,7 @@
             categoriaLicenciaCheckbox[i].addEventListener('change', categoriaCheckboxListener);
         }
 
-        const tramitesNacionales = ['LIDC', 'RDLC', 'DDLC', 'CLME'];
+        const tramitesNacionales = ['LIDC', 'RDLC', 'DDLC', 'CLPME'];
         const tramiteCodigo = trigger.getAttribute(`data-tramite-codigo`);
         if (tramitesNacionales.includes(tramiteCodigo)) {
             document.getElementById('solo-zulia').setAttribute('style', 'display: none !important;');
