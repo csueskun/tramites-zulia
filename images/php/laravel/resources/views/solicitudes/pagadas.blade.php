@@ -155,7 +155,7 @@
                             <div class="col-lg-12 pb-2">
                                 <div class="text-box error-text-box">
                                     <span class="modal-text-govco"><strong>Recibo Vencido:</strong></span>
-                                    <span class="modal-text-govco">El recibo de pago ha vencido, por favor vuelva al módulo <a class="link-tipografia-govco" href="/solicitudes/aceptadas">Enviar recibo de pago</a> para generar un recibo nuevo</span>
+                                    <span class="modal-text-govco">El recibo de pago ha vencido, por favor vuelva al módulo <a id="link_enviar_recibo" class="link-tipografia-govco" href="/solicitudes/aceptadas">Enviar recibo de pago</a> para generar un recibo nuevo</span>
                                 </div>
                             </div>
                         </div>
@@ -293,6 +293,7 @@
         if(trigger.getAttribute(`data-bs-recibovencido`) === 'true') {
             if(trigger.getAttribute(`data-bs-estado`) !== 'VALIDADA'){
                 verMas.querySelector('.row.vencido').classList.remove('visually-hidden');
+                verMas.querySelector('#link_enviar_recibo').setAttribute('href', '/solicitudes/aceptadas?filter_by=radicado&search=' + trigger.getAttribute(`data-bs-radicado`));
             }
         }
 

@@ -88,6 +88,11 @@
                                     @endif
                                     @endif
                                     @if ($recibo_vencido) 
+                                    @if ($solicitud->veces_recibo_enviado < 2)
+                                    / <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#enviar-cupl"
+                                        data-bs-action="/solicitudes/{{$solicitud->id}}/mail-cupl">
+                                        RECIBO REENVIADO POR TNS</a>
+                                    @endif
                                     / <a class="govco-a" href="/" data-bs-toggle="modal" data-bs-target="#rechazar-modal"
                                         data-bs-action="/solicitudes/{{$solicitud->id}}"
                                         data-bs-usuario-id="{{ $solicitud->id }}">

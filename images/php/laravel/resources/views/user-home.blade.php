@@ -55,6 +55,7 @@
                             data-tramite-id="{{ $tramite->id }}"
                             data-tramite-nombre="{{ $tramite->nombre }}"
                             data-tramite-descripcion="{{ $tramite->descripcion }}"
+                            data-tramite-codigo="{{ $tramite->codigo }}"
                             data-tramite-costos="{{ json_encode(array_values($tramite->costos->toArray())) }}"
                             data-tramite-vehiculos="{{ json_encode(array_values($tramite->vehiculos->toArray())) }}"
                             data-tramite-personas="{{ json_encode(array_values($tramite->personas->toArray())) }}"
@@ -98,6 +99,17 @@
                             <div class="modal-body modal-body-govco fix">
                                 <h4 data-tramite-field="nombre" class="mb-4 modal-title-govco"></h4>
                                 <p class="modal-text-govco" data-tramite-field="descripcion"></p>
+                                <div id="solo-zulia">
+                                    <div style="margin: 0 !important;max-width: 100% !important;" class="toast container-toast-govco info show" id="fixedtoast" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true">
+                                        <div class="toast-header toast-header-info-govco">
+                                            <span class="govco-icon govco-info-circle fs-mr" aria-label="info"></span>
+                                            <strong class="me-auto toast-title-govco">Información</strong>
+                                        </div>
+                                        <div class="toast-body toast-body-govco">
+                                            <p>Este trámite sólo se puede realizar para vehículos matriculados en el municipio del Zulia, Norte de Santander.</p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <p><div class="radio-seleccion-govco" data-tramite-field="personas"></div></p>
                                 <p><div class="radio-seleccion-govco" data-tramite-field="vehiculos"></div></p>
                                 <table class="table table-general fix tabla-govco actived-events-govco min" id="requerimientos-table">
@@ -404,7 +416,7 @@
                     <td>${item.descripcion}</td>
                 </tr>`;
             });
-            var nota = "<tr vehiculo='TODOS' persona='TODOS'><td>Nota: Antes de realizar el trámite debe consultar datos del vehículo en: <a class='link-tipografia-govco' href='https://portalpublico.runt.gov.co/#/consulta-vehiculo/consulta/consulta-ciudadana' target='_blank'>CONSULTA CIUDADANA</a></td></tr>";
+            var nota = "<tr vehiculo='TODOS' persona='TODOS'><td><span style='font-weight: bold'>Nota</span>: Antes de realizar el trámite debe consultar datos del vehículo en: <a class='link-tipografia-govco' href='https://portalpublico.runt.gov.co/#/consulta-vehiculo/consulta/consulta-ciudadana' target='_blank'>CONSULTA CIUDADANA</a></td></tr>";
             target.innerHTML = nota + requerimientosHtml;
         }
         //vehiculos
@@ -446,6 +458,14 @@
         const categoriaLicenciaCheckbox = document.querySelectorAll('input[name="categoria-licencia[]"]');
         for (let i = 0; i < categoriaLicenciaCheckbox.length; i++) {
             categoriaLicenciaCheckbox[i].addEventListener('change', categoriaCheckboxListener);
+        }
+
+        const tramitesNacionales = ['LIDC', 'RDLC', 'DDLC', 'CLME'];
+        const tramiteCodigo = trigger.getAttribute(`data-tramite-codigo`);
+        if (tramitesNacionales.includes(tramiteCodigo)) {
+            document.getElementById('solo-zulia').setAttribute('style', 'display: none !important;');
+        } else {
+            document.getElementById('solo-zulia').setAttribute('style', 'display: block !important;');
         }
     });
 

@@ -180,7 +180,7 @@ class SolicitudController extends Controller
                 $solicitud->comentarios()->create([
                     'comentario' => "En su dirección de correo {$solicitud->usuario->email}, " .
                                     "recibirá el soporte de pago para el trámite, y tiene plazo hasta " .
-                                    "el dia de mañana a las 11:59 pm para realizar el correspondiente pago.",
+                                    "el dia de hoy a las 11:59 pm para realizar el correspondiente pago.",
                     'autor' => 'ADMIN',
                 ]);
             } else {
@@ -260,10 +260,11 @@ class SolicitudController extends Controller
             ]);
             $solicitud->comentarios()->create([
                 'comentario' => "Le informamos que el recibo de pago del TNS fue enviado a " .
-                                "su correo electrónico, y tiene plazo hasta el dia de mañana a las " .
+                                "su correo electrónico, y tiene plazo hasta el dia de hoy a las " .
                                 "11:59 pm para realizar el correspondiente pago.",
                 'autor' => 'ADMIN',
             ]);
+            $solicitud->update(['veces_recibo_enviado' => $solicitud->veces_recibo_enviado + 1]);
             return redirect()->back()->with('success', 'Soporte de pago enviado.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['Error al enviar el recibo de pago: ' . $e->getMessage()]);

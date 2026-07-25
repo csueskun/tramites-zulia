@@ -33,7 +33,8 @@ class Solicitud extends Model
         'telefono',
         'vehiculo',
         'persona',
-        'link_pago'
+        'link_pago',
+        'veces_recibo_enviado',
     ];
     
     public function usuario()
