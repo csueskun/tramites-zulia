@@ -28,7 +28,7 @@ class TramiteSeeder extends Seeder
             [
                 'nombre' => 'Certificado de libertad y tradición de un vehículo automotor',
                 'descripcion' => 'Obtener el certificado que determina la titularidad del dominio, las características del vehículo, medidas cautelares, limitaciones, gravámenes y un registro histórico donde se refleja todas las actuaciones y trámites realizados al automotor desde la fecha de expedición de la matrícula inicial',
-                'codigo' => 'CLTV1',
+                'codigo' => 'CLTV',
             ],
             [
                 'nombre' => 'Duplicado de placas de un vehículo automotor',
