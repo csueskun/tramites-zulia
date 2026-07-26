@@ -102,16 +102,6 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Soporte de pago TNS y CUPL',
             ],
         ]);
-        $tramite->vehiculos()->createMany([
-            ['vehiculo' => 'CARRO'],
-            ['vehiculo' => 'MOTO'],
-            ['vehiculo' => 'REMOLQUE'],
-        ]);
-        $tramite->personas()->createMany([
-            ['persona' => 'NATURAL'],
-            ['persona' => 'JURIDICA'],
-        ]);
-        // TODO: Verify if items prices are the same for all vehicle types
         $tramite->items()->createMany([
             ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'precio' => 262000],
             ['nombre' => 'Sustrato de lámina', 'descripcion' => '', 'precio' => 41000],
@@ -220,16 +210,6 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Soporte de pago TNS y CUPL',
             ],
         ]);
-        $tramite->vehiculos()->createMany([
-            ['vehiculo' => 'CARRO'],
-            ['vehiculo' => 'MOTO'],
-            ['vehiculo' => 'REMOLQUE'],
-        ]);
-        $tramite->personas()->createMany([
-            ['persona' => 'NATURAL'],
-            ['persona' => 'JURIDICA'],
-        ]);
-        // TODO: Verify if items prices are the same for all vehicle types
         $tramite->items()->createMany([
             ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'precio' => 292000],
             ['nombre' => 'Sustrato de lámina', 'descripcion' => '', 'precio' => 41000],
@@ -347,16 +327,6 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Soporte de pago TNS y CUPL',
             ],
         ]);
-        $tramite->vehiculos()->createMany([
-            ['vehiculo' => 'CARRO'],
-            ['vehiculo' => 'MOTO'],
-            ['vehiculo' => 'REMOLQUE'],
-        ]);
-        $tramite->personas()->createMany([
-            ['persona' => 'NATURAL'],
-            ['persona' => 'JURIDICA'],
-        ]);
-        // TODO: Verify if items prices are the same for all vehicle types
         $tramite->items()->createMany([
             ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'precio' => 292000],
             ['nombre' => 'Sustrato de lámina', 'descripcion' => '', 'precio' => 41000],
@@ -483,16 +453,6 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Soporte de pago TNS y CUPL',
             ],
         ]);
-        $tramite->vehiculos()->createMany([
-            ['vehiculo' => 'CARRO'],
-            ['vehiculo' => 'MOTO'],
-            ['vehiculo' => 'REMOLQUE'],
-        ]);
-        $tramite->personas()->createMany([
-            ['persona' => 'NATURAL'],
-            ['persona' => 'JURIDICA'],
-        ]);
-        // TODO: Verify if items prices are the same for all vehicle types
         $tramite->items()->createMany([
             ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'precio' => 262000],
             ['nombre' => 'Sustrato de lámina', 'descripcion' => '', 'precio' => 41000],
@@ -610,16 +570,6 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Soporte de pago TNS y CUPL',
             ],
         ]);
-        $tramite->vehiculos()->createMany([
-            ['vehiculo' => 'CARRO'],
-            ['vehiculo' => 'MOTO'],
-            ['vehiculo' => 'REMOLQUE'],
-        ]);
-        $tramite->personas()->createMany([
-            ['persona' => 'NATURAL'],
-            ['persona' => 'JURIDICA'],
-        ]);
-        // TODO: Verify if items prices are the same for all vehicle types
         $tramite->items()->createMany([
             ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'precio' => 292000],
             ['nombre' => 'Sustrato de lámina', 'descripcion' => '', 'precio' => 41000],
@@ -737,16 +687,6 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Soporte de pago TNS y CUPL',
             ],
         ]);
-        $tramite->vehiculos()->createMany([
-            ['vehiculo' => 'CARRO'],
-            ['vehiculo' => 'MOTO'],
-            ['vehiculo' => 'REMOLQUE'],
-        ]);
-        $tramite->personas()->createMany([
-            ['persona' => 'NATURAL'],
-            ['persona' => 'JURIDICA'],
-        ]);
-        // TODO: Verify if items prices are the same for all vehicle types
         $tramite->items()->createMany([
             ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'precio' => 292000],
             ['nombre' => 'Sustrato de lámina', 'descripcion' => '', 'precio' => 41000],
@@ -864,16 +804,6 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Soporte de pago TNS y CUPL',
             ],
         ]);
-        $tramite->vehiculos()->createMany([
-            ['vehiculo' => 'CARRO'],
-            ['vehiculo' => 'MOTO'],
-            ['vehiculo' => 'REMOLQUE'],
-        ]);
-        $tramite->personas()->createMany([
-            ['persona' => 'NATURAL'],
-            ['persona' => 'JURIDICA'],
-        ]);
-        // TODO: Verify if items prices are the same for all vehicle types
         $tramite->items()->createMany([
             ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'precio' => 292000],
             ['nombre' => 'Sustrato de lámina', 'descripcion' => '', 'precio' => 41000],
