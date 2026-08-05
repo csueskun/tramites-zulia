@@ -38,31 +38,10 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Estar inscrito en RUNT',
-            ],
-            [
                 'descripcion' => 'Copia de la cédula del propietario',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'cedula_ciudadania',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'tarjeta_propiedad',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Tarjeta propiedad ambas caras',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'tarjeta_propiedad_copia',
                     'tipo' => 'pdf',
                     'max_size' => 10485760,
                 ]),
@@ -96,7 +75,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Estar a paz y salvo en el SIMIT (propietario)',
             ],
             [
-                'descripcion' => 'Paz y salvo de impuestos de vehículo',
+                'descripcion' => 'Impuestos al día',
             ],
             [
                 'descripcion' => 'Soporte de pago TNS y CUPL',
@@ -146,22 +125,10 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Estar inscrito en RUNT',
-            ],
-            [
                 'descripcion' => 'Copia de la cédula del propietario',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'cedula_ciudadania',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'tarjeta_propiedad',
                     'tipo' => 'pdf',
                     'max_size' => 10485760,
                 ]),
@@ -176,7 +143,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Factura de compra carrocería y Ficha de homologación',
+                'descripcion' => 'Factura taller de pintura y/o carta de solicitud de cambio color',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'factura_carroceria',
@@ -204,7 +171,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Estar a paz y salvo en el SIMIT (propietario)',
             ],
             [
-                'descripcion' => 'Paz y salvo de impuestos de vehículo',
+                'descripcion' => 'Impuestos al día',
             ],
             [
                 'descripcion' => 'Soporte de pago TNS y CUPL',
@@ -245,22 +212,10 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Estar inscrito en RUNT',
-            ],
-            [
                 'descripcion' => 'Copia de la cédula del propietario',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'cedula_ciudadania',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'tarjeta_propiedad',
                     'tipo' => 'pdf',
                     'max_size' => 10485760,
                 ]),
@@ -275,7 +230,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Factura compra debidamente legalizada',
+                'descripcion' => 'Factura compra (electrónica y cámara de comercio) debidamente legalizada',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'factura_compra',
@@ -321,7 +276,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Estar a paz y salvo en el SIMIT (propietario)',
             ],
             [
-                'descripcion' => 'Paz y salvo de impuestos de vehículo',
+                'descripcion' => 'Impuestos al día',
             ],
             [
                 'descripcion' => 'Soporte de pago TNS y CUPL',
@@ -338,7 +293,7 @@ class ThirdBatchTramitesSeeder extends Seeder
 
         //CONVERSIÓN A GAS NATURAL
         $tramite = Tramite::create([
-            'nombre' => 'Conversión a gas natural',
+            'nombre' => 'Conversión (transformación) a Gas Natural',
             'descripcion' => 'Trámite que permite realizar la conversión a gas natural de un vehículo ante las autoridades de tránsito',
             'codigo' => 'COGNA',
         ]);
@@ -362,22 +317,10 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Estar inscrito en RUNT',
-            ],
-            [
                 'descripcion' => 'Copia de la cédula del propietario',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'cedula_ciudadania',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'tarjeta_propiedad',
                     'tipo' => 'pdf',
                     'max_size' => 10485760,
                 ]),
@@ -392,37 +335,10 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Factura compra debidamente legalizada',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'factura_compra',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Manifiesto',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'manifiesto',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
                 'descripcion' => 'Revisión de la SIJIN',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'revision_sijin',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Transformación (si cambia de gasolina a diésel o viceversa)',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'transformacion',
                     'tipo' => 'pdf',
                     'max_size' => 10485760,
                 ]),
@@ -447,7 +363,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Estar a paz y salvo en el SIMIT (propietario)',
             ],
             [
-                'descripcion' => 'Paz y salvo de impuestos de vehículo',
+                'descripcion' => 'Impuestos al día',
             ],
             [
                 'descripcion' => 'Soporte de pago TNS y CUPL',
@@ -488,22 +404,10 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Estar inscrito en RUNT',
-            ],
-            [
                 'descripcion' => 'Copia de la cédula del propietario',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'cedula_ciudadania',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'tarjeta_propiedad',
                     'tipo' => 'pdf',
                     'max_size' => 10485760,
                 ]),
@@ -518,7 +422,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Factura compra debidamente legalizada',
+                'descripcion' => 'Certificación de taller',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'factura_compra',
@@ -527,16 +431,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Manifiesto',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'manifiesto',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Revisión de la SIJIN',
+                'descripcion' => 'Revisión de la SIJIN (antes y el después de regrabado)',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'revision_sijin',
@@ -564,7 +459,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Estar a paz y salvo en el SIMIT (propietario)',
             ],
             [
-                'descripcion' => 'Paz y salvo de impuestos de vehículo',
+                'descripcion' => 'Impuestos al día',
             ],
             [
                 'descripcion' => 'Soporte de pago TNS y CUPL',
@@ -605,22 +500,10 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Estar inscrito en RUNT',
-            ],
-            [
                 'descripcion' => 'Copia de la cédula del propietario',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'cedula_ciudadania',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'tarjeta_propiedad',
                     'tipo' => 'pdf',
                     'max_size' => 10485760,
                 ]),
@@ -635,7 +518,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Factura compra debidamente legalizada',
+                'descripcion' => 'Certificación de taller',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'factura_compra',
@@ -644,16 +527,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Manifiesto',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'manifiesto',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Revisión de la SIJIN',
+                'descripcion' => 'Revisión de la SIJIN (antes y después de regrabado)',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'revision_sijin',
@@ -681,7 +555,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Estar a paz y salvo en el SIMIT (propietario)',
             ],
             [
-                'descripcion' => 'Paz y salvo de impuestos de vehículo',
+                'descripcion' => 'Impuestos al día',
             ],
             [
                 'descripcion' => 'Soporte de pago TNS y CUPL',
@@ -722,9 +596,6 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Estar inscrito en RUNT',
-            ],
-            [
                 'descripcion' => 'Copia de la cédula del propietario',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
@@ -734,25 +605,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'tarjeta_propiedad',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Tarjeta propiedad ambas caras',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'tarjeta_propiedad_copia',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Factura compra debidamente legalizada',
+                'descripcion' => 'Certificación de taller',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'factura_compra',
@@ -761,16 +614,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Manifiesto',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'manifiesto',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760,
-                ]),
-            ],
-            [
-                'descripcion' => 'Revisión de la SIJIN',
+                'descripcion' => 'Revisión de la SIJIN (antes y el después de regrabado)',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'revision_sijin',
@@ -798,7 +642,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'descripcion' => 'Estar a paz y salvo en el SIMIT (propietario)',
             ],
             [
-                'descripcion' => 'Paz y salvo de impuestos de vehículo',
+                'descripcion' => 'Impuestos al día',
             ],
             [
                 'descripcion' => 'Soporte de pago TNS y CUPL',
@@ -810,6 +654,93 @@ class ThirdBatchTramitesSeeder extends Seeder
             ['nombre' => 'Estampilla electrificación', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 3000],
             ['nombre' => 'Pro Hospital', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 6000],
             ['nombre' => 'RUNT (CUPL)', 'descripcion' => '', 'precio' => 38400],
+        ]);
+
+
+        //MATRÍCULA INICIAL
+        $tramite = Tramite::create([
+            'nombre' => 'Matrícula inicial',
+            'descripcion' => 'Trámite que permite obtener la matrícula inicial de un vehículo automotor, otorgando su placa e inscribiéndolo por primera vez en el Registro Único Nacional de Tránsito (RUNT) ante las autoridades de tránsito',
+            'codigo' => 'MAINI',
+        ]);
+        $tramite->vehiculos()->createMany([
+            ['vehiculo' => 'CARRO'],
+            ['vehiculo' => 'MOTO'],
+        ]);
+        $tramite->requerimientos()->createMany([
+            [
+                'descripcion' => 'Estar inscrito en RUNT',
+            ],
+            [
+                'descripcion' => 'Pre asignación de placa (factura y manifiesto)',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'preasignacion_placa',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760,
+                ]),
+            ],
+            [
+                'descripcion' => 'Formato único de solicitud de trámite FUN, debidamente diligenciado',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'solicitud_fun',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760,
+                ]),
+            ],
+            [
+                'descripcion' => 'Anexar Improntas en el FUN',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'improntas',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760,
+                ]),
+            ],
+            [
+                'descripcion' => 'Copia de la cédula del propietario',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'cedula_ciudadania',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760,
+                ]),
+            ],
+            [
+                'descripcion' => 'Contrato de mandato o poder especial, si el trámite lo realiza un tercero, otorgado o suscrito en Colombia o en Consulados (debidamente autenticado)',
+                'obligatorio' => false,
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'poder',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760,
+                ]),
+            ],
+            [
+                'descripcion' => 'SOAT (vigente)',
+            ],
+            [
+                'descripcion' => 'Estar a paz y salvo en el SIMIT (propietario)',
+            ],
+            [
+                'descripcion' => 'Impuestos al día',
+            ],
+            [
+                'descripcion' => 'Poder especial o mandato',
+            ],
+            [
+                'descripcion' => 'Soporte de pago TNS y CUPL',
+            ],
+        ]);
+        $tramite->items()->createMany([
+            ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'vehiculo' => 'CARRO', 'precio' => 146000],
+            ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'vehiculo' => 'MOTO', 'precio' => 117000],
+            ['nombre' => 'Sustrato de lámina', 'descripcion' => '', 'precio' => 41000],
+            ['nombre' => 'Estampilla electrificación', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 3000],
+            ['nombre' => 'Pro Hospital', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 6000],
+            ['nombre' => 'Pro desarrollo académico', 'descripcion' => '', 'precio' => 30000],
+            ['nombre' => 'RUNT (CUPL)', 'descripcion' => '', 'precio' => 90000],
         ]);
 
     }
