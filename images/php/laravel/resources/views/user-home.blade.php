@@ -54,7 +54,7 @@
                             data-bs-toggle="modal" data-bs-target="#tramite-modal" 
                             data-tramite-id="{{ $tramite->id }}"
                             data-tramite-nombre="{{ $tramite->nombre }}"
-                            data-tramite-descripcion="{{ $tramite->descripcion }}"
+                            data-tramite-descripcion="{{ $tramite->descripcion }}."
                             data-tramite-codigo="{{ $tramite->codigo }}"
                             data-tramite-costos="{{ json_encode(array_values($tramite->costos->toArray())) }}"
                             data-tramite-vehiculos="{{ json_encode(array_values($tramite->vehiculos->toArray())) }}"
@@ -100,10 +100,10 @@
                                 <h4 data-tramite-field="nombre" class="mb-4 modal-title-govco"></h4>
                                 <p class="modal-text-govco" data-tramite-field="descripcion"></p>
                                 <div id="solo-zulia">
-                                    <div style="margin: 0 !important;max-width: 100% !important;" class="toast container-toast-govco info show" id="fixedtoast" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true">
-                                        <div class="toast-header toast-header-info-govco">
-                                            <span class="govco-icon govco-info-circle fs-mr" aria-label="info"></span>
-                                            <strong class="me-auto toast-title-govco">Información</strong>
+                                    <div style="margin: 0 !important;max-width: 100% !important;" class="toast container-toast-govco error show" id="fixedtoast" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true">
+                                        <div class="toast-header toast-header-error-govco xl">
+                                            <span class="ascii-icon">⚠</span>
+                                            <strong class="me-auto toast-title-govco"> Advertencia</strong>
                                         </div>
                                         <div class="toast-body toast-body-govco">
                                             <p>Este trámite sólo se puede realizar para vehículos matriculados en el municipio del Zulia, Norte de Santander.</p>

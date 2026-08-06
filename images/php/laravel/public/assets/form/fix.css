@@ -969,3 +969,26 @@ input:focus-visible{
     font-size: clamp(0.6rem, 1vw, 0.7rem);
     margin-top: 0.15rem;
 }
+
+.toast-header.toast-header-info-govco.xl .govco-icon.fs-mr,
+.toast-header.toast-header-error-govco.xl .govco-icon.fs-mr {
+    font-size: 3.5rem;
+    margin-right: 2.5rem;
+    background-size: 3.5rem;
+    min-width: 4.5rem;
+    min-height: 3.5rem;
+}
+
+.toast-header.toast-header-info-govco.xl .toast-title-govco,
+.toast-header.toast-header-error-govco.xl .toast-title-govco {
+    font-size: 38px;
+    font-weight: 500;
+    line-height: normal;
+    color: #930000;
+}
+.toast-header.toast-header-error-govco.xl .ascii-icon {
+    font-size: 52px;
+    color: #930000;
+    line-height: 40px;
+    margin-right: 20px;
+}
