@@ -341,6 +341,7 @@
 <script>
     document.getElementById('tramite-modal').addEventListener('show.bs.modal', function(event) {
         var trigger = event.relatedTarget;
+        const tramiteCodigo = trigger.getAttribute(`data-tramite-codigo`);
         const vars = [ 'nombre', 'descripcion'];
         vars.forEach((v, i) => {
             document.querySelector(`[data-tramite-field="${v}"]`).innerHTML = trigger.getAttribute(`data-tramite-${v}`);
@@ -416,7 +417,11 @@
                     <td>${item.descripcion}</td>
                 </tr>`;
             });
-            var nota = "<tr vehiculo='TODOS' persona='TODOS'><td><span style='font-weight: bold'>Nota</span>: Antes de realizar el trámite debe consultar datos del vehículo en: <a class='link-tipografia-govco' href='https://portalpublico.runt.gov.co/#/consulta-vehiculo/consulta/consulta-ciudadana' target='_blank'>CONSULTA CIUDADANA</a></td></tr>";
+            var commonMessage = `Antes de realizar el trámite debe consultar datos del vehículo en: <a class='link-tipografia-govco' href='https://portalpublico.runt.gov.co/#/consulta-vehiculo/consulta/consulta-ciudadana' target='_blank'>CONSULTA CIUDADANA</a>`;
+            if(tramiteCodigo == 'MAINI'){
+                commonMessage = `Traer documentos en carpeta roja para vehículo particular y en carpeta verde para vehículo público.`;
+            }
+            const nota = "<tr vehiculo='TODOS' persona='TODOS'><td><span style='font-weight: bold'>Nota</span>: ${commonMessage}</td></tr>";
             target.innerHTML = nota + requerimientosHtml;
         }
         //vehiculos
@@ -460,8 +465,7 @@
             categoriaLicenciaCheckbox[i].addEventListener('change', categoriaCheckboxListener);
         }
 
-        const tramitesNacionales = ['LIDC', 'RDLC', 'DDLC', 'CLPME'];
-        const tramiteCodigo = trigger.getAttribute(`data-tramite-codigo`);
+        const tramitesNacionales = ['LIDC', 'RDLC', 'DDLC', 'CLPME', 'MAINI'];
         if (tramitesNacionales.includes(tramiteCodigo)) {
             document.getElementById('solo-zulia').setAttribute('style', 'display: none !important;');
         } else {

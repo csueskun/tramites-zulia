@@ -47,7 +47,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Factura de compra carrocería y Ficha de homologación',
+                'descripcion' => 'Factura taller de carrocería y/o carta de solicitud de cambio de carrocería',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'factura_carroceria',
@@ -134,7 +134,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Tarjeta propiedad ambas caras',
+                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'tarjeta_propiedad_copia',
@@ -221,7 +221,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Tarjeta propiedad ambas caras',
+                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'tarjeta_propiedad_copia',
@@ -326,7 +326,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Tarjeta propiedad ambas caras',
+                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'tarjeta_propiedad_copia',
@@ -413,7 +413,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Tarjeta propiedad ambas caras',
+                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'tarjeta_propiedad_copia',
@@ -509,7 +509,7 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
-                'descripcion' => 'Tarjeta propiedad ambas caras',
+                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'tarjeta_propiedad_copia',
@@ -600,6 +600,15 @@ class ThirdBatchTramitesSeeder extends Seeder
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
                     'nombre' => 'cedula_ciudadania',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760,
+                ]),
+            ],
+            [
+                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'tarjeta_propiedad_copia',
                     'tipo' => 'pdf',
                     'max_size' => 10485760,
                 ]),
@@ -739,7 +748,7 @@ class ThirdBatchTramitesSeeder extends Seeder
             ['nombre' => 'Sustrato de lámina', 'descripcion' => '', 'precio' => 41000],
             ['nombre' => 'Estampilla electrificación', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 3000],
             ['nombre' => 'Pro Hospital', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 6000],
-            ['nombre' => 'Pro desarrollo académico', 'descripcion' => '', 'precio' => 30000],
+            ['nombre' => 'Pro desarrollo académico', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 30000],
             ['nombre' => 'RUNT (CUPL)', 'descripcion' => '', 'precio' => 90000],
         ]);
 
