@@ -32,7 +32,7 @@
                             ],
                             [
                                 'title' => 'Duplicado de placas de vehículo',
-                                'src' => 'https://www.youtu.be/1JFZW-WQCSI',
+                                'src' => 'https://www.youtube.com/embed/1JFZW-WQCSI?si=q7Xub4GLzNLRqEfM',
                                 'description' => 'Aprende a crear una solicitud de duplicado de placas de vehículo.'
                             ],
                             [
@@ -47,7 +47,7 @@
                             ],
                             [
                                 'title' => 'Crear cuenta de usuario',
-                                'src' => 'https://www.youtu.be/Ckj5Sv2n2UU',
+                                'src' => 'https://www.youtube.com/embed/Ckj5Sv2n2UU?si=6RFeff0yNLee9XnG',
                                 'description' => 'En este video te mostramos cómo recuperar tu contraseña de acceso al sistema de trámites.'
                             ],
                         ];
