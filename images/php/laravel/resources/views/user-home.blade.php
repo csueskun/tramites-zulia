@@ -464,7 +464,12 @@
         for (let i = 0; i < categoriaLicenciaCheckbox.length; i++) {
             categoriaLicenciaCheckbox[i].addEventListener('change', categoriaCheckboxListener);
         }
-
+        // TRAMITES NACIONALES
+        // LIDC: licencia de conducción
+        // RDLC: renovación de licencia de conducción
+        // DDLC: duplicado de licencia de conducción
+        // CLPME: cambio de licencia por mayoria de edad
+        // MAINI: matricula inicial
         const tramitesNacionales = ['LIDC', 'RDLC', 'DDLC', 'CLPME', 'MAINI'];
         if (tramitesNacionales.includes(tramiteCodigo)) {
             document.getElementById('solo-zulia').setAttribute('style', 'display: none !important;');
