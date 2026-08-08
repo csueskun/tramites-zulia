@@ -47,6 +47,15 @@ class ThirdBatchTramitesSeeder extends Seeder
                 ]),
             ],
             [
+                'descripcion' => 'Copia de la tarjeta de propiedad ambas caras',
+                'tipo' => 'ARCHIVO',
+                'file_metadata' => json_encode([
+                    'nombre' => 'tarjeta_propiedad_copia',
+                    'tipo' => 'pdf',
+                    'max_size' => 10485760,
+                ]),
+            ],
+            [
                 'descripcion' => 'Factura taller de carrocería y/o carta de solicitud de cambio de carrocería',
                 'tipo' => 'ARCHIVO',
                 'file_metadata' => json_encode([
