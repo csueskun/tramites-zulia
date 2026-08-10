@@ -24,6 +24,13 @@ class SolicitudController extends Controller
         $tramites = Tramite::all();
         return view('user-home', compact('tramites'));
     }
+
+    public function portfolio()
+    {
+        $tramites = Tramite::all();
+        return view('portfolio', compact('tramites'));
+    }
+
     public function nuevaIndex($tramite_id, $vehiculo = 'TODOS', $persona = 'TODOS')
     {
         $tramite = Tramite::findOrFail($tramite_id);

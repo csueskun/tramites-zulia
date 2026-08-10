@@ -37,6 +37,7 @@ Route::view('/forgot-password', 'auth.forgot-password');
 Route::get('/reset-password', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
 Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink']);
 Route::post('/reset-password', [PasswordResetController::class, 'resetPassword']);
+Route::get('/portafolio', [SolicitudController::class, 'portfolio'])->name('portafolio');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/documentos/download/{id}', [DocumentoController::class, 'download']);

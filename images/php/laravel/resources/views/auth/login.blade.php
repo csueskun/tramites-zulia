@@ -78,6 +78,9 @@
                     <div class="mt-3">
                         <a class="mt-3 link-tipografia-govco" href="/forgot-password">Olvidé mi contraseña</a>
                     </div>
+                    <div class="mt-3">
+                        <a class="mt-3 link-tipografia-govco" href="{{ route('portafolio') }}">Portafolio</a>
+                    </div>
                     <p class="mt-3 text2-govco">¿No sabes cómo crear una cuenta? &nbsp;
                         <a class="mt-3 link-tipografia-govco" data-bs-toggle="modal" data-bs-target="#crear_usuario" href="#">Ver video</a>
                     </p>

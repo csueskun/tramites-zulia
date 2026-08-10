@@ -1,0 +1,649 @@
+@extends('components.layout')
+
+@section('title', 'Portafolio de Trámites')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/general/linea-avance2.css') }}">
+@endpush
+
+@push('breadcrumb')
+<li class="breadcrumb-item-govco active" aria-current="page">Portafolio</li>
+@endpush
+
+@section('content')
+
+    <div class="admin-home mt-2" data-content="natural">
+        <div class="row justify-content-between">
+            <div class="col-lg-8" id="para-mirar">
+                <h1 class="mb-4">Portafolio de Trámites</h1>
+                <p class="text2-govco my-4">
+                    En esta sección encontrarás un listado detallado de los trámites disponibles
+                    relacionados con vehículos automotores. Cada trámite incluye una descripción
+                    clara, los requisitos necesarios, Costo total del tramite (validos hasta el año 2026)
+                    asociado. Además, podrás iniciar la solicitud del trámite o
+                    consultar su estado desde esta misma plataforma. Explora las opciones y selecciona el
+                    trámite que necesitas realizar de manera fácil y rápida.
+                </p>
+
+
+                @php
+                $stages = ['Inicio', 'Hago mi solicitud', 'Procesan mi solicitud', 'Respuesta'];
+                @endphp
+                <div class="custom-progress mb-2">
+                    <div class="custom-progress-container">
+                        @foreach ($stages as $index => $label)
+                        <div class="custom-step @if ($index == 0) current @endif">
+                            <table>
+                                <tr>
+                                    <td class="custom-stage">{{ $index + 1 }}</td>
+                                    <td class="custom-label">{!! $label !!}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="tramites-boxes-container">
+                        @foreach ($tramites as $index => $tramite)
+                        @if ($tramite->activo)
+                        <a class="module-tarjeta-govco tramite m-2" href="#"
+                            data-bs-toggle="modal" data-bs-target="#tramite-modal" 
+                            data-tramite-id="{{ $tramite->id }}"
+                            data-tramite-nombre="{{ $tramite->nombre }}"
+                            data-tramite-descripcion="{{ $tramite->descripcion }}."
+                            data-tramite-codigo="{{ $tramite->codigo }}"
+                            data-tramite-costos="{{ json_encode(array_values($tramite->costos->toArray())) }}"
+                            data-tramite-vehiculos="{{ json_encode(array_values($tramite->vehiculos->toArray())) }}"
+                            data-tramite-personas="{{ json_encode(array_values($tramite->personas->toArray())) }}"
+                            data-tramite-estampillas="{{ json_encode(array_values($tramite->estampillas->toArray())) }}"
+                            data-tramite-requerimientos="{{ json_encode(array_values($tramite->requerimientos->toArray())) }}">
+                            <div class="header-tarjeta-govco">
+                                <h4>{{ $tramite->nombre }}</h4>
+                            </div>
+                            <hr>
+                            <div class="body-tarjeta-govco">
+                                <p>{{  $tramite->descripcion }}</p>
+                            </div>
+                        </a>
+                        @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                @include('components.area-servicio')
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="tramite-modal" role="dialog" aria-labelledby="mdWarningLabel" aria-hidden="true">
+        <div class="container-modal-govco" id="modal_warning">
+            <div class="modal-container-govco" id="exampleModalWarning" tabindex="-1" data-bs-backdrop="false"
+                data-bs-keyboard="false" aria-labelledby="exampleModalAdvertencia" aria-hidden="true" aria-hidden="true"
+                role="dialog">
+                <div class="modal-dialog modal-dialog-govco" style="max-width: 640px !important;">
+                    <div id="tramite-form">
+                        <input type="hidden" value="" data-tramite-field="id">
+                        <div class="modal-content modal-content-govco">
+                            <div class="no-pt mt-2 modal-header modal-header-govco modal-header-alerts-govco">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                            </div>
+                            <div class="modal-body modal-body-govco fix">
+                                <h4 data-tramite-field="nombre" class="mb-4 modal-title-govco"></h4>
+                                <p class="modal-text-govco" data-tramite-field="descripcion"></p>
+                                <div id="solo-zulia">
+                                    <div style="margin: 0 !important;max-width: 100% !important;" class="toast container-toast-govco error show" id="fixedtoast" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true">
+                                        <div class="toast-header toast-header-error-govco xl">
+                                            <span class="ascii-icon">⚠</span>
+                                            <strong class="me-auto toast-title-govco"> Advertencia</strong>
+                                        </div>
+                                        <div class="toast-body toast-body-govco">
+                                            <p>Este trámite sólo se puede realizar para vehículos matriculados en el municipio del Zulia, Norte de Santander.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p><div class="radio-seleccion-govco" data-tramite-field="personas"></div></p>
+                                <p><div class="radio-seleccion-govco" data-tramite-field="vehiculos"></div></p>
+                                <table class="table table-general fix tabla-govco actived-events-govco min" id="requerimientos-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Requisitos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-tramite-field="requerimientos"></tbody>
+                                </table>
+                                <div id="licencia-categorias" class="my-3 categoria-titulo">
+                                    <div class="checkbox-seleccion-govco">
+                                        <label for="categoria" class="mb-1">Categoría</label><br>
+                                        <table class="table table-general fix tabla-govco actived-events-govco min">
+                                            <thead>
+                                                <tr>
+                                                    <th>Moto</th>
+                                                    <th>Carro</th>
+                                                    <th>Servicio Público</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="A1" type="checkbox" checked="checked">A1
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Motocicletas hasta 125 c.c. de cilindrado.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="B1" type="checkbox">B1
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Automóviles, camperos, camionetas y microbuses de servicio particular.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="C1" type="checkbox">C1
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Automóviles, camperos, camionetas y microbuses de servicio público.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="A2" type="checkbox">A2
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Motocicletas, motociclos y mototriciclos de más de 125 c.c. de cilindrado.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="B2" type="checkbox">B2
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Camiones, rígidos, busetas y buses para el servicio particular.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="C2" type="checkbox">C2
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Camiones, rígidos, busetas y buses para el servicio público.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="B3" type="checkbox">B3
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Vehículos articulados de servicio particular.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <label for="categoria-licencia" class="checkbox-label-govco me-2">
+                                                            <input name="categoria-licencia[]" value="C3" type="checkbox">C3
+                                                        </label>
+                                                        <span data-bs-toggle="tooltip" data-bs-html="true" title="Vehículos articulados de servicio público.">
+                                                            <span class="govco-info-circle"></span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <span class="error text-danger hidden">Debe seleccionar al menos una categoría</span>
+                                </div>
+                                <table class="table table-general fix tabla-govco actived-events-govco min" id="costos-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Concepto a pagar</th>
+                                            <th class="text-end">Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-tramite-field="costos"></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Total</th>
+                                            <th class="currency total"></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <table class="table table-general fix tabla-govco actived-events-govco min" id="estampillas-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Estampillas</th>
+                                            <th class="text-end">Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-tramite-field="estampillas"></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Total</th>
+                                            <th class="currency total"></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <p>
+                                    Costo total del tramite: <strong><span data-tramite-field="total"></span></strong> <span class="nota"></span> (válidos durante el año 2026)
+                                </p>
+                            </div>
+                            <div class="modal-footer-govco modal-footer-alerts-govco">
+                                <div class="modal-buttons-govco justify-content-center">
+                                    <button type="button" class="btn-govco fill-btn-govco fit-content btn-contorno" data-bs-dismiss="modal">
+                                        Cerrar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-container-govco" id="exampleModalConfirmacion" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalConfirmacion" aria-hidden="true" role="dialog">
+                <div class="modal-dialog modal-dialog-govco">
+                  <div class="modal-content modal-content-govco">
+                    <div class="modal-header modal-header-govco modal-header-alerts-govco">
+                    </div>
+                    <div class="modal-body modal-body-govco center-elements-govco">
+                      <div class="modal-icon">
+                        <span class="govco-icon govco-info-circle"></span>
+                      </div>
+                      <h3 class="modal-title-govco confirmation-govco">
+                        Tener en cuenta
+                      </h3>
+                      <p class="modal-text-govco modal-text-center-govco">
+                        Seleccione un trámite de la lista para continuar.
+                        <br>
+                        <br>
+                        Si no encuentra el trámite deseado, acuda a la Secretaría de Tránsito, sede operativa el Zulia.
+                      </p>
+                    </div>
+                    <div class="modal-footer-govco modal-footer-alerts-govco">
+                      <div class="modal-buttons-govco">
+                        <button type="button" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">
+                          Aceptar
+                        </button>
+                        <button type="button" class="btn btn-primary btn-modal-govco btn-contorno" data-bs-dismiss="modal">
+                          Cerrar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    </div>
+
+    <div class="modal fade" id="info-modal2" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-govco">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="modal-title-govco mb-4" id="infoModalLabel">Tener en cuenta</h3>
+                    <p class="modal-text-govco">A continuación, encontrarás los trámites disponibles para realizar en la plataforma. Recuerde que cada
+                        trámite se debe seleccionar de manera individual.
+                        <br>
+                        <br>
+                        Si el trámite que necesita no aparece en la lista o requiere realizar más de un trámite de
+                        manera simultánea, se recomienda recibir orientación y acompañamiento directamente en
+                        la Secretaría de Tránsito, sede operativa el Zulia.
+                    </p>
+                </div>
+                <div class="modal-footer modal-footer-govco">
+                    <div class="modal-buttons-govco">
+                        <button type="button" class="btn btn-primary btn-modal-govco" data-bs-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
+@push('scripts')
+<style>
+    .pestana-content {
+        display: block;
+    }
+
+    .pestana-content:not(.active) {
+        display: none;
+    }
+    #licencia-categorias.error {
+    }
+    #licencia-categorias .error {
+        display: none;
+    }
+    #licencia-categorias.error .error {
+        display: inline;
+    }
+</style>
+<script>
+    document.getElementById('tramite-modal').addEventListener('show.bs.modal', function(event) {
+        var trigger = event.relatedTarget;
+        const tramiteCodigo = trigger.getAttribute(`data-tramite-codigo`);
+        const vars = [ 'nombre', 'descripcion'];
+        vars.forEach((v, i) => {
+            document.querySelector(`[data-tramite-field="${v}"]`).innerHTML = trigger.getAttribute(`data-tramite-${v}`);
+        });
+
+        const tramiteNombre = trigger.getAttribute('data-tramite-nombre');
+        const breadcrumb = document.querySelector('.breadcrumb-item-govco.active').parentElement;
+        const newBreadcrumb = document.createElement('li');
+        newBreadcrumb.className = 'breadcrumb-item-govco active tramite-breadcrumb';
+        newBreadcrumb.setAttribute('aria-current', 'page');
+        newBreadcrumb.innerHTML = tramiteNombre;
+        
+        document.querySelector('.breadcrumb-item-govco.active').classList.remove('active');
+        breadcrumb.appendChild(newBreadcrumb);
+
+        const tramiteId = trigger.getAttribute(`data-tramite-id`);
+        document.querySelector(`span.nota`).innerHTML = "";
+        if(tramiteId == '1' || tramiteId == '10' ){
+            document.querySelector(`span.nota`).innerHTML = '<strong>+</strong> pago adicional (rete fuente) del 1% que dependerá del avaluó comercial acorde al tipo del vehículo';
+        }
+        document.querySelector(`[data-tramite-field="id"]`).value = tramiteId;
+        document.getElementById('licencia-categorias').style.display = 'none';
+        if(tramiteId == '5' || tramiteId == '6' ){
+            document.getElementById(`licencia-categorias`).style.display = 'block';
+            resetCategoriacheckbox(true);
+        }
+        else{
+            resetCategoriacheckbox();
+        }
+        //estampillas
+        const estampillas = JSON.parse(trigger.getAttribute('data-tramite-estampillas')) || [];
+        const estampillasTable = document.querySelector(`[data-tramite-field="estampillas"]`).closest('table');
+        estampillasTable.style.display = 'table';
+        if (estampillas.length){
+            let estampillasHtml = '';
+            estampillas.forEach((estampilla) => {
+                estampillasHtml += `<tr precio="${estampilla.precio}" vehiculo="${estampilla.vehiculo || ''}" persona="${estampilla.persona || ''}">
+                    <td>${estampilla.nombre}</td>
+                    <td class="currency">${formatCurrency(estampilla.precio)}</td>
+                </tr>`;
+            });
+            document.querySelector(`[data-tramite-field="estampillas"]`).innerHTML = estampillasHtml;
+        } else {
+            estampillasTable.style.display = 'none';
+        }
+        //costos
+        const costos = JSON.parse(trigger.getAttribute('data-tramite-costos')) || [];
+        const costosTable = document.querySelector(`[data-tramite-field="costos"]`).closest('table');
+        if (costos.length){
+            let costosHtml = '';
+            costos.forEach((costo) => {
+                costosHtml += `<tr precio="${costo.precio}" vehiculo="${costo.vehiculo || ''}" persona="${costo.persona || ''}">
+                    <td>${costo.nombre}</td>
+                    <td class="text-end">${formatCurrency(costo.precio)}</td>
+                </tr>`;
+            });
+            document.querySelector(`[data-tramite-field="costos"]`).innerHTML = costosHtml;
+        } else {
+            document.querySelector(`[data-tramite-field="costos"]`).innerHTML = '<tr><td colspan="2">Sin conceptos</td></tr>';
+        }
+
+        //requerimientos
+        const requerimientos = JSON.parse(trigger.getAttribute('data-tramite-requerimientos')) || [];
+        var target = document.querySelector(`[data-tramite-field="requerimientos"]`);
+        target.closest('table').style.display = 'none';
+        if (requerimientos.length){
+            target.closest('table').style.display = 'table';
+            let requerimientosHtml = '';
+            requerimientos.forEach((item) => {
+                requerimientosHtml += `<tr vehiculo="${item.vehiculo || ''}" persona="${item.persona || ''}">
+                    <td>${item.descripcion}</td>
+                </tr>`;
+            });
+            var commonMessage = `Antes de realizar el trámite debe consultar datos del vehículo en: <a class='link-tipografia-govco' href='https://portalpublico.runt.gov.co/#/consulta-vehiculo/consulta/consulta-ciudadana' target='_blank'>CONSULTA CIUDADANA</a>`;
+            if(tramiteCodigo == 'MAINI'){
+                commonMessage = `Traer documentos en carpeta roja para vehículo particular y en carpeta verde para vehículo público.`;
+            }
+            const nota = "<tr vehiculo='TODOS' persona='TODOS'><td><span style='font-weight: bold'>Nota</span>: ${commonMessage}</td></tr>";
+            target.innerHTML = nota + requerimientosHtml;
+        }
+        //vehiculos
+        const vehiculos = JSON.parse(trigger.getAttribute('data-tramite-vehiculos')) || [];
+        if (vehiculos.length){
+            let vehiculosHtml = '';
+            vehiculosHtml += `<label for="vehículo" class='mb-1'>Tipo de vehículo</label><br>`;
+            vehiculos.forEach((vehiculo, index) => {
+                vehiculosHtml += `<label for="vehiculo" class="radio-label-govco me-2">`;
+                vehiculosHtml += `<input name="vehiculo" value="${vehiculo.vehiculo}" type="radio" ${index === 0 ? 'checked' : ''}/>`;
+                vehiculosHtml += `${vehiculo.vehiculo}</label>`;
+            });
+            document.querySelector(`[data-tramite-field="vehiculos"]`).innerHTML = vehiculosHtml;
+            addVehiculoChangeListener();
+            vehiculoSelected({ target: document.querySelector('[name="vehiculo"]:checked') });
+        } else {
+            document.querySelector(`[data-tramite-field="vehiculos"]`).innerHTML = '<input type="hidden" name="vehiculo" value="TODOS">';
+            vehiculoSelected({ target: { value: 'TODOS' } });
+        }
+        //personas
+        const personas = JSON.parse(trigger.getAttribute('data-tramite-personas')) || [];
+        if (personas.length){
+            let personasHtml = '';
+            personasHtml += `<label for="persona" class='mb-1'>Tipo de persona</label><br>`;
+            personas.forEach((persona, index) => {
+                personasHtml += `<label for="persona" class="radio-label-govco me-2">`;
+                personasHtml += `<input name="persona" value="${persona.persona}" type="radio" ${index === 0 ? 'checked' : ''}/>`;
+                personasHtml += `${persona.persona}</label>`;
+            });
+            document.querySelector(`[data-tramite-field="personas"]`).innerHTML = personasHtml;
+            addPersonaChangeListener();
+            personaSelected({ target: document.querySelector('[name="persona"]:checked') });
+        } else {
+            document.querySelector(`[data-tramite-field="personas"]`).innerHTML = '<input type="hidden" name="persona" value="TODOS">';
+            personaSelected({ target: { value: 'TODOS' } });
+        }
+
+        //categoria-licencia
+        const categoriaLicenciaCheckbox = document.querySelectorAll('input[name="categoria-licencia[]"]');
+        for (let i = 0; i < categoriaLicenciaCheckbox.length; i++) {
+            categoriaLicenciaCheckbox[i].addEventListener('change', categoriaCheckboxListener);
+        }
+
+        const tramitesNacionales = ['LIDC', 'RDLC', 'DDLC', 'CLPME', 'MAINI'];
+        if (tramitesNacionales.includes(tramiteCodigo)) {
+            document.getElementById('solo-zulia').setAttribute('style', 'display: none !important;');
+        } else {
+            document.getElementById('solo-zulia').setAttribute('style', 'display: block !important;');
+        }
+    });
+
+    document.getElementById('tramite-modal').addEventListener('hidden.bs.modal', function() {
+        const activeBreadcrumb = document.querySelector('.tramite-breadcrumb');
+        if (activeBreadcrumb) {
+            const parent = activeBreadcrumb.parentElement;
+            activeBreadcrumb.remove();
+            const lastItem = parent.querySelector('li:last-child');
+            if (lastItem) {
+                lastItem.classList.add('active');
+            }
+        }
+    });
+
+    function resetCategoriacheckbox(show=false){
+        document.querySelectorAll('input[name="categoria-licencia[]"]').forEach((checkbox) => {
+            checkbox.checked = false;
+        });
+        if(show){
+            document.getElementById('licencia-categorias').classList.remove('error');
+            document.querySelectorAll('input[name="categoria-licencia[]"]')[0].checked = true;    
+        }
+    }
+
+    function categoriaCheckboxListener(){
+        const selectedCategories = getCategoriasSelected();
+        const container = document.getElementById('licencia-categorias');
+        const selectedCategoriesCount = selectedCategories.length;
+        if(selectedCategoriesCount === 0){
+            container.classList.add('error');
+        } else {
+            container.classList.remove('error');
+            calcularTotalCategorias(selectedCategoriesCount);
+            calcularTotales();
+        }
+
+    }
+
+    function calcularTotalCategorias(selectedCategoriesCount){
+        var valuesTr = [document.querySelector('[data-tramite-field="costos"] tr:first-child')];
+        const estampillas = document.querySelectorAll('[data-tramite-field="estampillas"] tr');
+        for (let i = 0; i < estampillas.length; i++) {
+            valuesTr.push(estampillas[i]);
+        }
+
+        for (let i = 0; i < valuesTr.length; i++) {
+            const tr = valuesTr[i];
+            const precio = parseFloat(tr.getAttribute('precio')) || 0;
+            const cantidad = selectedCategoriesCount > 1 ? 2 : 1
+            tr.setAttribute('cantidad', cantidad);
+            tr.querySelector('td:nth-child(2)').innerHTML = formatCurrency(precio * cantidad);
+        }
+    }
+
+    function getCategoriasSelected() {
+        let selectedCategories = [];
+        document.querySelectorAll('input[name="categoria-licencia[]"]:checked').forEach((checkbox) => {
+            selectedCategories.push(checkbox.value);
+        });
+        return selectedCategories;
+    }
+
+    function addVehiculoChangeListener() {
+        document.querySelectorAll('[name="vehiculo"]').forEach((vehiculo) => {
+            vehiculo.addEventListener('change', vehiculoSelected);
+        });
+    }
+    function addPersonaChangeListener() {
+        document.querySelectorAll('[name="persona"]').forEach((persona) => {
+            persona.addEventListener('change', personaSelected);
+        });
+    }
+
+    function vehiculoSelected(event) {
+        const vehiculo = event.target;
+        const tables = ['requerimientos', 'costos', 'estampillas'];
+        tables.forEach((tableId) => {
+            const table = document.getElementById(`${tableId}-table`);
+            table.querySelectorAll('tbody tr').forEach((req, index) => {
+                const reqVehiculo = req.getAttribute('vehiculo') || '';
+                if (['TODOS', vehiculo.value].indexOf(reqVehiculo) === -1) {
+                    req.style.display = 'none';
+                } else {
+                    if(document.querySelector('input[name="persona"]:checked')) {
+                        const personaSelected = document.querySelector('input[name="persona"]:checked').value;
+                        const reqPersona = req.getAttribute('persona') || '';
+                        if (['TODOS', personaSelected].indexOf(reqPersona) === -1) {
+                            req.style.display = 'none';
+                        } else {
+                            req.style.display = 'table-row';
+                        }
+                    }
+                    else{
+                        req.style.display = 'table-row';
+                    }
+                }
+            });
+        });
+        calcularTotales();
+    }
+    function personaSelected(event) {
+        const persona = event.target;
+        const table = document.getElementById(`requerimientos-table`);
+        table.querySelectorAll('tbody tr').forEach((req, index) => {
+            const reqPersona = req.getAttribute('persona') || '';
+            if (['TODOS', persona.value].indexOf(reqPersona) === -1) {
+                req.style.display = 'none';
+            } else {
+                if(document.querySelector('input[name="vehiculo"]:checked')) {
+                    const vehiculoSelected = document.querySelector('input[name="vehiculo"]:checked').value;
+                    const reqVehiculo = req.getAttribute('vehiculo') || '';
+                    if (['TODOS', vehiculoSelected].indexOf(reqVehiculo) === -1) {
+                        req.style.display = 'none';
+                    } else {
+                        req.style.display = 'table-row';
+                    }
+                }
+                else{
+                    req.style.display = 'table-row';
+                }
+            }
+        });
+    }
+
+    function calcularTotales(){
+        const tables = ['costos', 'estampillas'];
+        let tramiteTotal = 0;
+        tables.forEach((tableId) => {
+            let tableTotal = 0;
+            const table = document.getElementById(`${tableId}-table`);
+            table.querySelectorAll('tbody tr').forEach((req, index) => {
+                if(req.style.display === 'none') {
+                    return;
+                }
+                const cantidad = req.getAttribute('cantidad') || 1;
+                tableTotal += (parseFloat(req.getAttribute('precio')) || 0) * parseInt(cantidad);
+
+            });
+            table.querySelector('tfoot .total').innerHTML = formatCurrency(tableTotal);
+            tramiteTotal += tableTotal;
+        });
+        document.querySelector(`[data-tramite-field="total"]`).innerHTML = formatCurrency(tramiteTotal);
+    }
+
+    function showPanel(panelId) {
+        try {
+            document.querySelectorAll(".pestana-opcion.active")[0].classList.remove('active', "focus");
+        } catch (error) {
+            console.log(error);
+        }
+        document.querySelectorAll('.pestana-opcion')[panelId].classList.add('active', 'focus');
+        try {
+            document.querySelectorAll(".pestana-content.active")[0].classList.remove('active');
+        } catch (error) {
+            console.log(error);
+        }
+        document.querySelectorAll('.pestana-content')[panelId].classList.add('active');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+                new bootstrap.Tooltip(el);
+            });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const tramiteId = urlParams.get('tramite');
+        if (tramiteId) {
+            const element = document.querySelector(`a[data-tramite-id="${tramiteId}"]`);
+            if (element) {
+                element.click();
+            }
+        }
+        else{
+            const infoModal = new bootstrap.Modal(document.getElementById('info-modal'));
+            infoModal.show();
+        }
+    });
+
+
+</script>
+
+@endpush
