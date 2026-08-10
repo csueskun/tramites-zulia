@@ -639,7 +639,7 @@
         }
         else{
             const infoModal = new bootstrap.Modal(document.getElementById('info-modal'));
-            infoModal.show();
+            // infoModal.show();
         }
     });
 
