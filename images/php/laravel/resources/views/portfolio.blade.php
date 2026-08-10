@@ -2,10 +2,6 @@
 
 @section('title', 'Portafolio de Trámites')
 
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/general/linea-avance2.css') }}">
-@endpush
-
 @push('breadcrumb')
 <li class="breadcrumb-item-govco active" aria-current="page">Portafolio</li>
 @endpush
@@ -24,25 +20,6 @@
                     consultar su estado desde esta misma plataforma. Explora las opciones y selecciona el
                     trámite que necesitas realizar de manera fácil y rápida.
                 </p>
-
-
-                @php
-                $stages = ['Inicio', 'Hago mi solicitud', 'Procesan mi solicitud', 'Respuesta'];
-                @endphp
-                <div class="custom-progress mb-2">
-                    <div class="custom-progress-container">
-                        @foreach ($stages as $index => $label)
-                        <div class="custom-step @if ($index == 0) current @endif">
-                            <table>
-                                <tr>
-                                    <td class="custom-stage">{{ $index + 1 }}</td>
-                                    <td class="custom-label">{!! $label !!}</td>
-                                </tr>
-                            </table>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
 
 
                 <div class="row">
