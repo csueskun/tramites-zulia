@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'radicacion_ventanilla' => [
+        'base_url' => env('RADICACION_VENTANILLA_BASE_URL'),
+        'username' => env('RADICACION_VENTANILLA_USERNAME'),
+        'password' => env('RADICACION_VENTANILLA_PASSWORD'),
+        'application' => env('RADICACION_VENTANILLA_APPLICATION'),
+        'operator' => env('RADICACION_VENTANILLA_OPERATOR'),
+    ],
+
 ];

@@ -1,0 +1,18 @@
+Usuario: GOBERNACION_QA
+Clave: f4ae4b20956031e9d56de97174
+Aplicativo: DOCUMETAL_QA
+
+Link: http://35.238.108.178:8081/swagger-ui/index.html
+
+Listado de código para pruebas 
+
+Concepto	Código	Descripción
+Tipo documento ciudadano	0	Cédula de Ciudadanía
+Tipo documento ciudadano	1	Tarjeta de Identidad
+Continente ciudadano	1	—
+País ciudadano	170	—
+Departamento ciudadano	54	—
+Municipio ciudadano	001	—
+Medio de recepción	32	—
+Tipo documental del radicado	1	—
+Usuario destino	ADMON	—
