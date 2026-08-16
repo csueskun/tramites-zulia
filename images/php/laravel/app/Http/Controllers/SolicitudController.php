@@ -346,6 +346,8 @@ class SolicitudController extends Controller
             return $solicitud->id;
         });
 
+        $this->post_create($solicitud_id, Auth::user()->id);
+
         return redirect("/user/solicitudes/{$solicitud_id}/ver")->with('success', 'Solicitud creada exitosamente.');
     }
 
@@ -367,5 +369,37 @@ class SolicitudController extends Controller
         $request->query->set('usuario_id', $userId);
         $solicitudes = $this->getSolicitudesByStatusPaginated('TODOS', $request, );
         return view('solicitudes.usuario-lista', compact('solicitudes'));
+    }
+
+    protected function post_create($solicitud_id, $usuario_id)
+    {
+        $solicitud = Solicitud::findOrFail($solicitud_id);
+        $user = DB::table('users')->where('id', $usuario_id)->first();
+        $radicacionService = app()->make(\App\Services\RadicacionVentanillaService::class);
+
+        // Radicar
+        $payload = [];
+        $radicado = $radicacionService->radicar($payload);
+        if(isset($radicado['radicado'])) {
+            $solicitud->radicado = $radicado['radicado'];
+            $solicitud->save();
+        }
+
+        // Documento principal
+        $payload = [];
+        $documentoPrincipal = $solicitud->documentos()->where('tipo', 'FUN')->first();
+        $response = $radicacionService->subirDocumentoPrincipal($documentoPrincipal, $payload);
+
+        // Anexos
+        $payload = [];
+        $anexos = [];
+        foreach ($solicitud->documentos()->where('tipo', '!=', 'FUN')->get() as $documento) {
+            $response = $radicacionService->subirDocumentoAnexo($documento, $payload);
+            if(isset($response['anexo_id'])) {
+                $anexos[] = $response['anexo_id'];
+            }
+        }
+        $response = $radicacionService->asociarAnexos($solicitud->radicado, $anexos);
+
     }
 }
