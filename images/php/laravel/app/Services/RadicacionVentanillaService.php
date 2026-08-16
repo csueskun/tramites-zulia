@@ -118,28 +118,28 @@ class RadicacionVentanillaService
     /**
      * Anexa el documento principal de un radicado.
      *
-     * @return array<string, mixed>
+     * @return array<int, array{codigo: string, nombre: string}>
      */
-    public function uploadDocumentoPrincipal(int|string $radicado, string $filePath): array
+    public function uploadDocumentoPrincipal(string $referencia, int|string $radicado, string $filePath): array
     {
-        return $this->postJson(self::PRINCIPAL_ENDPOINT, [
+        return $this->postMultipart(self::PRINCIPAL_ENDPOINT, [
+            'referencia' => $referencia,
             'radicado' => $radicado,
-            'archivo' => $this->encodeFile($filePath),
-        ]);
+        ], [$filePath], 'file');
     }
 
     /**
      * Anexa uno o más documentos a un radicado.
      *
      * @param  array<int, string>  $filePaths
-     * @return array<string, mixed>
+     * @return array<int, array{codigo: string, nombre: string}>
      */
-    public function uploadAnexos(int|string $radicado, array $filePaths): array
+    public function uploadAnexos(string $referencia, int|string $radicado, array $filePaths): array
     {
-        return $this->postJson(self::ANEXOS_ENDPOINT, [
+        return $this->postMultipart(self::ANEXOS_ENDPOINT, [
+            'referencia' => $referencia,
             'radicado' => $radicado,
-            'archivos' => array_map(fn (string $filePath): string => $this->encodeFile($filePath), $filePaths),
-        ]);
+        ], $filePaths, 'files');
     }
 
     /**
@@ -161,6 +161,32 @@ class RadicacionVentanillaService
         }
 
         return $data;
+    }
+
+    /**
+     * @param  array<string, scalar|null>  $payload
+     * @param  array<int, string>  $filePaths
+     * @return array<int, array{codigo: string, nombre: string}>
+     */
+    private function postMultipart(string $endpoint, array $payload, array $filePaths, string $field): array
+    {
+        $request = Http::acceptJson();
+
+        foreach ($filePaths as $filePath) {
+            [$contents, $filename] = $this->readFile($filePath);
+            $request = $request->attach($field, $contents, $filename);
+        }
+
+        $response = $request->post($this->baseUrl . $endpoint, array_merge($payload, $this->credentials()));
+        $response->throw();
+
+        $data = $response->json();
+
+        if (! is_array($data)) {
+            throw new UnexpectedValueException("The {$endpoint} endpoint returned an invalid JSON response.");
+        }
+
+        return $this->extractDatosDocumento($data, $endpoint);
     }
 
     /**
@@ -192,7 +218,10 @@ class RadicacionVentanillaService
         return (string) $radicado;
     }
 
-    private function encodeFile(string $filePath): string
+    /**
+     * @return array{0: string, 1: string}
+     */
+    private function readFile(string $filePath): array
     {
         if (! is_file($filePath) || ! is_readable($filePath)) {
             throw new InvalidArgumentException("The file '{$filePath}' does not exist or is not readable.");
@@ -204,6 +233,25 @@ class RadicacionVentanillaService
             throw new RuntimeException("The file '{$filePath}' could not be read.");
         }
 
-        return base64_encode($contents);
+        return [$contents, basename($filePath)];
+    }
+
+    /**
+     * @return array<int, array{codigo: string, nombre: string}>
+     */
+    private function extractDatosDocumento(array $response, string $endpoint): array
+    {
+        $vo = $response['vo'] ?? null;
+        $datosDocumento = is_array($vo) ? ($vo['datosdocumento'] ?? null) : null;
+
+        if (! is_array($datosDocumento)) {
+            $message = is_array($vo) ? ($vo['mensaje'] ?? null) : null;
+            $message ??= $response['mensaje'] ?? 'No document data was returned by the provider.';
+            $message = is_scalar($message) ? (string) $message : 'No document data was returned by the provider.';
+
+            throw new RuntimeException("Unable to complete document upload for {$endpoint}: {$message}");
+        }
+
+        return $datosDocumento;
     }
 }
