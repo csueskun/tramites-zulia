@@ -64,6 +64,25 @@ class RadicacionVentanillaService
         $response = $this->radicar(array_merge($payload, [
             'tipoRadicado' => 1,
             'antecedente' => null,
+            "codigoContinenteCiudadano"=> 1,
+            "codigoPaisCiudadano"=> 170,
+            "codigoDepartamentoCiudadano"=> 54,
+            "codigoMunicipioCiudadano"=> "261",
+            "usuario"=> $this->username,
+            "password"=> $this->password,
+            "aplicativo"=> $this->application,
+            "operador"=> $this->operator,
+            "envioCorreoCiudadano"=> true,
+            "requiereRespuesta"=> true,
+            "enviarCorreoCertificado"=> false,
+            "medioRecepcion"=> 2,
+            "tipoDocumentoRadicado"=> 1,
+            "cantidadFolios"=> 1,
+            "tiempoParaRespuesta"=> 15,
+            "tipoDocumentoCiudadano"=> 1,
+            "numeroReferenciaxOficio"=> "OF-001",
+            "conCopiaA"=> "",
+            "usuarioDestino"=> "ADMON"
         ]));
 
         return $this->extractRadicado($response, 'opening');
@@ -108,11 +127,12 @@ class RadicacionVentanillaService
      */
     public function cambiarEstado(string $referencia, string $radicado, string $estado): array
     {
-        return $this->postJson(self::CAMBIAR_ESTADO_ENDPOINT, [
+        $response = $this->postJson(self::CAMBIAR_ESTADO_ENDPOINT, [
             'referencia' => $referencia,
             'radicado' => $radicado,
             'estado' => $estado,
         ]);
+        return $response;
     }
 
     /**
@@ -120,11 +140,16 @@ class RadicacionVentanillaService
      *
      * @return array<int, array{codigo: string, nombre: string}>
      */
-    public function uploadDocumentoPrincipal(string $referencia, int|string $radicado, string $filePath): array
+    public function uploadDocumentoPrincipal(string $referencia, string $radicado, string $filePath): array
     {
         return $this->postMultipart(self::PRINCIPAL_ENDPOINT, [
+            "usuario"=> $this->username,
+            "password"=> $this->password,
+            "aplicativo"=> $this->application,
+            "operador"=> $this->operator,
             'referencia' => $referencia,
-            'radicado' => $radicado,
+            'radicado' => "20269000001311",
+            // 'radicado' => $radicado,
         ], [$filePath], 'file');
     }
 
@@ -134,7 +159,7 @@ class RadicacionVentanillaService
      * @param  array<int, string>  $filePaths
      * @return array<int, array{codigo: string, nombre: string}>
      */
-    public function uploadAnexos(string $referencia, int|string $radicado, array $filePaths): array
+    public function uploadAnexos(string $referencia, string $radicado, array $filePaths): array
     {
         return $this->postMultipart(self::ANEXOS_ENDPOINT, [
             'referencia' => $referencia,
@@ -223,16 +248,19 @@ class RadicacionVentanillaService
      */
     private function readFile(string $filePath): array
     {
+        // Use the full path inside the container
+        $filePath = storage_path('app/public/uploads/' . basename($filePath));
+    
         if (! is_file($filePath) || ! is_readable($filePath)) {
             throw new InvalidArgumentException("The file '{$filePath}' does not exist or is not readable.");
         }
-
+    
         $contents = file_get_contents($filePath);
-
+    
         if ($contents === false) {
             throw new RuntimeException("The file '{$filePath}' could not be read.");
         }
-
+    
         return [$contents, basename($filePath)];
     }
 

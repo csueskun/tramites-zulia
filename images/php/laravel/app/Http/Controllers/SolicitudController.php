@@ -378,24 +378,40 @@ class SolicitudController extends Controller
         $radicacionService = app()->make(\App\Services\RadicacionVentanillaService::class);
 
         // Radicar
-        $payload = [];
+        $payload = [
+            "referencia"=> $solicitud->id,
+            "documentoCiudadano"=> $user->documento,
+            "nombre"=> $user->nombres,
+            "apellido1"=> $user->apellidos,
+            "apellido2"=> "",
+            "direccion"=> "",
+            "telefono"=> $solicitud->telefono,
+            "email"=> $user->email,
+            "fechaDocumento"=> $solicitud->created_at, //2026-07-15",
+            "asunto"=> $solicitud->tramite->nombre,
+            "descripAnexo"=> $solicitud->tramite->nombre
+        ];
+        $radicado = $solicitud->radicado;
         try {
             $radicado = $radicacionService->openRadicado($payload);
-            if(isset($radicado['radicado'])) {
-                $solicitud->radicado = $radicado['radicado'];
+            if($radicado) {
+                $solicitud->radicado = $radicado;
                 $solicitud->save();
             }
         } catch (\Throwable $th) {
-            
+            $radicado = $solicitud->radicado;
         }
 
         // Documento principal
-        // $payload = [];
-        // $documentoPrincipal = $solicitud->documentos()->where('tipo', 'FUN')->first();
-        // $response = $radicacionService->subirDocumentoPrincipal($documentoPrincipal, $payload);
+        $documentoPrincipal = $solicitud->documentos()->where('tipo', 'SOLICITUD CERTIFICADO')->first();
+        try {
+            $response = $radicacionService->uploadDocumentoPrincipal($documentoPrincipal->id, $solicitud->radicado, $documentoPrincipal->ruta);
+        } catch (\Throwable $th) {
+            $x = 1;
+        }
 
         // Anexos
-        // $payload = [];
+        $payload = [];
         // $anexos = [];
         // foreach ($solicitud->documentos()->where('tipo', '!=', 'FUN')->get() as $documento) {
         //     $response = $radicacionService->subirDocumentoAnexo($documento, $payload);

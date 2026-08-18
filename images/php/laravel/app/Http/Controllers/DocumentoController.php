@@ -36,7 +36,6 @@ class DocumentoController extends Controller
                 return redirect()->back()->withErrors(['Error al cargar documento: ' . $th->getMessage()]);
             }
         }
-0------
         foreach ($storedFiles as $key => $value) {
             $newDocumento = new Documento();
             $newDocumento->tipo = strtoupper(str_replace('_', ' ', $key));
