@@ -206,7 +206,7 @@ class RadicacionVentanillaService
             $request = $request->attach($field, $contents, $filename);
         }
 
-        Log::channel('api_siepdoc')->info("Sending request to {$endpoint} with payload: " . json_encode($payload));
+        Log::channel('api_siepdoc')->info("Sending request to {$endpoint} with files ". implode(', ', $filePaths) ." payload: " . json_encode($payload));
         $response = $request->post($this->baseUrl . $endpoint, array_merge($payload, $this->credentials()));
         $response->throw();
 
