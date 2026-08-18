@@ -379,27 +379,31 @@ class SolicitudController extends Controller
 
         // Radicar
         $payload = [];
-        $radicado = $radicacionService->radicar($payload);
-        if(isset($radicado['radicado'])) {
-            $solicitud->radicado = $radicado['radicado'];
-            $solicitud->save();
+        try {
+            $radicado = $radicacionService->openRadicado($payload);
+            if(isset($radicado['radicado'])) {
+                $solicitud->radicado = $radicado['radicado'];
+                $solicitud->save();
+            }
+        } catch (\Throwable $th) {
+            
         }
 
         // Documento principal
-        $payload = [];
-        $documentoPrincipal = $solicitud->documentos()->where('tipo', 'FUN')->first();
-        $response = $radicacionService->subirDocumentoPrincipal($documentoPrincipal, $payload);
+        // $payload = [];
+        // $documentoPrincipal = $solicitud->documentos()->where('tipo', 'FUN')->first();
+        // $response = $radicacionService->subirDocumentoPrincipal($documentoPrincipal, $payload);
 
         // Anexos
-        $payload = [];
-        $anexos = [];
-        foreach ($solicitud->documentos()->where('tipo', '!=', 'FUN')->get() as $documento) {
-            $response = $radicacionService->subirDocumentoAnexo($documento, $payload);
-            if(isset($response['anexo_id'])) {
-                $anexos[] = $response['anexo_id'];
-            }
-        }
-        $response = $radicacionService->asociarAnexos($solicitud->radicado, $anexos);
+        // $payload = [];
+        // $anexos = [];
+        // foreach ($solicitud->documentos()->where('tipo', '!=', 'FUN')->get() as $documento) {
+        //     $response = $radicacionService->subirDocumentoAnexo($documento, $payload);
+        //     if(isset($response['anexo_id'])) {
+        //         $anexos[] = $response['anexo_id'];
+        //     }
+        // }
+        // $response = $radicacionService->asociarAnexos($solicitud->radicado, $anexos);
 
     }
 }
