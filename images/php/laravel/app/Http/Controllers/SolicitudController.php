@@ -9,6 +9,7 @@ use App\Models\Tramite;
 use App\Services\MailService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SolicitudController extends Controller
 {
@@ -219,6 +220,8 @@ class SolicitudController extends Controller
                 'ruta' => '/' . $fileName,
             ]);
             $solicitud->update(['estado' => 'COMPLETADA']);
+            $this->post_completada($id, Auth::user()->id);
+
             return redirect()->back()->with('success', 'Certificado enviado.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['Error al enviar el certificado: ' . $e->getMessage()]);
@@ -387,7 +390,7 @@ class SolicitudController extends Controller
             "direccion"=> "",
             "telefono"=> $solicitud->telefono,
             "email"=> $user->email,
-            "fechaDocumento"=> $solicitud->created_at, //2026-07-15",
+            "fechaDocumento"=> $solicitud->created_at,
             "asunto"=> $solicitud->tramite->nombre,
             "descripAnexo"=> $solicitud->tramite->nombre
         ];
@@ -399,7 +402,11 @@ class SolicitudController extends Controller
                 $solicitud->save();
             }
         } catch (\Throwable $th) {
-            $radicado = $solicitud->radicado;
+            Log::channel('api_siepdoc')->error('Error al radicar solicitud', [
+                'solicitud_id' => $solicitud->id,
+                'exception' => $th,
+            ]);
+            return false;
         }
 
         // Documento principal
@@ -407,19 +414,55 @@ class SolicitudController extends Controller
         try {
             $response = $radicacionService->uploadDocumentoPrincipal($documentoPrincipal->id, $solicitud->radicado, $documentoPrincipal->ruta);
         } catch (\Throwable $th) {
-            $x = 1;
+            Log::channel('api_siepdoc')->error('Error al subir documento principal', [
+                'solicitud_id' => $solicitud->id,
+                'exception' => $th,
+            ]);
         }
 
         // Anexos
-        $payload = [];
-        // $anexos = [];
-        // foreach ($solicitud->documentos()->where('tipo', '!=', 'FUN')->get() as $documento) {
-        //     $response = $radicacionService->subirDocumentoAnexo($documento, $payload);
-        //     if(isset($response['anexo_id'])) {
-        //         $anexos[] = $response['anexo_id'];
-        //     }
-        // }
-        // $response = $radicacionService->asociarAnexos($solicitud->radicado, $anexos);
+        $anexos = [];
+        foreach ($solicitud->documentos()->where('tipo', '!=', 'SOLICITUD CERTIFICADO')->get() as $documento) {
+            $anexos[] = $documento->ruta;
+        }
+        try {
+            $response = $radicacionService->uploadAnexos($solicitud->id, $solicitud->radicado, $anexos);
+        } catch (\Throwable $th) {
+            Log::channel('api_siepdoc')->error('Error al subir anexos', [
+                'solicitud_id' => $solicitud->id,
+                'exception' => $th,
+            ]);
+        }
+    }
 
+    protected function post_completada($solicitud_id, $usuario_id)
+    {
+        $solicitud = Solicitud::findOrFail($solicitud_id);
+        $user = DB::table('users')->where('id', $usuario_id)->first();
+        $radicacionService = app()->make(\App\Services\RadicacionVentanillaService::class);
+
+        // Radicar
+        $payload = [
+            "referencia"=> $solicitud->id,
+            "documentoCiudadano"=> $user->documento,
+            "nombre"=> $user->nombres,
+            "apellido1"=> $user->apellidos,
+            "apellido2"=> "",
+            "direccion"=> "",
+            "telefono"=> $solicitud->telefono,
+            "email"=> $user->email,
+            "fechaDocumento"=> $solicitud->created_at,
+            "asunto"=> $solicitud->tramite->nombre,
+            "descripAnexo"=> $solicitud->tramite->nombre
+        ];
+        try {
+            $radicado = $radicacionService->closeRadicado($solicitud->radicado, $payload);
+        } catch (\Throwable $th) {
+            Log::channel('api_siepdoc')->error('Error al cerrar radicado', [
+                'solicitud_id' => $solicitud->id,
+                'exception' => $th,
+            ]);
+            return false;
+        }
     }
 }

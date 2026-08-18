@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Http;
 use InvalidArgumentException;
 use RuntimeException;
 use UnexpectedValueException;
+use Illuminate\Support\Facades\Log;
 
 class RadicacionVentanillaService
 {
@@ -63,7 +64,6 @@ class RadicacionVentanillaService
     {
         $response = $this->radicar(array_merge($payload, [
             'tipoRadicado' => 1,
-            'antecedente' => null,
             "codigoContinenteCiudadano"=> 1,
             "codigoPaisCiudadano"=> 170,
             "codigoDepartamentoCiudadano"=> 54,
@@ -148,8 +148,7 @@ class RadicacionVentanillaService
             "aplicativo"=> $this->application,
             "operador"=> $this->operator,
             'referencia' => $referencia,
-            'radicado' => "20269000001311",
-            // 'radicado' => $radicado,
+            'radicado' => $radicado,
         ], [$filePath], 'file');
     }
 
@@ -162,6 +161,10 @@ class RadicacionVentanillaService
     public function uploadAnexos(string $referencia, string $radicado, array $filePaths): array
     {
         return $this->postMultipart(self::ANEXOS_ENDPOINT, [
+            "usuario"=> $this->username,
+            "password"=> $this->password,
+            "aplicativo"=> $this->application,
+            "operador"=> $this->operator,
             'referencia' => $referencia,
             'radicado' => $radicado,
         ], $filePaths, 'files');
@@ -173,6 +176,7 @@ class RadicacionVentanillaService
      */
     private function postJson(string $endpoint, array $payload): array
     {
+        Log::channel('api_siepdoc')->info("Sending request to {$endpoint} with payload: " . json_encode($payload));
         $response = Http::acceptJson()
             ->asJson()
             ->post($this->baseUrl . $endpoint, array_merge($payload, $this->credentials()));
@@ -202,6 +206,7 @@ class RadicacionVentanillaService
             $request = $request->attach($field, $contents, $filename);
         }
 
+        Log::channel('api_siepdoc')->info("Sending request to {$endpoint} with payload: " . json_encode($payload));
         $response = $request->post($this->baseUrl . $endpoint, array_merge($payload, $this->credentials()));
         $response->throw();
 

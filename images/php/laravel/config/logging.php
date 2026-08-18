@@ -138,6 +138,12 @@ return [
             ],
         ],
 
+        'api_siepdoc' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/api_siepdoc.log'),
+            'level' => 'debug',
+            'replace_placeholders' => true,
+        ],
 
     ],
 
