@@ -411,27 +411,15 @@ class SolicitudController extends Controller
 
         // Documento principal
         $documentoPrincipal = $solicitud->documentos()->where('tipo', 'SOLICITUD CERTIFICADO')->first();
-        try {
-            $response = $radicacionService->uploadDocumentoPrincipal($documentoPrincipal->id, $solicitud->radicado, $documentoPrincipal->ruta);
-        } catch (\Throwable $th) {
-            Log::channel('api_siepdoc')->error('Error al subir documento principal', [
-                'solicitud_id' => $solicitud->id,
-                'exception' => $th,
-            ]);
-        }
+        UploadDocumentoPrincipalJob::dispatch($documentoPrincipal->id, $solicitud->radicado, $documentoPrincipal->ruta);
 
         // Anexos
         $anexos = [];
         foreach ($solicitud->documentos()->where('tipo', '!=', 'SOLICITUD CERTIFICADO')->get() as $documento) {
             $anexos[] = $documento->ruta;
         }
-        try {
-            $response = $radicacionService->uploadAnexos($solicitud->id, $solicitud->radicado, $anexos);
-        } catch (\Throwable $th) {
-            Log::channel('api_siepdoc')->error('Error al subir anexos', [
-                'solicitud_id' => $solicitud->id,
-                'exception' => $th,
-            ]);
+        if (!empty($anexos)) {
+            UploadAnexosJob::dispatch($solicitud->id, $solicitud->radicado, $anexos);
         }
     }
 
