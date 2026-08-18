@@ -167,6 +167,7 @@ class SolicitudController extends Controller
             $solicitud->update(['fecha_validacion' => now()]);
             $this->mailService->sendPagoValidado($solicitud);
         }
+        CambiarEstadoJob::dispatch($solicitud->id, $solicitud->radicado, $solicitud->estado);
         return redirect()->back()->with('success', 'Solicitud actualizada exitosamente.');
     }
     public function mailReciboDePago(Request $request, Solicitud $solicitud)

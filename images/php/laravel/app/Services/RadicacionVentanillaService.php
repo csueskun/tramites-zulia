@@ -128,6 +128,10 @@ class RadicacionVentanillaService
     public function cambiarEstado(string $referencia, string $radicado, string $estado): array
     {
         $response = $this->postJson(self::CAMBIAR_ESTADO_ENDPOINT, [
+            "usuario"=> $this->username,
+            "password"=> $this->password,
+            "aplicativo"=> $this->application,
+            "operador"=> $this->operator,
             'referencia' => $referencia,
             'radicado' => $radicado,
             'estado' => $estado,
