@@ -10,6 +10,9 @@ use App\Services\MailService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\CambiarEstadoJob;
+use App\Jobs\UploadDocumentoPrincipalJob;
+use App\Jobs\UploadAnexosJob;
 
 class SolicitudController extends Controller
 {
@@ -411,12 +414,12 @@ class SolicitudController extends Controller
         }
 
         // Documento principal
-        $documentoPrincipal = $solicitud->documentos()->where('tipo', 'SOLICITUD CERTIFICADO')->first();
+        $documentoPrincipal = $solicitud->documentos()->first();
         UploadDocumentoPrincipalJob::dispatch($documentoPrincipal->id, $solicitud->radicado, $documentoPrincipal->ruta);
 
         // Anexos
         $anexos = [];
-        foreach ($solicitud->documentos()->where('tipo', '!=', 'SOLICITUD CERTIFICADO')->get() as $documento) {
+        foreach ($solicitud->documentos()->where('id', '!=', $documentoPrincipal->id)->get() as $documento) {
             $anexos[] = $documento->ruta;
         }
         if (!empty($anexos)) {
@@ -426,7 +429,9 @@ class SolicitudController extends Controller
 
     protected function post_completada($solicitud_id, $usuario_id)
     {
+        
         $solicitud = Solicitud::findOrFail($solicitud_id);
+        CambiarEstadoJob::dispatch($solicitud->id, $solicitud->radicado, $solicitud->estado);
         $user = DB::table('users')->where('id', $usuario_id)->first();
         $radicacionService = app()->make(\App\Services\RadicacionVentanillaService::class);
 
@@ -445,7 +450,7 @@ class SolicitudController extends Controller
             "descripAnexo"=> $solicitud->tramite->nombre
         ];
         try {
-            $radicado = $radicacionService->closeRadicado($solicitud->radicado, $payload);
+            $radicacionService->closeRadicado($solicitud->radicado, $payload);
         } catch (\Throwable $th) {
             Log::channel('api_siepdoc')->error('Error al cerrar radicado', [
                 'solicitud_id' => $solicitud->id,
