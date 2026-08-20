@@ -76,6 +76,9 @@ class DocumentoController extends Controller
             $newDocumento->save();
         }
 
+        $solicitudContrroller = app()->make(\App\Http\Controllers\SolicitudController::class);
+        $solicitudContrroller->enviarAnexos($solicitud->id, ['CONSTANCIA DE PAGO TNS', 'CONSTANCIA DE PAGO CUPL']);
+
         return redirect("/user/solicitudes/{$solicitud->id}/ver")->with('success', 'Constancias cargadas.');
     }
 

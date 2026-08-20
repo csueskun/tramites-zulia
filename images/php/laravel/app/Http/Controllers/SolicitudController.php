@@ -156,6 +156,7 @@ class SolicitudController extends Controller
         $solicitud->update($request->all());
         if ($solicitud->estado == 'APROBADA') {
             $solicitud->update(['fecha_aprobacion' => now()]);
+            $this->enviarAnexos($solicitud->id);
             $this->mailService->sendSolicitudAceptada($solicitud, $solicitud->comentarios);
         }
         if ($solicitud->estado == 'RECHAZADA') {
@@ -417,22 +418,13 @@ class SolicitudController extends Controller
         $documentoPrincipal = $solicitud->documentos()->first();
         UploadDocumentoPrincipalJob::dispatch($documentoPrincipal->id, $solicitud->radicado, $documentoPrincipal->ruta);
 
-        // Anexos
-        $anexos = [];
-        foreach ($solicitud->documentos()->where('id', '!=', $documentoPrincipal->id)->get() as $documento) {
-            $anexos[] = $documento->ruta;
-        }
-        if (!empty($anexos)) {
-            UploadAnexosJob::dispatch($solicitud->id, $solicitud->radicado, $anexos);
-        }
     }
 
-    protected function post_completada($solicitud_id, $usuario_id)
+    protected function post_completada($solicitud_id, $user)
     {
         
         $solicitud = Solicitud::findOrFail($solicitud_id);
         CambiarEstadoJob::dispatch($solicitud->id, $solicitud->radicado, $solicitud->estado);
-        $user = DB::table('users')->where('id', $usuario_id)->first();
         $radicacionService = app()->make(\App\Services\RadicacionVentanillaService::class);
 
         // Radicar
@@ -459,4 +451,26 @@ class SolicitudController extends Controller
             return false;
         }
     }
+
+    public function enviarAnexos($solicitud_id, $otros = null)
+    {
+        $solicitud = Solicitud::findOrFail($solicitud_id);
+
+        $anexos = [];
+        $documentoPrincipal = $solicitud->documentos()->first();
+        if($otros) {
+            $documentos = $solicitud->documentos()->whereIn('tipo', $otros)->get();
+        }
+        else {
+            $documentos = $solicitud->documentos()->where('id', '!=', $documentoPrincipal->id)->get();
+        }
+        foreach ($documentos as $documento) {
+            $anexos[] = $documento->ruta;
+        }
+        if (!empty($anexos)) {
+            UploadAnexosJob::dispatch($solicitud->id, $solicitud->radicado, $anexos);
+        }
+    }
+
+
 }
