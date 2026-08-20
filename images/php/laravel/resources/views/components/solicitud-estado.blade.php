@@ -19,6 +19,9 @@ switch ($estadoLabel) {
 if($estadoLabel === 'APROBADA' && $solicitud->constancia_pago) {
     $estadoLabel = 'EN VALIDACIÓN';
 }
+else{
+    $estadoLabel = 'PRE-APROBADA';
+}
 
 @endphp
 <span class="estado-pendiente etiqueta-govco {{$className}}"
