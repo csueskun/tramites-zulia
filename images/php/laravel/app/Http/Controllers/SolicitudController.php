@@ -166,6 +166,7 @@ class SolicitudController extends Controller
                 'autor' => 'ADMIN',
             ]);
             $this->mailService->sendSolicitudRechazada($solicitud, $comentario);
+            $this->post_completada($id, Auth::user());
         }
         if ($solicitud->estado == 'VALIDADA') {
             $solicitud->update(['fecha_validacion' => now()]);
@@ -225,7 +226,7 @@ class SolicitudController extends Controller
                 'ruta' => '/' . $fileName,
             ]);
             $solicitud->update(['estado' => 'COMPLETADA']);
-            $this->post_completada($id, Auth::user()->id);
+            $this->post_completada($id, Auth::user());
 
             return redirect()->back()->with('success', 'Certificado enviado.');
         } catch (\Exception $e) {
@@ -354,7 +355,7 @@ class SolicitudController extends Controller
             return $solicitud->id;
         });
 
-        $this->post_create($solicitud_id, Auth::user()->id);
+        $this->post_create($solicitud_id, Auth::user());
 
         return redirect("/user/solicitudes/{$solicitud_id}/ver")->with('success', 'Solicitud creada exitosamente.');
     }
@@ -379,10 +380,9 @@ class SolicitudController extends Controller
         return view('solicitudes.usuario-lista', compact('solicitudes'));
     }
 
-    protected function post_create($solicitud_id, $usuario_id)
+    protected function post_create($solicitud_id, $user)
     {
         $solicitud = Solicitud::findOrFail($solicitud_id);
-        $user = DB::table('users')->where('id', $usuario_id)->first();
         $radicacionService = app()->make(\App\Services\RadicacionVentanillaService::class);
 
         // Radicar

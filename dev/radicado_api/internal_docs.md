@@ -15,6 +15,7 @@ Credentials must remain outside tracked source files. The Laravel service reads 
 | Provider password | `RADICACION_VENTANILLA_PASSWORD` |
 | Application code | `RADICACION_VENTANILLA_APPLICATION` |
 | Operator | `RADICACION_VENTANILLA_OPERATOR` |
+| Usuario destino | `RADICACION_VENTANILLA_USUARIO_DESTINO` |
 
 The QA credentials are kept in the local development material under `dev/radicado_api/creds.txt`; that file must not be copied into PHP classes, documentation, or committed environment templates.
 

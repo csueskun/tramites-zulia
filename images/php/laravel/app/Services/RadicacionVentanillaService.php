@@ -39,6 +39,7 @@ class RadicacionVentanillaService
         $this->password = (string) ($config['password'] ?? '');
         $this->application = (string) ($config['application'] ?? '');
         $this->operator = (string) ($config['operator'] ?? '');
+        $this->usuarioDestino = (string) ($config['usuario_destino'] ?? '');
     }
 
     /**
@@ -49,21 +50,7 @@ class RadicacionVentanillaService
      */
     public function radicar(array $payload): array
     {
-        return $this->postJson(self::RADICAR_ENDPOINT, $payload);
-    }
-
-    /**
-     * Crea el radicado de apertura del trámite.
-     *
-     * The opening radicado always uses type 1 and has no antecedent.
-     *
-     * @param  array<string, mixed>  $payload
-     * @return string The generated opening radicado.
-     */
-    public function openRadicado(array $payload): string
-    {
-        $response = $this->radicar(array_merge($payload, [
-            'tipoRadicado' => 1,
+        return $this->postJson(self::RADICAR_ENDPOINT, array_merge($payload, [
             "codigoContinenteCiudadano"=> 1,
             "codigoPaisCiudadano"=> 170,
             "codigoDepartamentoCiudadano"=> 54,
@@ -82,7 +69,22 @@ class RadicacionVentanillaService
             "tipoDocumentoCiudadano"=> 1,
             "numeroReferenciaxOficio"=> "OF-001",
             "conCopiaA"=> "",
-            "usuarioDestino"=> "ADMON"
+            "usuarioDestino"=> $this->usuarioDestino
+        ]));
+    }
+
+    /**
+     * Crea el radicado de apertura del trámite.
+     *
+     * The opening radicado always uses type 1 and has no antecedent.
+     *
+     * @param  array<string, mixed>  $payload
+     * @return string The generated opening radicado.
+     */
+    public function openRadicado(array $payload): string
+    {
+        $response = $this->radicar(array_merge($payload, [
+            'tipoRadicado' => 2,
         ]));
 
         return $this->extractRadicado($response, 'opening');
@@ -98,7 +100,7 @@ class RadicacionVentanillaService
     public function closeRadicado(string $openRadicado, array $payload): string
     {
         $response = $this->radicar(array_merge($payload, [
-            'tipoRadicado' => 2,
+            'tipoRadicado' => 1,
             'antecedente' => $openRadicado,
         ]));
 

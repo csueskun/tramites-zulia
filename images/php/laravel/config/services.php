@@ -41,6 +41,7 @@ return [
         'password' => env('RADICACION_VENTANILLA_PASSWORD'),
         'application' => env('RADICACION_VENTANILLA_APPLICATION'),
         'operator' => env('RADICACION_VENTANILLA_OPERATOR'),
+        'usuario_destino' => env('RADICACION_VENTANILLA_USUARIO_DESTINO'),
     ],
 
 ];
