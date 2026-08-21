@@ -20,6 +20,8 @@ class RadicacionVentanillaService
 
     private const CAMBIAR_ESTADO_ENDPOINT = '/api/radicacion/registro/estado';
 
+    private const COMENTARIO_ENDPOINT = '/api/contratos/registro/comentario';
+
     private string $baseUrl;
 
     private string $username;
@@ -292,5 +294,18 @@ class RadicacionVentanillaService
         }
 
         return $datosDocumento;
+    }
+
+    public function registrarComentario(string $referencia, string $radicado, string $comentario): array
+    {
+        return $this->postJson(self::COMENTARIO_ENDPOINT, [
+            'referencia' => $referencia,
+            'radicado' => $radicado,
+            'comentario' => $comentario,
+            'usuario' => $this->username,
+            'password' => $this->password,
+            'aplicativo' => $this->application,
+            'operador' => $this->operator
+        ]);
     }
 }

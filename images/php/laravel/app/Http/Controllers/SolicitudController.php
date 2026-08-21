@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use App\Jobs\CambiarEstadoJob;
 use App\Jobs\UploadDocumentoPrincipalJob;
 use App\Jobs\UploadAnexosJob;
+use App\Jobs\RegistrarComentarioJob;
 
 class SolicitudController extends Controller
 {
@@ -158,6 +159,7 @@ class SolicitudController extends Controller
             $solicitud->update(['fecha_aprobacion' => now()]);
             $this->enviarAnexos($solicitud->id);
             $this->mailService->sendSolicitudAceptada($solicitud, $solicitud->comentarios);
+            $this->cambiarEstado($solicitud, $solicitud->estado);
         }
         if ($solicitud->estado == 'RECHAZADA') {
             $comentario = $request->input('comentario', 'No se proporcionó un motivo.');
@@ -165,14 +167,15 @@ class SolicitudController extends Controller
                 'comentario' => $comentario,
                 'autor' => 'ADMIN',
             ]);
+            RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, 'SOLICITUD RECHAZADA: ' . $comentario);
             $this->mailService->sendSolicitudRechazada($solicitud, $comentario);
             $this->post_completada($id, Auth::user());
         }
         if ($solicitud->estado == 'VALIDADA') {
             $solicitud->update(['fecha_validacion' => now()]);
             $this->mailService->sendPagoValidado($solicitud);
+            $this->cambiarEstado($solicitud, $solicitud->estado);
         }
-        CambiarEstadoJob::dispatch($solicitud->id, $solicitud->radicado, $solicitud->estado);
         return redirect()->back()->with('success', 'Solicitud actualizada exitosamente.');
     }
     public function mailReciboDePago(Request $request, Solicitud $solicitud)
@@ -191,12 +194,14 @@ class SolicitudController extends Controller
                     'responsable' => $responsable,
                     'ruta' => '/' . $solicitud->radicado . '-constancia-de-pago.pdf',
                 ]);
+                $comentario = "En su dirección de correo {$solicitud->usuario->email}, " .
+                                "recibirá el soporte de pago para el trámite, y tiene plazo hasta " .
+                                "el dia de hoy a las 11:59 pm para realizar el correspondiente pago."
                 $solicitud->comentarios()->create([
-                    'comentario' => "En su dirección de correo {$solicitud->usuario->email}, " .
-                                    "recibirá el soporte de pago para el trámite, y tiene plazo hasta " .
-                                    "el dia de hoy a las 11:59 pm para realizar el correspondiente pago.",
+                    'comentario' => $comentario,
                     'autor' => 'ADMIN',
                 ]);
+                RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
             } else {
                 if ($request->hasFile('file_recibo')) {
                     $file = $request->file('file_recibo');
@@ -226,6 +231,8 @@ class SolicitudController extends Controller
                 'ruta' => '/' . $fileName,
             ]);
             $solicitud->update(['estado' => 'COMPLETADA']);
+            $this->cambiarEstado($solicitud, 'COMPLETADA');
+
             $this->post_completada($id, Auth::user());
 
             return redirect()->back()->with('success', 'Certificado enviado.');
@@ -236,11 +243,13 @@ class SolicitudController extends Controller
     public function mailSolicitudCompletada(Request $request, Solicitud $solicitud)
     {
         $this->mailService->mailSolicitudCompletada($solicitud);
+        $comentario = "El proceso de solicitud terminó correctamente. Por favor preséntese " .
+                        "en la secretaria de tránsito sede operativa del municipio El Zulia.";
         $solicitud->comentarios()->create([
-            'comentario' => "El proceso de solicitud terminó correctamente. Por favor preséntese " .
-                            "en la secretaria de tránsito sede operativa del municipio El Zulia.",
+            'comentario' => $comentario,
             'autor' => 'ADMIN',
         ]);
+        RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
         $solicitud->update(['estado' => 'COMPLETADA']);
         return redirect()->back()->with('success', 'Usuario notificado.');
     }
@@ -269,17 +278,21 @@ class SolicitudController extends Controller
                 'responsable' => 'ADMIN',
                 'ruta' => '/' . $solicitud->radicado . '-constancia-de-pago.pdf',
             ]);
+            $comentario = "En su dirección de correo {$solicitud->usuario->email}, " .
+                            "recibirá dos soportes de pago, uno para el trámite y otro para el CUPL."
             $solicitud->comentarios()->create([
-                'comentario' => "En su dirección de correo {$solicitud->usuario->email}, " .
-                                "recibirá dos soportes de pago, uno para el trámite y otro para el CUPL.",
+                'comentario' => $comentario,
                 'autor' => 'ADMIN',
             ]);
+            RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
+            $comentario = "Le informamos que el recibo de pago del TNS fue enviado a " .
+                            "su correo electrónico, y tiene plazo hasta el dia de hoy a las " .
+                            "11:59 pm para realizar el correspondiente pago.";
             $solicitud->comentarios()->create([
-                'comentario' => "Le informamos que el recibo de pago del TNS fue enviado a " .
-                                "su correo electrónico, y tiene plazo hasta el dia de hoy a las " .
-                                "11:59 pm para realizar el correspondiente pago.",
+                'comentario' => $comentario,
                 'autor' => 'ADMIN',
             ]);
+            RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
             $solicitud->update(['veces_recibo_enviado' => $solicitud->veces_recibo_enviado + 1]);
             return redirect()->back()->with('success', 'Soporte de pago enviado.');
         } catch (\Exception $e) {
@@ -424,7 +437,6 @@ class SolicitudController extends Controller
     {
         
         $solicitud = Solicitud::findOrFail($solicitud_id);
-        CambiarEstadoJob::dispatch($solicitud->id, $solicitud->radicado, $solicitud->estado);
         $radicacionService = app()->make(\App\Services\RadicacionVentanillaService::class);
 
         // Radicar
@@ -470,6 +482,12 @@ class SolicitudController extends Controller
         if (!empty($anexos)) {
             UploadAnexosJob::dispatch($solicitud->id, $solicitud->radicado, $anexos);
         }
+    }
+
+    protected function cambiarEstado($solicitud, $estado)
+    {
+        CambiarEstadoJob::dispatch($solicitud->id, $solicitud->radicado, $estado);
+        RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, 'SOLICITUD '.$estado);
     }
 
 

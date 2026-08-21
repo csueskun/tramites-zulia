@@ -1,8 +1,8 @@
-# Radicación de Ventanilla — Internal Integration Notes
+# Radación de Ventanilla — Internal Integration Notes
 
 This document consolidates the provider documentation captured in [`api_swagger.html`](./api_swagger.html) and the endpoint details supplied for this integration.
 
-The provider is SIEPDOC's Radicación de Ventanilla API. The service implementation is [`RadicacionVentanillaService`](../../images/php/laravel/app/Services/RadicacionVentanillaService.php).
+The provider is SIEPDOC's Radación de Ventanilla API. The service implementation is [`RadicacionVentanillaService`](../../images/php/laravel/app/Services/RadicacionVentanillaService.php).
 
 ## Security and configuration
 
@@ -52,7 +52,7 @@ Creates a new radicado from citizen and source-document information. The generat
 ### Request body
 
 | Parameter | Type | Required | Description / validation |
-|---|---:|:---:|---|
+|---|---|---:|---|
 | `usuario` | String | Yes | Entity-assigned authentication user. Supplied by configuration. |
 | `password` | String | Yes | Entity-assigned password. Supplied by configuration. |
 | `aplicativo` | String | Yes | Authorized client application code. Supplied by configuration. |
@@ -124,7 +124,7 @@ Attaches one PDF to an existing radicado.
 The request is `multipart/form-data`:
 
 | Parameter | Type | Required | Description |
-|---|---:|:---:|---|
+|---|---|---:|---|
 | `usuario` | String | Yes | Configured provider username. |
 | `password` | String | Yes | Configured provider password. |
 | `aplicativo` | String | Yes | Configured application code. |
@@ -169,7 +169,7 @@ Attaches one or more documents to an existing radicado.
 The request is `multipart/form-data`:
 
 | Parameter | Type | Required | Description |
-|---|---:|:---:|---|
+|---|---|---:|---|
 | `usuario` | String | Yes | Configured provider username. |
 | `password` | String | Yes | Configured provider password. |
 | `aplicativo` | String | Yes | Configured application code. |
@@ -208,7 +208,7 @@ It throws when the property is missing or malformed.
 The JSON body contains:
 
 | Parameter | Required | Description |
-|---|:---:|---|
+|---|---:|---|
 | `usuario` | Yes | Configured provider username. |
 | `password` | Yes | Configured provider password. |
 | `aplicativo` | Yes | Configured application code. |
@@ -229,7 +229,7 @@ The complete decoded response is returned because this endpoint has a provider-s
 The JSON body contains:
 
 | Parameter | Required | Description |
-|---|:---:|---|
+|---|---:|---|
 | `usuario` | Yes | Configured provider username. |
 | `password` | Yes | Configured provider password. |
 | `aplicativo` | Yes | Configured application code. |
@@ -253,3 +253,35 @@ The complete response is returned, including `isValid`, `resultCode`, `warnings`
 3. Persist the opening `vo.radicado` before performing closing, document, consultation, or state-change operations.
 4. Use a unique `referencia` for every transaction and endpoint call to support tracing.
 5. Never log passwords or raw multipart file contents.
+
+## 4.5. Registro de comentario
+
+### Endpoint
+
+`POST /api/contratos/registro/comentario`
+
+Registers a comment associated with a radicado.
+
+### Request body
+
+| Parameter | Type | Required | Description / validation |
+|---|---|---:|---|
+| `referencia` | String | Yes | Consumer-defined unique transaction identifier. |
+| `radicado` | String | Yes | Radicado associated with the comment. |
+| `comentario` | String | Yes | Text of the comment. Max length 500. |
+| `usuario` | String | Yes | Entity-assigned authentication user. Supplied by configuration. |
+| `password` | String | Yes | Entity-assigned password. Supplied by configuration. |
+| `aplicativo` | String | Yes | Authorized client application code. Supplied by configuration. |
+| `operador` | String | Yes | Person or process sending the request. Supplied by configuration. |
+| `usuarioDestino` | String | No | Destination user or dependency. |
+
+### Response handling
+
+The service returns the full provider response, which includes fields like `isValid`, `resultCode`, `warnings`, `errors`, and `resultData.data`. The exact structure depends on the provider's response.
+
+### Operational notes
+
+- This endpoint is under `/api/contratos/...` instead of `/api/radicacion/...`
+- Ensure the `comentario` field does not exceed 500 characters.
+- Use a unique `referencia` for each request to support tracing.
+- Never log passwords or raw data.
