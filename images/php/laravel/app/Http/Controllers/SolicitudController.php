@@ -22,6 +22,7 @@ class SolicitudController extends Controller
     public function __construct(MailService $mailService)
     {
         $this->mailService = $mailService;
+        $this->useSiep = config('services.radicacion_ventanilla.activada', false);
     }
 
     public function userIndex()
@@ -167,7 +168,9 @@ class SolicitudController extends Controller
                 'comentario' => $comentario,
                 'autor' => 'ADMIN',
             ]);
-            RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, 'SOLICITUD RECHAZADA: ' . $comentario);
+            if($this->useSiep) {
+                RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, 'SOLICITUD RECHAZADA: ' . $comentario);
+            }
             $this->mailService->sendSolicitudRechazada($solicitud, $comentario);
             $this->post_completada($id, Auth::user());
         }
@@ -196,12 +199,14 @@ class SolicitudController extends Controller
                 ]);
                 $comentario = "En su dirección de correo {$solicitud->usuario->email}, " .
                                 "recibirá el soporte de pago para el trámite, y tiene plazo hasta " .
-                                "el dia de hoy a las 11:59 pm para realizar el correspondiente pago."
+                                "el dia de hoy a las 11:59 pm para realizar el correspondiente pago.";
                 $solicitud->comentarios()->create([
                     'comentario' => $comentario,
                     'autor' => 'ADMIN',
                 ]);
-                RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
+                if($this->useSiep) {
+                    RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
+                }
             } else {
                 if ($request->hasFile('file_recibo')) {
                     $file = $request->file('file_recibo');
@@ -249,7 +254,9 @@ class SolicitudController extends Controller
             'comentario' => $comentario,
             'autor' => 'ADMIN',
         ]);
-        RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
+        if($this->useSiep) {
+            RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
+        }
         $solicitud->update(['estado' => 'COMPLETADA']);
         return redirect()->back()->with('success', 'Usuario notificado.');
     }
@@ -279,12 +286,14 @@ class SolicitudController extends Controller
                 'ruta' => '/' . $solicitud->radicado . '-constancia-de-pago.pdf',
             ]);
             $comentario = "En su dirección de correo {$solicitud->usuario->email}, " .
-                            "recibirá dos soportes de pago, uno para el trámite y otro para el CUPL."
+                            "recibirá dos soportes de pago, uno para el trámite y otro para el CUPL.";
             $solicitud->comentarios()->create([
                 'comentario' => $comentario,
                 'autor' => 'ADMIN',
             ]);
-            RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
+            if($this->useSiep) {
+                RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
+            }
             $comentario = "Le informamos que el recibo de pago del TNS fue enviado a " .
                             "su correo electrónico, y tiene plazo hasta el dia de hoy a las " .
                             "11:59 pm para realizar el correspondiente pago.";
@@ -292,7 +301,9 @@ class SolicitudController extends Controller
                 'comentario' => $comentario,
                 'autor' => 'ADMIN',
             ]);
-            RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
+            if($this->useSiep) {
+                RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
+            }
             $solicitud->update(['veces_recibo_enviado' => $solicitud->veces_recibo_enviado + 1]);
             return redirect()->back()->with('success', 'Soporte de pago enviado.');
         } catch (\Exception $e) {
@@ -395,6 +406,10 @@ class SolicitudController extends Controller
 
     protected function post_create($solicitud_id, $user)
     {
+        if(!$this->useSiep) {
+            return;
+        }
+
         $solicitud = Solicitud::findOrFail($solicitud_id);
         $radicacionService = app()->make(\App\Services\RadicacionVentanillaService::class);
 
@@ -422,7 +437,7 @@ class SolicitudController extends Controller
         } catch (\Throwable $th) {
             Log::channel('api_siepdoc')->error('Error al radicar solicitud', [
                 'solicitud_id' => $solicitud->id,
-                'exception' => $th,
+                'exception' => $th->getMessage(),
             ]);
             return false;
         }
@@ -435,6 +450,9 @@ class SolicitudController extends Controller
 
     protected function post_completada($solicitud_id, $user)
     {
+        if(!$this->useSiep) {
+            return;
+        }
         
         $solicitud = Solicitud::findOrFail($solicitud_id);
         $radicacionService = app()->make(\App\Services\RadicacionVentanillaService::class);
@@ -458,7 +476,7 @@ class SolicitudController extends Controller
         } catch (\Throwable $th) {
             Log::channel('api_siepdoc')->error('Error al cerrar radicado', [
                 'solicitud_id' => $solicitud->id,
-                'exception' => $th,
+                'exception' => $th->getMessage(),
             ]);
             return false;
         }
@@ -466,6 +484,9 @@ class SolicitudController extends Controller
 
     public function enviarAnexos($solicitud_id, $otros = null)
     {
+        if(!$this->useSiep) {
+            return;
+        }
         $solicitud = Solicitud::findOrFail($solicitud_id);
 
         $anexos = [];
@@ -486,6 +507,9 @@ class SolicitudController extends Controller
 
     protected function cambiarEstado($solicitud, $estado)
     {
+        if(!$this->useSiep) {
+            return;
+        }
         CambiarEstadoJob::dispatch($solicitud->id, $solicitud->radicado, $estado);
         RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, 'SOLICITUD '.$estado);
     }

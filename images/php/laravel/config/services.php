@@ -36,6 +36,7 @@ return [
     ],
 
     'radicacion_ventanilla' => [
+        'activada' => env('RADICACION_VENTANILLA_ACTIVADA', false),
         'base_url' => env('RADICACION_VENTANILLA_BASE_URL'),
         'username' => env('RADICACION_VENTANILLA_USERNAME'),
         'password' => env('RADICACION_VENTANILLA_PASSWORD'),
