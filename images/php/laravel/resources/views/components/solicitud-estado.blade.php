@@ -11,12 +11,15 @@ switch ($estadoLabel) {
     case 'RECHAZADA':
         $className = 'error';
         break;
+    case 'APROBADA':
+        $estadoLabel = 'PRE-APROBADA';
+        break;
     default:
         $className = 'pendiente';
         break;
 }
 
-if($estadoLabel === 'APROBADA' && $solicitud->constancia_pago) {
+if($estadoLabel === 'PRE-APROBADA' && $solicitud->constancia_pago) {
     $estadoLabel = 'EN VALIDACIÓN';
 }
 
