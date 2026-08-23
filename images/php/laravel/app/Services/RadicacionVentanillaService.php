@@ -32,6 +32,10 @@ class RadicacionVentanillaService
 
     private string $operator;
 
+    private string $usuarioDestino;
+
+    private bool|string $verifySsl;
+
     public function __construct(?array $config = null)
     {
         $config ??= config('services.radicacion_ventanilla', []);
@@ -42,6 +46,7 @@ class RadicacionVentanillaService
         $this->application = (string) ($config['application'] ?? '');
         $this->operator = (string) ($config['operator'] ?? '');
         $this->usuarioDestino = (string) ($config['usuario_destino'] ?? '');
+        $this->verifySsl = $this->parseVerifySsl($config['verify_ssl'] ?? true);
     }
 
     /**
@@ -185,9 +190,15 @@ class RadicacionVentanillaService
     private function postJson(string $endpoint, array $payload): array
     {
         Log::channel('api_siepdoc')->info("Sending request to {$endpoint} with payload: " . json_encode($payload));
-        $response = Http::acceptJson()
-            ->asJson()
-            ->post($this->baseUrl . $endpoint, array_merge($payload, $this->credentials()));
+        $request = Http::acceptJson()->asJson();
+
+        if ($this->verifySsl === false) {
+            $request = $request->withoutVerifying();
+        } elseif (is_string($this->verifySsl) && $this->verifySsl !== '') {
+            $request = $request->withOptions(['verify' => $this->verifySsl]);
+        }
+
+        $response = $request->post($this->baseUrl . $endpoint, array_merge($payload, $this->credentials()));
 
         $response->throw();
 
@@ -208,6 +219,12 @@ class RadicacionVentanillaService
     private function postMultipart(string $endpoint, array $payload, array $filePaths, string $field): array
     {
         $request = Http::acceptJson();
+
+        if ($this->verifySsl === false) {
+            $request = $request->withoutVerifying();
+        } elseif (is_string($this->verifySsl) && $this->verifySsl !== '') {
+            $request = $request->withOptions(['verify' => $this->verifySsl]);
+        }
 
         foreach ($filePaths as $filePath) {
             [$contents, $filename] = $this->readFile($filePath);
@@ -307,5 +324,32 @@ class RadicacionVentanillaService
             'aplicativo' => $this->application,
             'operador' => $this->operator
         ]);
+    }
+
+    /**
+     * @param mixed $verify
+     * @return bool|string
+     */
+    private function parseVerifySsl(mixed $verify): bool|string
+    {
+        if (is_bool($verify)) {
+            return $verify;
+        }
+
+        if (is_string($verify)) {
+            $trimmed = trim($verify);
+            $lower = strtolower($trimmed);
+            if ($lower === 'false' || $lower === '0' || $lower === 'off' || $lower === 'no') {
+                return false;
+            }
+            if ($lower === 'true' || $lower === '1' || $lower === 'on' || $lower === 'yes') {
+                return true;
+            }
+            if ($trimmed !== '') {
+                return $trimmed;
+            }
+        }
+
+        return (bool) $verify;
     }
 }

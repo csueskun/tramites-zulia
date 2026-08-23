@@ -19,10 +19,12 @@ class SolicitudController extends Controller
 {
     protected $mailService;
 
+    protected bool $useSiep;
+
     public function __construct(MailService $mailService)
     {
         $this->mailService = $mailService;
-        $this->useSiep = config('services.radicacion_ventanilla.activada', false);
+        $this->useSiep = $this->parseUseSiep(config('services.radicacion_ventanilla.activada', false));
     }
 
     public function userIndex()
@@ -514,5 +516,21 @@ class SolicitudController extends Controller
         RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, 'SOLICITUD '.$estado);
     }
 
+    /**
+     * @param mixed $value
+     * @return bool
+     */
+    private function parseUseSiep(mixed $value): bool
+    {
+        if (is_bool($value)) {
+            return $value;
+        }
 
+        if (is_string($value)) {
+            $lower = strtolower(trim($value));
+            return in_array($lower, ['true', '1', 'on', 'yes'], true);
+        }
+
+        return (bool) $value;
+    }
 }

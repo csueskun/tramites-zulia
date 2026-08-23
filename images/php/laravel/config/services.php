@@ -43,6 +43,7 @@ return [
         'application' => env('RADICACION_VENTANILLA_APPLICATION'),
         'operator' => env('RADICACION_VENTANILLA_OPERATOR'),
         'usuario_destino' => env('RADICACION_VENTANILLA_USUARIO_DESTINO'),
+        'verify_ssl' => env('RADICACION_VENTANILLA_VERIFY_SSL', true),
     ],
 
 ];
