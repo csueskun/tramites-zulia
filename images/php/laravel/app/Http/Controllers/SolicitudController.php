@@ -512,8 +512,13 @@ class SolicitudController extends Controller
         if(!$this->useSiep) {
             return;
         }
-        CambiarEstadoJob::dispatch($solicitud->id, $solicitud->radicado, $estado);
-        RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, 'SOLICITUD '.$estado);
+        $estadoTxt = $estado;
+        $comentario = 'SOLICITUD '.$estadoTxt;
+        if($estadoTxt == 'VALIDADA') {
+            $comentario = 'PAGO VALIDADO';
+        }
+        CambiarEstadoJob::dispatch($solicitud->id, $solicitud->radicado, $estadoTxt);
+        RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
     }
 
     /**
