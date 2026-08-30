@@ -254,7 +254,7 @@ class SolicitudController extends Controller
                         "en la secretaria de tránsito sede operativa del municipio El Zulia.";
 
         $nota = 'Traer los documentos originales en físico para dar por finalizada su solicitud con huella.';
-        if ($this->solicitud->tramite->codigo == 'CLTV') {
+        if ($solicitud->tramite->codigo == 'CLTV') {
             $nota = 'Traer los documentos originales en físico.';
         }
         $solicitud->comentarios()->create([
