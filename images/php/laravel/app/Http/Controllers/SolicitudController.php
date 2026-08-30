@@ -262,7 +262,7 @@ class SolicitudController extends Controller
             'autor' => 'ADMIN',
         ]);
         if($this->useSiep) {
-            RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
+            RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario . ' ' . $nota);
         }
         $solicitud->update(['estado' => 'COMPLETADA']);
         return redirect()->back()->with('success', 'Usuario notificado.');
