@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comentario;
+use App\Models\Solicitud;
+
 use Illuminate\Http\Request;
 use App\Jobs\RegistrarComentarioJob;
 
@@ -15,6 +17,8 @@ class ComentarioController extends Controller
         ]);
         $validatedData['solicitud_id'] = $solicitudId;
         Comentario::create($validatedData);
+        $solicitud = Solicitud::find($solicitudId);
+        $comentario = $validatedData['comentario'];
         RegistrarComentarioJob::dispatch($solicitud->id, $solicitud->radicado, $comentario);
         return back()->with(['triggerComentario' => $solicitudId]);
     }
