@@ -16,3 +16,4 @@ oldcode/
 images/php/Dockerfile
 images/nginx/default.conf
 k8s
+/dev
