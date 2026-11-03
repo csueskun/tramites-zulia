@@ -392,7 +392,7 @@
             if(tramiteCodigo == 'MAINI'){
                 commonMessage = `Traer documentos en carpeta roja para vehículo particular y en carpeta verde para vehículo público.`;
             }
-            const nota = "<tr vehiculo='TODOS' persona='TODOS'><td><span style='font-weight: bold'>Nota</span>: ${commonMessage}</td></tr>";
+            const nota = `<tr vehiculo='TODOS' persona='TODOS'><td><span style='font-weight: bold'>Nota</span>: ${commonMessage}</td></tr>`;
             target.innerHTML = nota + requerimientosHtml;
         }
         //vehiculos
