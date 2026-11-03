@@ -142,82 +142,15 @@ class FourthBatchTramitesSeeder extends Seeder
             ['nombre' => 'RUNT (CUPL)', 'descripcion' => '', 'precio' => 2400],
         ]);
 
-        //RADICACIÓN DE CUENTA CARRO
+        //RADICACIÓN DE CUENTA (CARRO / MOTO)
         $tramite = Tramite::create([
-            'nombre' => 'Radicación de cuenta carro',
-            'descripcion' => 'Trámite que permite radicar la cuenta de un vehículo automotor tipo carro, registrando la actualización de su información de propiedad y ubicación ante las autoridades de tránsito y en el Registro Único Nacional de Tránsito (RUNT)',
+            'nombre' => 'Radicación de cuenta',
+            'descripcion' => 'Trámite que permite radicar la cuenta de un vehículo automotor tipo carro o moto, registrando la actualización de su información de propiedad y ubicación ante las autoridades de tránsito y en el Registro Único Nacional de Tránsito (RUNT)',
             'codigo' => 'RACAR',
         ]);
-        $tramite->requerimientos()->createMany([
-            [
-                'descripcion' => 'Copia de la cédula',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'cedula_ciudadania',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760, // 10MB
-                ]),
-            ],
-            [
-                'descripcion' => 'Copia de la tarjeta de propiedad',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'tarjeta_propiedad',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760, // 10MB
-                ]),
-            ],
-            [
-                'descripcion' => 'Formato único de solicitud de trámite FUN, debidamente diligenciado, con improntas en el FUN',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'solicitud_fun',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760, // 10MB
-                ]),
-            ],
-            [
-                'descripcion' => 'Poder autenticado',
-                'tipo' => 'ARCHIVO',
-                'file_metadata' => json_encode([
-                    'nombre' => 'poder',
-                    'tipo' => 'pdf',
-                    'max_size' => 10485760, // 10MB
-                ]),
-            ],
-            [
-                'descripcion' => 'SOAT (vigente)',
-            ],
-            [
-                'descripcion' => 'Revisión técnico mecánica (vigente)',
-            ],
-            [
-                'descripcion' => 'Estar a paz y salvo en el SIMIT (propietario)',
-            ],
-            [
-                'descripcion' => 'Paz y salvo de impuestos del vehículo',
-            ],
-            [
-                'descripcion' => 'Soporte de pago TNS y CUPL',
-            ],
-            [
-                'descripcion' => 'Consultar que el vehículo esté migrado en el RUNT',
-            ],
-        ]);
-        $tramite->items()->createMany([
-            ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'precio' => 146000],
-            ['nombre' => 'Sustrato de lámina', 'descripcion' => '', 'precio' => 41000],
-            ['nombre' => 'Estampilla Pro desarrollo académico', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 30000],
-            ['nombre' => 'Estampilla electrificación', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 3000],
-            ['nombre' => 'Pro Hospital', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 6000],
-            ['nombre' => 'RUNT (CUPL)', 'descripcion' => '', 'precio' => 38400],
-        ]);
-
-        //RADICACIÓN DE CUENTA MOTO
-        $tramite = Tramite::create([
-            'nombre' => 'Radicación de cuenta moto',
-            'descripcion' => 'Trámite que permite radicar la cuenta de un vehículo automotor tipo moto, registrando la actualización de su información de propiedad y ubicación ante las autoridades de tránsito y en el Registro Único Nacional de Tránsito (RUNT)',
-            'codigo' => 'RAMOT',
+        $tramite->vehiculos()->createMany([
+            ['vehiculo' => 'CARRO'],
+            ['vehiculo' => 'MOTO'],
         ]);
         $tramite->requerimientos()->createMany([
             [
@@ -276,7 +209,8 @@ class FourthBatchTramitesSeeder extends Seeder
             ],
         ]);
         $tramite->items()->createMany([
-            ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'precio' => 117000],
+            ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'vehiculo' => 'CARRO', 'precio' => 146000],
+            ['nombre' => 'Derecho de trámite', 'descripcion' => '', 'vehiculo' => 'MOTO', 'precio' => 117000],
             ['nombre' => 'Sustrato de lámina', 'descripcion' => '', 'precio' => 41000],
             ['nombre' => 'Estampilla Pro desarrollo académico', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 30000],
             ['nombre' => 'Estampilla electrificación', 'descripcion' => '', 'tipo' => 'ESTAMPILLA', 'precio' => 3000],
